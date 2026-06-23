@@ -1,0 +1,74 @@
+---
+// 재사용 CTA 버튼. variant: primary | secondary | ghost
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'md' | 'lg';
+  class?: string;
+}
+const { href, variant = 'primary', size = 'md', class: cls = '' } = Astro.props;
+const external = href.startsWith('http');
+---
+
+<a
+  href={href}
+  class={`btn btn-${variant} btn-${size} ${cls}`}
+  {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+>
+  <slot />
+</a>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    border-radius: var(--r-pill);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    border: 1px solid transparent;
+    transition:
+      transform 0.16s ease,
+      box-shadow 0.16s ease,
+      background 0.16s ease;
+    white-space: nowrap;
+  }
+  .btn-md {
+    min-height: 48px;
+    padding: 0 22px;
+    font-size: 15px;
+  }
+  .btn-lg {
+    min-height: 56px;
+    padding: 0 28px;
+    font-size: 16.5px;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: var(--on-dark);
+    box-shadow: 0 14px 30px rgba(91, 139, 74, 0.28);
+  }
+  .btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 18px 38px rgba(91, 139, 74, 0.34);
+  }
+  .btn-secondary {
+    background: var(--surface);
+    color: var(--text);
+    border-color: var(--border);
+    box-shadow: var(--shadow-soft);
+  }
+  .btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--primary-dark);
+  }
+  .btn-ghost:hover {
+    background: var(--primary-bg);
+  }
+</style>

@@ -1,23 +1,73 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title?: string;
+  description?: string;
+  /** og:image 절대 URL (자기 도메인) — 선택 */
+  ogImage?: string;
+}
+
+const {
+  title = '글루밍 · Gluming — 행동 전에 혈당 패턴을 미리 살펴보세요',
+  description = '글루밍은 CGM 데이터를 식사·운동 같은 행동으로 연결하는 혈당 관리 습관 보조 서비스예요. 사후 분석이 아니라, 행동 전에 내 혈당 패턴을 미리 시뮬레이션해보세요.',
+  ogImage = 'https://gluming.app/og.png',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://gluming.app')
+  .href;
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#FAF7EE" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Open Graph / 공유 메타데이터 (자기 도메인 절대 URL — 렌더링 의존 아님) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="글루밍 Gluming" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">본문 바로가기</a>
+    <Nav />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <style>
+      .skip-link {
+        position: absolute;
+        left: 12px;
+        top: -60px;
+        z-index: 100;
+        padding: 10px 16px;
+        background: var(--primary-dark);
+        color: var(--on-dark);
+        border-radius: var(--r-pill);
+        font-weight: 700;
+        transition: top 0.18s ease;
+      }
+      .skip-link:focus {
+        top: 12px;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,673 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import { logos, characters } from '../lib/assets';
+
+const title = '소개 — 행동을 데이터로 연결하는 글루밍';
+const description =
+  '글루밍은 CGM 데이터를 식사·운동 같은 행동으로 잇는 웰니스 습관 보조 서비스예요. 사후 분석이 아니라, 행동 전에 내 혈당 패턴을 미리 살펴보는 것을 돕습니다.';
+
+// 가치 블록 — 사후 분석의 한계 vs 행동 전 참고
+const beliefs = [
+  {
+    label: '사후 분석의 한계',
+    title: '이미 지난 일은 되돌릴 수 없어요',
+    body: '식사를 마친 뒤에야 혈당 그래프를 보면, 아쉬움만 남기 쉬워요. 기록을 쌓아도 “그래서 다음엔 뭘 다르게 하지?”라는 질문은 늘 남아요.',
+    tone: 'muted',
+  },
+  {
+    label: '행동 전 참고',
+    title: '선택하기 전에 한 번 미리 살펴봐요',
+    body: '먹기 전, 움직이기 전에 내 패턴을 가볍게 시뮬레이션해보면 더 편한 마음으로 선택할 수 있어요. 정답을 강요하지 않고, 참고가 되어 드릴게요.',
+    tone: 'primary',
+  },
+  {
+    label: '스스로 선택',
+    title: '결정의 주인은 언제나 나예요',
+    body: '글루밍은 대신 결정하지 않아요. 내 몸의 흐름을 더 잘 이해하도록 곁에서 거들고, 작은 습관을 이어가도록 따뜻하게 응원할게요.',
+    tone: 'gold',
+  },
+];
+
+// 타깃 세그먼트 (웰니스 톤)
+const audiences = [
+  {
+    tag: '임신 기간의 혈당 관리',
+    body: '임신성 당뇨로 식사와 컨디션을 함께 살펴야 하는 분들이 하루의 흐름을 부담 없이 따라가도록 도와요.',
+  },
+  {
+    tag: '건강검진이 신호가 된 분',
+    body: '39–59세, 검진 결과로 혈당을 의식하기 시작한 전당뇨·2형 당뇨 단계의 분들이 생활습관을 천천히 다듬도록 함께해요.',
+  },
+  {
+    tag: '식단을 챙기는 일상',
+    body: '19–39세, 혈당을 기준으로 식단을 관리하고 싶은 분들이 매일의 작은 선택을 즐겁게 이어가도록 거들어요.',
+  },
+];
+
+// 진행 단계 — 정직하게
+const roadmap = [
+  { phase: '기획', desc: '무엇을, 누구를 위해 만들지 다듬고 있어요.', done: true },
+  { phase: '베타 준비', desc: '핵심 경험을 작게 만들어 보며 손질하고 있어요.', done: true },
+  { phase: '사전예약', desc: '지금 단계예요. 함께할 분들을 기다리고 있어요.', current: true },
+  { phase: '정식 출시 예정', desc: '준비가 무르익으면 정식으로 인사드릴게요.', done: false },
+];
+
+const guide = characters[0]; // 도담이
+---
+
+<Layout title={title} description={description}>
+  <!-- 1. HERO -->
+  <section class="section hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">글루밍 이야기</span>
+        <h1 class="hero-title">
+          되돌아보기보다,<br />
+          <span class="accent">행동하기 전에 함께 살펴요</span>
+        </h1>
+        <p class="hero-lead">
+          글루밍은 CGM(연속혈당) 데이터를 식사·운동 같은 일상의 행동으로 잇는
+          웰니스 습관 보조 서비스예요. 지난 그래프를 분석하는 데서 멈추지 않고,
+          무언가를 선택하기 <strong>전에</strong> 내 혈당 패턴을 가볍게 미리
+          살펴보도록 도와드려요.
+        </p>
+        <p class="hero-lead hero-lead-soft">
+          정답을 정해 주는 게 아니라, 더 편안한 마음으로 스스로 선택하도록
+          곁에서 거드는 것 — 그게 우리가 바라는 글루밍의 모습이에요.
+        </p>
+        <div class="hero-actions">
+          <Button href="#preregister" size="lg">사전예약 신청하기</Button>
+          <Button href="#about-roadmap" variant="secondary" size="lg">
+            진행 단계 보기
+          </Button>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="false">
+        <div class="hero-mark">
+          <Image src={logos.icon} alt="글루밍 로고" width={300} height={300} />
+        </div>
+        <div class="hero-buddy">
+          <Image
+            src={guide.states.happy}
+            alt={`${guide.name} 캐릭터`}
+            width={160}
+            height={160}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 우리가 믿는 것 -->
+  <section class="section beliefs">
+    <div class="container">
+      <header class="block-head">
+        <span class="eyebrow">우리가 믿는 것</span>
+        <h2 class="section-title">왜 ‘행동 전’일까요?</h2>
+        <p class="section-sub">
+          이미 일어난 일을 들여다보는 것도 의미가 있어요. 다만 글루밍은 한 걸음
+          앞에서, 선택을 앞둔 순간에 곁에 있고 싶어요.
+        </p>
+      </header>
+      <div class="belief-grid">
+        {
+          beliefs.map((b) => (
+            <article class={`belief-card tone-${b.tone}`}>
+              <span class="belief-label">{b.label}</span>
+              <h3 class="belief-title">{b.title}</h3>
+              <p class="belief-body">{b.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 누구를 위한 서비스 -->
+  <section class="section who">
+    <div class="container">
+      <header class="block-head">
+        <span class="eyebrow">누구를 위한 서비스인가요</span>
+        <h2 class="section-title">혈당을 의식하기 시작한 분들과 함께해요</h2>
+        <p class="section-sub">
+          저마다 출발점은 다르지만, 내 몸의 흐름을 조금 더 이해하고 싶은 마음은
+          닮아 있어요. 글루밍은 이런 분들을 떠올리며 만들어요.
+        </p>
+      </header>
+      <div class="who-grid">
+        {
+          audiences.map((a) => (
+            <article class="card who-card">
+              <span class="who-tag">{a.tag}</span>
+              <p class="who-body">{a.body}</p>
+            </article>
+          ))
+        }
+      </div>
+      <p class="who-note">
+        다만 1형 당뇨처럼 전문 의료 관리가 중심이 되어야 하는 경우는 글루밍의
+        대상이 아니에요. 더 적합한 도움을 받으실 수 있도록, 무리해서 권하지
+        않을게요.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4. 진행 단계 -->
+  <section id="about-roadmap" class="section roadmap">
+    <div class="container">
+      <header class="block-head">
+        <span class="eyebrow">진행 단계</span>
+        <h2 class="section-title">지금은 사전예약을 준비하고 있어요</h2>
+        <p class="section-sub">
+          과장 없이, 우리가 어디까지 왔고 어디로 가는지 솔직하게 보여 드릴게요.
+        </p>
+      </header>
+      <ol class="timeline">
+        {
+          roadmap.map((step) => (
+            <li class={`tl-item ${step.current ? 'is-current' : ''} ${step.done ? 'is-done' : ''}`}>
+              <span class="tl-dot" aria-hidden="true" />
+              <div class="tl-body">
+                <h3 class="tl-phase">
+                  {step.phase}
+                  {step.current && <span class="tl-now">지금 여기</span>}
+                </h3>
+                <p class="tl-desc">{step.desc}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- 5. 사전예약 -->
+  <section id="preregister" class="section preregister">
+    <div class="container">
+      <div class="prereg-card">
+        <span class="eyebrow">사전예약</span>
+        <h2 class="section-title">먼저 소식을 받아보실래요?</h2>
+        <p class="prereg-lead">
+          글루밍이 정식으로 인사드릴 준비가 되면, 출시 소식과 시작 안내를 가장
+          먼저 보내 드릴게요. 지금은 사전예약 신청 폼을 정성껏 준비하고 있어요.
+        </p>
+        <div class="prereg-actions">
+          {/* TODO(정훈님): 사전예약 폼이 준비되면 이 자리에 폼 버튼/임베드를 넣어 주세요.
+              예) <Button href="https://forms.example/preorder" size="lg">사전예약 신청하기</Button>
+              ※ 외부 임베드 스크립트는 자가완결 원칙에 유의 (가능하면 링크 버튼 권장). */}
+          <span class="prereg-soon" role="status">사전예약 폼 준비 중이에요 🌱</span>
+        </div>
+        <p class="prereg-fine">
+          준비가 끝나는 대로 바로 이 자리에서 신청하실 수 있도록 안내해 드릴게요.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 의료 비대체 고지 -->
+  <section class="section notice-wrap">
+    <div class="container">
+      <aside class="notice" role="note" aria-label="의료 비대체 안내">
+        <span class="notice-badge" aria-hidden="true">안내</span>
+        <div class="notice-body">
+          <h2 class="notice-title">건강에 관한 중요한 안내예요</h2>
+          <p>
+            글루밍은 생활습관 관리를 돕는 <strong>웰니스 서비스</strong>이며,
+            의료 행위가 아니에요. 질병의 진단이나 치료를 대신하지 않으며, 제공되는
+            정보는 참고용이에요. 건강과 관련한 판단이나 결정은 반드시 의사 등
+            전문가와 상의해 주세요.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 7. 개인정보 처리방침 / 이용약관 -->
+  <section class="section legal">
+    <div class="container legal-grid">
+      <article id="privacy" class="card legal-card">
+        <span class="eyebrow">개인정보 처리방침</span>
+        <h2 class="legal-title">개인정보 처리방침</h2>
+        <p class="legal-body">
+          정식 문서를 정성껏 준비하고 있어요. 글루밍은 꼭 필요한 정보만 받고,
+          소중히 다루는 것을 기본으로 삼아요. 정식 출시에 맞춰 자세한 처리방침을
+          이 자리에 안내해 드릴게요.
+        </p>
+        <p class="legal-contact">
+          문의는
+          <a
+            class="legal-email"
+            href="mailto:glumate@glumate.co.kr?subject=개인정보 처리방침 문의"
+          >
+            glumate@glumate.co.kr
+          </a>
+          로 보내 주세요.
+        </p>
+      </article>
+
+      <article id="terms" class="card legal-card">
+        <span class="eyebrow">이용약관</span>
+        <h2 class="legal-title">이용약관</h2>
+        <p class="legal-body">
+          서비스 이용에 대한 약관 역시 출시에 맞춰 공개할 예정이에요. 서로
+          편안하고 신뢰할 수 있는 관계가 되도록, 알기 쉬운 말로 정리해
+          드릴게요.
+        </p>
+        <p class="legal-contact">
+          문의는
+          <a
+            class="legal-email"
+            href="mailto:glumate@glumate.co.kr?subject=이용약관 문의"
+          >
+            glumate@glumate.co.kr
+          </a>
+          로 보내 주세요.
+        </p>
+      </article>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ── 공통 ── */
+  .block-head {
+    max-width: 720px;
+    margin: 0 auto clamp(36px, 5vw, 56px);
+    text-align: center;
+  }
+  .block-head .section-sub {
+    margin-inline: auto;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding-top: clamp(48px, 6vw, 80px);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+  }
+  .hero-title {
+    font-size: clamp(34px, 5.6vw, 60px);
+    margin-bottom: 22px;
+  }
+  .hero-title .accent {
+    color: var(--primary-dark);
+  }
+  .hero-lead {
+    color: var(--text-2);
+    font-size: clamp(16px, 2vw, 19px);
+    line-height: 1.78;
+    max-width: 560px;
+  }
+  .hero-lead strong {
+    color: var(--text);
+  }
+  .hero-lead-soft {
+    margin-top: 16px;
+  }
+  .hero-actions {
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 280px;
+  }
+  .hero-mark {
+    width: clamp(220px, 30vw, 300px);
+    aspect-ratio: 1;
+    border-radius: var(--r-2xl);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+  }
+  .hero-mark :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-buddy {
+    position: absolute;
+    right: 4%;
+    bottom: 0;
+    width: clamp(96px, 14vw, 140px);
+    padding: 10px;
+    border-radius: var(--r-2xl);
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
+  }
+  .hero-buddy :global(img) {
+    width: 100%;
+    height: auto;
+  }
+
+  /* ── 우리가 믿는 것 ── */
+  .belief-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .belief-card {
+    padding: clamp(24px, 3vw, 32px);
+    border-radius: var(--r-xl);
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: var(--shadow-soft);
+  }
+  .belief-card.tone-muted {
+    background: var(--card-soft);
+  }
+  .belief-card.tone-primary {
+    background: var(--primary-bg);
+    border-color: var(--primary-tint);
+  }
+  .belief-card.tone-gold {
+    background: var(--gold-bg);
+  }
+  .belief-label {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 5px 12px;
+    border-radius: var(--r-pill);
+    background: rgba(255, 255, 255, 0.7);
+    font-size: 12.5px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: var(--text-2);
+  }
+  .tone-primary .belief-label {
+    color: var(--primary-dark);
+  }
+  .tone-gold .belief-label {
+    color: var(--gold-text);
+  }
+  .belief-title {
+    font-size: clamp(19px, 2.4vw, 23px);
+    margin-bottom: 12px;
+  }
+  .belief-body {
+    color: var(--text-2);
+    font-size: 15.5px;
+    line-height: 1.74;
+  }
+
+  /* ── 누구를 위한 ── */
+  .who-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .who-card {
+    padding: clamp(24px, 3vw, 30px);
+  }
+  .who-tag {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 7px 14px;
+    border-radius: var(--r-pill);
+    background: var(--primary-bg);
+    color: var(--primary-dark);
+    font-weight: 800;
+    font-size: 14px;
+  }
+  .who-body {
+    color: var(--text-2);
+    font-size: 15.5px;
+    line-height: 1.74;
+  }
+  .who-note {
+    margin: 28px auto 0;
+    max-width: 760px;
+    text-align: center;
+    color: var(--text-2);
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 18px 22px;
+    border-radius: var(--r-lg);
+    background: var(--warm);
+    border: 1px solid var(--border-light);
+  }
+
+  /* ── 진행 단계 ── */
+  #about-roadmap {
+    scroll-margin-top: calc(var(--nav-h) + 16px);
+  }
+  .timeline {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 720px;
+    display: grid;
+    gap: 4px;
+  }
+  .tl-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 18px;
+    padding: 18px 0 24px;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: 13px;
+    top: 28px;
+    bottom: -4px;
+    width: 2px;
+    background: var(--border);
+  }
+  .tl-item:last-child::before {
+    display: none;
+  }
+  .tl-dot {
+    position: relative;
+    z-index: 1;
+    width: 16px;
+    height: 16px;
+    margin: 6px auto 0;
+    border-radius: var(--r-pill);
+    background: var(--surface);
+    border: 3px solid var(--border-strong);
+  }
+  .tl-item.is-done .tl-dot {
+    background: var(--primary);
+    border-color: var(--primary);
+  }
+  .tl-item.is-current .tl-dot {
+    background: var(--gold);
+    border-color: var(--gold);
+    box-shadow: 0 0 0 6px var(--gold-bg);
+  }
+  .tl-phase {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: clamp(18px, 2.2vw, 21px);
+    margin-bottom: 6px;
+  }
+  .tl-now {
+    padding: 4px 11px;
+    border-radius: var(--r-pill);
+    background: var(--gold-bg);
+    color: var(--gold-text);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+  }
+  .tl-desc {
+    color: var(--text-2);
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+
+  /* ── 사전예약 ── */
+  #preregister {
+    scroll-margin-top: calc(var(--nav-h) + 16px);
+  }
+  .prereg-card {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: clamp(40px, 6vw, 64px) clamp(24px, 5vw, 56px);
+    border-radius: var(--r-2xl);
+    background:
+      radial-gradient(circle at 50% 0%, var(--primary-bg), transparent 70%),
+      var(--surface);
+    border: 1px solid var(--primary-tint);
+    box-shadow: var(--shadow-md);
+  }
+  .prereg-lead {
+    margin: 14px auto 0;
+    max-width: 560px;
+    color: var(--text-2);
+    font-size: clamp(16px, 2vw, 18px);
+    line-height: 1.76;
+  }
+  .prereg-actions {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+  }
+  .prereg-fine {
+    margin-top: 18px;
+    color: var(--text-3);
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+  .prereg-soon {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 24px;
+    border-radius: var(--r-pill);
+    background: var(--primary-bg);
+    border: 1px dashed var(--primary-tint);
+    color: var(--primary-dark);
+    font-weight: 800;
+    font-size: 15.5px;
+  }
+
+  /* ── 의료 비대체 고지 ── */
+  .notice-wrap {
+    padding-top: 0;
+  }
+  .notice {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    padding: clamp(22px, 3vw, 30px);
+    border-radius: var(--r-xl);
+    background: var(--coral-bg);
+    border: 1px solid rgba(224, 123, 90, 0.28);
+  }
+  .notice-badge {
+    flex: none;
+    padding: 6px 13px;
+    border-radius: var(--r-pill);
+    background: var(--coral);
+    color: var(--on-dark);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  .notice-title {
+    font-size: clamp(17px, 2.2vw, 20px);
+    margin-bottom: 8px;
+  }
+  .notice-body p {
+    color: var(--text-2);
+    font-size: 15px;
+    line-height: 1.74;
+  }
+  .notice-body strong {
+    color: var(--text);
+  }
+
+  /* ── 법적 문서 ── */
+  .legal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  #privacy,
+  #terms {
+    scroll-margin-top: calc(var(--nav-h) + 16px);
+  }
+  .legal-card {
+    padding: clamp(26px, 3.4vw, 36px);
+  }
+  .legal-title {
+    font-size: clamp(20px, 2.4vw, 25px);
+    margin-bottom: 14px;
+  }
+  .legal-body {
+    color: var(--text-2);
+    font-size: 15.5px;
+    line-height: 1.76;
+  }
+  .legal-contact {
+    margin-top: 16px;
+    font-size: 14.5px;
+    color: var(--text-2);
+  }
+  .legal-contact a {
+    color: var(--primary-dark);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  /* 이메일 앞뒤로 여백을 조금 줘서 또렷하게 */
+  .legal-email {
+    margin: 0 6px;
+    white-space: nowrap;
+  }
+
+  /* ── 반응형 ── */
+  @media (max-width: 960px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .hero-lead,
+    .hero-lead-soft {
+      margin-inline: auto;
+    }
+    .hero-actions {
+      justify-content: center;
+    }
+    .hero-visual {
+      order: -1;
+      min-height: auto;
+    }
+    .belief-grid,
+    .who-grid {
+      grid-template-columns: 1fr;
+    }
+    .legal-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .notice {
+      flex-direction: column;
+      gap: 12px;
+    }
+    .hero-buddy {
+      right: 50%;
+      transform: translateX(72px);
+    }
+  }
+</style>

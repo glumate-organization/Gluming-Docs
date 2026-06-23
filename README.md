@@ -70,6 +70,24 @@ echo '{"tool_input":{"file_path":"src/x.astro","content":"<img src=\"https://cdn
   | python3 .claude/hooks/external-asset-guard.py; echo "exit=$?"   # → 2 (차단)
 ```
 
+## 사업자 진위확인 배지 (빌드 시 새김)
+
+푸터의 "국세청 확인" 배지는 **빌드 시점에** 국세청 공식 API(공공데이터포털 odcloud
+`/nts-businessman/v1/status`)로 사업자 상태를 조회해 결과를 HTML에 새긴다.
+→ 런타임 외부 의존 0(자가완결), 키는 빌드에서만 쓰여 클라이언트에 노출 안 됨. 결과는 **배포 시점 스냅샷**.
+
+키가 없으면 배지는 그냥 표시되지 않고 빌드는 정상 통과한다(폴백).
+
+**키 발급 & 설정**
+1. [공공데이터포털](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15081808)에서
+   "국세청_사업자등록정보 진위확인 및 상태조회 서비스" 활용신청 → 일반 인증키(Decoding) 발급
+2. **로컬**: `docs/.env`에 `NTS_API_KEY=발급키` (이미 `.gitignore`로 커밋 제외됨)
+3. **배포(CI)**: GitHub 리포 Settings → Secrets → Actions에 `NTS_API_KEY` 추가 +
+   `.github/workflows/deploy.yml`의 build 스텝에 `env: NTS_API_KEY: ${{ secrets.NTS_API_KEY }}` 주입
+   (워크플로우는 보호 경로 — 변경 시 승인 필요)
+
+구현: `src/lib/business.ts`(조회·캐시·폴백), `src/components/Footer.astro`(배지 렌더)
+
 ## 핵심 원칙 (3줄)
 
 1. 자가완결 — 외부 런타임 의존 0, base64/번들만

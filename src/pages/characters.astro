@@ -1,0 +1,470 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import { Image } from 'astro:assets';
+import {
+  characters,
+  ribuniCostumes,
+  stateMeta,
+  stateOrder,
+} from '../lib/assets';
+
+// 각 캐릭터별 따뜻한 성격 소개 (비의료 · 컨디션/무드 톤).
+const blurbs: Record<string, string> = {
+  dodami:
+    '도담이는 하루의 작은 기록을 차곡차곡 모아두는 걸 가장 좋아해요. 오늘 무얼 먹었는지, 얼마나 걸었는지 함께 들여다보며 “오늘도 잘 챙겼어요”라고 다정하게 토닥여 주죠. 든든한 맏이 같은 친구예요.',
+  lumo:
+    '루모는 하루의 흐름을 환하게 비춰 주는 친구예요. 아침엔 가볍게 깨워 주고, 나른한 오후엔 “잠깐 스트레칭 어때요?” 하고 살며시 챙겨요. 밝고 호기심 많은 성격이라 매일이 조금씩 더 산뜻해져요.',
+  ppomi:
+    '뽀미는 아주 작은 움직임에도 신나게 박수를 쳐 주는 응원 담당이에요. 한 걸음, 두 걸음 늘어날 때마다 함께 폴짝폴짝 기뻐하죠. 부담 없이 가볍게, 그렇지만 꾸준히 함께 걷고 싶을 때 가장 든든한 친구예요.',
+  ribuni:
+    '리번이는 옷을 갈아입는 재미에 진심인 멋쟁이 친구예요. 그날의 기분에 맞춰 코스튬을 골라 입고, 함께 꾸준히 지내면 새로운 옷이 하나둘 늘어나요. 모으는 재미가 쏠쏠해서 매일이 조금 더 기대돼요.',
+};
+---
+
+<Layout
+  title="글루밍즈 — 글루밍의 컨디션 친구들"
+  description="글루밍즈는 하루의 리듬을 함께 살피는 글루밍의 컨디션 친구들이에요. 도담이·루모·뽀미·리번이의 다양한 표정과 리번이 코스튬 컬렉션을 만나보세요."
+>
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <section class="hero section">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow">글루밍즈 · GLUMINGS</span>
+        <h1 class="section-title">하루의 리듬을 함께 살피는 컨디션 친구들</h1>
+        <p class="section-sub">
+          글루밍즈는 오늘 하루의 기분과 컨디션을 살며시 비춰 주는 친구들이에요.
+          산뜻한 날엔 함께 신나고, 나른한 날엔 가만히 곁을 지켜요. 매일을 함께
+          보내며 나만의 리듬을 천천히 알아가 보세요.
+        </p>
+        <div class="hero-cta">
+          <Button href="/about#preregister" variant="primary" size="lg"
+            >글루밍즈와 함께 시작하기</Button
+          >
+        </div>
+      </div>
+
+      <ul class="hero-cluster" aria-label="글루밍즈 네 친구">
+        {
+          characters.map((c, i) => (
+            <li class="hero-chip" style={`--accent:${c.accent}`}>
+              <Image
+                src={c.states.optimal}
+                alt={`글루밍즈 ${c.name}`}
+                width={180}
+                height={180}
+                densities={[1, 2]}
+                loading={i === 0 ? 'eager' : 'lazy'}
+              />
+              <span>{c.name}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── 캐릭터별 섹션 ────────────────────────────────── -->
+  {
+    characters.map((c, i) => (
+      <section
+        class:list={['char-section', { alt: i % 2 === 1 }]}
+        style={`--accent:${c.accent}`}
+        aria-labelledby={`char-${c.key}`}
+      >
+        <div class="container char-grid">
+          <div class="char-art">
+            <Image
+              src={c.states.happy}
+              alt={`글루밍즈 ${c.name}의 모습`}
+              width={360}
+              height={360}
+              densities={[1, 2]}
+              loading="lazy"
+            />
+          </div>
+
+          <div class="char-info">
+            <span class="char-eyebrow">글루밍즈</span>
+            <h2 id={`char-${c.key}`}>{c.name}</h2>
+            <p class="char-tagline">{c.tagline}</p>
+            <p class="char-blurb">{blurbs[c.key]}</p>
+
+            <div class="faces">
+              <h3 class="faces-title">표정 모아보기</h3>
+              <ul class="faces-row">
+                {stateOrder.map((s) => (
+                  <li class="face">
+                    <div class="face-art">
+                      <Image
+                        src={c.states[s]}
+                        alt={`${c.name}의 ${stateMeta[s].label} 표정`}
+                        width={120}
+                        height={120}
+                        densities={[1, 2]}
+                        loading="lazy"
+                      />
+                    </div>
+                    <span
+                      class="face-badge"
+                      style={`background:${stateMeta[s].bg};color:${stateMeta[s].fg}`}
+                    >
+                      {stateMeta[s].label}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p class="faces-note">
+                오늘의 기분과 컨디션에 따라 표정이 살며시 바뀌어요.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <!-- ── 리번이 코스튬 컬렉션 ─────────────────────────── -->
+  <section class="costumes section" style="--accent: var(--berry)">
+    <div class="container">
+      <div class="costumes-head">
+        <span class="eyebrow">리번이 코스튬 컬렉션</span>
+        <h2 class="section-title">리번이는 옷을 갈아입으며 모으는 재미가 있어요</h2>
+        <p class="section-sub">
+          글루밍즈와 꾸준히 지내다 보면 리번이의 옷장이 점점 풍성해져요. 그날의
+          기분에 맞춰 골라 입는 코스튬을 하나씩 모아보세요.
+        </p>
+      </div>
+
+      <ul class="costume-grid">
+        {
+          ribuniCostumes.map(({ label, img }) => (
+            <li class="costume-card card">
+              <div class="costume-art">
+                <Image
+                  src={img}
+                  alt={`리번이 ${label} 코스튬`}
+                  width={160}
+                  height={160}
+                  densities={[1, 2]}
+                  loading="lazy"
+                />
+              </div>
+              <span class="costume-label">{label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── CTA 밴드 ─────────────────────────────────────── -->
+  <section class="cta-band section">
+    <div class="container cta-inner">
+      <h2 class="cta-title">글루밍즈와 함께 시작해 볼까요?</h2>
+      <p class="cta-sub">
+        네 친구가 매일의 리듬을 함께 살펴 줄 거예요. 지금 사전예약하고 가장 먼저
+        만나보세요.
+      </p>
+      <Button href="/about#preregister" variant="primary" size="lg"
+        >글루밍즈와 함께 시작하기</Button
+      >
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ── HERO ───────────────────────────────────────── */
+  .hero {
+    padding-top: clamp(48px, 7vw, 84px);
+  }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(28px, 5vw, 64px);
+    align-items: center;
+  }
+  .hero-cta {
+    margin-top: 28px;
+  }
+  .hero-cluster {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .hero-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 14px;
+    border-radius: var(--r-xl);
+    background:
+      radial-gradient(
+        circle at 50% 36%,
+        color-mix(in srgb, var(--accent) 24%, transparent),
+        transparent 66%
+      ),
+      var(--card-soft);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+  .hero-chip:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+  .hero-chip :global(img) {
+    width: 76%;
+    height: auto;
+    filter: drop-shadow(0 10px 18px rgba(58, 45, 31, 0.16));
+  }
+  .hero-chip span {
+    font-weight: 800;
+    font-size: 15px;
+  }
+
+  /* ── 캐릭터 섹션 ─────────────────────────────────── */
+  .char-section {
+    padding: clamp(56px, 8vw, 92px) 0;
+    background: color-mix(in srgb, var(--accent) 7%, transparent);
+  }
+  .char-section.alt {
+    background: color-mix(in srgb, var(--accent) 11%, transparent);
+  }
+  .char-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(28px, 5vw, 64px);
+    align-items: center;
+  }
+  .char-section.alt .char-art {
+    order: 2;
+  }
+  .char-art {
+    border-radius: var(--r-2xl);
+    background:
+      radial-gradient(
+        circle at 50% 40%,
+        color-mix(in srgb, var(--accent) 26%, transparent),
+        transparent 68%
+      ),
+      var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
+    display: grid;
+    place-items: center;
+    padding: clamp(24px, 4vw, 44px);
+    aspect-ratio: 1 / 1;
+  }
+  .char-art :global(img) {
+    width: 82%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 16px 26px rgba(58, 45, 31, 0.18));
+  }
+  .char-eyebrow {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 12.5px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--accent) 72%, var(--text));
+  }
+  .char-info h2 {
+    font-size: clamp(26px, 3.6vw, 38px);
+  }
+  .char-tagline {
+    margin-top: 10px;
+    font-size: clamp(16px, 2vw, 19px);
+    font-weight: 700;
+    color: color-mix(in srgb, var(--accent) 64%, var(--text));
+  }
+  .char-blurb {
+    margin-top: 14px;
+    color: var(--text-2);
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 560px;
+  }
+
+  /* 표정 모아보기 */
+  .faces {
+    margin-top: 28px;
+  }
+  .faces-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .faces-row {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+  }
+  .face {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .face-art {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--r-md);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--border-light);
+    display: grid;
+    place-items: center;
+    padding: 8px;
+  }
+  .face-art :global(img) {
+    width: 86%;
+    height: auto;
+    object-fit: contain;
+  }
+  .face-badge {
+    font-size: 11.5px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: var(--r-pill);
+    white-space: nowrap;
+  }
+  .faces-note {
+    margin-top: 14px;
+    font-size: 13.5px;
+    color: var(--text-3);
+  }
+
+  /* ── 코스튬 컬렉션 ───────────────────────────────── */
+  .costumes-head {
+    text-align: center;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .costumes-head .section-sub {
+    margin-inline: auto;
+  }
+  .costume-grid {
+    list-style: none;
+    margin: clamp(36px, 5vw, 56px) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 18px;
+  }
+  .costume-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 14px;
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+  .costume-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+  .costume-art {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--r-lg);
+    background:
+      radial-gradient(
+        circle at 50% 40%,
+        color-mix(in srgb, var(--berry) 18%, transparent),
+        transparent 68%
+      ),
+      var(--card-soft);
+    display: grid;
+    place-items: center;
+    padding: 12px;
+  }
+  .costume-art :global(img) {
+    width: 82%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 16px rgba(58, 45, 31, 0.16));
+  }
+  .costume-label {
+    font-weight: 800;
+    font-size: 14.5px;
+  }
+
+  /* ── CTA 밴드 ────────────────────────────────────── */
+  .cta-band {
+    text-align: center;
+  }
+  .cta-inner {
+    background:
+      radial-gradient(
+        circle at 50% 0%,
+        rgba(123, 183, 108, 0.18),
+        transparent 60%
+      ),
+      var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-2xl);
+    box-shadow: var(--shadow-md);
+    padding: clamp(40px, 6vw, 72px) clamp(24px, 5vw, 56px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cta-title {
+    font-size: clamp(26px, 3.8vw, 40px);
+  }
+  .cta-sub {
+    margin: 16px auto 28px;
+    color: var(--text-2);
+    font-size: clamp(16px, 2vw, 18px);
+    line-height: 1.75;
+    max-width: 520px;
+  }
+
+  /* ── 반응형 ──────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .hero-inner,
+    .char-grid {
+      grid-template-columns: 1fr;
+    }
+    .char-section.alt .char-art {
+      order: 0;
+    }
+    .char-art {
+      max-width: 360px;
+      margin-inline: auto;
+    }
+    .faces-row {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .costume-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 520px) {
+    .hero-cluster {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .faces-row {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .costume-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

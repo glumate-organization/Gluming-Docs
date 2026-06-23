@@ -1,0 +1,239 @@
+---
+import { Image } from 'astro:assets';
+import { logos } from '../lib/assets';
+import { getBusinessStatus } from '../lib/business';
+
+const year = 2026;
+// 빌드 시점에 국세청 API로 사업자 상태 조회 (키 없으면 ok:false 폴백)
+const biz = await getBusinessStatus();
+const cols = [
+  {
+    title: '둘러보기',
+    links: [
+      { href: '/', label: '홈' },
+      { href: '/features', label: '기능' },
+      { href: '/characters', label: '글루밍즈' },
+      { href: '/about', label: '소개' },
+    ],
+  },
+  {
+    title: '함께하기',
+    links: [
+      { href: '/about#preregister', label: '사전예약' },
+      { href: 'mailto:glumate@glumate.co.kr', label: '문의하기' },
+    ],
+  },
+  {
+    title: '정책',
+    links: [
+      { href: '/about#privacy', label: '개인정보 처리방침' },
+      { href: '/about#terms', label: '이용약관' },
+    ],
+  },
+];
+---
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="brand" aria-label="글루밍 홈">
+        <Image src={logos.icon} alt="" width={38} height={38} densities={[1, 2]} />
+        <span>글루밍<small>Gluming</small></span>
+      </a>
+      <p class="tagline">
+        혈당 데이터를 행동으로 연결하는 혈당 관리 습관 보조 서비스.
+        식사·운동 전에 내 패턴을 미리 살펴보세요.
+      </p>
+    </div>
+
+    {
+      cols.map((col) => (
+        <nav class="footer-col" aria-label={col.title}>
+          <h3>{col.title}</h3>
+          <ul>
+            {col.links.map((l) => (
+              <li><a href={l.href}>{l.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+      ))
+    }
+  </div>
+
+  <div class="container footer-bottom">
+    <p class="disclaimer">
+      본 서비스는 생활습관 관리를 돕는 웰니스 서비스이며, 의료 행위가 아니고
+      질병의 진단·치료를 대체하지 않습니다. 건강 관련 판단은 전문가와 상의하세요.
+    </p>
+    <ul class="biz">
+      <li>상호 : 글루메이트</li>
+      <li>
+        사업자등록번호 :
+        <a
+          class="biz-verify"
+          href="https://www.hometax.go.kr"
+          target="_blank"
+          rel="noopener noreferrer"
+        >785-03-03768<span class="sr-only"> (국세청 사업자등록 상태조회 새 창)</span></a>
+      </li>
+      <li>개업년월일 : 2026.03.25</li>
+      <li>업종 : 응용 소프트웨어 개발 및 공급업</li>
+      <li>이메일 : glumate@glumate.co.kr</li>
+    </ul>
+    {
+      biz.ok && (
+        <p class="biz-confirmed">
+          <span class="biz-check" aria-hidden="true">✓</span>
+          국세청 확인 — {biz.bStt}
+          {biz.taxType && <span class="biz-tax">({biz.taxType})</span>}
+          <span class="biz-asof">· {biz.checkedAt} 기준</span>
+        </p>
+      )
+    }
+    <p class="copy">© {year} 글루메이트 (Glumate). All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: 40px;
+    padding: 64px 0 40px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr repeat(3, 1fr);
+    gap: 40px;
+  }
+  .footer-brand .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 900;
+    font-size: 18px;
+    letter-spacing: -0.04em;
+  }
+  .footer-brand .brand :global(img) {
+    border-radius: 12px;
+  }
+  .footer-brand small {
+    font-size: 11px;
+    color: var(--text-2);
+    font-weight: 700;
+    margin-left: 4px;
+  }
+  .tagline {
+    margin-top: 16px;
+    color: var(--text-2);
+    font-size: 14.5px;
+    line-height: 1.7;
+    max-width: 360px;
+  }
+  .footer-col h3 {
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+  .footer-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+  .footer-col a {
+    color: var(--text-2);
+    font-size: 14px;
+    transition: color 0.15s ease;
+  }
+  .footer-col a:hover {
+    color: var(--primary-dark);
+  }
+  .footer-bottom {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-light);
+  }
+  .disclaimer {
+    color: var(--text-3);
+    font-size: 12.5px;
+    line-height: 1.65;
+    max-width: 720px;
+  }
+  .biz {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    color: var(--text-3);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .biz li {
+    position: relative;
+  }
+  .biz-verify {
+    color: var(--primary-dark);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .biz-verify:hover {
+    color: var(--primary);
+  }
+  .biz li:not(:last-child)::after {
+    content: "·";
+    position: absolute;
+    right: -9px;
+    color: var(--border-strong);
+  }
+  .biz-confirmed {
+    margin: 10px 0 0;
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 5px 11px;
+    border-radius: var(--r-pill);
+    background: var(--primary-bg);
+    border: 1px solid var(--primary-tint);
+    color: var(--primary-dark);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  .biz-check {
+    display: inline-grid;
+    place-items: center;
+    width: 15px;
+    height: 15px;
+    border-radius: var(--r-pill);
+    background: var(--primary);
+    color: var(--on-dark);
+    font-size: 10px;
+  }
+  .biz-tax {
+    font-weight: 600;
+  }
+  .biz-asof {
+    color: var(--text-2);
+    font-weight: 600;
+  }
+  .copy {
+    margin-top: 12px;
+    color: var(--text-3);
+    font-size: 12.5px;
+  }
+  @media (max-width: 760px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

@@ -1,11 +1,570 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import { Image } from 'astro:assets';
+import Button from '../components/Button.astro';
+import CharacterCard from '../components/CharacterCard.astro';
+import FeatureCard from '../components/FeatureCard.astro';
 import Layout from '../layouts/Layout.astro';
+import { characters, charactersByKey, featureImages } from '../lib/assets';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const dodami = charactersByKey.dodami;
+
+const features = [
+  {
+    img: featureImages.simulation,
+    title: '행동 전 시뮬레이션',
+    tint: 'var(--primary-bg)',
+    alt: '혈당 흐름을 미리 그려보는 시뮬레이션 일러스트',
+    desc: '먹기 전에, 움직이기 전에. 내 혈당 패턴이 어떻게 흐를지 미리 살펴보고 천천히 선택해요.',
+  },
+  {
+    img: featureImages.camera,
+    title: '간편한 식사·간식 기록',
+    tint: 'var(--peach-bg)',
+    alt: '카메라로 식사를 기록하는 일러스트',
+    desc: '한 끼도, 작은 간식도 가볍게 남겨요. 기록이 쌓일수록 내 몸의 반응을 더 또렷이 알아가요.',
+  },
+  {
+    img: featureImages.notification,
+    title: '부드러운 리마인드',
+    tint: 'var(--dusk-bg)',
+    alt: '알림으로 부드럽게 안내하는 일러스트',
+    desc: '재촉하지 않아요. 잊기 쉬운 순간에 살며시 건네는 알림으로 생활습관 관리를 도와요.',
+  },
+  {
+    img: featureImages.star,
+    title: '캐릭터와 함께하는 습관',
+    tint: 'var(--gold-bg)',
+    alt: '별과 함께 습관을 쌓아가는 일러스트',
+    desc: '글루밍즈와 하루하루 작은 기록을 모아요. 혼자가 아니라 함께라서 꾸준함이 즐거워져요.',
+  },
+];
+
+const segments = [
+  {
+    badge: '안심·세심',
+    tint: 'var(--cheek-bg)',
+    accent: 'var(--berry)',
+    title: '임신성 당뇨가 신경 쓰이는 분',
+    desc: '하루에도 몇 번씩 챙겨야 할 게 많은 시기, 기록과 미리보기로 관리 부담을 한결 덜어드려요.',
+  },
+  {
+    badge: '검진 이후',
+    tint: 'var(--gold-bg)',
+    accent: 'var(--gold)',
+    title: '건강검진 결과가 마음에 걸리는 39–59세',
+    desc: '전당뇨·2형이 신경 쓰이기 시작했다면, 검진 결과를 막막함이 아니라 일상의 작은 행동으로 이어가요.',
+  },
+  {
+    badge: '식단 관리',
+    tint: 'var(--primary-bg)',
+    accent: 'var(--primary)',
+    title: '혈당 기반 식단을 챙기는 19–39세',
+    desc: '같은 음식도 내 몸은 다르게 반응해요. 그 흐름을 알아가며 나에게 맞는 식사를 스스로 골라요.',
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="글루밍 · Gluming — 먹기 전에, 움직이기 전에 혈당 흐름을 미리"
+  description="글루밍은 CGM 혈당 데이터를 식사·운동 같은 행동으로 연결하는 생활습관 관리 보조 서비스예요. 사후 분석이 아니라 행동 전에 내 혈당 패턴을 미리 시뮬레이션해보세요."
+>
+  <!-- ── 1. HERO ───────────────────────────────────────── -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="pill">CGM × 생활습관 보조</span>
+        <h1 class="hero-title">
+          먹기 전에, 움직이기 전에 —<br />
+          <span class="accent">내 혈당 흐름</span>을 미리 살펴봐요
+        </h1>
+        <p class="hero-lead">
+          글루밍은 CGM 혈당 데이터를 식사·운동 같은 행동으로 이어줘요.
+          지나간 숫자를 분석하는 대신, <strong>행동하기 전에</strong> 내 혈당 패턴이
+          어떻게 흐를지 미리 확인하고 스스로 선택해요.
+        </p>
+        <div class="hero-cta">
+          <Button href="/about#preregister" variant="primary" size="lg">
+            사전예약하고 먼저 받아보기
+          </Button>
+          <Button href="/features" variant="secondary" size="lg">
+            기능 둘러보기
+          </Button>
+        </div>
+        <p class="hero-note">의료기기가 아니에요 · 생활습관 관리를 돕는 웰니스 서비스예요</p>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-stage card">
+          <div class="hero-glow" aria-hidden="true"></div>
+          <Image
+            src={dodami.states.optimal}
+            alt={`글루밍즈 캐릭터 ${dodami.name}가 산뜻한 표정으로 인사하는 모습`}
+            width={320}
+            height={320}
+            loading="eager"
+            densities={[1, 2]}
+            class="hero-char"
+          />
+        </div>
+        <div class="badge badge-a card">
+          <span class="badge-dot dot-green"></span>
+          <span class="badge-text">
+            <strong>오늘의 컨디션</strong>
+            <em>산뜻해요</em>
+          </span>
+        </div>
+        <div class="badge badge-b card">
+          <span class="badge-dot dot-gold"></span>
+          <span class="badge-text">
+            <strong>식사 전 시뮬레이션</strong>
+            <em>지금 살펴볼까요?</em>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 2. 문제 정의 ──────────────────────────────────── -->
+  <section class="section problem">
+    <div class="container">
+      <p class="eyebrow">왜 글루밍인가요</p>
+      <h2 class="section-title">숫자는 쌓이는데,<br />그래서 뭘 바꿔야 할지는 막막하죠</h2>
+      <p class="section-sub">
+        CGM을 차면 혈당 데이터는 자동으로 쌓여요. 하지만 데이터가 곧 행동이 되지는
+        않아요. “이미 올랐네”를 확인하는 것과, “이렇게 하면 어떻게 흐를까”를 미리
+        그려보는 건 전혀 다른 경험이에요.
+      </p>
+
+      <div class="compare">
+        <article class="compare-card card is-before">
+          <span class="tag tag-muted">지금까지</span>
+          <h3>사후 분석</h3>
+          <p>식사가 끝난 뒤 그래프를 들여다봐요. 이미 지나간 일이라 다음을 바꾸기 어렵죠.</p>
+        </article>
+        <div class="compare-arrow" aria-hidden="true">→</div>
+        <article class="compare-card card is-after">
+          <span class="tag tag-primary">글루밍은</span>
+          <h3>행동 전 시뮬레이션</h3>
+          <p>먹기 전, 움직이기 전에 패턴을 미리 그려봐요. 오늘의 선택을 내 손으로 바꿔요.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 3. 핵심 기능 ──────────────────────────────────── -->
+  <section class="section features">
+    <div class="container">
+      <p class="eyebrow">핵심 기능</p>
+      <h2 class="section-title">행동을 바꾸기 쉽게, 부드럽게</h2>
+      <p class="section-sub">
+        복잡한 수치 해석은 글루밍에 맡기고, 나는 오늘 한 걸음만 가볍게 내디뎌요.
+      </p>
+
+      <div class="feature-grid">
+        {
+          features.map((f) => (
+            <FeatureCard img={f.img} title={f.title} tint={f.tint} alt={f.alt}>
+              {f.desc}
+            </FeatureCard>
+          ))
+        }
+      </div>
+
+      <div class="center-cta">
+        <Button href="/features" variant="secondary" size="md">
+          기능 자세히 보기
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 4. 글루밍즈 티저 ──────────────────────────────── -->
+  <section class="section friends">
+    <div class="container">
+      <p class="eyebrow">글루밍즈</p>
+      <h2 class="section-title">매일을 함께 걷는 친구들</h2>
+      <p class="section-sub">
+        기록도 습관도 혼자 하면 금세 지쳐요. 글루밍즈가 곁에서 오늘의 작은 변화를
+        같이 응원해요.
+      </p>
+
+      <div class="friends-grid">
+        {characters.map((c) => <CharacterCard character={c} state="optimal" />)}
+      </div>
+
+      <div class="center-cta">
+        <Button href="/characters" variant="secondary" size="md">
+          글루밍즈 모두 만나기
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 5. 타깃 적합성 ────────────────────────────────── -->
+  <section class="section fit">
+    <div class="container">
+      <p class="eyebrow">이런 분께 어울려요</p>
+      <h2 class="section-title">내 속도에 맞춰, 내 방식대로</h2>
+      <p class="section-sub">
+        의료 서비스를 대신하지 않아요. 일상에서 스스로 챙기는 분께 든든한 곁이 되어드려요.
+      </p>
+
+      <div class="fit-grid">
+        {
+          segments.map((s) => (
+            <article class="fit-card card">
+              <span
+                class="fit-badge"
+                style={`background:${s.tint}; color:${s.accent}`}
+              >
+                {s.badge}
+              </span>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 6. 최종 CTA ───────────────────────────────────── -->
+  <section class="section cta-band-wrap">
+    <div class="container">
+      <div class="cta-band">
+        <div class="cta-band-glow" aria-hidden="true"></div>
+        <h2 class="cta-title">오늘의 한 끼, 미리 살펴보고 시작해요</h2>
+        <p class="cta-sub">
+          행동하기 전에 내 혈당 흐름을 그려보는 습관. 글루밍을 가장 먼저 만나보세요.
+        </p>
+        <Button href="/about#preregister" variant="primary" size="lg">
+          사전예약하고 먼저 받아보기
+        </Button>
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  /* ── HERO ─────────────────────────────────────────── */
+  .hero {
+    padding: clamp(40px, 7vw, 84px) 0 clamp(56px, 8vw, 96px);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+  }
+  .hero-title {
+    margin-top: 18px;
+    font-size: clamp(32px, 5.4vw, 58px);
+    line-height: 1.12;
+  }
+  .hero-title .accent {
+    color: var(--primary-dark);
+  }
+  .hero-lead {
+    margin-top: 22px;
+    max-width: 540px;
+    color: var(--text-2);
+    font-size: clamp(16px, 2vw, 19px);
+    line-height: 1.8;
+  }
+  .hero-lead strong {
+    color: var(--text);
+  }
+  .hero-cta {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .hero-note {
+    margin-top: 18px;
+    color: var(--text-3);
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+
+  .hero-visual {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 360px;
+  }
+  .hero-stage {
+    position: relative;
+    width: min(100%, 420px);
+    aspect-ratio: 1 / 1;
+    display: grid;
+    place-items: center;
+    border-radius: var(--r-2xl);
+    background:
+      radial-gradient(circle at 50% 36%, rgba(123, 183, 108, 0.22), transparent 62%),
+      var(--surface);
+    overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute;
+    inset: auto auto -20% -10%;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(circle, rgba(255, 233, 168, 0.55), transparent 70%);
+    filter: blur(8px);
+    pointer-events: none;
+  }
+  .hero-char {
+    position: relative;
+    width: 78%;
+    height: auto;
+    filter: drop-shadow(0 18px 30px rgba(58, 45, 31, 0.18));
+  }
+
+  .badge {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 12px 16px;
+    border-radius: var(--r-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-md);
+    z-index: 2;
+  }
+  .badge-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+  }
+  .badge strong {
+    font-size: 13.5px;
+    color: var(--text);
+  }
+  .badge em {
+    font-style: normal;
+    font-size: 12.5px;
+    color: var(--text-2);
+    font-weight: 600;
+  }
+  .badge-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: var(--r-pill);
+    flex: none;
+  }
+  .dot-green {
+    background: var(--primary);
+    box-shadow: 0 0 0 5px rgba(123, 183, 108, 0.18);
+  }
+  .dot-gold {
+    background: var(--gold);
+    box-shadow: 0 0 0 5px rgba(212, 160, 48, 0.18);
+  }
+  .badge-a {
+    top: 6%;
+    left: -2%;
+    animation: float-a 6s ease-in-out infinite;
+  }
+  .badge-b {
+    bottom: 8%;
+    right: -2%;
+    animation: float-b 6.6s ease-in-out infinite;
+  }
+  @keyframes float-a {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-9px); }
+  }
+  @keyframes float-b {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  /* ── 문제 정의 ─────────────────────────────────────── */
+  .compare {
+    margin-top: 44px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 18px;
+    align-items: stretch;
+  }
+  .compare-card {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .compare-card h3 {
+    font-size: 22px;
+  }
+  .compare-card p {
+    color: var(--text-2);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .is-after {
+    background: linear-gradient(180deg, var(--primary-bg), rgba(255, 255, 255, 0.78));
+    border-color: var(--primary-tint);
+  }
+  .tag {
+    align-self: flex-start;
+    padding: 5px 12px;
+    border-radius: var(--r-pill);
+    font-size: 12.5px;
+    font-weight: 800;
+  }
+  .tag-muted {
+    background: var(--warm);
+    color: var(--text-2);
+  }
+  .tag-primary {
+    background: var(--primary);
+    color: var(--on-dark);
+  }
+  .compare-arrow {
+    align-self: center;
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--primary-dark);
+  }
+
+  /* ── 기능 / 글루밍즈 그리드 ───────────────────────── */
+  .feature-grid,
+  .friends-grid {
+    margin-top: 44px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .center-cta {
+    margin-top: 36px;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* ── 타깃 적합성 ───────────────────────────────────── */
+  .fit-grid {
+    margin-top: 44px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .fit-card {
+    padding: 30px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .fit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+  .fit-badge {
+    align-self: flex-start;
+    padding: 6px 13px;
+    border-radius: var(--r-pill);
+    font-size: 12.5px;
+    font-weight: 800;
+  }
+  .fit-card h3 {
+    font-size: 20px;
+    line-height: 1.35;
+  }
+  .fit-card p {
+    color: var(--text-2);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  /* ── 최종 CTA ──────────────────────────────────────── */
+  .cta-band {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(48px, 7vw, 80px) clamp(28px, 5vw, 64px);
+    border-radius: var(--r-2xl);
+    text-align: center;
+    background:
+      radial-gradient(circle at 80% 0%, rgba(255, 233, 168, 0.5), transparent 55%),
+      linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--on-dark);
+    box-shadow: var(--shadow-lg);
+  }
+  .cta-band-glow {
+    position: absolute;
+    inset: -40% -10% auto auto;
+    width: 60%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.18), transparent 70%);
+    pointer-events: none;
+  }
+  .cta-title {
+    position: relative;
+    font-size: clamp(26px, 4vw, 42px);
+    color: var(--on-dark);
+  }
+  .cta-sub {
+    position: relative;
+    margin: 18px auto 30px;
+    max-width: 540px;
+    font-size: clamp(15px, 2vw, 18px);
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.92);
+  }
+  .cta-band :global(.btn-primary) {
+    position: relative;
+    background: var(--surface);
+    color: var(--primary-dark);
+  }
+  .cta-band :global(.btn-primary:hover) {
+    background: var(--card-soft);
+  }
+
+  /* ── 반응형 ────────────────────────────────────────── */
+  @media (max-width: 980px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero-copy {
+      text-align: center;
+    }
+    .hero-lead {
+      margin-inline: auto;
+    }
+    .hero-cta {
+      justify-content: center;
+    }
+    .hero-visual {
+      order: -1;
+    }
+    .feature-grid,
+    .friends-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .fit-grid {
+      grid-template-columns: 1fr;
+    }
+    .compare {
+      grid-template-columns: 1fr;
+    }
+    .compare-arrow {
+      transform: rotate(90deg);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .feature-grid,
+    .friends-grid {
+      grid-template-columns: 1fr;
+    }
+    .badge-a {
+      left: 0;
+    }
+    .badge-b {
+      right: 0;
+    }
+    .badge em {
+      display: none;
+    }
+  }
+</style>

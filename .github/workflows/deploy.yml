@@ -25,6 +25,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          NTS_API_KEY: ${{ secrets.NTS_API_KEY }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist        # 리포 루트 기준 (docs가 곧 루트)
