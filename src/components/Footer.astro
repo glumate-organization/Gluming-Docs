@@ -67,15 +67,7 @@ const cols = [
     </p>
     <ul class="biz">
       <li>상호 : 글루메이트</li>
-      <li>
-        사업자등록번호 :
-        <a
-          class="biz-verify"
-          href="https://www.hometax.go.kr"
-          target="_blank"
-          rel="noopener noreferrer"
-        >785-03-03768<span class="sr-only"> (국세청 사업자등록 상태조회 새 창)</span></a>
-      </li>
+      <li>사업자등록번호 : 785-03-03768</li>
       <li>개업년월일 : 2026.03.25</li>
       <li>업종 : 응용 소프트웨어 개발 및 공급업</li>
       <li>이메일 : glumate@glumate.co.kr</li>
@@ -175,15 +167,6 @@ const cols = [
   .biz li {
     position: relative;
   }
-  .biz-verify {
-    color: var(--primary-dark);
-    font-weight: 700;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-  .biz-verify:hover {
-    color: var(--primary);
-  }
   .biz li:not(:last-child)::after {
     content: "·";
     position: absolute;
@@ -191,36 +174,25 @@ const cols = [
     color: var(--border-strong);
   }
   .biz-confirmed {
-    margin: 10px 0 0;
+    margin: 8px 0 0;
     display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 6px;
-    padding: 5px 11px;
-    border-radius: var(--r-pill);
-    background: var(--primary-bg);
-    border: 1px solid var(--primary-tint);
-    color: var(--primary-dark);
+    gap: 5px;
+    color: var(--text-3);
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.5;
   }
   .biz-check {
-    display: inline-grid;
-    place-items: center;
-    width: 15px;
-    height: 15px;
-    border-radius: var(--r-pill);
-    background: var(--primary);
-    color: var(--on-dark);
-    font-size: 10px;
+    color: var(--primary-dark);
+    font-weight: 800;
   }
   .biz-tax {
     font-weight: 600;
   }
   .biz-asof {
-    color: var(--text-2);
-    font-weight: 600;
+    color: var(--text-3);
   }
   .copy {
     margin-top: 12px;
