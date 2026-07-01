@@ -1,75 +1,101 @@
 /* ───────────────────────────────────────────────────────────
-   글루밍 디자인 토큰 — Flutter 앱(app_colors/app_design/app_theme)에서 추출.
+   글루밍 디자인 토큰 — 에디토리얼 리디자인.
+   paper/ink 뉴트럴 + 뮤트 세이지 액센트. 순백/순흑·캔디 UI 금지.
    색/반경/그림자/타이포는 반드시 이 변수를 참조한다 (하드코딩 금지).
    ─────────────────────────────────────────────────────────── */
+
+/* ─── self-host 폰트 (외부 CDN 의존 0, src/assets/fonts 번들) ─── */
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-display: swap;
+  font-style: normal;
+  src: url("../assets/fonts/PretendardVariable.woff2") format("woff2");
+}
+@font-face {
+  /* 라틴 세리프 악센트 (영문 eyebrow·숫자 전용). 가변 opsz/wght. */
+  font-family: "Fraunces";
+  font-weight: 400 600;
+  font-display: swap;
+  font-style: normal;
+  src: url("../assets/fonts/Fraunces-latin.woff2") format("woff2");
+}
+
 :root {
-  /* 배경 */
-  --bg: #faf7ee;
-  --surface: #fffefa;
-  --card-soft: #f5f0e2;
-  --warm: #f0eadc;
+  /* 배경 — warm paper */
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --card-soft: #efebe3;
+  --warm: #eee9df;
 
-  /* 브랜드 — Sprout */
+  /* 브랜드 — Sprout(인터랙션) + 뮤트 세이지/파인(면·헤딩) */
   --primary: #7bb76c;
-  --primary-dark: #5a9b4d;
+  --primary-dark: #4f8a49;
   --primary-light: #9ed080;
-  --primary-bg: #e5f2dc;
-  --primary-tint: #d4ebc4;
+  --primary-bg: #e7efe1;
+  --primary-tint: #d7e6cd;
+  --sage: #5c8a57;
+  --sage-dark: #46703f;
+  --pine: #2f3d33;
+  --sand: #c8b89a;
 
-  /* 텍스트 */
-  --text: #3a2d1f;
-  --text-2: #8b7e6f;
-  --text-3: #bcb0a0;
-  --on-dark: #fffefa;
+  /* 텍스트 — ink */
+  --text: #2a2e29;
+  --text-2: #6b6f68;
+  --text-3: #9a9b94;
+  --on-dark: #f4f2ec;
 
-  /* 액센트 */
-  --coral: #e07b5a;
-  --coral-bg: #fbe8dd;
-  --gold: #d4a030;
-  --gold-bg: #faeed0;
-  --gold-text: #8b6a00;
-  --dusk: #7090c0;
-  --dusk-bg: #e0e8f4;
-  --peach: #f5a878;
-  --peach-bg: #fceadb;
-  --cheek: #ffb8c8;
-  --cheek-bg: #ffe5eb;
-  --berry: #c84e6a;
-  --berry-bg: #f8dde3;
-  --lavender: #a88fc8;
-  --lavender-bg: #ece4f5;
+  /* 액센트 (캐릭터/포인트용, 채도 소폭 하향) */
+  --coral: #cf7355;
+  --coral-bg: #f4e6df;
+  --gold: #bd9236;
+  --gold-bg: #f2e8d2;
+  --gold-text: #806011;
+  --dusk: #6982ad;
+  --dusk-bg: #e2e7f0;
+  --peach: #e2a074;
+  --peach-bg: #f3e6da;
+  --cheek: #e9aab8;
+  --cheek-bg: #f6e4e8;
+  --berry: #b6546c;
+  --berry-bg: #f0dce1;
+  --lavender: #9885b8;
+  --lavender-bg: #e7e1f0;
 
   /* 혈당/상태 (중립 표현) */
-  --state-warning: #d4a030;
-  --state-warning-bg: #faeed0;
-  --state-danger: #e07b5a;
-  --state-danger-bg: #fbe8dd;
+  --state-warning: #bd9236;
+  --state-warning-bg: #f2e8d2;
+  --state-danger: #cf7355;
+  --state-danger-bg: #f4e6df;
 
-  /* 보더 */
-  --border-light: rgba(58, 45, 31, 0.06);
-  --border: rgba(58, 45, 31, 0.1);
-  --border-strong: rgba(58, 45, 31, 0.18);
+  /* 보더 / 헤어라인 */
+  --border-light: rgba(42, 46, 41, 0.06);
+  --border: rgba(42, 46, 41, 0.1);
+  --border-strong: rgba(42, 46, 41, 0.16);
+  --rule: #ddd8cf;
 
-  /* 반경 */
-  --r-sm: 12px;
-  --r-md: 16px;
-  --r-lg: 20px;
-  --r-xl: 24px;
-  --r-2xl: 34px;
+  /* 반경 — 캔디감 제거 (작게) */
+  --r-sm: 6px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 14px;
+  --r-2xl: 18px;
   --r-pill: 999px;
 
-  /* 그림자 */
-  --shadow-soft: 0 2px 12px rgba(58, 45, 31, 0.1);
-  --shadow-md: 0 14px 40px rgba(87, 74, 50, 0.1);
-  --shadow-lg: 0 24px 80px rgba(87, 74, 50, 0.14);
+  /* 그림자 — 절제 */
+  --shadow-soft: 0 1px 2px rgba(42, 46, 41, 0.05);
+  --shadow-md: 0 10px 30px rgba(42, 46, 41, 0.07);
+  --shadow-lg: 0 20px 60px rgba(42, 46, 41, 0.1);
 
   /* 레이아웃 */
-  --maxw: 1160px;
+  --maxw: 1200px;
+  --measure: 680px;
   --nav-h: 72px;
 
-  /* 타이포 — 시스템 한글 스택 (외부 폰트 의존 0, 자가완결) */
-  --font-sans: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-    "Pretendard", "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
+  /* 타이포 */
+  --font-sans: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
 }
 
 /* ─── 리셋 ─────────────────────────────────────────────── */
@@ -88,13 +114,9 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   color: var(--text);
-  background:
-    radial-gradient(circle at 8% 4%, rgba(255, 233, 168, 0.4), transparent 32%),
-    radial-gradient(circle at 96% 8%, rgba(123, 183, 108, 0.22), transparent 30%),
-    linear-gradient(180deg, #faf7ee 0%, #fffdf8 52%, #faf7ee 100%);
-  background-attachment: fixed;
+  background: var(--bg);
   line-height: 1.7;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
@@ -120,9 +142,9 @@ h2,
 h3,
 h4 {
   margin: 0;
-  letter-spacing: -0.045em;
-  line-height: 1.15;
-  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.14;
+  font-weight: 700;
 }
 
 p {
@@ -130,71 +152,80 @@ p {
 }
 
 :focus-visible {
-  outline: 3px solid var(--primary-dark);
+  outline: 2px solid var(--sage-dark);
   outline-offset: 3px;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 /* ─── 레이아웃 유틸 ────────────────────────────────────── */
 .container {
-  width: min(var(--maxw), calc(100% - 40px));
+  width: min(var(--maxw), calc(100% - 48px));
   margin-inline: auto;
 }
 
 .section {
-  padding: clamp(64px, 9vw, 104px) 0;
+  padding: clamp(72px, 11vw, 160px) 0;
 }
 
+/* 영문 세리프 eyebrow — "01 — HOW IT WORKS" */
 .eyebrow {
   display: inline-block;
-  margin: 0 0 14px;
-  color: var(--primary-dark);
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  margin: 0 0 20px;
+  color: var(--sage-dark);
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  font-optical-sizing: auto;
 }
 
 .section-title {
-  font-size: clamp(28px, 4.4vw, 50px);
+  font-size: clamp(30px, 4.8vw, 54px);
+  letter-spacing: -0.04em;
+  line-height: 1.1;
 }
 
 .section-sub {
-  margin-top: 16px;
+  margin-top: 20px;
   color: var(--text-2);
-  font-size: clamp(16px, 2vw, 19px);
+  font-size: clamp(16px, 1.6vw, 19px);
   line-height: 1.75;
-  max-width: 640px;
+  max-width: var(--measure);
+}
+
+/* 헤어라인 구분선 */
+.rule {
+  border: 0;
+  border-top: 1px solid var(--rule);
 }
 
 .pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 9px 15px;
+  gap: 9px;
+  padding: 8px 16px;
   border-radius: var(--r-pill);
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-soft);
-  color: var(--primary-dark);
-  font-weight: 800;
-  font-size: 13.5px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--sage-dark);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: -0.01em;
 }
 
 .pill::before {
   content: "";
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: var(--r-pill);
-  background: var(--primary);
-  box-shadow: 0 0 0 5px rgba(123, 183, 108, 0.16);
+  background: var(--sage);
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid var(--border);
-  border-radius: var(--r-xl);
-  box-shadow: var(--shadow-soft);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-lg);
 }
 
 .sr-only {

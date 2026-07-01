@@ -19,56 +19,55 @@ const external = href.startsWith('http');
 </a>
 
 <style>
+  /* 납작한 에디토리얼 버튼 — 그림자·큰 라운드 제거 */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 9px;
-    border-radius: var(--r-pill);
-    font-weight: 800;
-    letter-spacing: -0.02em;
+    border-radius: var(--r-sm);
+    font-weight: 600;
+    letter-spacing: -0.01em;
     border: 1px solid transparent;
     transition:
-      transform 0.16s ease,
-      box-shadow 0.16s ease,
-      background 0.16s ease;
+      background 0.18s ease,
+      color 0.18s ease,
+      border-color 0.18s ease;
     white-space: nowrap;
   }
   .btn-md {
-    min-height: 48px;
+    min-height: 46px;
     padding: 0 22px;
     font-size: 15px;
   }
   .btn-lg {
-    min-height: 56px;
-    padding: 0 28px;
-    font-size: 16.5px;
+    min-height: 54px;
+    padding: 0 30px;
+    font-size: 16px;
   }
   .btn-primary {
-    background: var(--primary);
+    background: var(--pine);
     color: var(--on-dark);
-    box-shadow: 0 14px 30px rgba(91, 139, 74, 0.28);
   }
   .btn-primary:hover {
-    background: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 18px 38px rgba(91, 139, 74, 0.34);
+    background: var(--sage-dark);
   }
   .btn-secondary {
-    background: var(--surface);
+    background: transparent;
     color: var(--text);
-    border-color: var(--border);
-    box-shadow: var(--shadow-soft);
+    border-color: var(--text);
   }
   .btn-secondary:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    background: var(--text);
+    color: var(--bg);
   }
   .btn-ghost {
     background: transparent;
-    color: var(--primary-dark);
+    color: var(--sage-dark);
+    padding-left: 4px;
+    padding-right: 4px;
   }
   .btn-ghost:hover {
-    background: var(--primary-bg);
+    color: var(--pine);
   }
 </style>

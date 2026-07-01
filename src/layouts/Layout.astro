@@ -11,8 +11,8 @@ interface Props {
 }
 
 const {
-  title = '글루밍 · Gluming — 행동 전에 혈당 패턴을 미리 살펴보세요',
-  description = '글루밍은 CGM 데이터를 식사·운동 같은 행동으로 연결하는 혈당 관리 습관 보조 서비스예요. 사후 분석이 아니라, 행동 전에 내 혈당 패턴을 미리 시뮬레이션해보세요.',
+  title = '글루밍 · 나의 몸을 이해하는 새로운 방식을 제안합니다',
+  description = '글루밍은 CGM 데이터를 식사·운동 같은 행동으로 연결하는 혈당 관리 습관 보조 서비스예요. 사후 분석이 아니라, 행동 전에 내 혈당 패턴을 미리 살펴보며 나의 몸을 이해하는 새로운 방식을 제안합니다.',
   ogImage = 'https://gluming.app/og.png',
 } = Astro.props;
 
@@ -28,7 +28,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://gluming.app
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#FAF7EE" />
+    <meta name="theme-color" content="#F7F5F0" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />

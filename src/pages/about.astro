@@ -62,10 +62,10 @@ const guide = characters[0]; // 도담이
   <section class="section hero">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow">글루밍 이야기</span>
+        <span class="eyebrow">Gluming — Our Story</span>
         <h1 class="hero-title">
-          되돌아보기보다,<br />
-          <span class="accent">행동하기 전에 함께 살펴요</span>
+          나의 몸을 이해하는<br />
+          <span class="accent">새로운 방식을 제안합니다</span>
         </h1>
         <p class="hero-lead">
           글루밍은 CGM(연속혈당) 데이터를 식사·운동 같은 일상의 행동으로 잇는
@@ -104,24 +104,29 @@ const guide = characters[0]; // 도담이
   <section class="section beliefs">
     <div class="container">
       <header class="block-head">
-        <span class="eyebrow">우리가 믿는 것</span>
+        <span class="eyebrow">01 — Why Before</span>
         <h2 class="section-title">왜 ‘행동 전’일까요?</h2>
         <p class="section-sub">
           이미 일어난 일을 들여다보는 것도 의미가 있어요. 다만 글루밍은 한 걸음
           앞에서, 선택을 앞둔 순간에 곁에 있고 싶어요.
         </p>
       </header>
-      <div class="belief-grid">
+      <ol class="belief-list">
         {
-          beliefs.map((b) => (
-            <article class={`belief-card tone-${b.tone}`}>
-              <span class="belief-label">{b.label}</span>
-              <h3 class="belief-title">{b.title}</h3>
-              <p class="belief-body">{b.body}</p>
-            </article>
+          beliefs.map((b, i) => (
+            <li class="belief-item">
+              <span class="belief-index" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <div class="belief-content">
+                <span class="belief-label">{b.label}</span>
+                <h3 class="belief-title">{b.title}</h3>
+                <p class="belief-body">{b.body}</p>
+              </div>
+            </li>
           ))
         }
-      </div>
+      </ol>
     </div>
   </section>
 
@@ -129,17 +134,17 @@ const guide = characters[0]; // 도담이
   <section class="section who">
     <div class="container">
       <header class="block-head">
-        <span class="eyebrow">누구를 위한 서비스인가요</span>
+        <span class="eyebrow">02 — Who It's For</span>
         <h2 class="section-title">혈당을 의식하기 시작한 분들과 함께해요</h2>
         <p class="section-sub">
           저마다 출발점은 다르지만, 내 몸의 흐름을 조금 더 이해하고 싶은 마음은
           닮아 있어요. 글루밍은 이런 분들을 떠올리며 만들어요.
         </p>
       </header>
-      <div class="who-grid">
+      <div class="who-list">
         {
           audiences.map((a) => (
-            <article class="card who-card">
+            <article class="who-item">
               <span class="who-tag">{a.tag}</span>
               <p class="who-body">{a.body}</p>
             </article>
@@ -158,7 +163,7 @@ const guide = characters[0]; // 도담이
   <section id="about-roadmap" class="section roadmap">
     <div class="container">
       <header class="block-head">
-        <span class="eyebrow">진행 단계</span>
+        <span class="eyebrow">03 — Where We Are</span>
         <h2 class="section-title">지금은 사전예약을 준비하고 있어요</h2>
         <p class="section-sub">
           과장 없이, 우리가 어디까지 왔고 어디로 가는지 솔직하게 보여 드릴게요.
@@ -187,8 +192,8 @@ const guide = characters[0]; // 도담이
   <section id="preregister" class="section preregister">
     <div class="container">
       <div class="prereg-card">
-        <span class="eyebrow">사전예약</span>
-        <h2 class="section-title">먼저 소식을 받아보실래요?</h2>
+        <span class="eyebrow eyebrow-on-dark">04 — Pre-Register</span>
+        <h2 class="prereg-title">먼저 소식을 받아보실래요?</h2>
         <p class="prereg-lead">
           글루밍이 정식으로 인사드릴 준비가 되면, 출시 소식과 시작 안내를 가장
           먼저 보내 드릴게요. 지금은 사전예약 신청 폼을 정성껏 준비하고 있어요.
@@ -210,7 +215,7 @@ const guide = characters[0]; // 도담이
   <section class="section notice-wrap">
     <div class="container">
       <aside class="notice" role="note" aria-label="의료 비대체 안내">
-        <span class="notice-badge" aria-hidden="true">안내</span>
+        <span class="notice-badge">안내</span>
         <div class="notice-body">
           <h2 class="notice-title">건강에 관한 중요한 안내예요</h2>
           <p>
@@ -223,80 +228,32 @@ const guide = characters[0]; // 도담이
       </aside>
     </div>
   </section>
-
-  <!-- 7. 개인정보 처리방침 / 이용약관 -->
-  <section class="section legal">
-    <div class="container legal-grid">
-      <article id="privacy" class="card legal-card">
-        <span class="eyebrow">개인정보 처리방침</span>
-        <h2 class="legal-title">개인정보 처리방침</h2>
-        <p class="legal-body">
-          정식 문서를 정성껏 준비하고 있어요. 글루밍은 꼭 필요한 정보만 받고,
-          소중히 다루는 것을 기본으로 삼아요. 정식 출시에 맞춰 자세한 처리방침을
-          이 자리에 안내해 드릴게요.
-        </p>
-        <p class="legal-contact">
-          문의는
-          <a
-            class="legal-email"
-            href="mailto:glumate@glumate.co.kr?subject=개인정보 처리방침 문의"
-          >
-            glumate@glumate.co.kr
-          </a>
-          로 보내 주세요.
-        </p>
-      </article>
-
-      <article id="terms" class="card legal-card">
-        <span class="eyebrow">이용약관</span>
-        <h2 class="legal-title">이용약관</h2>
-        <p class="legal-body">
-          서비스 이용에 대한 약관 역시 출시에 맞춰 공개할 예정이에요. 서로
-          편안하고 신뢰할 수 있는 관계가 되도록, 알기 쉬운 말로 정리해
-          드릴게요.
-        </p>
-        <p class="legal-contact">
-          문의는
-          <a
-            class="legal-email"
-            href="mailto:glumate@glumate.co.kr?subject=이용약관 문의"
-          >
-            glumate@glumate.co.kr
-          </a>
-          로 보내 주세요.
-        </p>
-      </article>
-    </div>
-  </section>
 </Layout>
 
 <style>
   /* ── 공통 ── */
   .block-head {
     max-width: 720px;
-    margin: 0 auto clamp(36px, 5vw, 56px);
-    text-align: center;
-  }
-  .block-head .section-sub {
-    margin-inline: auto;
+    margin: 0 0 clamp(40px, 6vw, 64px);
   }
 
   /* ── HERO ── */
   .hero {
-    padding-top: clamp(48px, 6vw, 80px);
+    padding-top: clamp(56px, 8vw, 104px);
+    border-bottom: 1px solid var(--rule);
   }
   .hero-grid {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
-    gap: clamp(32px, 5vw, 64px);
+    gap: clamp(32px, 5vw, 72px);
     align-items: center;
   }
   .hero-title {
-    font-size: clamp(34px, 5.6vw, 60px);
-    margin-bottom: 22px;
+    font-size: clamp(36px, 6vw, 66px);
+    margin-bottom: 26px;
   }
   .hero-title .accent {
-    color: var(--primary-dark);
+    color: var(--sage-dark);
   }
   .hero-lead {
     color: var(--text-2);
@@ -306,12 +263,13 @@ const guide = characters[0]; // 도담이
   }
   .hero-lead strong {
     color: var(--text);
+    font-weight: 600;
   }
   .hero-lead-soft {
     margin-top: 16px;
   }
   .hero-actions {
-    margin-top: 32px;
+    margin-top: 36px;
     display: flex;
     flex-wrap: wrap;
     gap: 14px;
@@ -326,10 +284,10 @@ const guide = characters[0]; // 도담이
   .hero-mark {
     width: clamp(220px, 30vw, 300px);
     aspect-ratio: 1;
-    border-radius: var(--r-2xl);
+    border-radius: var(--r-xl);
     overflow: hidden;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-md);
+    border: 1px solid var(--rule);
+    background: var(--surface);
   }
   .hero-mark :global(img) {
     width: 100%;
@@ -342,101 +300,101 @@ const guide = characters[0]; // 도담이
     bottom: 0;
     width: clamp(96px, 14vw, 140px);
     padding: 10px;
-    border-radius: var(--r-2xl);
-    background: rgba(255, 255, 255, 0.86);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-soft);
+    border-radius: var(--r-lg);
+    background: var(--bg);
+    border: 1px solid var(--rule);
   }
   .hero-buddy :global(img) {
     width: 100%;
     height: auto;
   }
 
-  /* ── 우리가 믿는 것 ── */
-  .belief-grid {
+  /* ── 우리가 믿는 것 (헤어라인 리스트) ── */
+  .belief-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .belief-item {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: 88px 1fr;
+    gap: clamp(16px, 3vw, 40px);
+    padding: clamp(28px, 4vw, 44px) 0;
+    border-bottom: 1px solid var(--rule);
   }
-  .belief-card {
-    padding: clamp(24px, 3vw, 32px);
-    border-radius: var(--r-xl);
-    border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.78);
-    box-shadow: var(--shadow-soft);
+  .belief-index {
+    font-family: var(--font-serif);
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--sand);
+    font-optical-sizing: auto;
   }
-  .belief-card.tone-muted {
-    background: var(--card-soft);
-  }
-  .belief-card.tone-primary {
-    background: var(--primary-bg);
-    border-color: var(--primary-tint);
-  }
-  .belief-card.tone-gold {
-    background: var(--gold-bg);
+  .belief-content {
+    max-width: 640px;
   }
   .belief-label {
     display: inline-block;
     margin-bottom: 12px;
-    padding: 5px 12px;
-    border-radius: var(--r-pill);
-    background: rgba(255, 255, 255, 0.7);
-    font-size: 12.5px;
-    font-weight: 800;
+    color: var(--sage-dark);
+    font-size: 13px;
+    font-weight: 600;
     letter-spacing: 0.02em;
-    color: var(--text-2);
-  }
-  .tone-primary .belief-label {
-    color: var(--primary-dark);
-  }
-  .tone-gold .belief-label {
-    color: var(--gold-text);
   }
   .belief-title {
-    font-size: clamp(19px, 2.4vw, 23px);
-    margin-bottom: 12px;
+    font-size: clamp(20px, 2.6vw, 26px);
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
   }
   .belief-body {
     color: var(--text-2);
-    font-size: 15.5px;
-    line-height: 1.74;
+    font-size: 16px;
+    line-height: 1.78;
   }
 
-  /* ── 누구를 위한 ── */
-  .who-grid {
+  /* ── 누구를 위한 (헤어라인 3분할) ── */
+  .who-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 0;
+    border-top: 1px solid var(--rule);
   }
-  .who-card {
-    padding: clamp(24px, 3vw, 30px);
+  .who-item {
+    padding: clamp(28px, 3vw, 40px) clamp(20px, 2.4vw, 32px);
+    border-bottom: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+  }
+  .who-item:first-child {
+    padding-left: 0;
+  }
+  .who-item:last-child {
+    border-right: 0;
+    padding-right: 0;
   }
   .who-tag {
-    display: inline-block;
-    margin-bottom: 12px;
-    padding: 7px 14px;
-    border-radius: var(--r-pill);
-    background: var(--primary-bg);
-    color: var(--primary-dark);
-    font-weight: 800;
-    font-size: 14px;
+    display: block;
+    margin-bottom: 14px;
+    color: var(--pine);
+    font-weight: 700;
+    font-size: clamp(16px, 1.8vw, 18px);
+    letter-spacing: -0.02em;
   }
   .who-body {
     color: var(--text-2);
     font-size: 15.5px;
-    line-height: 1.74;
+    line-height: 1.76;
   }
   .who-note {
-    margin: 28px auto 0;
+    margin: clamp(28px, 4vw, 44px) 0 0;
     max-width: 760px;
-    text-align: center;
     color: var(--text-2);
     font-size: 15px;
-    line-height: 1.7;
-    padding: 18px 22px;
-    border-radius: var(--r-lg);
+    line-height: 1.78;
+    padding: 20px 24px;
+    border-left: 3px solid var(--sand);
     background: var(--warm);
-    border: 1px solid var(--border-light);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
   }
 
   /* ── 진행 단계 ── */
@@ -445,7 +403,7 @@ const guide = characters[0]; // 도담이
   }
   .timeline {
     list-style: none;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
     max-width: 720px;
     display: grid;
@@ -464,8 +422,8 @@ const guide = characters[0]; // 도담이
     left: 13px;
     top: 28px;
     bottom: -4px;
-    width: 2px;
-    background: var(--border);
+    width: 1px;
+    background: var(--rule);
   }
   .tl-item:last-child::before {
     display: none;
@@ -473,21 +431,21 @@ const guide = characters[0]; // 도담이
   .tl-dot {
     position: relative;
     z-index: 1;
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     margin: 6px auto 0;
     border-radius: var(--r-pill);
     background: var(--surface);
-    border: 3px solid var(--border-strong);
+    border: 2px solid var(--border-strong);
   }
   .tl-item.is-done .tl-dot {
-    background: var(--primary);
-    border-color: var(--primary);
+    background: var(--sage);
+    border-color: var(--sage);
   }
   .tl-item.is-current .tl-dot {
-    background: var(--gold);
-    border-color: var(--gold);
-    box-shadow: 0 0 0 6px var(--gold-bg);
+    background: var(--sand);
+    border-color: var(--sand);
+    box-shadow: 0 0 0 5px var(--warm);
   }
   .tl-phase {
     display: flex;
@@ -500,49 +458,51 @@ const guide = characters[0]; // 도담이
   .tl-now {
     padding: 4px 11px;
     border-radius: var(--r-pill);
-    background: var(--gold-bg);
+    border: 1px solid var(--sand);
     color: var(--gold-text);
     font-size: 12px;
-    font-weight: 800;
+    font-weight: 600;
     letter-spacing: 0.02em;
   }
   .tl-desc {
     color: var(--text-2);
     font-size: 15.5px;
-    line-height: 1.7;
+    line-height: 1.72;
   }
 
-  /* ── 사전예약 ── */
+  /* ── 사전예약 (다크 파인 섹션) ── */
   #preregister {
     scroll-margin-top: calc(var(--nav-h) + 16px);
   }
   .prereg-card {
-    text-align: center;
     max-width: 760px;
-    margin: 0 auto;
-    padding: clamp(40px, 6vw, 64px) clamp(24px, 5vw, 56px);
+    padding: clamp(40px, 6vw, 72px) clamp(24px, 5vw, 64px);
     border-radius: var(--r-2xl);
-    background:
-      radial-gradient(circle at 50% 0%, var(--primary-bg), transparent 70%),
-      var(--surface);
-    border: 1px solid var(--primary-tint);
-    box-shadow: var(--shadow-md);
+    background: var(--pine);
+    color: var(--on-dark);
+  }
+  .eyebrow-on-dark {
+    color: var(--primary-light);
+  }
+  .prereg-title {
+    font-size: clamp(26px, 4vw, 40px);
+    letter-spacing: -0.04em;
+    color: var(--on-dark);
   }
   .prereg-lead {
-    margin: 14px auto 0;
+    margin: 18px 0 0;
     max-width: 560px;
-    color: var(--text-2);
+    color: color-mix(in srgb, var(--on-dark) 80%, transparent);
     font-size: clamp(16px, 2vw, 18px);
-    line-height: 1.76;
+    line-height: 1.78;
   }
   .prereg-actions {
-    margin-top: 28px;
+    margin-top: 30px;
     display: flex;
-    justify-content: center;
   }
   .prereg-fine {
     margin-top: 18px;
-    color: var(--text-3);
+    color: color-mix(in srgb, var(--on-dark) 55%, transparent);
     font-size: 13.5px;
     line-height: 1.6;
   }
@@ -552,10 +512,9 @@ const guide = characters[0]; // 도담이
     gap: 8px;
     padding: 14px 24px;
     border-radius: var(--r-pill);
-    background: var(--primary-bg);
-    border: 1px dashed var(--primary-tint);
-    color: var(--primary-dark);
-    font-weight: 800;
+    border: 1px dashed color-mix(in srgb, var(--on-dark) 40%, transparent);
+    color: var(--on-dark);
+    font-weight: 600;
     font-size: 15.5px;
   }
 
@@ -568,17 +527,18 @@ const guide = characters[0]; // 도담이
     gap: 18px;
     align-items: flex-start;
     padding: clamp(22px, 3vw, 30px);
-    border-radius: var(--r-xl);
-    background: var(--coral-bg);
-    border: 1px solid rgba(224, 123, 90, 0.28);
+    border-radius: var(--r-md);
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--coral);
   }
   .notice-badge {
     flex: none;
     padding: 6px 13px;
     border-radius: var(--r-pill);
-    background: var(--coral);
-    color: var(--on-dark);
-    font-weight: 800;
+    border: 1px solid var(--coral);
+    color: var(--coral);
+    font-weight: 600;
     font-size: 13px;
     letter-spacing: 0.02em;
   }
@@ -589,74 +549,40 @@ const guide = characters[0]; // 도담이
   .notice-body p {
     color: var(--text-2);
     font-size: 15px;
-    line-height: 1.74;
-  }
-  .notice-body strong {
-    color: var(--text);
-  }
-
-  /* ── 법적 문서 ── */
-  .legal-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  #privacy,
-  #terms {
-    scroll-margin-top: calc(var(--nav-h) + 16px);
-  }
-  .legal-card {
-    padding: clamp(26px, 3.4vw, 36px);
-  }
-  .legal-title {
-    font-size: clamp(20px, 2.4vw, 25px);
-    margin-bottom: 14px;
-  }
-  .legal-body {
-    color: var(--text-2);
-    font-size: 15.5px;
     line-height: 1.76;
   }
-  .legal-contact {
-    margin-top: 16px;
-    font-size: 14.5px;
-    color: var(--text-2);
-  }
-  .legal-contact a {
-    color: var(--primary-dark);
-    font-weight: 700;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  /* 이메일 앞뒤로 여백을 조금 줘서 또렷하게 */
-  .legal-email {
-    margin: 0 6px;
-    white-space: nowrap;
+  .notice-body strong {
+    color: var(--pine);
+    font-weight: 600;
   }
 
   /* ── 반응형 ── */
   @media (max-width: 960px) {
     .hero-grid {
       grid-template-columns: 1fr;
-      text-align: center;
-    }
-    .hero-lead,
-    .hero-lead-soft {
-      margin-inline: auto;
-    }
-    .hero-actions {
-      justify-content: center;
     }
     .hero-visual {
       order: -1;
       min-height: auto;
     }
-    .belief-grid,
-    .who-grid {
+    .who-list {
       grid-template-columns: 1fr;
     }
-    .legal-grid {
+    .who-item,
+    .who-item:first-child,
+    .who-item:last-child {
+      padding: clamp(22px, 4vw, 30px) 0;
+      border-right: 0;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .belief-item {
       grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .belief-index {
+      font-size: 28px;
     }
   }
 

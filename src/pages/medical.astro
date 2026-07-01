@@ -1,0 +1,231 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LegalDoc from '../components/LegalDoc.astro';
+
+const title = '혈당 정보 기준·출처 — 글루밍';
+const description =
+  '글루밍이 참고하는 혈당 기준 범위, TIR, 운동 강도(MET), 예측 모델의 근거와 출처를 정리했습니다. 모든 정보는 참고용이며 의료인의 판단을 대체하지 않습니다.';
+---
+
+<Layout title={title} description={description}>
+  <LegalDoc
+    eyebrow="Reference & Sources"
+    title="혈당 정보 기준·출처"
+    lead="글루밍이 화면에 보여드리는 혈당 기준과 참고 수치가 어디에서 왔는지, 어떻게 해석해야 하는지를 투명하게 공개합니다."
+    version="1.1.2"
+    updated="2026년 3월"
+  >
+    <p>
+      글루밍은 이용자에게 보다 신뢰할 수 있는 혈당 정보와 건강관리 참고 자료를
+      제공하기 위해, 공신력 있는 의료기관·학술지·표준 참고자료를 바탕으로 정보를
+      구성합니다.
+    </p>
+
+    <div class="notice caution">
+      <p>
+        <strong>먼저 확인해 주세요.</strong> 본 문서에 포함된 정보와 글루밍 앱이
+        제공하는 혈당 안내, 예측 결과, 운동 정보는 모두 <strong>일반적인
+        건강관리 참고자료</strong>입니다. 의사의 진단·처방·치료를 대체하지 않으며,
+        건강에 관한 결정은 반드시 전문가와 상의하시기 바랍니다.
+      </p>
+    </div>
+
+    <h2>1. 혈당 기준 범위</h2>
+    <p>
+      글루밍에서 사용하는 혈당 상태 구분은 일반적인 혈당 관리 참고 범위를 바탕으로
+      구성되어 있습니다. 아래 값은 성인 일반을 기준으로 한 <strong>참고
+      구간</strong>이며, 진단 기준이 아닙니다.
+    </p>
+    <table>
+      <thead>
+        <tr><th>구분</th><th>참고 범위</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>저혈당</td><td>70 mg/dL 미만</td></tr>
+        <tr><td>정상</td><td>70–140 mg/dL</td></tr>
+        <tr><td>주의</td><td>140–180 mg/dL</td></tr>
+        <tr><td>고혈당</td><td>180 mg/dL 초과</td></tr>
+      </tbody>
+    </table>
+    <h3>해석 시 참고</h3>
+    <ul>
+      <li>
+        개인의 건강 상태, 식사 여부, 약물 복용 여부, 연령, 임신 여부 등에 따라
+        목표 혈당 범위는 달라질 수 있습니다.
+      </li>
+      <li>
+        앱 내 기준 범위는 <strong>일반적인 참고값</strong>이며, 실제 관리 목표는
+        담당 의료진의 판단을 우선합니다.
+      </li>
+      <li>
+        <strong>mg/dL</strong>은 혈액 100mL 당 포도당의 양을 나타내는 단위이며,
+        글루밍은 국내에서 널리 쓰이는 이 단위를 기본으로 표기합니다.
+      </li>
+    </ul>
+    <p class="sources">
+      출처 · <a
+        href="https://diabetesjournals.org/care/issue/47/Supplement_1"
+        target="_blank"
+        rel="noopener noreferrer">American Diabetes Association (ADA), Standards of Care
+        in Diabetes—2024</a> · <a
+        href="https://www.diabetes.or.kr"
+        target="_blank"
+        rel="noopener noreferrer">대한당뇨병학회, 당뇨병 진료지침</a>
+    </p>
+
+    <h2>2. 목표 혈당 범위 (TIR, Time in Range)</h2>
+    <p>
+      글루밍은 연속혈당측정(CGM) 기반의 혈당 관리 지표로 <strong>TIR(Time in
+      Range)</strong> 개념을 참고합니다. TIR은 하루 중 혈당이 목표 범위 안에
+      머무른 시간의 비율을 뜻하며, 특정 시점의 값보다 <strong>흐름</strong>을
+      이해하는 데 도움을 줍니다.
+    </p>
+    <table>
+      <thead>
+        <tr><th>구분</th><th>일반 참고 목표</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>정상 범위 내 시간 (TIR)</td><td>70% 이상 (70–180 mg/dL)</td></tr>
+        <tr><td>저혈당 시간</td><td>4% 미만 (70 mg/dL 미만)</td></tr>
+        <tr><td>고혈당 시간</td><td>25% 미만 (180 mg/dL 초과)</td></tr>
+      </tbody>
+    </table>
+    <h3>해석 시 참고</h3>
+    <ul>
+      <li>
+        위 수치는 <strong>일반적인 성인</strong>을 대상으로 제시되는 대표적 CGM
+        참고 목표값입니다.
+      </li>
+      <li>
+        임신, 고령자, 소아청소년, 중증 저혈당 위험군 등은 별도의 목표가 적용될 수
+        있으므로, 개인 목표는 의료진과 상의하는 것이 좋습니다.
+      </li>
+    </ul>
+    <p class="sources">
+      출처 · <a
+        href="https://doi.org/10.2337/dci19-0028"
+        target="_blank"
+        rel="noopener noreferrer">Battelino T, et al. Clinical Targets for Continuous
+        Glucose Monitoring Data Interpretation. Diabetes Care, 2019.</a>
+    </p>
+
+    <h2>3. 운동 강도 (MET, Metabolic Equivalent of Task)</h2>
+    <p>
+      글루밍은 운동 강도 정보를 구성할 때 대표적인 신체활동 에너지 소모 기준
+      자료인 <strong>MET(Metabolic Equivalent of Task)</strong> 값을 참고합니다.
+      MET은 안정 시 대비 활동의 상대적 에너지 소모를 나타내는 지표입니다.
+    </p>
+    <p>
+      다만 앱에서 사용하는 운동 강도 값은 표준 MET 값을 그대로 표시하는 것이
+      아니라, 혈당 변화 참고와 행동 가이드 제공에 보다 적합하도록
+      <strong>내부 기준에 따라 조정된 값</strong>을 사용할 수 있습니다.
+    </p>
+    <table>
+      <thead>
+        <tr><th>운동</th><th>참고 MET</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>산책</td><td>3.0</td></tr>
+        <tr><td>빠른 걷기</td><td>4.3</td></tr>
+        <tr><td>런닝</td><td>7.5</td></tr>
+        <tr><td>사이클</td><td>7.5</td></tr>
+        <tr><td>웨이트</td><td>5.0</td></tr>
+        <tr><td>배드민턴</td><td>5.5</td></tr>
+        <tr><td>수영</td><td>6.0</td></tr>
+      </tbody>
+    </table>
+    <h3>내부 기준에 대한 안내</h3>
+    <ul>
+      <li>위 값은 공인된 신체활동 참고 자료를 기반으로 한 일반적인 MET 값입니다.</li>
+      <li>
+        글루밍은 행동 가이드의 일관성을 높이기 위해, 표준 MET 값을 그대로 쓰지
+        않고 <strong>서비스 내부 기준에 맞게 일부 조정된 운동 강도 값</strong>을
+        활용할 수 있습니다.
+      </li>
+      <li>
+        따라서 앱 내 운동 강도 표시는 학술적 표준 MET 수치와 완전히 동일하지 않을
+        수 있으며, 이는 운동 간 상대적 강도를 반영하기 위한 참고값입니다.
+      </li>
+      <li>
+        실제 에너지 소모량은 개인의 체중, 운동 숙련도, 수행 시간, 심박수, 환경
+        조건에 따라 달라질 수 있습니다.
+      </li>
+    </ul>
+    <p class="sources">
+      출처 · <a
+        href="https://sites.google.com/site/compendiumofphysicalactivities"
+        target="_blank"
+        rel="noopener noreferrer">Ainsworth BE, et al. 2011 Compendium of Physical
+        Activities. Medicine & Science in Sports & Exercise, 2011.</a>
+    </p>
+
+    <h2>4. 혈당 예측 모델</h2>
+    <p>
+      글루밍의 혈당 예측 기능은 연속혈당측정(CGM) 데이터를 기반으로 한
+      <strong>자체 개발 LSTM 기반 딥러닝 모델</strong>을 사용합니다. 현재 혈당
+      흐름을 바탕으로 향후 변화를 예측해 이용자의 자기관리를 돕기 위한 참고
+      기능입니다.
+    </p>
+    <h3>모델 평가 참고 지표</h3>
+    <ul>
+      <li><strong>RMSE</strong> (Root Mean Square Error) — 예측값과 실제값의 평균 오차</li>
+      <li><strong>Clarke Error Grid Analysis (EGA)</strong> — 예측 오차의 임상적 영향 정도를 구역으로 평가</li>
+    </ul>
+    <h3>해석 시 참고</h3>
+    <ul>
+      <li>예측 결과는 실제 혈당값과 차이가 발생할 수 있습니다.</li>
+      <li>
+        센서 오차, 데이터 누락, 식사·운동·스트레스·수면 등 다양한 요인에 따라
+        예측 정확도는 달라질 수 있습니다.
+      </li>
+      <li>
+        글루밍의 예측 결과는 <strong>참고용 정보</strong>이며, 의료적 판단이나
+        응급 상황 대응의 단독 근거로 사용해서는 안 됩니다.
+      </li>
+    </ul>
+    <p class="sources">
+      참고 자료 · <a
+        href="https://doi.org/10.2337/diacare.10.5.622"
+        target="_blank"
+        rel="noopener noreferrer">Clarke WL, et al. Evaluating Clinical Accuracy of
+        Systems for Self-Monitoring of Blood Glucose. Diabetes Care, 1987.</a> · <a
+        href="http://smarthealth.cs.ohio.edu/OhioT1DM-dataset.html"
+        target="_blank"
+        rel="noopener noreferrer">OhioT1DM Dataset.</a>
+    </p>
+
+    <h2>5. 정보 이용 시 주의사항</h2>
+    <div class="notice caution">
+      <p>
+        글루밍이 제공하는 혈당 정보, 통계, 예측 결과, 운동 정보는 모두
+        <strong>참고용 정보</strong>입니다. 본 서비스는 의료인의 전문적 판단,
+        진단, 처방 또는 치료를 대체하지 않습니다.
+      </p>
+    </div>
+    <p>다음과 같은 경우에는 반드시 의료진과 상담하시기 바랍니다.</p>
+    <ul>
+      <li>반복적인 저혈당 또는 고혈당이 발생하는 경우</li>
+      <li>혈당 변동성이 매우 큰 경우</li>
+      <li>약물 또는 인슐린 조정이 필요한 경우</li>
+      <li>어지러움, 식은땀, 의식 저하, 심한 갈증, 구토 등 응급 증상이 있는 경우</li>
+      <li>임신, 소아, 고령, 중증 질환 등 개별적인 관리 기준이 필요한 경우</li>
+    </ul>
+    <p>
+      응급상황이 의심되는 경우에는 앱 안내보다 <strong>의료기관 또는 응급 대응
+      체계</strong>를 우선 이용하시기 바랍니다.
+    </p>
+
+    <h2>6. 문서의 한계 및 업데이트</h2>
+    <p>
+      본 문서는 서비스 내 혈당 정보의 기준과 참고 자료를 설명하기 위한
+      문서입니다. 관련 권고와 가이드라인은 개정될 수 있으며, 글루밍은 필요 시 본
+      문서를 업데이트할 수 있습니다.
+    </p>
+
+    <h2>7. 문의</h2>
+    <p>본 문서의 기준 또는 출처에 관한 문의는 아래로 연락해 주세요.</p>
+    <ul>
+      <li>이메일 : <a href="mailto:yun8831@naver.com">yun8831@naver.com</a></li>
+    </ul>
+  </LegalDoc>
+</Layout>

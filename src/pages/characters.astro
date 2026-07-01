@@ -30,12 +30,12 @@ const blurbs: Record<string, string> = {
   <section class="hero section">
     <div class="container hero-inner">
       <div class="hero-copy">
-        <span class="eyebrow">글루밍즈 · GLUMINGS</span>
-        <h1 class="section-title">하루의 리듬을 함께 살피는 컨디션 친구들</h1>
+        <span class="eyebrow">MEET THE GLUMINGS</span>
+        <h1 class="section-title">하루의 리듬을 함께 살피는 네 친구</h1>
         <p class="section-sub">
-          글루밍즈는 오늘 하루의 기분과 컨디션을 살며시 비춰 주는 친구들이에요.
-          산뜻한 날엔 함께 신나고, 나른한 날엔 가만히 곁을 지켜요. 매일을 함께
-          보내며 나만의 리듬을 천천히 알아가 보세요.
+          나의 몸을 이해하는 새로운 방식을 제안합니다. 글루밍즈는 오늘의 기분과
+          컨디션을 살며시 비춰 주는 친구들이에요. 산뜻한 날엔 함께 신나고, 나른한
+          날엔 가만히 곁을 지키며 매일의 습관을 곁에서 도와요.
         </p>
         <div class="hero-cta">
           <Button href="/about#preregister" variant="primary" size="lg"
@@ -48,15 +48,20 @@ const blurbs: Record<string, string> = {
         {
           characters.map((c, i) => (
             <li class="hero-chip" style={`--accent:${c.accent}`}>
-              <Image
-                src={c.states.optimal}
-                alt={`글루밍즈 ${c.name}`}
-                width={180}
-                height={180}
-                densities={[1, 2]}
-                loading={i === 0 ? 'eager' : 'lazy'}
-              />
-              <span>{c.name}</span>
+              <div class="hero-chip-art">
+                <Image
+                  src={c.states.optimal}
+                  alt={`글루밍즈 ${c.name}`}
+                  width={180}
+                  height={180}
+                  densities={[1, 2]}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                />
+              </div>
+              <span class="hero-chip-name">
+                <span class="dot" aria-hidden="true" />
+                {c.name}
+              </span>
             </li>
           ))
         }
@@ -85,8 +90,13 @@ const blurbs: Record<string, string> = {
           </div>
 
           <div class="char-info">
-            <span class="char-eyebrow">글루밍즈</span>
+            <div class="char-index">
+              <span class="char-num">{String(i + 1).padStart(2, '0')}</span>
+              <span class="char-dot" aria-hidden="true" />
+              <span class="char-eyebrow">GLUMINGS</span>
+            </div>
             <h2 id={`char-${c.key}`}>{c.name}</h2>
+            <span class="char-underline" aria-hidden="true" />
             <p class="char-tagline">{c.tagline}</p>
             <p class="char-blurb">{blurbs[c.key]}</p>
 
@@ -127,9 +137,12 @@ const blurbs: Record<string, string> = {
   <!-- ── 리번이 코스튬 컬렉션 ─────────────────────────── -->
   <section class="costumes section" style="--accent: var(--berry)">
     <div class="container">
+      <hr class="rule costumes-rule" />
       <div class="costumes-head">
-        <span class="eyebrow">리번이 코스튬 컬렉션</span>
-        <h2 class="section-title">리번이는 옷을 갈아입으며 모으는 재미가 있어요</h2>
+        <span class="eyebrow">RIBUNI'S WARDROBE</span>
+        <h2 class="section-title">
+          리번이는 옷을 갈아입으며 모으는 재미가 있어요
+        </h2>
         <p class="section-sub">
           글루밍즈와 꾸준히 지내다 보면 리번이의 옷장이 점점 풍성해져요. 그날의
           기분에 맞춰 골라 입는 코스튬을 하나씩 모아보세요.
@@ -150,7 +163,10 @@ const blurbs: Record<string, string> = {
                   loading="lazy"
                 />
               </div>
-              <span class="costume-label">{label}</span>
+              <span class="costume-label">
+                <span class="dot" aria-hidden="true" />
+                {label}
+              </span>
             </li>
           ))
         }
@@ -158,9 +174,11 @@ const blurbs: Record<string, string> = {
     </div>
   </section>
 
-  <!-- ── CTA 밴드 ─────────────────────────────────────── -->
+  <!-- ── CTA ──────────────────────────────────────────── -->
   <section class="cta-band section">
     <div class="container cta-inner">
+      <hr class="rule cta-rule" />
+      <span class="eyebrow">START TOGETHER</span>
       <h2 class="cta-title">글루밍즈와 함께 시작해 볼까요?</h2>
       <p class="cta-sub">
         네 친구가 매일의 리듬을 함께 살펴 줄 거예요. 지금 사전예약하고 가장 먼저
@@ -176,136 +194,163 @@ const blurbs: Record<string, string> = {
 <style>
   /* ── HERO ───────────────────────────────────────── */
   .hero {
-    padding-top: clamp(48px, 7vw, 84px);
+    padding-top: clamp(48px, 7vw, 96px);
+    padding-bottom: clamp(48px, 7vw, 88px);
   }
   .hero-inner {
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
-    gap: clamp(28px, 5vw, 64px);
+    gap: clamp(28px, 5vw, 72px);
     align-items: center;
   }
   .hero-cta {
-    margin-top: 28px;
+    margin-top: 30px;
   }
+
   .hero-cluster {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: clamp(16px, 3vw, 28px);
   }
   .hero-chip {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    padding: 18px 14px;
-    border-radius: var(--r-xl);
-    background:
-      radial-gradient(
-        circle at 50% 36%,
-        color-mix(in srgb, var(--accent) 24%, transparent),
-        transparent 66%
-      ),
-      var(--card-soft);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-soft);
-    transition:
-      transform 0.18s ease,
-      box-shadow 0.18s ease;
+    gap: 14px;
+    padding: clamp(14px, 2vw, 22px) 8px;
   }
-  .hero-chip:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
+  .hero-chip-art {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    place-items: center;
+    padding: 10%;
   }
-  .hero-chip :global(img) {
-    width: 76%;
+  .hero-chip-art :global(img) {
+    width: 100%;
     height: auto;
-    filter: drop-shadow(0 10px 18px rgba(58, 45, 31, 0.16));
+    object-fit: contain;
+    transition: transform 0.22s ease;
   }
-  .hero-chip span {
-    font-weight: 800;
+  .hero-chip:hover .hero-chip-art :global(img) {
+    transform: translateY(-4px);
+  }
+  .hero-chip-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
     font-size: 15px;
+    letter-spacing: -0.01em;
+  }
+  .hero-chip-name .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: var(--r-pill);
+    background: var(--accent);
   }
 
   /* ── 캐릭터 섹션 ─────────────────────────────────── */
   .char-section {
-    padding: clamp(56px, 8vw, 92px) 0;
-    background: color-mix(in srgb, var(--accent) 7%, transparent);
-  }
-  .char-section.alt {
-    background: color-mix(in srgb, var(--accent) 11%, transparent);
+    padding: clamp(56px, 8vw, 104px) 0;
+    border-top: 1px solid var(--rule);
+    background: var(--bg);
   }
   .char-grid {
     display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: clamp(28px, 5vw, 64px);
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(32px, 6vw, 80px);
     align-items: center;
   }
   .char-section.alt .char-art {
     order: 2;
   }
+
   .char-art {
-    border-radius: var(--r-2xl);
-    background:
-      radial-gradient(
-        circle at 50% 40%,
-        color-mix(in srgb, var(--accent) 26%, transparent),
-        transparent 68%
-      ),
-      var(--surface);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-lg);
+    background: var(--surface);
     display: grid;
     place-items: center;
-    padding: clamp(24px, 4vw, 44px);
+    padding: clamp(32px, 5vw, 64px);
     aspect-ratio: 1 / 1;
   }
   .char-art :global(img) {
-    width: 82%;
+    width: 78%;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 16px 26px rgba(58, 45, 31, 0.18));
+  }
+
+  .char-index {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .char-num {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--text-3);
+  }
+  .char-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: var(--r-pill);
+    background: var(--accent);
   }
   .char-eyebrow {
-    display: inline-block;
-    margin-bottom: 10px;
-    font-size: 12.5px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
+    font-family: var(--font-serif);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: color-mix(in srgb, var(--accent) 72%, var(--text));
+    color: var(--sage-dark);
   }
   .char-info h2 {
-    font-size: clamp(26px, 3.6vw, 38px);
+    font-size: clamp(28px, 4vw, 44px);
+    letter-spacing: -0.04em;
+  }
+  .char-underline {
+    display: block;
+    width: 40px;
+    height: 2px;
+    margin-top: 16px;
+    background: var(--accent);
   }
   .char-tagline {
-    margin-top: 10px;
+    margin-top: 16px;
     font-size: clamp(16px, 2vw, 19px);
-    font-weight: 700;
-    color: color-mix(in srgb, var(--accent) 64%, var(--text));
+    font-weight: 600;
+    color: var(--text);
   }
   .char-blurb {
     margin-top: 14px;
     color: var(--text-2);
     font-size: 16px;
-    line-height: 1.8;
+    line-height: 1.85;
     max-width: 560px;
   }
 
   /* 표정 모아보기 */
   .faces {
-    margin-top: 28px;
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
   }
   .faces-title {
-    font-size: 16px;
-    font-weight: 800;
-    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text-2);
   }
   .faces-row {
     list-style: none;
-    margin: 16px 0 0;
+    margin: 18px 0 0;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -315,46 +360,46 @@ const blurbs: Record<string, string> = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
   .face-art {
     width: 100%;
     aspect-ratio: 1 / 1;
     border-radius: var(--r-md);
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid var(--border-light);
+    background: var(--surface);
+    border: 1px solid var(--rule);
     display: grid;
     place-items: center;
-    padding: 8px;
+    padding: 10px;
   }
   .face-art :global(img) {
-    width: 86%;
+    width: 84%;
     height: auto;
     object-fit: contain;
   }
   .face-badge {
-    font-size: 11.5px;
-    font-weight: 800;
-    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 9px;
     border-radius: var(--r-pill);
     white-space: nowrap;
+    letter-spacing: -0.01em;
   }
   .faces-note {
-    margin-top: 14px;
+    margin-top: 18px;
     font-size: 13.5px;
     color: var(--text-3);
   }
 
   /* ── 코스튬 컬렉션 ───────────────────────────────── */
-  .costumes-head {
-    text-align: center;
-    margin-inline: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .costumes {
+    padding-top: 0;
   }
-  .costumes-head .section-sub {
-    margin-inline: auto;
+  .costumes-rule {
+    margin: 0 0 clamp(48px, 8vw, 96px);
+  }
+  .costumes-head {
+    max-width: var(--measure);
   }
   .costume-grid {
     list-style: none;
@@ -362,73 +407,66 @@ const blurbs: Record<string, string> = {
     padding: 0;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 18px;
+    gap: 16px;
   }
   .costume-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
-    padding: 18px 14px;
-    transition:
-      transform 0.18s ease,
-      box-shadow 0.18s ease;
+    gap: 14px;
+    padding: 20px 14px;
+    transition: transform 0.18s ease;
   }
   .costume-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
   }
   .costume-art {
     width: 100%;
     aspect-ratio: 1 / 1;
-    border-radius: var(--r-lg);
-    background:
-      radial-gradient(
-        circle at 50% 40%,
-        color-mix(in srgb, var(--berry) 18%, transparent),
-        transparent 68%
-      ),
-      var(--card-soft);
+    border-radius: var(--r-md);
+    background: var(--warm);
     display: grid;
     place-items: center;
-    padding: 12px;
+    padding: 14px;
   }
   .costume-art :global(img) {
-    width: 82%;
+    width: 80%;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 8px 16px rgba(58, 45, 31, 0.16));
   }
   .costume-label {
-    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
     font-size: 14.5px;
   }
+  .costume-label .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--r-pill);
+    background: var(--accent);
+  }
 
-  /* ── CTA 밴드 ────────────────────────────────────── */
+  /* ── CTA ─────────────────────────────────────────── */
   .cta-band {
     text-align: center;
   }
+  .cta-rule {
+    margin: 0 auto clamp(40px, 6vw, 72px);
+    max-width: var(--measure);
+  }
   .cta-inner {
-    background:
-      radial-gradient(
-        circle at 50% 0%,
-        rgba(123, 183, 108, 0.18),
-        transparent 60%
-      ),
-      var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--r-2xl);
-    box-shadow: var(--shadow-md);
-    padding: clamp(40px, 6vw, 72px) clamp(24px, 5vw, 56px);
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   .cta-title {
-    font-size: clamp(26px, 3.8vw, 40px);
+    font-size: clamp(28px, 4vw, 46px);
+    letter-spacing: -0.04em;
   }
   .cta-sub {
-    margin: 16px auto 28px;
+    margin: 18px auto 30px;
     color: var(--text-2);
     font-size: clamp(16px, 2vw, 18px);
     line-height: 1.75;
@@ -445,7 +483,7 @@ const blurbs: Record<string, string> = {
       order: 0;
     }
     .char-art {
-      max-width: 360px;
+      max-width: 380px;
       margin-inline: auto;
     }
     .faces-row {

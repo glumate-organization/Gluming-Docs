@@ -4,15 +4,17 @@
 
 import type { ImageMetadata } from 'astro';
 
-// ── 로고 ────────────────────────────────────────────────
-import logoIcon from '../assets/logo/gluming_logo.png';
-import logoFullText from '../assets/logo/full_text.png';
-import logoMark from '../assets/logo/icon_no_text.png';
+// ── 로고 (신규 세트) ────────────────────────────────────
+import logoHorizontal from '../assets/logo/full_logo.png'; // 가로 락업(아이콘+워드마크)
+import logoVertical from '../assets/logo/full_vertical_logo.png'; // 세로 락업
+import logoIcon from '../assets/logo/icon_logo.png'; // 심볼 전용
+import logoWordmark from '../assets/logo/text_logo.png'; // 워드마크 전용
 
 export const logos = {
-  icon: logoIcon, // 네비/파비콘용 작은 마크
-  fullText: logoFullText, // 텍스트 포함 로고
-  mark: logoMark, // 큰 심볼
+  horizontal: logoHorizontal, // 네비/푸터 기본 로고
+  vertical: logoVertical, // 히어로/세로 배치용
+  icon: logoIcon, // 파비콘/작은 심볼
+  wordmark: logoWordmark, // 텍스트 워드마크
 };
 
 // ── 캐릭터 (글루밍즈) ───────────────────────────────────

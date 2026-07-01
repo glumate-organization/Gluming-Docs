@@ -112,19 +112,19 @@ const greetChars = characters.slice(0, 4);
   <!-- 1. HERO -->
   <section class="section hero">
     <div class="container hero-inner">
-      <span class="eyebrow">기능 소개</span>
+      <span class="eyebrow">00 — FEATURES</span>
       <h1 class="hero-title">행동하기 전에, 내 혈당 흐름을 먼저 살펴봐요</h1>
       <p class="hero-lead">
         지나간 숫자를 되짚는 대신, 글루밍은 식사와 운동 같은 행동을 하기
         <strong>전에</strong> 예상 흐름을 미리 그려봐요. 비교하고, 참고하고,
-        결국 선택은 스스로 — 매일의 작은 결정을 한결 가볍게 만드는 도구예요.
+        결국 선택은 스스로 — 나의 몸을 이해하는 새로운 방식을 제안합니다.
       </p>
       <div class="hero-actions">
         <Button href="/about#preregister" variant="primary" size="lg">
           사전예약하고 먼저 만나보기
         </Button>
         <Button href="#health-sync" variant="ghost" size="lg">
-          건강 데이터 연동 보기
+          건강 데이터 연동 보기 →
         </Button>
       </div>
     </div>
@@ -134,41 +134,45 @@ const greetChars = characters.slice(0, 4);
   <section class="section deepdives">
     <div class="container">
       {
-        deepDives.map((f, i) => (
-          <article class={`row ${i % 2 === 1 ? 'row-reverse' : ''}`}>
-            <div class="row-media" style={`--row-tint:${f.tint}`}>
-              <div class="media-card">
-                <Image
-                  src={f.img}
-                  alt={f.alt}
-                  width={200}
-                  height={200}
-                  densities={[1, 2]}
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                />
+        deepDives.map((f, i) => {
+          const num = String(i + 1).padStart(2, '0');
+          return (
+            <article class={`row ${i % 2 === 1 ? 'row-reverse' : ''}`}>
+              <div class="row-media">
+                <div class="media-frame">
+                  <Image
+                    src={f.img}
+                    alt={f.alt}
+                    width={200}
+                    height={200}
+                    densities={[1, 2]}
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                  />
+                </div>
               </div>
-            </div>
-            <div class="row-text">
-              <span class="eyebrow">{f.eyebrow}</span>
-              <h2>{f.title}</h2>
-              <p class="row-lead">{f.lead}</p>
-              <ul class="row-points">
-                {f.points.map((p) => (
-                  <li>{p}</li>
-                ))}
-              </ul>
-            </div>
-          </article>
-        ))
+              <div class="row-text">
+                <span class="eyebrow">{`${num} — ${f.eyebrow}`}</span>
+                <h2 class="row-title">{f.title}</h2>
+                <p class="row-lead">{f.lead}</p>
+                <ul class="row-points">
+                  {f.points.map((p) => (
+                    <li>{p}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          );
+        })
       }
     </div>
   </section>
 
   <!-- 3. 건강 데이터 연동 -->
   <section id="health-sync" class="section sync">
+    <hr class="rule" />
     <div class="container">
       <div class="sync-head">
-        <span class="eyebrow">건강 데이터 연동</span>
+        <span class="eyebrow">06 — HEALTH SYNC</span>
         <h2 class="section-title">기기와 직접 씨름하지 않아요</h2>
         <p class="section-sub">
           글루밍은 걸음 수와 활동 같은 건강 데이터를 운영체제의 건강 플랫폼을
@@ -179,7 +183,7 @@ const greetChars = characters.slice(0, 4);
       <div class="sync-chips">
         {
           healthPlatforms.map((h) => (
-            <div class="sync-chip card">
+            <div class="sync-chip">
               <Image src={h.img} alt={h.alt} width={56} height={56} densities={[1, 2]} />
               <div class="sync-chip-text">
                 <strong>{h.name}</strong>
@@ -198,9 +202,10 @@ const greetChars = characters.slice(0, 4);
 
   <!-- 4. 간편 로그인 -->
   <section class="section login">
+    <hr class="rule" />
     <div class="container login-inner">
       <div class="login-text">
-        <span class="eyebrow">간편 로그인</span>
+        <span class="eyebrow">07 — SIGN IN</span>
         <h2 class="section-title">익숙한 계정으로 가볍게 시작해요</h2>
         <p class="section-sub">
           복잡한 가입 절차 없이, 평소 쓰던 계정으로 바로 시작할 수 있어요.
@@ -240,7 +245,7 @@ const greetChars = characters.slice(0, 4);
         <p class="cta-sub">
           글루밍즈와 함께 오늘부터 내 혈당 흐름을 미리 그려봐요.
         </p>
-        <Button href="/about#preregister" variant="primary" size="lg">
+        <Button href="/about#preregister" variant="primary" size="lg" class="cta-btn">
           사전예약 신청하기
         </Button>
       </div>
@@ -251,46 +256,52 @@ const greetChars = characters.slice(0, 4);
 <style>
   /* ── HERO ── */
   .hero {
-    padding-top: clamp(56px, 8vw, 96px);
+    padding-top: clamp(64px, 9vw, 120px);
     padding-bottom: clamp(40px, 6vw, 72px);
   }
   .hero-inner {
-    max-width: 760px;
+    max-width: 820px;
   }
   .hero-title {
-    font-size: clamp(32px, 5.4vw, 58px);
-    margin-top: 6px;
+    font-size: clamp(34px, 5.8vw, 62px);
   }
   .hero-lead {
-    margin-top: 20px;
+    margin-top: 24px;
     color: var(--text-2);
     font-size: clamp(16px, 2.1vw, 20px);
-    line-height: 1.75;
+    line-height: 1.78;
+    max-width: 680px;
   }
   .hero-lead strong {
-    color: var(--primary-dark);
+    color: var(--pine);
+    font-weight: 700;
   }
   .hero-actions {
-    margin-top: 30px;
+    margin-top: 36px;
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    align-items: center;
+    gap: 14px;
   }
 
-  /* ── DEEP-DIVE 행 ── */
+  /* ── DEEP-DIVE 행 ── 헤어라인으로 구분되는 비대칭 교차 배치 */
   .deepdives {
-    padding-top: clamp(32px, 5vw, 56px);
+    padding-top: clamp(24px, 4vw, 48px);
   }
   .row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(28px, 5vw, 72px);
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(32px, 6vw, 88px);
     align-items: center;
-    padding: clamp(36px, 6vw, 64px) 0;
-    border-top: 1px solid var(--border-light);
+    padding: clamp(48px, 7vw, 88px) 0;
+    border-top: 1px solid var(--rule);
   }
   .row:first-child {
     border-top: 0;
+    padding-top: clamp(24px, 4vw, 40px);
+  }
+  .row-reverse {
+    grid-template-columns: 1.1fr 0.9fr;
   }
   .row-reverse .row-media {
     order: 2;
@@ -299,80 +310,91 @@ const greetChars = characters.slice(0, 4);
     display: flex;
     justify-content: center;
   }
-  .media-card {
+  /* 무거운 틴트 블록 대신, 헤어라인으로 감싼 절제된 프레임 */
+  .media-frame {
     width: 100%;
     max-width: 420px;
     aspect-ratio: 5 / 4;
-    border-radius: var(--r-2xl);
-    background: var(--row-tint, var(--primary-bg));
-    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-lg);
+    background: var(--card-soft);
     display: grid;
     place-items: center;
     overflow: hidden;
   }
-  .media-card :global(img) {
-    width: clamp(140px, 24vw, 220px);
+  .media-frame :global(img) {
+    width: clamp(132px, 22vw, 200px);
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 12px 24px rgba(58, 45, 31, 0.12));
   }
-  .row-text h2 {
-    margin-top: 6px;
-    font-size: clamp(24px, 3.4vw, 34px);
+  .row-title {
+    margin-top: 4px;
+    font-size: clamp(26px, 3.6vw, 38px);
+    letter-spacing: -0.04em;
   }
   .row-lead {
-    margin-top: 16px;
+    margin-top: 18px;
     color: var(--text-2);
     font-size: clamp(15px, 1.9vw, 18px);
-    line-height: 1.78;
+    line-height: 1.8;
+    max-width: 560px;
   }
   .row-points {
-    margin: 22px 0 0;
+    margin: 26px 0 0;
     padding: 0;
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 11px;
   }
   .row-points li {
     position: relative;
-    padding-left: 30px;
+    padding: 13px 0 13px 26px;
     color: var(--text);
     font-size: 15.5px;
     line-height: 1.6;
+    border-top: 1px solid var(--rule);
+  }
+  .row-points li:last-child {
+    border-bottom: 1px solid var(--rule);
   }
   .row-points li::before {
     content: "";
     position: absolute;
     left: 0;
-    top: 4px;
-    width: 18px;
-    height: 18px;
+    top: 21px;
+    width: 10px;
+    height: 10px;
     border-radius: var(--r-pill);
-    background: var(--primary-tint);
-    box-shadow: inset 0 0 0 5px var(--primary);
+    border: 1.5px solid var(--sage);
   }
 
   /* ── 건강 데이터 연동 ── */
   .sync {
-    background: var(--card-soft);
-    border-radius: var(--r-2xl);
+    position: relative;
+  }
+  .sync .rule,
+  .login .rule {
+    border-color: var(--rule);
+    margin: 0 0 clamp(56px, 8vw, 100px);
   }
   .sync-head {
     max-width: 680px;
   }
   .sync-chips {
-    margin-top: 34px;
+    margin-top: clamp(32px, 5vw, 48px);
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
   }
+  /* 광택 없는 납작한 헤어라인 칩 */
   .sync-chip {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 16px 22px 16px 16px;
-    border-radius: var(--r-lg);
+    padding: 16px 24px 16px 16px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-md);
   }
   .sync-chip :global(img) {
     width: 48px;
@@ -383,22 +405,26 @@ const greetChars = characters.slice(0, 4);
   .sync-chip-text {
     display: flex;
     flex-direction: column;
-    line-height: 1.3;
+    line-height: 1.35;
   }
   .sync-chip-text strong {
     font-size: 16px;
-  }
-  .sync-chip-text span {
-    color: var(--text-2);
-    font-size: 13px;
     font-weight: 700;
   }
+  .sync-chip-text span {
+    color: var(--text-3);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-family: var(--font-serif);
+  }
   .sync-note {
-    margin-top: 24px;
+    margin-top: 28px;
     max-width: 640px;
     color: var(--text-2);
     font-size: 15px;
-    line-height: 1.75;
+    line-height: 1.78;
   }
 
   /* ── 간편 로그인 ── */
@@ -407,7 +433,7 @@ const greetChars = characters.slice(0, 4);
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 28px;
+    gap: 32px;
   }
   .login-text {
     max-width: 520px;
@@ -415,7 +441,7 @@ const greetChars = characters.slice(0, 4);
   .login-icons {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 10px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -424,37 +450,34 @@ const greetChars = characters.slice(0, 4);
     display: flex;
     align-items: center;
     gap: 9px;
-    padding: 10px 16px 10px 10px;
-    background: var(--surface);
-    border: 1px solid var(--border);
+    padding: 10px 18px 10px 10px;
+    background: transparent;
+    border: 1px solid var(--rule);
     border-radius: var(--r-pill);
-    box-shadow: var(--shadow-soft);
-    font-weight: 700;
+    font-weight: 600;
     font-size: 14.5px;
+    color: var(--text);
   }
   .login-chip :global(img) {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     object-fit: contain;
     border-radius: var(--r-pill);
   }
 
-  /* ── CTA 밴드 ── */
+  /* ── CTA 밴드 ── pine 다크 밴드, 납작하게 */
   .cta-band {
-    background:
-      radial-gradient(circle at 14% 12%, rgba(255, 233, 168, 0.5), transparent 42%),
-      linear-gradient(135deg, var(--primary-bg), var(--primary-tint));
-    border: 1px solid var(--border);
+    background: var(--pine);
+    color: var(--on-dark);
     border-radius: var(--r-2xl);
-    box-shadow: var(--shadow-md);
-    padding: clamp(40px, 6vw, 72px) clamp(24px, 5vw, 64px);
+    padding: clamp(48px, 7vw, 88px) clamp(24px, 5vw, 64px);
     text-align: center;
   }
   .cta-chars {
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin-bottom: 18px;
+    margin-bottom: 24px;
   }
   .cta-chars :global(img) {
     width: clamp(52px, 9vw, 72px);
@@ -464,20 +487,31 @@ const greetChars = characters.slice(0, 4);
     font-size: clamp(24px, 4vw, 40px);
     max-width: 720px;
     margin-inline: auto;
+    color: var(--on-dark);
   }
   .cta-sub {
-    margin: 16px auto 28px;
+    margin: 18px auto 32px;
     max-width: 520px;
-    color: var(--text-2);
+    color: color-mix(in srgb, var(--on-dark) 78%, transparent);
     font-size: clamp(15px, 2vw, 18px);
     line-height: 1.7;
+  }
+  /* 다크 밴드 위 밝은 버튼 (pine 배경에 대비) */
+  .cta-band :global(.cta-btn) {
+    background: var(--on-dark);
+    color: var(--pine);
+  }
+  .cta-band :global(.cta-btn:hover) {
+    background: var(--primary-light);
+    color: var(--pine);
   }
 
   /* ── 반응형 ── */
   @media (max-width: 768px) {
-    .row {
+    .row,
+    .row-reverse {
       grid-template-columns: 1fr;
-      gap: 24px;
+      gap: 28px;
     }
     .row-reverse .row-media {
       order: 0;

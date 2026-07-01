@@ -2,6 +2,8 @@
 
 글루밍(Gluming) 마케팅 랜딩 사이트. **Astro** 정적 사이트로 빌드하고 **GitHub Pages**에 배포한다.
 
+> 상위 `../CLAUDE.md`는 Gluming 전체(이 문서 사이트 + Flutter 앱 `../gluming` + 서버 `../server`) 공통 umbrella다. 이 파일은 문서/웹사이트 전용 지침.
+
 > 이 파일은 대화하며 계속 수정한다. 규칙이 현실과 안 맞으면 먼저 바꾸자고 제안할 것.
 
 ---
