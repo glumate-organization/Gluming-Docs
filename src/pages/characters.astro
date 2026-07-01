@@ -10,21 +10,34 @@ import {
 } from '../lib/assets';
 
 // 각 캐릭터별 따뜻한 성격 소개 (비의료 · 컨디션/무드 톤).
+// set:html 로 렌더 — <strong>은 굵게 강조(색·이탤릭 X), <br />로 짧게 끊어 읽기 좋게.
 const blurbs: Record<string, string> = {
   dodami:
-    '도담이는 하루의 작은 기록을 차곡차곡 모아두는 걸 가장 좋아해요. 오늘 무얼 먹었는지, 얼마나 걸었는지 함께 들여다보며 “오늘도 잘 챙겼어요”라고 다정하게 토닥여 주죠. 든든한 맏이 같은 친구예요.',
+    '도디는 하루의 작은 기록을 <strong>차곡차곡 모아두는 걸</strong> 제일 좋아해요.<br />' +
+    '오늘 뭘 먹었는지, 얼마나 걸었는지 같이 들여다보고요.<br />' +
+    '“오늘도 잘 챙겼어요” 하고 다정하게 토닥여 준답니다.<br />' +
+    '<strong>든든한 맏이 같은 친구</strong>랄까요?',
   lumo:
-    '루모는 하루의 흐름을 환하게 비춰 주는 친구예요. 아침엔 가볍게 깨워 주고, 나른한 오후엔 “잠깐 스트레칭 어때요?” 하고 살며시 챙겨요. 밝고 호기심 많은 성격이라 매일이 조금씩 더 산뜻해져요.',
+    '루모는 하루의 흐름을 <strong>환하게 비춰 주는 친구</strong>예요.<br />' +
+    '아침엔 가볍게 깨워 주고요.<br />' +
+    '나른한 오후엔 “잠깐 스트레칭 어때요?” 하고 살며시 챙겨요.<br />' +
+    '밝고 호기심 많아서, 루모랑 있으면 하루가 조금 더 산뜻해져요.',
   ppomi:
-    '뽀미는 아주 작은 움직임에도 신나게 박수를 쳐 주는 응원 담당이에요. 한 걸음, 두 걸음 늘어날 때마다 함께 폴짝폴짝 기뻐하죠. 부담 없이 가볍게, 그렇지만 꾸준히 함께 걷고 싶을 때 가장 든든한 친구예요.',
+    '보미는 <strong>아주 작은 움직임에도 신나게 박수</strong>를 쳐 주는 응원 담당이에요.<br />' +
+    '한 걸음, 두 걸음 늘어날 때마다 같이 폴짝폴짝 기뻐하고요.<br />' +
+    '부담 없이 가볍게, 그래도 꾸준히 걷고 싶을 때 가장 든든해요.<br />' +
+    '보미랑 같이 걸으면 왠지 한 걸음 더 걷고 싶어져요.',
   ribuni:
-    '리번이는 옷을 갈아입는 재미에 진심인 멋쟁이 친구예요. 그날의 기분에 맞춰 코스튬을 골라 입고, 함께 꾸준히 지내면 새로운 옷이 하나둘 늘어나요. 모으는 재미가 쏠쏠해서 매일이 조금 더 기대돼요.',
+    '루코는 <strong>옷 갈아입는 재미에 진심</strong>인 멋쟁이 친구예요.<br />' +
+    '그날 기분에 맞춰 코스튬을 골라 입고요.<br />' +
+    '같이 꾸준히 지내다 보면 새 옷이 하나둘 늘어나요.<br />' +
+    '모으는 재미가 쏠쏠해서, 매일이 조금 더 기대돼요.',
 };
 ---
 
 <Layout
   title="글루밍즈 — 글루밍의 컨디션 친구들"
-  description="글루밍즈는 하루의 리듬을 함께 살피는 글루밍의 컨디션 친구들이에요. 도담이·루모·뽀미·리번이의 다양한 표정과 리번이 코스튬 컬렉션을 만나보세요."
+  description="글루밍즈는 하루의 리듬을 함께 살피는 글루밍의 컨디션 친구들이에요. 도디·루모·보미·루코의 다양한 표정과 루코 코스튬 컬렉션을 만나보세요."
 >
   <!-- ── HERO ─────────────────────────────────────────── -->
   <section class="hero section">
@@ -33,9 +46,10 @@ const blurbs: Record<string, string> = {
         <span class="eyebrow">MEET THE GLUMINGS</span>
         <h1 class="section-title">하루의 리듬을 함께 살피는 네 친구</h1>
         <p class="section-sub">
-          나의 몸을 이해하는 새로운 방식을 제안합니다. 글루밍즈는 오늘의 기분과
-          컨디션을 살며시 비춰 주는 친구들이에요. 산뜻한 날엔 함께 신나고, 나른한
-          날엔 가만히 곁을 지키며 매일의 습관을 곁에서 도와요.
+          안녕하세요, 저희가 <strong>글루밍즈</strong>예요.<br />
+          오늘의 기분과 컨디션을 살며시 비춰 주는 친구들이랍니다.<br />
+          산뜻한 날엔 같이 신나고, 나른한 날엔 가만히 곁을 지켜요.<br />
+          매일의 작은 습관, 저희랑 같이 챙겨보는 건 어떠세요?
         </p>
         <div class="hero-cta">
           <Button href="/about#preregister" variant="primary" size="lg"
@@ -98,7 +112,7 @@ const blurbs: Record<string, string> = {
             <h2 id={`char-${c.key}`}>{c.name}</h2>
             <span class="char-underline" aria-hidden="true" />
             <p class="char-tagline">{c.tagline}</p>
-            <p class="char-blurb">{blurbs[c.key]}</p>
+            <p class="char-blurb" set:html={blurbs[c.key]} />
 
             <div class="faces">
               <h3 class="faces-title">표정 모아보기</h3>
@@ -125,7 +139,7 @@ const blurbs: Record<string, string> = {
                 ))}
               </ul>
               <p class="faces-note">
-                오늘의 기분과 컨디션에 따라 표정이 살며시 바뀌어요.
+                오늘의 기분과 컨디션에 따라 표정이 <strong>살며시 바뀌어요.</strong>
               </p>
             </div>
           </div>
@@ -134,18 +148,18 @@ const blurbs: Record<string, string> = {
     ))
   }
 
-  <!-- ── 리번이 코스튬 컬렉션 ─────────────────────────── -->
+  <!-- ── 루코 코스튬 컬렉션 ─────────────────────────── -->
   <section class="costumes section" style="--accent: var(--berry)">
     <div class="container">
       <hr class="rule costumes-rule" />
       <div class="costumes-head">
         <span class="eyebrow">RIBUNI'S WARDROBE</span>
         <h2 class="section-title">
-          리번이는 옷을 갈아입으며 모으는 재미가 있어요
+          루코는 옷을 갈아입으며 모으는 재미가 있어요
         </h2>
         <p class="section-sub">
-          글루밍즈와 꾸준히 지내다 보면 리번이의 옷장이 점점 풍성해져요. 그날의
-          기분에 맞춰 골라 입는 코스튬을 하나씩 모아보세요.
+          글루밍즈와 꾸준히 지내다 보면 루코의 옷장이 <strong>점점 풍성해져요.</strong><br />
+          그날의 기분에 맞춰 골라 입는 코스튬, 하나씩 같이 모아볼까요?
         </p>
       </div>
 
@@ -156,7 +170,7 @@ const blurbs: Record<string, string> = {
               <div class="costume-art">
                 <Image
                   src={img}
-                  alt={`리번이 ${label} 코스튬`}
+                  alt={`루코 ${label} 코스튬`}
                   width={160}
                   height={160}
                   densities={[1, 2]}
@@ -181,8 +195,8 @@ const blurbs: Record<string, string> = {
       <span class="eyebrow">START TOGETHER</span>
       <h2 class="cta-title">글루밍즈와 함께 시작해 볼까요?</h2>
       <p class="cta-sub">
-        네 친구가 매일의 리듬을 함께 살펴 줄 거예요. 지금 사전예약하고 가장 먼저
-        만나보세요.
+        네 친구가 매일의 리듬을 <strong>곁에서 함께 살펴 줄게요.</strong><br />
+        지금 사전예약하고 가장 먼저 만나보세요.
       </p>
       <Button href="/about#preregister" variant="primary" size="lg"
         >글루밍즈와 함께 시작하기</Button
@@ -474,6 +488,21 @@ const blurbs: Record<string, string> = {
   }
 
   /* ── 반응형 ──────────────────────────────────────── */
+
+  /* 데스크톱 (≥1024px): 넉넉한 여백 · 에디토리얼 프레이밍 유지 */
+  @media (min-width: 1024px) {
+    .hero-inner {
+      gap: clamp(56px, 6vw, 80px);
+    }
+    .char-grid {
+      gap: clamp(56px, 6vw, 88px);
+    }
+    .char-blurb {
+      font-size: 16.5px;
+    }
+  }
+
+  /* 태블릿 (≤900px): 2단 → 1단 세로 스택 (이미지 먼저, 텍스트 다음) */
   @media (max-width: 900px) {
     .hero-inner,
     .char-grid {
@@ -494,15 +523,113 @@ const blurbs: Record<string, string> = {
     }
   }
 
-  @media (max-width: 520px) {
+  /* 모바일 (≤640px): 진짜 모바일 레이아웃 — 타이트한 여백·큰 터치타깃·작은 타이포 */
+  @media (max-width: 640px) {
+    .hero {
+      padding-top: clamp(32px, 9vw, 56px);
+      padding-bottom: clamp(32px, 9vw, 48px);
+    }
+    .hero-inner {
+      gap: 26px;
+      text-align: center;
+    }
+    .hero-copy .section-sub {
+      margin-inline: auto;
+    }
+    .hero-cta {
+      display: flex;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    /* 4친구 히어로 — 편안한 모바일 2열 카드 그리드 */
     .hero-cluster {
       grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      max-width: 420px;
+      margin-inline: auto;
+    }
+    .hero-chip {
+      gap: 10px;
+      padding: 16px 8px;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: var(--r-lg);
+    }
+    .hero-chip-art {
+      padding: 14%;
+    }
+
+    /* 캐릭터 섹션 — 세로 스택 · 여백 축소 · 이미지 축소 */
+    .char-section {
+      padding: 44px 0;
+    }
+    .char-grid {
+      gap: 22px;
+    }
+    .char-art {
+      max-width: 260px;
+      padding: 26px;
+    }
+    .char-index {
+      margin-bottom: 14px;
+    }
+    .char-info h2 {
+      font-size: 26px;
+    }
+    .char-tagline {
+      margin-top: 14px;
+      font-size: 16px;
+    }
+    .char-blurb {
+      margin-top: 12px;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    /* 표정 모아보기 — 가로 스와이프 스트립 (스냅 · 큰 터치타깃 · 화면 끝까지 블리드) */
+    .faces {
+      margin-top: 28px;
+      padding-top: 22px;
     }
     .faces-row {
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      grid-template-columns: none;
+      gap: 12px;
+      margin: 16px -24px 0;
+      padding: 2px 24px;
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
+    .faces-row::-webkit-scrollbar {
+      display: none;
+    }
+    .face {
+      flex: 0 0 90px;
+      gap: 8px;
+      scroll-snap-align: start;
+    }
+    .face-badge {
+      font-size: 11.5px;
+      padding: 4px 10px;
+    }
+
+    /* 코스튬 — 2열 · 넓은 터치 영역 */
     .costume-grid {
       grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .costume-card {
+      padding: 18px 12px;
+    }
+
+    .cta-title {
+      font-size: 26px;
+    }
+    .cta-sub {
+      margin-top: 16px;
     }
   }
 </style>

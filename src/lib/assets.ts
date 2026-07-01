@@ -68,7 +68,7 @@ export interface CharacterInfo {
 export const characters: CharacterInfo[] = [
   {
     key: 'dodami',
-    name: '도담이',
+    name: '도디',
     tagline: '차곡차곡 기록을 도와주는 든든한 친구',
     accent: 'var(--primary)',
     states: {
@@ -96,7 +96,7 @@ export const characters: CharacterInfo[] = [
   },
   {
     key: 'ppomi',
-    name: '뽀미',
+    name: '보미',
     tagline: '작은 움직임도 함께 응원하는 친구',
     accent: 'var(--peach)',
     states: {
@@ -110,7 +110,7 @@ export const characters: CharacterInfo[] = [
   },
   {
     key: 'ribuni',
-    name: '리번이',
+    name: '루코',
     tagline: '옷을 갈아입으며 모으는 재미가 있는 친구',
     accent: 'var(--berry)',
     states: {

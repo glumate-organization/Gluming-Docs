@@ -151,6 +151,18 @@ p {
   margin: 0;
 }
 
+/* 강조는 Bold로 통일 (색/이탤릭 대신). 이탤릭은 쓰지 않는다. */
+strong,
+b {
+  font-weight: 700;
+  color: inherit;
+}
+
+em,
+i {
+  font-style: normal;
+}
+
 :focus-visible {
   outline: 2px solid var(--sage-dark);
   outline-offset: 3px;

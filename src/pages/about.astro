@@ -2,24 +2,24 @@
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Button from '../components/Button.astro';
-import { logos, characters } from '../lib/assets';
+import { characters } from '../lib/assets';
 
 const title = '소개 — 행동을 데이터로 연결하는 글루밍';
 const description =
-  '글루밍은 CGM 데이터를 식사·운동 같은 행동으로 잇는 웰니스 습관 보조 서비스예요. 사후 분석이 아니라, 행동 전에 내 혈당 패턴을 미리 살펴보는 것을 돕습니다.';
+  '글루밍은 혈당을 자동으로 재주는 작은 센서 값을 식사·운동 같은 행동과 잇는 웰니스 습관 보조 서비스예요. 이미 오른 혈당을 뒤늦게 확인하는 대신, 앞으로의 혈당 변화를 미리 살펴보는 것을 돕습니다.';
 
-// 가치 블록 — 사후 분석의 한계 vs 행동 전 참고
+// 가치 블록 — 오른 뒤에 확인 vs 미리 살펴보기
 const beliefs = [
   {
-    label: '사후 분석의 한계',
+    label: '오른 뒤에야 알게 될 때',
     title: '이미 지난 일은 되돌릴 수 없어요',
-    body: '식사를 마친 뒤에야 혈당 그래프를 보면, 아쉬움만 남기 쉬워요. 기록을 쌓아도 “그래서 다음엔 뭘 다르게 하지?”라는 질문은 늘 남아요.',
+    body: '식사를 마치고 혈당이 오른 뒤에야 그래프를 보면, 아쉬움만 남기 쉬워요. 기록을 쌓아도 “그래서 다음엔 뭘 다르게 하지?”라는 질문은 늘 남아요.',
     tone: 'muted',
   },
   {
-    label: '행동 전 참고',
+    label: '미리 살펴볼 때',
     title: '선택하기 전에 한 번 미리 살펴봐요',
-    body: '먹기 전, 움직이기 전에 내 패턴을 가볍게 시뮬레이션해보면 더 편한 마음으로 선택할 수 있어요. 정답을 강요하지 않고, 참고가 되어 드릴게요.',
+    body: '먹기 전, 움직이기 전에 내 혈당이 어떻게 변할지 미리 보면 더 편한 마음으로 선택할 수 있어요. 정답을 강요하지 않고, 참고가 되어 드릴게요.',
     tone: 'primary',
   },
   {
@@ -54,7 +54,7 @@ const roadmap = [
   { phase: '정식 출시 예정', desc: '준비가 무르익으면 정식으로 인사드릴게요.', done: false },
 ];
 
-const guide = characters[0]; // 도담이
+const guide = characters[0]; // 도디
 ---
 
 <Layout title={title} description={description}>
@@ -65,17 +65,18 @@ const guide = characters[0]; // 도담이
         <span class="eyebrow">Gluming — Our Story</span>
         <h1 class="hero-title">
           나의 몸을 이해하는<br />
-          <span class="accent">새로운 방식을 제안합니다</span>
+          <span class="accent">조금 더 다정한 방법</span>
         </h1>
         <p class="hero-lead">
-          글루밍은 CGM(연속혈당) 데이터를 식사·운동 같은 일상의 행동으로 잇는
-          웰니스 습관 보조 서비스예요. 지난 그래프를 분석하는 데서 멈추지 않고,
-          무언가를 선택하기 <strong>전에</strong> 내 혈당 패턴을 가볍게 미리
-          살펴보도록 도와드려요.
+          글루밍은 몸에 붙이는 작은 혈당 센서(CGM)가 잰 값을 식사·운동 같은
+          <strong>일상의 행동</strong>과 이어주는 웰니스 습관 보조 서비스예요.<br />
+          지난 그래프를 되돌아보는 데서 멈추지 않고, 무언가를 선택하기
+          <strong>전에</strong> 내 혈당이 어떻게 변할지 가볍게 미리 살펴보도록 도와드릴게요.
         </p>
         <p class="hero-lead hero-lead-soft">
-          정답을 정해 주는 게 아니라, 더 편안한 마음으로 스스로 선택하도록
-          곁에서 거드는 것 — 그게 우리가 바라는 글루밍의 모습이에요.
+          정답을 정해 주는 게 아니라, 더 편안한 마음으로 스스로 고르도록
+          곁에서 거들어 드려요.<br />
+          그게 우리가 그리는 글루밍의 모습이에요.
         </p>
         <div class="hero-actions">
           <Button href="#preregister" size="lg">사전예약 신청하기</Button>
@@ -84,18 +85,21 @@ const guide = characters[0]; // 도담이
           </Button>
         </div>
       </div>
-      <div class="hero-visual" aria-hidden="false">
-        <div class="hero-mark">
-          <Image src={logos.icon} alt="글루밍 로고" width={300} height={300} />
-        </div>
-        <div class="hero-buddy">
+      <div class="hero-visual">
+        <figure class="hero-figure">
+          <div class="hero-figure-glow" aria-hidden="true"></div>
           <Image
+            class="hero-figure-img"
             src={guide.states.happy}
-            alt={`${guide.name} 캐릭터`}
-            width={160}
-            height={160}
+            alt={`글루밍 캐릭터 ${guide.name}`}
+            width={440}
+            height={440}
           />
-        </div>
+          <figcaption class="hero-figure-cap">
+            <strong>{guide.name}</strong>
+            <span>{guide.tagline}</span>
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -107,8 +111,9 @@ const guide = characters[0]; // 도담이
         <span class="eyebrow">01 — Why Before</span>
         <h2 class="section-title">왜 ‘행동 전’일까요?</h2>
         <p class="section-sub">
-          이미 일어난 일을 들여다보는 것도 의미가 있어요. 다만 글루밍은 한 걸음
-          앞에서, 선택을 앞둔 순간에 곁에 있고 싶어요.
+          이미 지나간 일을 들여다보는 것도 물론 의미가 있어요.<br />
+          다만 글루밍은 한 걸음 앞에서, <strong>선택을 앞둔 순간</strong>에 함께 있고
+          싶어요.
         </p>
       </header>
       <ol class="belief-list">
@@ -138,7 +143,8 @@ const guide = characters[0]; // 도담이
         <h2 class="section-title">혈당을 의식하기 시작한 분들과 함께해요</h2>
         <p class="section-sub">
           저마다 출발점은 다르지만, 내 몸의 흐름을 조금 더 이해하고 싶은 마음은
-          닮아 있어요. 글루밍은 이런 분들을 떠올리며 만들어요.
+          닮아 있더라고요.<br />
+          글루밍은 <strong>이런 분들</strong>을 떠올리며 만들고 있어요.
         </p>
       </header>
       <div class="who-list">
@@ -152,9 +158,9 @@ const guide = characters[0]; // 도담이
         }
       </div>
       <p class="who-note">
-        다만 1형 당뇨처럼 전문 의료 관리가 중심이 되어야 하는 경우는 글루밍의
-        대상이 아니에요. 더 적합한 도움을 받으실 수 있도록, 무리해서 권하지
-        않을게요.
+        다만 <strong>1형 당뇨</strong>처럼 전문 의료 관리가 중심이 되어야 하는
+        경우는 글루밍의 대상이 아니에요.<br />
+        더 잘 맞는 도움을 받으실 수 있도록, 무리해서 권하지 않을게요.
       </p>
     </div>
   </section>
@@ -166,7 +172,8 @@ const guide = characters[0]; // 도담이
         <span class="eyebrow">03 — Where We Are</span>
         <h2 class="section-title">지금은 사전예약을 준비하고 있어요</h2>
         <p class="section-sub">
-          과장 없이, 우리가 어디까지 왔고 어디로 가는지 솔직하게 보여 드릴게요.
+          부풀리지 않고 있는 그대로 보여 드릴게요.<br />
+          우리가 <strong>어디까지 왔고</strong> 앞으로 어디로 가는지, 솔직하게요.
         </p>
       </header>
       <ol class="timeline">
@@ -195,8 +202,9 @@ const guide = characters[0]; // 도담이
         <span class="eyebrow eyebrow-on-dark">04 — Pre-Register</span>
         <h2 class="prereg-title">먼저 소식을 받아보실래요?</h2>
         <p class="prereg-lead">
-          글루밍이 정식으로 인사드릴 준비가 되면, 출시 소식과 시작 안내를 가장
-          먼저 보내 드릴게요. 지금은 사전예약 신청 폼을 정성껏 준비하고 있어요.
+          글루밍이 정식으로 인사드릴 준비가 되면, 출시 소식과 시작 안내를
+          <strong>가장 먼저</strong> 보내 드릴게요.<br />
+          지금은 사전예약 신청 폼을 한 땀 한 땀 정성껏 준비하고 있어요.
         </p>
         <div class="prereg-actions">
           {/* TODO(정훈님): 사전예약 폼이 준비되면 이 자리에 폼 버튼/임베드를 넣어 주세요.
@@ -205,7 +213,7 @@ const guide = characters[0]; // 도담이
           <span class="prereg-soon" role="status">사전예약 폼 준비 중이에요 🌱</span>
         </div>
         <p class="prereg-fine">
-          준비가 끝나는 대로 바로 이 자리에서 신청하실 수 있도록 안내해 드릴게요.
+          준비가 끝나는 대로, 바로 이 자리에서 신청하실 수 있게 안내해 드릴게요.
         </p>
       </div>
     </div>
@@ -219,10 +227,11 @@ const guide = characters[0]; // 도담이
         <div class="notice-body">
           <h2 class="notice-title">건강에 관한 중요한 안내예요</h2>
           <p>
-            글루밍은 생활습관 관리를 돕는 <strong>웰니스 서비스</strong>이며,
-            의료 행위가 아니에요. 질병의 진단이나 치료를 대신하지 않으며, 제공되는
-            정보는 참고용이에요. 건강과 관련한 판단이나 결정은 반드시 의사 등
-            전문가와 상의해 주세요.
+            글루밍은 생활습관 관리를 돕는 <strong>웰니스 서비스</strong>이며, 의료
+            행위가 아니에요.<br />
+            질병의 진단이나 치료를 대신하지 않고, 알려 드리는 정보는 참고용이에요.<br />
+            건강과 관련한 판단이나 결정은 <strong>반드시 의사 등 전문가</strong>와
+            상의해 주세요.
           </p>
         </div>
       </aside>
@@ -263,7 +272,7 @@ const guide = characters[0]; // 도담이
   }
   .hero-lead strong {
     color: var(--text);
-    font-weight: 600;
+    font-weight: 700;
   }
   .hero-lead-soft {
     margin-top: 16px;
@@ -275,38 +284,71 @@ const guide = characters[0]; // 도담이
     gap: 14px;
   }
   .hero-visual {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 280px;
   }
-  .hero-mark {
-    width: clamp(220px, 30vw, 300px);
-    aspect-ratio: 1;
-    border-radius: var(--r-xl);
-    overflow: hidden;
-    border: 1px solid var(--rule);
-    background: var(--surface);
-  }
-  .hero-mark :global(img) {
+  .hero-figure {
+    position: relative;
+    margin: 0;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 460px;
+    /* 넉넉한 여백으로 캐릭터가 잘리지 않고 숨 쉬도록 */
+    padding: clamp(36px, 5vw, 60px) clamp(28px, 4vw, 52px)
+      clamp(28px, 4vw, 44px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: var(--r-2xl);
+    background:
+      radial-gradient(
+        120% 90% at 50% 18%,
+        var(--surface) 0%,
+        var(--warm) 100%
+      );
+    border: 1px solid var(--rule);
   }
-  .hero-buddy {
+  .hero-figure-glow {
     position: absolute;
-    right: 4%;
-    bottom: 0;
-    width: clamp(96px, 14vw, 140px);
-    padding: 10px;
-    border-radius: var(--r-lg);
-    background: var(--bg);
-    border: 1px solid var(--rule);
+    top: 12%;
+    left: 50%;
+    width: 62%;
+    aspect-ratio: 1;
+    transform: translateX(-50%);
+    border-radius: var(--r-pill);
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--primary) 22%, transparent) 0%,
+      transparent 68%
+    );
+    filter: blur(6px);
+    pointer-events: none;
   }
-  .hero-buddy :global(img) {
-    width: 100%;
+  .hero-figure-img {
+    position: relative;
+    z-index: 1;
+    width: clamp(200px, 26vw, 300px);
     height: auto;
+    object-fit: contain;
+  }
+  .hero-figure-cap {
+    position: relative;
+    z-index: 1;
+    margin-top: clamp(18px, 2.4vw, 28px);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .hero-figure-cap strong {
+    font-weight: 700;
+    font-size: clamp(16px, 1.8vw, 18px);
+    color: var(--pine);
+  }
+  .hero-figure-cap span {
+    color: var(--text-2);
+    font-size: 14px;
+    line-height: 1.6;
   }
 
   /* ── 우리가 믿는 것 (헤어라인 리스트) ── */
@@ -552,18 +594,30 @@ const guide = characters[0]; // 도담이
     line-height: 1.76;
   }
   .notice-body strong {
-    color: var(--pine);
-    font-weight: 600;
+    color: var(--text);
+    font-weight: 700;
   }
 
-  /* ── 반응형 ── */
+  /* ── 반응형 ─────────────────────────────────────────── */
+
+  /* 데스크톱(≥1024px): 넉넉한 에디토리얼 여백 유지 */
+  @media (min-width: 1024px) {
+    .hero-grid {
+      gap: clamp(56px, 6vw, 88px);
+    }
+  }
+
+  /* 태블릿: 히어로/타깃 세로 스택. 캐릭터를 위로(에디토리얼) */
   @media (max-width: 960px) {
     .hero-grid {
       grid-template-columns: 1fr;
+      gap: clamp(28px, 5vw, 44px);
     }
     .hero-visual {
       order: -1;
-      min-height: auto;
+    }
+    .hero-figure {
+      max-width: 400px;
     }
     .who-list {
       grid-template-columns: 1fr;
@@ -586,14 +640,58 @@ const guide = characters[0]; // 도담이
     }
   }
 
+  /* 모바일(≤640px): 스크롤 흐름을 위해 헤드라인 먼저, 캐릭터는 그 다음.
+     세로 여백·터치 타깃 확대, 타이포 축소, 장식은 절제 */
+  @media (max-width: 640px) {
+    .hero {
+      padding-top: clamp(32px, 9vw, 56px);
+    }
+    .hero-grid {
+      gap: 28px;
+    }
+    /* 헤드라인 → 캐릭터 순서 */
+    .hero-visual {
+      order: 0;
+    }
+    .hero-copy .eyebrow {
+      margin-bottom: 14px;
+    }
+    .hero-title {
+      font-size: clamp(30px, 8.5vw, 40px);
+      margin-bottom: 20px;
+    }
+    .hero-lead {
+      font-size: 16px;
+      line-height: 1.72;
+    }
+    /* 캐릭터는 화면에 맞게 적당한 크기로, 여백은 그대로 유지 */
+    .hero-figure {
+      max-width: 340px;
+      padding: 28px 24px 22px;
+    }
+    .hero-figure-img {
+      width: clamp(168px, 52vw, 220px);
+    }
+    /* 줄바꿈 강조 CTA — 터치 타깃 확대 (풀폭) */
+    .hero-actions {
+      margin-top: 28px;
+      gap: 12px;
+    }
+    .hero-actions :global(a) {
+      flex: 1 1 100%;
+      justify-content: center;
+      text-align: center;
+    }
+    /* 리스트 세로 리듬 확대 */
+    .belief-item {
+      padding: 26px 0;
+    }
+  }
+
   @media (max-width: 520px) {
     .notice {
       flex-direction: column;
       gap: 12px;
-    }
-    .hero-buddy {
-      right: 50%;
-      transform: translateX(72px);
     }
   }
 </style>

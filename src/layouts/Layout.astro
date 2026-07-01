@@ -12,7 +12,7 @@ interface Props {
 
 const {
   title = '글루밍 · 나의 몸을 이해하는 새로운 방식을 제안합니다',
-  description = '글루밍은 CGM 데이터를 식사·운동 같은 행동으로 연결하는 혈당 관리 습관 보조 서비스예요. 사후 분석이 아니라, 행동 전에 내 혈당 패턴을 미리 살펴보며 나의 몸을 이해하는 새로운 방식을 제안합니다.',
+  description = '글루밍은 혈당을 자동으로 재주는 작은 센서 값을 식사·운동 같은 행동과 잇는 혈당 관리 습관 보조 서비스예요. 이미 오른 혈당을 뒤늦게 확인하는 대신, 앞으로의 혈당 변화를 미리 살펴보며 나의 몸을 이해하는 새로운 방식을 제안합니다.',
   ogImage = 'https://gluming.app/og.png',
 } = Astro.props;
 
@@ -31,7 +31,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://gluming.app
     <meta name="theme-color" content="#F7F5F0" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Open Graph / 공유 메타데이터 (자기 도메인 절대 URL — 렌더링 의존 아님) -->
     <meta property="og:type" content="website" />

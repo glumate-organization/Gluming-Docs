@@ -1,64 +1,76 @@
 ---
 import { Image } from 'astro:assets';
+import AppScreen from '../components/AppScreen.astro';
 import Button from '../components/Button.astro';
 import Layout from '../layouts/Layout.astro';
 import { characters, featureImages, healthImages, oauthImages } from '../lib/assets';
 
 const title = '기능 — 행동 전에 살펴보는 혈당 관리 습관 도구 · 글루밍';
 const description =
-  '글루밍의 기능을 한눈에 살펴보세요. 식사·운동 전에 예상 혈당 흐름을 미리 시뮬레이션하고, 간편하게 기록하며, 부드러운 리마인드와 글루밍즈 캐릭터로 꾸준한 습관을 응원해요.';
+  '글루밍의 기능을 한눈에 살펴보세요. 식사·운동 전에 내 혈당이 어떻게 변할지 미리 보고, 간편하게 기록하며, 부드러운 알림과 글루밍즈 캐릭터로 꾸준한 습관을 응원해요.';
 
 // 딥다이브 기능 행 — 이미지/텍스트 좌우 교차 배치로 리듬을 만든다.
 const deepDives = [
   {
-    eyebrow: 'Simulate before you act',
-    title: '행동 전 시뮬레이션',
+    eyebrow: 'See your glucose ahead',
+    title: '혈당 변화 미리보기',
+    variant: 'preview',
     img: featureImages.simulation,
-    alt: '식사·운동 전 예상 혈당 흐름을 그래프로 미리 그려보는 화면 일러스트',
+    alt: '식사·운동 전 예상 혈당 변화를 그래프로 미리 보여주는 화면 일러스트',
     lead:
-      '“이 메뉴를 먹으면, 지금 산책을 다녀오면 내 혈당 흐름은 어떻게 달라질까?” 글루밍은 사후 분석이 아니라 행동하기 전에 예상 흐름을 미리 그려봐요. 선택지를 나란히 비교하고, 더 편안한 쪽을 스스로 고를 수 있도록 도와드려요.',
+      '“이 메뉴를 먹으면, 지금 잠깐 산책하면 내 혈당은 어떻게 변할까요?”<br />' +
+      '이미 오른 혈당을 뒤늦게 확인하는 대신, <strong>행동하기 전에</strong> 내 혈당이 어떻게 변할지 미리 보여드려요.<br />' +
+      '무엇을 하면 좋을지까지 함께 귀띔해 주니까, 오늘의 관리가 한결 쉬워져요.',
     tint: 'var(--primary-bg)',
     points: [
-      '식사·간식·운동을 하기 전에 예상 흐름을 미리 살펴봐요',
-      '여러 선택지를 나란히 비교해 마음 편한 쪽을 골라요',
+      '식사·간식·운동을 하기 전에 예상 흐름을 먼저 살펴봐요',
+      '여러 선택지를 나란히 두고 마음 편한 쪽을 골라요',
       '결과를 단정하지 않고, 참고할 수 있는 흐름으로 보여드려요',
     ],
   },
   {
-    eyebrow: 'Multi-horizon view',
-    title: '멀티호라이즌 예측 · 패턴 살펴보기',
+    eyebrow: 'The whole day at a glance',
+    title: '잠깐 뒤부터 하루까지, 미리 보기',
+    variant: 'horizon',
     img: featureImages.star,
-    alt: '여러 시간대의 혈당 패턴을 한눈에 모아 보여주는 카드 일러스트',
+    alt: '30분 뒤부터 하루까지 혈당 흐름을 한눈에 모아 보여주는 카드 일러스트',
     lead:
-      '한 시점만 보는 게 아니라 가까운 한두 시간부터 하루의 흐름까지, 여러 시간대를 한눈에 펼쳐서 참고해요. 반복되는 나만의 패턴이 보이기 시작하면, 다음 선택이 한결 가벼워져요.',
+      '지금 이 순간만 보는 게 아니라, 30분 뒤·2시간 뒤·하루까지 내 혈당이 어떻게 흐를지 한눈에 펼쳐서 보여드려요.<br />' +
+      '“나는 아침을 먹으면 이렇게 되는구나” 하고 <strong>나만 반복되는 흐름</strong>이 보이기 시작하면, 다음 선택이 한결 가벼워져요.',
     tint: 'var(--dusk-bg)',
     points: [
-      '짧은 구간부터 하루 흐름까지 시간대별로 모아서 살펴봐요',
-      '자주 반복되는 나만의 패턴을 부담 없이 발견해요',
-      '오늘의 컨디션에 맞춰 흐름을 가볍게 비교해요',
+      '30분 뒤부터 하루까지, 시간대별로 모아서 봐요',
+      '나에게 자주 반복되는 흐름을 편하게 알아가요',
+      '오늘 컨디션에 맞춰 흐름을 가볍게 견줘 봐요',
     ],
   },
   {
     eyebrow: 'Easy logging',
     title: '식사 · 간식 기록',
+    variant: 'record',
     img: featureImages.camera,
     alt: '카메라로 식사 사진을 찍어 간편하게 기록하는 화면 일러스트',
     lead:
-      '기록이 숙제가 되면 오래 못 가요. 글루밍은 카메라로 한 번 찍어 가볍게 남기고, 깜빡 잊기 쉬운 간식까지 톡 더하는 식으로 기록을 최대한 단순하게 만들었어요. 쌓인 기록은 시뮬레이션을 더 똑똑하게 만들어요.',
+      '기록이 숙제처럼 느껴지면 오래가기 어렵잖아요.<br />' +
+      '그래서 글루밍은 카메라로 <strong>한 번 찍어</strong> 가볍게 남기고, 깜빡하기 쉬운 간식도 톡 더하는 정도로 최대한 단순하게 만들었어요.<br />' +
+      '이렇게 쌓인 기록이 다음 미리보기를 더 똑똑하게 만들어줘요.',
     tint: 'var(--coral-bg)',
     points: [
       '카메라로 사진 한 장, 메모는 선택이라 부담이 적어요',
       '식사 사이의 작은 간식도 가볍게 남길 수 있어요',
-      '쌓인 기록이 다음 시뮬레이션의 든든한 재료가 돼요',
+      '쌓인 기록이 다음 미리보기의 든든한 재료가 돼요',
     ],
   },
   {
     eyebrow: 'Gentle nudges',
-    title: '부드러운 리마인드',
+    title: '부드러운 알림',
+    variant: 'remind',
     img: featureImages.notification,
     alt: '식후 가벼운 산책을 부드럽게 제안하는 알림 일러스트',
     lead:
-      '재촉하지 않아요. 식사 뒤 가벼운 산책처럼, 오늘 도움이 될 만한 작은 행동을 알맞은 순간에 부드럽게 건네요. 알림은 언제든 내 리듬에 맞게 조절할 수 있어요.',
+      '재촉하지 않을게요.<br />' +
+      '식사 뒤 가벼운 산책처럼, 오늘 도움이 될 만한 <strong>작은 행동</strong>을 알맞은 순간에 살며시 건네요.<br />' +
+      '알림은 언제든 내 리듬에 맞게 조절할 수 있어요.',
     tint: 'var(--peach-bg)',
     points: [
       '식후 가벼운 산책 같은 작은 행동을 부담 없이 제안해요',
@@ -69,10 +81,13 @@ const deepDives = [
   {
     eyebrow: 'Habit & rewards',
     title: '캐릭터와 함께하는 습관 · 미션 · 리워드',
+    variant: 'reward',
     img: featureImages.candy,
     alt: '미션을 완료하면 받는 리워드와 캐릭터 일러스트',
     lead:
-      '혼자보다 함께가 오래가요. 글루밍즈 친구들과 작은 미션을 하나씩 채워가며, 꾸준함에 응원과 리워드가 따라와요. 부담 없는 게이미피케이션으로 습관이 자연스럽게 이어지도록 도와드려요.',
+      '혼자보다 함께일 때 더 오래가요.<br />' +
+      '글루밍즈 친구들과 작은 미션을 하나씩 채워가다 보면, 꾸준함에 응원과 <strong>리워드</strong>가 따라와요.<br />' +
+      '부담 없는 재미로 습관이 자연스럽게 이어지도록 도와드릴게요.',
     tint: 'var(--gold-bg)',
     points: [
       '오늘의 작은 미션으로 습관을 한 걸음씩 쌓아요',
@@ -115,9 +130,10 @@ const greetChars = characters.slice(0, 4);
       <span class="eyebrow">00 — FEATURES</span>
       <h1 class="hero-title">행동하기 전에, 내 혈당 흐름을 먼저 살펴봐요</h1>
       <p class="hero-lead">
-        지나간 숫자를 되짚는 대신, 글루밍은 식사와 운동 같은 행동을 하기
-        <strong>전에</strong> 예상 흐름을 미리 그려봐요. 비교하고, 참고하고,
-        결국 선택은 스스로 — 나의 몸을 이해하는 새로운 방식을 제안합니다.
+        지나간 숫자를 되짚기보다, 식사나 운동처럼 무언가를 하기
+        <strong>전에</strong> 예상 흐름을 먼저 그려봐요.<br />
+        가볍게 비교해 보고, 참고만 하고, 결국 선택은 내가 하는 거예요.<br />
+        내 몸을 조금 더 이해하는 새로운 방법, 어떠세요?
       </p>
       <div class="hero-actions">
         <Button href="/about#preregister" variant="primary" size="lg">
@@ -139,21 +155,12 @@ const greetChars = characters.slice(0, 4);
           return (
             <article class={`row ${i % 2 === 1 ? 'row-reverse' : ''}`}>
               <div class="row-media">
-                <div class="media-frame">
-                  <Image
-                    src={f.img}
-                    alt={f.alt}
-                    width={200}
-                    height={200}
-                    densities={[1, 2]}
-                    loading={i === 0 ? 'eager' : 'lazy'}
-                  />
-                </div>
+                <AppScreen variant={f.variant} />
               </div>
               <div class="row-text">
                 <span class="eyebrow">{`${num} — ${f.eyebrow}`}</span>
                 <h2 class="row-title">{f.title}</h2>
-                <p class="row-lead">{f.lead}</p>
+                <p class="row-lead" set:html={f.lead} />
                 <ul class="row-points">
                   {f.points.map((p) => (
                     <li>{p}</li>
@@ -175,9 +182,11 @@ const greetChars = characters.slice(0, 4);
         <span class="eyebrow">06 — HEALTH SYNC</span>
         <h2 class="section-title">기기와 직접 씨름하지 않아요</h2>
         <p class="section-sub">
-          글루밍은 걸음 수와 활동 같은 건강 데이터를 운영체제의 건강 플랫폼을
-          통해 읽어와요. iOS는 Apple 건강, Android는 Health Connect와 연동되며,
-          기기와 직접(블루투스 등) 통신하지 않아 더 단순하고 안정적이에요.
+          글루밍은 걸음 수나 활동량 같은 건강 데이터를 운영체제의 건강 플랫폼을
+          통해 살며시 읽어와요.<br />
+          iOS는 <strong>Apple 건강</strong>, Android는 <strong>Health Connect</strong>와
+          연동돼요.<br />
+          기기와 블루투스로 직접 씨름하지 않아서, 더 단순하고 마음 편하게 쓸 수 있어요.
         </p>
       </div>
       <div class="sync-chips">
@@ -194,8 +203,10 @@ const greetChars = characters.slice(0, 4);
         }
       </div>
       <p class="sync-note">
-        연동은 언제든 직접 켜고 끌 수 있어요. 어떤 데이터를 가져올지 스스로
-        선택할 수 있고, 글루밍은 건강 관리를 돕는 보조 도구로 곁에 있을게요.
+        연동은 언제든 직접 켜고 끌 수 있어요.<br />
+        어떤 데이터를 가져올지도 스스로 고를 수 있고요.<br />
+        글루밍은 건강 관리를 돕는 <strong>보조 도구</strong>예요. 전문적인 진료나
+        상담을 대신하지 않고, 곁에서 살포시 거들게요.
       </p>
     </div>
   </section>
@@ -208,7 +219,8 @@ const greetChars = characters.slice(0, 4);
         <span class="eyebrow">07 — SIGN IN</span>
         <h2 class="section-title">익숙한 계정으로 가볍게 시작해요</h2>
         <p class="section-sub">
-          복잡한 가입 절차 없이, 평소 쓰던 계정으로 바로 시작할 수 있어요.
+          복잡한 가입 절차는 건너뛸게요.<br />
+          평소 쓰던 계정으로 <strong>바로</strong> 시작할 수 있어요.
         </p>
       </div>
       <ul class="login-icons" aria-label="간편 로그인 옵션">
@@ -243,7 +255,8 @@ const greetChars = characters.slice(0, 4);
         </div>
         <h2 class="cta-title">행동 전에 한 번 더 살펴보는 습관, 함께 시작해요</h2>
         <p class="cta-sub">
-          글루밍즈와 함께 오늘부터 내 혈당 흐름을 미리 그려봐요.
+          글루밍즈 친구들과 함께, 오늘부터 내 혈당 흐름을 미리 그려봐요.<br />
+          행동 전에 한 번 더 살펴보는 습관, 지금 같이 시작해요.
         </p>
         <Button href="/about#preregister" variant="primary" size="lg" class="cta-btn">
           사전예약 신청하기
@@ -272,8 +285,13 @@ const greetChars = characters.slice(0, 4);
     line-height: 1.78;
     max-width: 680px;
   }
-  .hero-lead strong {
-    color: var(--pine);
+  /* 강조는 색이 아닌 굵기로만 (색 강조 금지) */
+  .hero-lead strong,
+  .section-sub strong,
+  .sync-note strong,
+  .cta-sub strong,
+  .row-lead :global(strong) {
+    color: inherit;
     font-weight: 700;
   }
   .hero-actions {
@@ -310,22 +328,10 @@ const greetChars = characters.slice(0, 4);
     display: flex;
     justify-content: center;
   }
-  /* 무거운 틴트 블록 대신, 헤어라인으로 감싼 절제된 프레임 */
-  .media-frame {
+  /* 앱 화면 목업(AppScreen)이 자리를 채운다 */
+  .row-media > :global(.screen) {
     width: 100%;
-    max-width: 420px;
-    aspect-ratio: 5 / 4;
-    border: 1px solid var(--rule);
-    border-radius: var(--r-lg);
-    background: var(--card-soft);
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-  }
-  .media-frame :global(img) {
-    width: clamp(132px, 22vw, 200px);
-    height: auto;
-    object-fit: contain;
+    max-width: 440px;
   }
   .row-title {
     margin-top: 4px;
@@ -506,19 +512,109 @@ const greetChars = characters.slice(0, 4);
     color: var(--pine);
   }
 
-  /* ── 반응형 ── */
-  @media (max-width: 768px) {
+  /* ── 반응형 ──
+     데스크톱(≥1024px): 위 규칙 그대로 — 넉넉한 좌우 교차 에디토리얼 행.
+     태블릿 이하(≤1023px): 단일 컬럼으로 stack. 좌우 교차와 상관없이
+       모든 행에서 이미지가 항상 텍스트 위로 오도록 order를 초기화.
+     모바일(≤640px): 진짜 모바일 — 타이포 축소, 세로 여백·터치 타깃 확대,
+       칩은 넉넉히 감싸도록. */
+  @media (max-width: 1023px) {
     .row,
     .row-reverse {
       grid-template-columns: 1fr;
-      gap: 28px;
+      gap: clamp(24px, 5vw, 36px);
+      padding: clamp(40px, 9vw, 72px) 0;
     }
+    .row-media,
     .row-reverse .row-media {
       order: 0;
+    }
+    .row-lead {
+      max-width: none;
     }
     .login-inner {
       flex-direction: column;
       align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding-top: clamp(48px, 16vw, 88px);
+    }
+    .hero-lead {
+      margin-top: 20px;
+      font-size: 16px;
+      line-height: 1.72;
+    }
+    .hero-actions {
+      margin-top: 28px;
+      gap: 12px;
+    }
+    /* 버튼은 손가락에 넉넉하게 — 전체 너비로 세로 스택 */
+    .hero-actions :global(a) {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .row,
+    .row-reverse {
+      gap: 22px;
+      padding: 40px 0;
+    }
+    .row-media > :global(.screen) {
+      max-width: 380px;
+    }
+    .row-title {
+      font-size: 25px;
+    }
+    .row-lead {
+      margin-top: 16px;
+      font-size: 15.5px;
+      line-height: 1.74;
+    }
+    .row-points {
+      margin-top: 22px;
+    }
+    /* 터치 타깃 확대 */
+    .row-points li {
+      padding: 15px 0 15px 26px;
+      font-size: 15px;
+    }
+    .row-points li::before {
+      top: 22px;
+    }
+
+    .sync-chips {
+      gap: 12px;
+    }
+    /* 칩이 한 줄에 하나씩 넉넉히 — 좁은 화면에서 편하게 */
+    .sync-chip {
+      flex: 1 1 100%;
+    }
+    .sync-note {
+      margin-top: 22px;
+    }
+
+    .login-icons {
+      gap: 8px;
+    }
+    /* 로그인 칩은 편하게 wrap + 넉넉한 터치 영역 */
+    .login-chip {
+      padding: 11px 16px 11px 11px;
+      font-size: 14px;
+    }
+
+    .cta-band {
+      padding: 44px 22px;
+      border-radius: var(--r-xl);
+    }
+    .cta-chars {
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .cta-sub {
+      margin: 16px auto 28px;
     }
   }
 </style>

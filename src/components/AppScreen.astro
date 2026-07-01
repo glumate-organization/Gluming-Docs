@@ -1,0 +1,444 @@
+---
+// 기능 페이지용 앱 화면 목업 (자가완결: CSS + 인라인 SVG, 외부 자산 0).
+// gluming-v13.html 시안의 시각 언어(소프트 그라데이션 화면·혈당 숫자·카드·칩)를 참고.
+// variant 별로 서로 다른 화면을 그린다. 의료 단정 표현 없음(참고·미리보기 톤).
+import { Image } from 'astro:assets';
+import { charactersByKey } from '../lib/assets';
+
+interface Props {
+  variant: 'preview' | 'horizon' | 'record' | 'remind' | 'reward';
+}
+const { variant } = Astro.props;
+
+// 리워드 화면에서 함께 보여줄 캐릭터 (응원 담당 보미)
+const cheerChar = charactersByKey.ppomi.states.happy;
+---
+
+<div class:list={['screen', `screen--${variant}`]} aria-hidden="true">
+  {
+    variant === 'preview' && (
+      <div class="scr-inner">
+        <div class="scr-top">
+          <span class="scr-chip scr-chip--live"><i class="dot" />실시간 112</span>
+          <span class="scr-unit">mg/dL</span>
+        </div>
+        <svg class="scr-chart" viewBox="0 0 300 176" role="img">
+          <rect x="6" y="60" width="288" height="56" rx="10" class="band" />
+          <text x="12" y="54" class="band-label">목표 범위</text>
+          <line x1="186" y1="16" x2="186" y2="150" class="nowline" />
+          <path d="M12 126 C 60 118 108 104 150 100 L 186 96" class="line-now" />
+          <path
+            d="M186 96 C 214 92 232 72 256 64 S 288 62 294 66"
+            class="line-pred"
+          />
+          <circle cx="186" cy="96" r="4.5" class="pt-now" />
+          <circle cx="294" cy="66" r="4" class="pt-pred" />
+          <text x="182" y="164" class="axis">지금</text>
+          <text x="252" y="164" class="axis">+2시간</text>
+        </svg>
+        <div class="scr-suggest">
+          <span class="s-ic">🌿</span>
+          <span>산책 20분이면 <b>부드럽게 지나가요</b></span>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    variant === 'horizon' && (
+      <div class="scr-inner">
+        <div class="scr-tabs">
+          <span class="tab is-on">30분</span>
+          <span class="tab">2시간</span>
+          <span class="tab">하루</span>
+        </div>
+        <svg class="scr-chart" viewBox="0 0 300 150" role="img">
+          <rect x="6" y="48" width="288" height="48" rx="10" class="band" />
+          <path d="M10 108 C 70 96 110 70 150 76 S 236 58 292 48" class="line-now" />
+          <circle cx="150" cy="76" r="4" class="pt-now" />
+          <circle cx="292" cy="48" r="4" class="pt-pred" />
+        </svg>
+        <div class="scr-metrics">
+          <div class="m"><span class="m-l">평균</span><span class="m-v">118</span></div>
+          <div class="m"><span class="m-l">변동성</span><span class="m-v m-sm">낮음</span></div>
+          <div class="m"><span class="m-l">범위 내</span><span class="m-v">82%</span></div>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    variant === 'record' && (
+      <div class="scr-inner scr-list">
+        <div class="scr-title">오늘의 기록</div>
+        <div class="rec">
+          <span class="rec-ic ic-fork">🍽️</span>
+          <span class="rec-body"><b>점심 · 비빔밥</b><small>12:30</small></span>
+          <span class="rec-tag">+기록</span>
+        </div>
+        <div class="rec">
+          <span class="rec-ic ic-candy">🍎</span>
+          <span class="rec-body"><b>간식 · 사과 한 개</b><small>15:10</small></span>
+          <span class="rec-tag">+기록</span>
+        </div>
+        <div class="rec">
+          <span class="rec-ic ic-walk">🚶</span>
+          <span class="rec-body"><b>산책 · 20분</b><small>16:00</small></span>
+          <span class="rec-tag">+기록</span>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    variant === 'remind' && (
+      <div class="scr-inner scr-remind">
+        <div class="noti">
+          <span class="noti-ic">🔔</span>
+          <div class="noti-body">
+            <b>곧 혈당이 오를 수 있어요</b>
+            <span>식후 가볍게 스트레칭은 어떠세요?</span>
+          </div>
+        </div>
+        <div class="noti noti--soft">
+          <span class="noti-ic">💧</span>
+          <div class="noti-body">
+            <b>물 한 잔 하고 갈까요?</b>
+            <span>잊기 쉬운 순간에 살며시 알려드려요</span>
+          </div>
+        </div>
+        <div class="scr-time-hint">오후 2:30 · 부드러운 알림</div>
+      </div>
+    )
+  }
+
+  {
+    variant === 'reward' && (
+      <div class="scr-inner scr-reward">
+        <div class="reward-hero">
+          <Image
+            src={cheerChar}
+            alt=""
+            width={132}
+            height={132}
+            densities={[1, 2]}
+            class="reward-char"
+          />
+          <div class="score">
+            <span class="score-l">오늘의 점수</span>
+            <span class="score-v">82</span>
+            <span class="score-sub">어제보다 +6 · 잘하고 있어요!</span>
+          </div>
+        </div>
+        <div class="mission is-done">
+          <span class="mi-check">✓</span>
+          <span class="mi-body"><b>아침 산책</b><small>미션 완료</small></span>
+        </div>
+        <div class="mission">
+          <span class="mi-check mi-open" />
+          <span class="mi-body"><b>물 6잔 마시기</b><small>4 / 6 · 조금만 더</small></span>
+        </div>
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .screen {
+    width: 100%;
+    aspect-ratio: 4 / 3.4;
+    border-radius: var(--r-lg);
+    border: 1px solid var(--rule);
+    background:
+      radial-gradient(120% 90% at 15% 0%, var(--primary-bg) 0%, transparent 55%),
+      linear-gradient(180deg, var(--surface) 0%, var(--card-soft) 100%);
+    padding: clamp(18px, 2.4vw, 28px);
+    overflow: hidden;
+    display: flex;
+  }
+  .scr-inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  /* 공통 칩/텍스트 */
+  b {
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* preview 차트 */
+  .scr-top {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .scr-chip--live {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 12px;
+    border-radius: var(--r-pill);
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .scr-chip--live .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--sage);
+  }
+  .scr-unit {
+    font-size: 11px;
+    color: var(--text-3);
+    font-weight: 600;
+  }
+  .scr-chart {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .band {
+    fill: color-mix(in srgb, var(--primary) 16%, transparent);
+  }
+  .band-label {
+    fill: var(--sage-dark);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .nowline {
+    stroke: var(--border-strong);
+    stroke-width: 1;
+    stroke-dasharray: 3 4;
+  }
+  .line-now {
+    fill: none;
+    stroke: var(--sage-dark);
+    stroke-width: 2.6;
+    stroke-linecap: round;
+  }
+  .line-pred {
+    fill: none;
+    stroke: var(--sage);
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-dasharray: 4 5;
+  }
+  .pt-now {
+    fill: var(--sage-dark);
+  }
+  .pt-pred {
+    fill: var(--surface);
+    stroke: var(--sage);
+    stroke-width: 2;
+  }
+  .axis {
+    fill: var(--text-3);
+    font-size: 9px;
+    font-weight: 600;
+  }
+  .scr-suggest {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 14px;
+    border-radius: var(--r-md);
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    font-size: 13.5px;
+    color: var(--text-2);
+  }
+  .scr-suggest b {
+    color: var(--sage-dark);
+  }
+
+  /* horizon */
+  .scr-tabs {
+    display: flex;
+    gap: 6px;
+  }
+  .tab {
+    padding: 6px 13px;
+    border-radius: var(--r-pill);
+    border: 1px solid var(--rule);
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-3);
+  }
+  .tab.is-on {
+    background: var(--pine);
+    border-color: var(--pine);
+    color: var(--on-dark);
+  }
+  .scr-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .m {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-md);
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .m-l {
+    font-size: 10.5px;
+    color: var(--text-3);
+    font-weight: 600;
+  }
+  .m-v {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .m-v.m-sm {
+    font-size: 15px;
+  }
+
+  /* record / reward 공통 카드 */
+  .scr-title,
+  .scr-time-hint {
+    font-size: 12px;
+    color: var(--text-3);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .rec,
+  .mission,
+  .noti {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: var(--r-md);
+    background: var(--surface);
+    border: 1px solid var(--rule);
+  }
+  .rec-ic,
+  .noti-ic {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--primary-bg);
+    font-size: 16px;
+  }
+  .rec-body,
+  .noti-body,
+  .mi-body {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.35;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .rec-body b,
+  .mi-body b {
+    font-size: 14px;
+  }
+  .rec-body small,
+  .mi-body small {
+    font-size: 11.5px;
+    color: var(--text-3);
+  }
+  .rec-tag {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--sage-dark);
+    white-space: nowrap;
+  }
+
+  /* remind */
+  .noti-body b {
+    font-size: 14px;
+  }
+  .noti-body span {
+    font-size: 12.5px;
+    color: var(--text-2);
+  }
+  .noti--soft .noti-ic {
+    background: var(--dusk-bg);
+  }
+  .scr-time-hint {
+    text-align: right;
+  }
+
+  /* reward */
+  .reward-hero {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 4px 2px 2px;
+  }
+  .reward-char {
+    width: clamp(76px, 32%, 120px);
+    height: auto;
+    flex: 0 0 auto;
+  }
+  .score {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .score-l {
+    font-size: 12px;
+    color: var(--text-3);
+    font-weight: 600;
+  }
+  .score-v {
+    font-size: 44px;
+    font-weight: 800;
+    color: var(--sage-dark);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  .score-sub {
+    font-size: 12px;
+    color: var(--text-2);
+    font-weight: 600;
+  }
+  .mi-check {
+    width: 26px;
+    height: 26px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--on-dark);
+    background: var(--sage);
+  }
+  .mi-open {
+    background: transparent;
+    border: 2px solid var(--rule);
+  }
+  .mission.is-done .mi-body small {
+    color: var(--sage-dark);
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .screen {
+      aspect-ratio: auto;
+      min-height: 260px;
+    }
+    .score-v {
+      font-size: 38px;
+    }
+  }
+</style>
