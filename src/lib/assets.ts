@@ -236,7 +236,7 @@ export const screens = {
   simExercise: screenSimExercise, // 운동별 예상 변화 비교
   logExercise: screenLogExercise, // 운동 기록 입력
   mealDetect: screenMealDetect, // 사진 음식 인식 + 예상 변화
-  mission: screenMission, // 맞춤 미션 · 포인트
+  mission: screenMission, // 미션 · 포인트
   reportGlucose: screenReportGlucose, // 14일 혈당 리포트
   reportMeal: screenReportMeal, // 14일 식사 리포트
   reportMealDetail: screenReportMealDetail, // 끼니별 상승폭 상세
