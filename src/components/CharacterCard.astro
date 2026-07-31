@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import type { CharacterInfo } from '../lib/assets';
 
+// 화보식 캐릭터 셀 — 위쪽은 꽉 찬 인물면, 아래는 이름·한 줄 소개.
 interface Props {
   character: CharacterInfo;
   state?: keyof CharacterInfo['states'];
@@ -9,8 +10,8 @@ interface Props {
 const { character, state = 'optimal' } = Astro.props;
 ---
 
-<article class="char-card card">
-  <div class="art" style={`--accent:${character.accent}`}>
+<article class="cell char-cell reveal" style={`--accent:${character.accent}`}>
+  <div class="art">
     <Image
       src={character.states[state]}
       alt={`글루밍즈 캐릭터 ${character.name}`}
@@ -26,41 +27,45 @@ const { character, state = 'optimal' } = Astro.props;
 </article>
 
 <style>
-  .char-card {
-    padding: 20px;
+  /* 셀 기본 여백을 지우고 인물면을 끝까지 채운다 */
+  .char-cell {
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    text-align: center;
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
-  }
-  .char-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
   }
   .art {
-    border-radius: var(--r-lg);
-    background:
-      radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 65%),
-      var(--card-soft);
+    aspect-ratio: 1 / 1;
     display: grid;
     place-items: center;
-    padding: 14px;
-    aspect-ratio: 1 / 1;
+    padding: var(--sp-5);
+    background: radial-gradient(
+      circle at 50% 42%,
+      color-mix(in srgb, var(--accent) 18%, transparent),
+      transparent 64%
+    );
   }
   .art :global(img) {
-    width: 78%;
+    width: 76%;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 10px 18px rgba(58, 45, 31, 0.16));
+    transition: transform var(--dur-3) var(--ease);
+  }
+  .char-cell:hover .art :global(img) {
+    transform: translateY(-4px);
+  }
+  .meta {
+    margin-top: auto;
+    padding: var(--sp-4) var(--sp-5) var(--sp-6);
+    border-top: 1px solid var(--rule);
   }
   .meta h3 {
-    font-size: 20px;
+    font-size: var(--fs-h4);
+    letter-spacing: -0.03em;
   }
   .meta p {
-    margin-top: 6px;
+    margin-top: var(--sp-2);
     color: var(--text-2);
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: var(--fs-sm);
+    line-height: 1.65;
   }
 </style>

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Button from '../components/Button.astro';
+import SectionHead from '../components/SectionHead.astro';
+import StoreButtons from '../components/StoreButtons.astro';
 import { Image } from 'astro:assets';
 import {
   characters,
@@ -37,7 +38,7 @@ const blurbs: Record<string, string> = {
 
 <Layout
   title="글루밍즈 — 글루밍의 컨디션 친구들"
-  description="글루밍즈는 하루의 리듬을 함께 살피는 글루밍의 컨디션 친구들이에요. 도디·루모·보미·루코의 다양한 표정과 루코 코스튬 컬렉션을 만나보세요."
+  description="글루밍즈는 하루의 리듬을 함께 살피는 글루밍의 컨디션 친구들이에요. 네 친구의 다양한 표정과 코스튬 컬렉션을 만나보세요."
 >
   <!-- ── HERO ─────────────────────────────────────────── -->
   <section class="hero section">
@@ -52,9 +53,7 @@ const blurbs: Record<string, string> = {
           매일의 작은 습관, 저희랑 같이 챙겨보는 건 어떠세요?
         </p>
         <div class="hero-cta">
-          <Button href="/about#preregister" variant="primary" size="lg"
-            >글루밍즈와 함께 시작하기</Button
-          >
+          <StoreButtons size="lg" />
         </div>
       </div>
 
@@ -91,7 +90,7 @@ const blurbs: Record<string, string> = {
         style={`--accent:${c.accent}`}
         aria-labelledby={`char-${c.key}`}
       >
-        <div class="container char-grid">
+        <div class="container char-grid reveal">
           <div class="char-art">
             <Image
               src={c.states.happy}
@@ -148,29 +147,25 @@ const blurbs: Record<string, string> = {
     ))
   }
 
-  <!-- ── 루코 코스튬 컬렉션 ─────────────────────────── -->
+  <!-- ── 코스튬 컬렉션 ──────────────────────────────── -->
   <section class="costumes section" style="--accent: var(--berry)">
     <div class="container">
-      <hr class="rule costumes-rule" />
-      <div class="costumes-head">
-        <span class="eyebrow">RIBUNI'S WARDROBE</span>
-        <h2 class="section-title">
-          루코는 옷을 갈아입으며 모으는 재미가 있어요
-        </h2>
-        <p class="section-sub">
-          글루밍즈와 꾸준히 지내다 보면 루코의 옷장이 <strong>점점 풍성해져요.</strong><br />
-          그날의 기분에 맞춰 골라 입는 코스튬, 하나씩 같이 모아볼까요?
-        </p>
-      </div>
+      <SectionHead eyebrow="Collect the Glumings" variant="split">
+        글루밍즈를 모으는 재미가 있어요
+        <Fragment slot="sub">
+          꾸준히 지내다 보면 함께할 친구와 옷차림이 <strong>하나둘 늘어나요.</strong><br />
+          그날의 기분에 맞춰 골라 입는 재미, 같이 모아볼까요?
+        </Fragment>
+      </SectionHead>
 
-      <ul class="costume-grid">
+      <ul class="cells costume-grid">
         {
           ribuniCostumes.map(({ label, img }) => (
-            <li class="costume-card card">
+            <li class="cell costume-card">
               <div class="costume-art">
                 <Image
                   src={img}
-                  alt={`루코 ${label} 코스튬`}
+                  alt={`글루밍즈 ${label} 코스튬`}
                   width={160}
                   height={160}
                   densities={[1, 2]}
@@ -196,11 +191,9 @@ const blurbs: Record<string, string> = {
       <h2 class="cta-title">글루밍즈와 함께 시작해 볼까요?</h2>
       <p class="cta-sub">
         네 친구가 매일의 리듬을 <strong>곁에서 함께 살펴 줄게요.</strong><br />
-        지금 사전예약하고 가장 먼저 만나보세요.
+        지금 내려받고 오늘부터 같이 시작해요.
       </p>
-      <Button href="/about#preregister" variant="primary" size="lg"
-        >글루밍즈와 함께 시작하기</Button
-      >
+      <StoreButtons size="lg" />
     </div>
   </section>
 </Layout>
@@ -283,19 +276,24 @@ const blurbs: Record<string, string> = {
     order: 2;
   }
 
+  /* 흰 카드 대신 캐릭터 색이 은은히 번지는 면 */
   .char-art {
-    border: 1px solid var(--rule);
     border-radius: var(--r-lg);
-    background: var(--surface);
+    background: radial-gradient(
+      circle at 50% 44%,
+      color-mix(in srgb, var(--accent) 20%, transparent),
+      transparent 66%
+    );
     display: grid;
     place-items: center;
     padding: clamp(32px, 5vw, 64px);
     aspect-ratio: 1 / 1;
   }
   .char-art :global(img) {
-    width: 78%;
+    width: 80%;
     height: auto;
     object-fit: contain;
+    filter: drop-shadow(0 16px 26px rgba(58, 45, 31, 0.14));
   }
 
   .char-index {
@@ -326,8 +324,9 @@ const blurbs: Record<string, string> = {
     color: var(--sage-dark);
   }
   .char-info h2 {
-    font-size: clamp(28px, 4vw, 44px);
+    font-size: var(--fs-h2);
     letter-spacing: -0.04em;
+    line-height: var(--lh-title);
   }
   .char-underline {
     display: block;
@@ -380,8 +379,7 @@ const blurbs: Record<string, string> = {
     width: 100%;
     aspect-ratio: 1 / 1;
     border-radius: var(--r-md);
-    background: var(--surface);
-    border: 1px solid var(--rule);
+    background: color-mix(in srgb, var(--warm) 70%, transparent);
     display: grid;
     place-items: center;
     padding: 10px;
@@ -409,39 +407,25 @@ const blurbs: Record<string, string> = {
   .costumes {
     padding-top: 0;
   }
-  .costumes-rule {
-    margin: 0 0 clamp(48px, 8vw, 96px);
-  }
-  .costumes-head {
-    max-width: var(--measure);
-  }
   .costume-grid {
     list-style: none;
-    margin: clamp(36px, 5vw, 56px) 0 0;
+    margin: 0;
     padding: 0;
-    display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 16px;
   }
   .costume-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
-    padding: 20px 14px;
-    transition: transform 0.18s ease;
-  }
-  .costume-card:hover {
-    transform: translateY(-3px);
+    gap: var(--sp-3);
+    padding: var(--sp-5) var(--sp-4) var(--sp-5);
   }
   .costume-art {
     width: 100%;
     aspect-ratio: 1 / 1;
-    border-radius: var(--r-md);
-    background: var(--warm);
     display: grid;
     place-items: center;
-    padding: 14px;
+    padding: 10px;
   }
   .costume-art :global(img) {
     width: 80%;
@@ -476,14 +460,15 @@ const blurbs: Record<string, string> = {
     align-items: center;
   }
   .cta-title {
-    font-size: clamp(28px, 4vw, 46px);
+    font-size: var(--fs-h2);
     letter-spacing: -0.04em;
+    line-height: var(--lh-title);
   }
   .cta-sub {
-    margin: 18px auto 30px;
+    margin: var(--sp-5) auto var(--sp-6);
     color: var(--text-2);
-    font-size: clamp(16px, 2vw, 18px);
-    line-height: 1.75;
+    font-size: var(--fs-lead);
+    line-height: var(--lh-body);
     max-width: 520px;
   }
 
@@ -616,13 +601,12 @@ const blurbs: Record<string, string> = {
       padding: 4px 10px;
     }
 
-    /* 코스튬 — 2열 · 넓은 터치 영역 */
+    /* 코스튬 — 2열 · 넓은 터치 영역 (칸은 선으로 붙어 있으므로 gap 없음) */
     .costume-grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
     }
     .costume-card {
-      padding: 18px 12px;
+      padding: var(--sp-4) var(--sp-3);
     }
 
     .cta-title {

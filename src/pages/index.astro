@@ -2,65 +2,56 @@
 import { Image } from 'astro:assets';
 import Button from '../components/Button.astro';
 import CharacterCard from '../components/CharacterCard.astro';
-import FeatureCard from '../components/FeatureCard.astro';
 import Layout from '../layouts/Layout.astro';
-import { characters, charactersByKey, featureImages } from '../lib/assets';
+import PhoneFrame from '../components/PhoneFrame.astro';
+import ScreenCard from '../components/ScreenCard.astro';
+import SectionHead from '../components/SectionHead.astro';
+import StoreButtons from '../components/StoreButtons.astro';
+import { characters, healthImages, screens } from '../lib/assets';
 
-const dodami = charactersByKey.dodami;
-
+// 실제 앱 화면으로 보여주는 핵심 기능 6가지.
 const features = [
   {
-    img: featureImages.simulation,
-    title: '혈당 변화 미리보기',
-    tint: 'var(--primary-bg)',
-    alt: '혈당이 어떻게 변할지 미리 보여주는 일러스트',
-    desc: '먹기 전에, 움직이기 전에. 내 혈당이 어떻게 변할지 미리 보고, 무엇을 하면 좋을지 함께 살펴봐요.',
+    img: screens.homeGood,
+    title: '컨디션을 표정으로',
+    alt: '글루밍 홈 화면. 캐릭터가 웃으며 "리듬이 아주 좋아요"라고 알려주고 혈당 94 mg/dL이 크게 보인다.',
+    desc: '숫자만 보면 지금이 괜찮은 건지 애매하잖아요. 글루밍즈가 표정과 한마디로 먼저 알려드려요.',
   },
   {
-    img: featureImages.camera,
-    title: '간편한 식사·간식 기록',
-    tint: 'var(--peach-bg)',
-    alt: '카메라로 식사를 기록하는 일러스트',
-    desc: '한 끼도, 작은 간식도 가볍게 남겨요. 기록이 쌓일수록 내 몸의 반응을 더 또렷이 알아가요.',
+    img: screens.simExercise,
+    title: '지금 움직이면 어떻게 될까요?',
+    alt: '운동 시뮬레이터 화면. 가만히 있을 때와 스트레칭·산책의 예상 변화를 비교해 보여준다.',
+    desc: '가만히 있을 때와 움직였을 때를 나란히 비교해요. 지난 14일 내 데이터로 계산한 참고값이에요.',
   },
   {
-    img: featureImages.notification,
-    title: '부드러운 알림',
-    tint: 'var(--dusk-bg)',
-    alt: '알림으로 부드럽게 안내하는 일러스트',
-    desc: '재촉하지 않을게요. 잊기 쉬운 순간에 살며시 건네는 알림으로 생활습관 관리를 도울게요.',
+    img: screens.mealDetect,
+    title: '사진 한 장이면 기록 끝',
+    alt: '음식 인식 화면. 사진 속 여러 음식을 각각 찾아내고 예상 흐름을 함께 보여준다.',
+    desc: '사진을 찍으면 음식과 탄수화물을 알아서 찾아내요. 먹기 전 흐름까지 미리 그려드려요.',
   },
   {
-    img: featureImages.star,
-    title: '캐릭터와 함께하는 습관',
-    tint: 'var(--gold-bg)',
-    alt: '별과 함께 습관을 쌓아가는 일러스트',
-    desc: '글루밍즈와 하루하루 작은 기록을 모아요. 혼자가 아니라 함께라서 꾸준함이 즐거워져요.',
+    img: screens.logExercise,
+    title: '운동도 세 번만 누르면',
+    alt: '운동 기록 화면. 운동 종류·시간·강도를 고르는 모습.',
+    desc: '종류 고르고, 시간 정하고, 강도 누르면 끝. 고르는 동안 예상 변화가 같이 바뀌어요.',
+  },
+  {
+    img: screens.mission,
+    title: '오늘 나에게 맞는 미션',
+    alt: '미션 화면. 연속 달성 스탬프와 오늘의 맞춤 미션이 포인트와 함께 나열된다.',
+    desc: '최근 내 패턴을 보고 오늘 도움이 될 미션을 골라드려요. 모은 포인트로 새 친구를 만나요.',
+  },
+  {
+    img: screens.reportGlucose,
+    title: '2주 흐름을 한눈에',
+    alt: '건강 리포트 화면. 평균 혈당·변동성·목표 범위 시간과 14일 평균 곡선이 보인다.',
+    desc: '하루는 들쭉날쭉해도 2주를 모아 보면 리듬이 보여요. 평균·변동성·목표 범위 시간을 정리해요.',
   },
 ];
 
-const segments = [
-  {
-    badge: '안심·세심',
-    tint: 'var(--cheek-bg)',
-    accent: 'var(--berry)',
-    title: '임신성 당뇨가 신경 쓰이는 분',
-    desc: '하루에도 몇 번씩 챙겨야 할 게 많은 시기, 기록과 미리보기로 관리 부담을 한결 덜어드려요.',
-  },
-  {
-    badge: '검진 이후',
-    tint: 'var(--gold-bg)',
-    accent: 'var(--gold)',
-    title: '건강검진 결과가 마음에 걸리는 39–59세',
-    desc: '전당뇨·2형이 신경 쓰이기 시작했다면, 검진 결과를 막막함이 아니라 일상의 작은 행동으로 이어가 봐요.',
-  },
-  {
-    badge: '식단 관리',
-    tint: 'var(--primary-bg)',
-    accent: 'var(--primary)',
-    title: '혈당 기반 식단을 챙기는 19–39세',
-    desc: '같은 음식도 내 몸은 다르게 반응해요. 그 흐름을 알아가며 나에게 맞는 식사를 스스로 골라요.',
-  },
+const syncPlatforms = [
+  { img: healthImages.appleHealth, name: 'Apple 건강', alt: 'Apple 건강 앱 로고' },
+  { img: healthImages.healthConnect, name: 'Health Connect', alt: 'Android Health Connect 로고' },
 ];
 ---
 
@@ -82,63 +73,93 @@ const segments = [
           글루밍은 몸에 붙이는 작은 혈당 센서가 잰 값을,<br />
           식사·운동 같은 하루 행동과 이어드려요.<br />
           지나간 숫자를 들여다보는 대신, <strong>행동하기 전에</strong> 내 혈당 흐름을
-          미리 살펴봐요.<br />
-          그 작은 습관, 우리 함께 만들어가요.
+          미리 살펴봐요.
         </p>
         <div class="hero-cta">
-          <Button href="/about#preregister" variant="primary" size="lg">
-            사전예약하고 먼저 받아보기
-          </Button>
-          <Button href="/features" variant="secondary" size="lg">
-            기능 둘러보기
-          </Button>
+          <StoreButtons size="lg" />
         </div>
-        <p class="hero-note">의료기기가 아니에요 · 생활습관 관리를 돕는 웰니스 서비스예요</p>
+        <p class="hero-note">
+          <a href="/features">기능 둘러보기 →</a>
+        </p>
       </div>
 
       <div class="hero-visual">
         <div class="hero-panel" aria-hidden="true"></div>
-        <Image
-          src={dodami.states.optimal}
-          alt={`글루밍즈 캐릭터 ${dodami.name}가 산뜻한 표정으로 인사하는 모습`}
-          width={360}
-          height={360}
-          loading="eager"
-          densities={[1, 2]}
-          class="hero-char"
-        />
-        <div class="hero-tag">
-          <span class="hero-tag-dot" aria-hidden="true"></span>
-          <span class="hero-tag-text">오늘의 컨디션 · 산뜻해요</span>
-        </div>
+        <PhoneFrame width={292} class="hero-phone">
+          <Image
+            src={screens.homeGood}
+            alt="글루밍 앱 홈 화면. 글루밍즈 캐릭터가 웃는 표정으로 '리듬이 아주 좋아요, 이대로 가요!'라고 알려주고, 혈당 94 mg/dL과 오늘의 점수·평균 혈당·변동성이 함께 보인다."
+            widths={[300, 600]}
+            sizes="292px"
+            loading="eager"
+          />
+        </PhoneFrame>
       </div>
     </div>
   </section>
 
-  <!-- ── 2. 문제 정의 ──────────────────────────────────── -->
+  <!-- ── 2. 신뢰 스트립 ─────────────────────────────────── -->
+  <section class="trust">
+    <div class="container trust-inner">
+      <p class="trust-label">건강 데이터는 자동으로 이어져요</p>
+      <ul class="trust-logos">
+        {
+          syncPlatforms.map((p) => (
+            <li>
+              <Image src={p.img} alt={p.alt} width={28} height={28} densities={[1, 2]} />
+              <span>{p.name}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="trust-note">
+        의료기기가 아니에요 · 생활습관 관리를 돕는 웰니스 서비스예요
+      </p>
+    </div>
+  </section>
+
+  <!-- ── 3. 문제 정의 ──────────────────────────────────── -->
   <section class="section problem">
     <div class="container">
-      <p class="eyebrow">01 — Why Gluming</p>
-      <h2 class="section-title">숫자는 쌓이는데,<br />뭘 바꿔야 할지는 막막하죠</h2>
-      <p class="section-sub">
-        이미 혈당이 오른 뒤에야 알림이 와서 그래프를 들여다봐요.<br />
-        하지만 <strong>이미 지나간 일</strong>이라, 지금 뭘 해야 할지는 막막하죠.<br />
-        “아, 아까 그걸 먹지 말걸” 하고 뒤늦게 아쉬워한 적, 한 번쯤 있지 않나요?
-      </p>
+      <SectionHead eyebrow="01 — Why Gluming" variant="split">
+        숫자는 쌓이는데,<br />뭘 바꿔야 할지는 막막하죠
+        <Fragment slot="sub">
+          이미 혈당이 오른 뒤에야 알림이 와서 그래프를 들여다봐요.<br />
+          “아, 아까 그걸 먹지 말걸” 하고 아쉬워한 적, 한 번쯤 있지 않나요?
+        </Fragment>
+      </SectionHead>
 
       <div class="compare">
-        <article class="compare-col is-before">
-          <span class="compare-tag">지금까지는</span>
+        <article class="compare-col is-before reveal">
+          <span class="compare-tag">Before</span>
           <h3>오른 뒤에야 알게 돼요</h3>
+          <svg class="mini" viewBox="0 0 260 96" role="img"
+            aria-label="혈당이 목표 범위를 넘어 오른 뒤에야 확인하게 되는 흐름 그래프">
+            <rect x="0" y="40" width="260" height="30" rx="6" class="mini-band" />
+            <path d="M4 74 C 44 70 72 44 110 32 S 196 16 256 22" class="mini-line" />
+            <circle cx="256" cy="22" r="3.6" class="mini-dot" />
+            <text x="196" y="12" class="mini-cap">이미 지나감</text>
+          </svg>
           <p>
             식사가 끝나고 혈당이 오른 다음에야 알림이 울려요.<br />
             그래프를 봐도 <strong>이미 지나간 일</strong>이라, 다음을 어떻게 바꿔야 할지
             혼자 고민하게 돼요.
           </p>
         </article>
-        <article class="compare-col is-after">
-          <span class="compare-tag accent">글루밍은</span>
-          <h3>혈당 변화 미리보기</h3>
+
+        <article class="compare-col is-after reveal">
+          <span class="compare-tag accent">Gluming</span>
+          <h3>변화를 미리 살펴봐요</h3>
+          <svg class="mini" viewBox="0 0 260 96" role="img"
+            aria-label="지금 이후의 혈당 흐름을 점선으로 미리 그려 보여주는 그래프">
+            <rect x="0" y="40" width="260" height="30" rx="6" class="mini-band is-on" />
+            <line x1="112" y1="10" x2="112" y2="86" class="mini-now" />
+            <path d="M4 70 C 40 66 76 58 112 56" class="mini-line is-on" />
+            <path d="M112 56 C 148 52 176 46 206 50 S 242 58 256 52" class="mini-pred" />
+            <circle cx="112" cy="56" r="3.6" class="mini-dot is-on" />
+            <circle cx="256" cy="52" r="3.6" class="mini-dot-open" />
+            <text x="118" y="16" class="mini-cap is-on">지금부터</text>
+          </svg>
           <p>
             먹기 전에, 움직이기 전에 <strong>내 혈당이 어떻게 변할지</strong> 미리
             알려드려요.<br />
@@ -149,26 +170,28 @@ const segments = [
     </div>
   </section>
 
-  <!-- ── 3. 핵심 기능 ──────────────────────────────────── -->
+  <!-- ── 4. 핵심 기능 ──────────────────────────────────── -->
   <section class="section features">
     <div class="container">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">02 — Core Features</p>
-          <h2 class="section-title">행동을 바꾸기 쉽게,<br />부드럽게</h2>
-        </div>
-        <p class="section-sub">
+      <SectionHead eyebrow="02 — Core Features" variant="split">
+        행동을 바꾸기 쉽게,<br />부드럽게
+        <Fragment slot="sub">
           복잡한 수치 해석은 글루밍에게 맡겨두세요.<br />
-          나는 오늘 <strong>딱 한 걸음</strong>만 가볍게 내디디면 돼요.
-        </p>
-      </div>
+          아래는 모두 <strong>실제 앱 화면</strong>이에요.
+        </Fragment>
+      </SectionHead>
 
-      <div class="feature-grid">
+      <div class="cells feature-cells">
         {
-          features.map((f) => (
-            <FeatureCard img={f.img} title={f.title} tint={f.tint} alt={f.alt}>
+          features.map((f, i) => (
+            <ScreenCard
+              img={f.img}
+              title={f.title}
+              alt={f.alt}
+              index={String(i + 1).padStart(2, '0')}
+            >
               {f.desc}
-            </FeatureCard>
+            </ScreenCard>
           ))
         }
       </div>
@@ -181,21 +204,18 @@ const segments = [
     </div>
   </section>
 
-  <!-- ── 4. 글루밍즈 티저 ──────────────────────────────── -->
+  <!-- ── 5. 글루밍즈 티저 ──────────────────────────────── -->
   <section class="section friends">
     <div class="container">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">03 — Meet the Glumings</p>
-          <h2 class="section-title">매일을 함께 걷는 친구들</h2>
-        </div>
-        <p class="section-sub">
+      <SectionHead eyebrow="03 — Meet the Glumings" variant="split">
+        매일을 함께 걷는 친구들
+        <Fragment slot="sub">
           기록도 습관도 혼자 하면 금세 지치잖아요.<br />
           글루밍즈가 곁에서 오늘의 작은 변화를 같이 응원할게요.
-        </p>
-      </div>
+        </Fragment>
+      </SectionHead>
 
-      <div class="friends-grid">
+      <div class="cells friend-cells">
         {characters.map((c) => <CharacterCard character={c} state="optimal" />)}
       </div>
 
@@ -203,36 +223,6 @@ const segments = [
         <Button href="/characters" variant="secondary" size="md">
           글루밍즈 모두 만나기
         </Button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 5. 타깃 적합성 ────────────────────────────────── -->
-  <section class="section fit">
-    <div class="container">
-      <p class="eyebrow">04 — Who It's For</p>
-      <h2 class="section-title">내 속도에 맞춰,<br />내 방식대로</h2>
-      <p class="section-sub">
-        글루밍은 의료 서비스를 대체하지 않아요.<br />
-        다만 일상에서 스스로 챙기는 분께, <strong>든든한 곁</strong>이 되어드릴게요.
-      </p>
-
-      <div class="fit-list">
-        {
-          segments.map((s, i) => (
-            <article class="fit-row">
-              <span class="fit-index">{String(i + 1).padStart(2, '0')}</span>
-              <div class="fit-body">
-                <span class="fit-badge" style={`color:${s.accent}`}>
-                  <span class="fit-badge-dot" style={`background:${s.accent}`} />
-                  {s.badge}
-                </span>
-                <h3>{s.title}</h3>
-                <p>{s.desc}</p>
-              </div>
-            </article>
-          ))
-        }
       </div>
     </div>
   </section>
@@ -245,12 +235,10 @@ const segments = [
         <h2 class="cta-title">오늘의 한 끼,<br />미리 살펴보고 시작해요</h2>
         <p class="cta-sub">
           행동하기 전에 내 혈당 흐름을 그려보는 습관.<br />
-          글루밍, 누구보다 먼저 만나보시는 건 어떠세요?
+          지금 바로 시작해 보세요.
         </p>
         <div class="cta-actions">
-          <Button href="/about#preregister" variant="primary" size="lg">
-            사전예약하고 먼저 받아보기
-          </Button>
+          <StoreButtons size="lg" tone="dark" />
         </div>
       </div>
     </div>
@@ -260,18 +248,18 @@ const segments = [
 <style>
   /* ── HERO ─────────────────────────────────────────── */
   .hero {
-    padding: clamp(44px, 7vw, 92px) 0 clamp(56px, 8vw, 112px);
+    padding: clamp(40px, 6vw, 88px) 0 clamp(48px, 7vw, 96px);
   }
   .hero-grid {
     display: grid;
-    grid-template-columns: 1.08fr 0.92fr;
+    grid-template-columns: 1.06fr 0.94fr;
     gap: clamp(32px, 5vw, 72px);
     align-items: center;
   }
   .hero-title {
-    margin-top: 4px;
-    font-size: clamp(36px, 6vw, 68px);
-    line-height: 1.08;
+    margin-top: var(--sp-1);
+    font-size: var(--fs-display);
+    line-height: var(--lh-tight);
     letter-spacing: -0.045em;
   }
   .hero-title .accent {
@@ -291,10 +279,10 @@ const segments = [
     z-index: -1;
   }
   .hero-lead {
-    margin-top: 26px;
-    max-width: 500px;
+    margin-top: var(--sp-6);
+    max-width: 480px;
     color: var(--text-2);
-    font-size: clamp(16px, 2vw, 19px);
+    font-size: var(--fs-lead);
     line-height: 1.8;
   }
   .hero-lead strong {
@@ -302,92 +290,112 @@ const segments = [
     font-weight: 700;
   }
   .hero-cta {
-    margin-top: 32px;
+    margin-top: var(--sp-6);
     display: flex;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: var(--sp-3);
   }
   .hero-note {
-    margin-top: 20px;
-    color: var(--text-3);
-    font-size: 13.5px;
+    margin-top: var(--sp-5);
+  }
+  .hero-note a {
+    color: var(--sage-dark);
     font-weight: 600;
+    font-size: var(--fs-body);
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--dur-2) var(--ease);
+  }
+  .hero-note a:hover {
+    border-bottom-color: currentColor;
   }
 
-  /* 에지 블리드 비주얼 — 캔디 카드 대신 톤 패널 + 여백 */
+  /* 에지 블리드 톤 패널 + 그 위에 놓인 앱 화면 */
   .hero-visual {
     position: relative;
     display: grid;
     place-items: center;
-    min-height: 380px;
+    padding: clamp(28px, 4vw, 48px) 0;
   }
   .hero-panel {
     position: absolute;
-    inset: -8% -50vw -8% 4%;
+    inset: 0 -50vw 0 2%;
     background: var(--warm);
     border-left: 1px solid var(--rule);
   }
-  .hero-char {
+  /* 자식 컴포넌트 루트에는 부모 스코프가 붙지 않으므로 :global 로 지정한다 */
+  .hero-visual :global(.phone) {
     position: relative;
-    width: min(84%, 340px);
-    height: auto;
-    filter: drop-shadow(0 16px 28px rgba(58, 45, 31, 0.14));
   }
-  .hero-tag {
-    position: absolute;
-    bottom: 8%;
-    left: 8%;
+
+  /* ── 신뢰 스트립 ───────────────────────────────────── */
+  .trust {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: color-mix(in srgb, var(--warm) 45%, transparent);
+  }
+  .trust-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--sp-4) var(--sp-7);
+    padding: var(--sp-4) 0;
+  }
+  .trust-label {
+    font-family: var(--font-serif);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+  }
+  .trust-logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--sp-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .trust-logos li {
     display: inline-flex;
     align-items: center;
-    gap: 9px;
-    padding: 9px 15px;
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    border-radius: var(--r-pill);
-    font-size: 13px;
+    gap: var(--sp-2);
+    font-size: var(--fs-sm);
     font-weight: 600;
     color: var(--text-2);
   }
-  .hero-tag-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: var(--r-pill);
-    background: var(--primary);
+  .trust-logos :global(img) {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
   }
-
-  /* ── 공통 섹션 헤드 (비대칭 정렬) ──────────────────── */
-  .section-head {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: clamp(20px, 4vw, 56px);
-    align-items: end;
-  }
-  .section-head .section-sub {
-    margin-top: 0;
-    padding-bottom: 6px;
+  .trust-note {
+    margin-left: auto;
+    color: var(--text-3);
+    font-size: var(--fs-xs);
+    font-weight: 600;
   }
 
   /* ── 문제 정의 ─────────────────────────────────────── */
   .compare {
-    margin-top: clamp(40px, 6vw, 64px);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0;
     border-top: 1px solid var(--rule);
   }
   .compare-col {
-    padding: 36px clamp(24px, 4vw, 44px) 8px 0;
+    padding: var(--sp-7) clamp(24px, 4vw, 48px) var(--sp-6) 0;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: var(--sp-4);
   }
   .compare-col.is-after {
-    padding-left: clamp(24px, 4vw, 44px);
+    padding-left: clamp(24px, 4vw, 48px);
     padding-right: 0;
     border-left: 1px solid var(--rule);
   }
   .compare-col h3 {
-    font-size: clamp(22px, 3vw, 30px);
+    font-size: var(--fs-h3);
   }
   .compare-col.is-before h3 {
     color: var(--text-3);
@@ -397,9 +405,9 @@ const segments = [
   }
   .compare-col p {
     color: var(--text-2);
-    font-size: 15.5px;
-    line-height: 1.75;
-    max-width: 42ch;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    max-width: 44ch;
   }
   .compare-tag {
     font-family: var(--font-serif);
@@ -413,91 +421,110 @@ const segments = [
     color: var(--sage-dark);
   }
 
-  /* ── 기능 / 글루밍즈 그리드 ───────────────────────── */
-  .feature-grid,
-  .friends-grid {
-    margin-top: clamp(40px, 6vw, 60px);
-    display: grid;
+  /* 미니 그래프 — 말로 하던 대비를 눈으로 */
+  .mini {
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    display: block;
+  }
+  .mini-band {
+    fill: color-mix(in srgb, var(--text-3) 12%, transparent);
+  }
+  .mini-band.is-on {
+    fill: color-mix(in srgb, var(--primary) 15%, transparent);
+  }
+  .mini-line {
+    fill: none;
+    stroke: var(--text-3);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+  }
+  .mini-line.is-on {
+    stroke: var(--sage-dark);
+  }
+  .mini-pred {
+    fill: none;
+    stroke: var(--sage);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-dasharray: 4 5;
+  }
+  .mini-now {
+    stroke: var(--border-strong);
+    stroke-width: 1;
+    stroke-dasharray: 3 4;
+  }
+  .mini-dot {
+    fill: var(--text-3);
+  }
+  .mini-dot.is-on {
+    fill: var(--sage-dark);
+  }
+  .mini-dot-open {
+    fill: var(--surface);
+    stroke: var(--sage);
+    stroke-width: 2;
+  }
+  .mini-cap {
+    fill: var(--text-3);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .mini-cap.is-on {
+    fill: var(--sage-dark);
+  }
+
+  /* ── 격자 칸 ───────────────────────────────────────── */
+  .feature-cells {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .friend-cells {
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
   }
   .center-cta {
-    margin-top: 40px;
+    margin-top: var(--sp-7);
     display: flex;
     justify-content: center;
   }
 
-  /* ── 타깃 적합성 — 헤어라인 리스트 ─────────────────── */
-  .fit-list {
-    margin-top: clamp(40px, 6vw, 60px);
-    border-top: 1px solid var(--rule);
-  }
-  .fit-row {
-    display: grid;
-    grid-template-columns: 64px 1fr;
-    gap: clamp(16px, 3vw, 40px);
-    padding: clamp(28px, 4vw, 40px) 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  .fit-index {
-    font-family: var(--font-serif);
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--sand);
-    letter-spacing: 0.02em;
-    padding-top: 4px;
-  }
-  .fit-body {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-width: var(--measure);
-  }
-  .fit-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12.5px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
-  .fit-badge-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: var(--r-pill);
-  }
-  .fit-row h3 {
-    font-size: clamp(20px, 2.6vw, 26px);
-    line-height: 1.3;
-  }
-  .fit-row p {
-    color: var(--text-2);
-    font-size: 15.5px;
-    line-height: 1.75;
-  }
-
-  /* ── 최종 CTA — 파인 다크 밴드 (플랫) ──────────────── */
+  /* ── 최종 CTA — 파인 다크 밴드 ──────────────────────── */
   .cta-band {
-    padding: clamp(52px, 8vw, 96px) clamp(28px, 5vw, 72px);
+    position: relative;
+    padding: clamp(56px, 8vw, 104px) clamp(28px, 5vw, 72px);
     border-radius: var(--r-lg);
     text-align: center;
     background: var(--pine);
     color: var(--on-dark);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  /* 다크 면에도 같은 종이 질감을 얹어 인쇄물처럼 (배경 위 · 내용 아래) */
+  .cta-band::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: var(--grain);
+    background-size: 180px 180px;
+    opacity: 0.07;
+    pointer-events: none;
   }
   .eyebrow.on-dark {
     color: var(--primary-light);
   }
   .cta-title {
-    font-size: clamp(28px, 4.4vw, 46px);
+    font-size: var(--fs-h2);
     letter-spacing: -0.04em;
-    line-height: 1.14;
+    line-height: var(--lh-title);
     color: var(--on-dark);
   }
   .cta-sub {
-    margin: 20px auto 34px;
+    margin: var(--sp-5) auto var(--sp-7);
     max-width: 500px;
-    font-size: clamp(15px, 2vw, 18px);
-    line-height: 1.75;
+    font-size: var(--fs-lead);
+    line-height: var(--lh-body);
     color: color-mix(in srgb, var(--on-dark) 78%, transparent);
   }
   .cta-actions {
@@ -528,30 +555,25 @@ const segments = [
     }
     .hero-visual {
       order: -1;
-      min-height: 320px;
     }
     .hero-panel {
-      inset: -6% -24px -6% -24px;
+      inset: 0 -24px;
       border-left: 0;
       border-radius: var(--r-lg);
     }
-    .hero-tag {
-      left: 50%;
-      transform: translateX(-50%);
+    .trust-note {
+      margin-left: 0;
+      width: 100%;
     }
-    .section-head {
-      grid-template-columns: 1fr;
-      align-items: start;
-    }
-    .feature-grid,
-    .friends-grid {
+    .feature-cells,
+    .friend-cells {
       grid-template-columns: repeat(2, 1fr);
     }
     .compare {
       grid-template-columns: 1fr;
     }
     .compare-col {
-      padding: 32px 0;
+      padding: var(--sp-6) 0;
       border-bottom: 1px solid var(--rule);
     }
     .compare-col:last-child {
@@ -563,98 +585,40 @@ const segments = [
     }
   }
 
-  /* ── 모바일(앱) — 축소판이 아니라 네이티브처럼 차분하게 ── */
+  /* ── 모바일 — 축소판이 아니라 네이티브처럼 차분하게 ── */
   @media (max-width: 640px) {
-    /* 히어로: 헤드라인 → 적당한 캐릭터 비주얼로 정돈, 여백은 넉넉히 */
     .hero {
-      padding: 28px 0 44px;
+      padding: var(--sp-5) 0 var(--sp-7);
     }
     .hero-title {
-      font-size: clamp(30px, 8.6vw, 40px);
+      font-size: clamp(30px, 8.6vw, 42px);
       line-height: 1.12;
     }
     .hero-lead {
-      margin-top: 20px;
+      margin-top: var(--sp-5);
       font-size: 16px;
-      line-height: 1.75;
     }
     .hero-cta {
-      margin-top: 26px;
-      flex-direction: column;
-      gap: 10px;
+      margin-top: var(--sp-6);
     }
-    /* 터치 타깃: CTA는 화면 폭 가득, 손가락에 편하게 */
-    .hero-cta :global(.btn) {
-      width: 100%;
-    }
-    .hero-note {
-      margin-top: 18px;
-    }
-    /* 데스크톱 전용 에지블리드 패널은 감춰 화면을 비운다 */
     .hero-visual {
-      order: -1;
-      min-height: 0;
-      gap: 16px;
-      margin-bottom: 4px;
+      padding: var(--sp-5) 0;
     }
     .hero-panel {
       display: none;
     }
-    .hero-char {
-      width: min(58%, 200px);
+    .trust-inner {
+      gap: var(--sp-3) var(--sp-5);
+      padding: var(--sp-5) 0;
     }
-    /* 컨디션 태그는 캐릭터 아래 흐름 배치(겹침 제거) */
-    .hero-tag {
-      position: static;
-      transform: none;
-      left: auto;
-      bottom: auto;
-    }
-
-    /* 섹션 타이틀·본문 데스크톱 과대 타입 완화 */
-    .section-title {
-      font-size: clamp(26px, 7.6vw, 34px);
-    }
-    .section-sub {
-      font-size: 16px;
-    }
-
-    /* 카드/친구 그리드는 1열로 스택, 세로 리듬 확보 */
-    .feature-grid,
-    .friends-grid {
+    .feature-cells,
+    .friend-cells {
       grid-template-columns: 1fr;
-      gap: 16px;
     }
     .center-cta {
-      margin-top: 32px;
+      margin-top: var(--sp-6);
     }
     .center-cta :global(.btn) {
-      width: 100%;
-    }
-
-    /* 비교 카드 여백 축소 */
-    .compare-col h3 {
-      font-size: 22px;
-    }
-
-    /* 타깃 리스트: 인덱스 번호 스택, 읽기 편한 간격 */
-    .fit-row {
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-    .fit-index {
-      padding-top: 0;
-      font-size: 17px;
-    }
-    .fit-row h3 {
-      font-size: 20px;
-    }
-
-    /* 최종 CTA 밴드 여백/버튼 정돈 */
-    .cta-sub {
-      margin-bottom: 28px;
-    }
-    .cta-actions :global(.btn) {
       width: 100%;
     }
   }

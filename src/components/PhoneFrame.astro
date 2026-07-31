@@ -1,0 +1,48 @@
+---
+// 실제 앱 스크린샷을 감싸는 얇은 기기 프레임.
+// 스크린샷에 상태바·홈 인디케이터가 이미 들어 있으므로 프레임은 베젤만 그린다.
+// 안에 넣는 이미지는 세로 비율 약 9:19.5 (아이폰 전체 화면)를 전제한다.
+interface Props {
+  /** 프레임 최대 너비(px) */
+  width?: number;
+  class?: string;
+}
+const { width = 288, class: cls = '' } = Astro.props;
+---
+
+<div class:list={['phone', cls]} style={`--phone-w:${width}px`}>
+  <div class="phone-body">
+    <div class="phone-screen">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+  .phone {
+    display: flex;
+    justify-content: center;
+  }
+  .phone-body {
+    width: min(100%, var(--phone-w, 288px));
+    padding: 9px;
+    border-radius: 42px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    /* 기기감만 남기는 절제된 그림자 */
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.7) inset,
+      0 24px 52px -26px rgba(42, 46, 41, 0.32);
+  }
+  .phone-screen {
+    border-radius: 34px;
+    overflow: hidden;
+    background: var(--card-soft);
+    display: block;
+  }
+  .phone-screen :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>

@@ -1,98 +1,111 @@
 ---
 import { Image } from 'astro:assets';
-import AppScreen from '../components/AppScreen.astro';
 import Button from '../components/Button.astro';
 import Layout from '../layouts/Layout.astro';
-import { characters, featureImages, healthImages, oauthImages } from '../lib/assets';
+import PhoneFrame from '../components/PhoneFrame.astro';
+import SectionHead from '../components/SectionHead.astro';
+import StoreButtons from '../components/StoreButtons.astro';
+import {
+  conditionScreens,
+  healthImages,
+  oauthImages,
+  screens,
+} from '../lib/assets';
 
-const title = '기능 — 행동 전에 살펴보는 혈당 관리 습관 도구 · 글루밍';
+const title = '기능 — 실제 앱 화면으로 보는 글루밍';
 const description =
-  '글루밍의 기능을 한눈에 살펴보세요. 식사·운동 전에 내 혈당이 어떻게 변할지 미리 보고, 간편하게 기록하며, 부드러운 알림과 글루밍즈 캐릭터로 꾸준한 습관을 응원해요.';
+  '컨디션을 표정으로 보여주고, 지금 움직이면 혈당이 어떻게 변할지 운동별로 비교하고, 사진 한 장으로 식사를 기록해요. 맞춤 미션·포인트와 2주 건강 리포트까지, 실제 앱 화면으로 확인하세요.';
 
-// 딥다이브 기능 행 — 이미지/텍스트 좌우 교차 배치로 리듬을 만든다.
+// 딥다이브 기능 행 — 실제 구동 화면과 함께 좌우 교차 배치.
 const deepDives = [
   {
-    eyebrow: 'See your glucose ahead',
-    title: '혈당 변화 미리보기',
-    variant: 'preview',
-    img: featureImages.simulation,
-    alt: '식사·운동 전 예상 혈당 변화를 그래프로 미리 보여주는 화면 일러스트',
+    eyebrow: 'Condition at a glance',
+    title: '숫자 대신, 표정으로 알아요',
+    img: screens.homeGood,
+    alt: '글루밍 홈 화면. 캐릭터가 웃는 표정으로 "리듬이 아주 좋아요, 이대로 가요!"라고 알려주고 혈당 94 mg/dL과 오늘의 점수·평균 혈당·변동성이 함께 보인다.',
     lead:
-      '“이 메뉴를 먹으면, 지금 잠깐 산책하면 내 혈당은 어떻게 변할까요?”<br />' +
-      '이미 오른 혈당을 뒤늦게 확인하는 대신, <strong>행동하기 전에</strong> 내 혈당이 어떻게 변할지 미리 보여드려요.<br />' +
-      '무엇을 하면 좋을지까지 함께 귀띔해 주니까, 오늘의 관리가 한결 쉬워져요.',
-    tint: 'var(--primary-bg)',
+      '112, 168 같은 숫자만 보면 지금이 괜찮은 건지 애매하잖아요.<br />' +
+      '글루밍즈가 <strong>표정과 한마디</strong>로 지금 흐름을 먼저 알려드려요.<br />' +
+      '아래에는 오늘의 점수·평균 혈당·변동성이 한 줄로 정리돼요.',
     points: [
-      '식사·간식·운동을 하기 전에 예상 흐름을 먼저 살펴봐요',
-      '여러 선택지를 나란히 두고 마음 편한 쪽을 골라요',
-      '결과를 단정하지 않고, 참고할 수 있는 흐름으로 보여드려요',
+      '컨디션에 따라 표정과 배경색이 달라져요',
+      '오늘의 점수 · 평균 혈당 · 변동성을 한눈에 봐요',
+      '바로 아래에서 "지금 움직이면?"으로 이어져요',
     ],
   },
   {
-    eyebrow: 'The whole day at a glance',
-    title: '잠깐 뒤부터 하루까지, 미리 보기',
-    variant: 'horizon',
-    img: featureImages.star,
-    alt: '30분 뒤부터 하루까지 혈당 흐름을 한눈에 모아 보여주는 카드 일러스트',
+    eyebrow: 'Simulate before you move',
+    title: '지금 움직이면 어떻게 될까요?',
+    img: screens.simExercise,
+    alt: '운동 시뮬레이터 화면. 가만히 있을 때 -4, 가벼운 스트레칭 -5, 가벼운 산책 -7 등 운동별 예상 변화가 미니 그래프와 함께 비교된다.',
     lead:
-      '지금 이 순간만 보는 게 아니라, 30분 뒤·2시간 뒤·하루까지 내 혈당이 어떻게 흐를지 한눈에 펼쳐서 보여드려요.<br />' +
-      '“나는 아침을 먹으면 이렇게 되는구나” 하고 <strong>나만 반복되는 흐름</strong>이 보이기 시작하면, 다음 선택이 한결 가벼워져요.',
-    tint: 'var(--dusk-bg)',
+      '가만히 있을 때와 몸을 움직였을 때를 <strong>나란히 놓고</strong> 비교해요.<br />' +
+      '스트레칭·산책·빠른 걷기·계단 오르기까지, 각각 30분 뒤 흐름이 어떻게 달라지는지 미리 그려봐요.<br />' +
+      '지난 14일간 쌓인 내 데이터를 바탕으로 계산한 참고값이에요.',
     points: [
-      '30분 뒤부터 하루까지, 시간대별로 모아서 봐요',
-      '나에게 자주 반복되는 흐름을 편하게 알아가요',
-      '오늘 컨디션에 맞춰 흐름을 가볍게 견줘 봐요',
+      '"아무것도 안 했을 때"를 기준선으로 함께 보여줘요',
+      '운동 종류·시간별로 예상 변화를 견줘 봐요',
+      '오늘 상태에 맞는 하나를 맞춤 추천으로 짚어줘요',
     ],
   },
   {
-    eyebrow: 'Easy logging',
-    title: '식사 · 간식 기록',
-    variant: 'record',
-    img: featureImages.camera,
-    alt: '카메라로 식사 사진을 찍어 간편하게 기록하는 화면 일러스트',
+    eyebrow: 'One photo is enough',
+    title: '사진 한 장이면 기록 끝',
+    img: screens.mealDetect,
+    alt: '음식 인식 화면. 사진 속 김치찌개·쌀밥·계란말이를 각각 인식해 표시하고, 예상 컨디션 변화 곡선과 함께 채소부터 먹으라는 안내가 보인다.',
     lead:
       '기록이 숙제처럼 느껴지면 오래가기 어렵잖아요.<br />' +
-      '그래서 글루밍은 카메라로 <strong>한 번 찍어</strong> 가볍게 남기고, 깜빡하기 쉬운 간식도 톡 더하는 정도로 최대한 단순하게 만들었어요.<br />' +
-      '이렇게 쌓인 기록이 다음 미리보기를 더 똑똑하게 만들어줘요.',
-    tint: 'var(--coral-bg)',
+      '사진을 한 장 찍으면 <strong>음식과 탄수화물을 알아서</strong> 찾아내요.<br />' +
+      '그리고 이 식사 뒤 흐름이 어떻게 이어질지도 함께 그려드려요.',
     points: [
-      '카메라로 사진 한 장, 메모는 선택이라 부담이 적어요',
-      '식사 사이의 작은 간식도 가볍게 남길 수 있어요',
-      '쌓인 기록이 다음 미리보기의 든든한 재료가 돼요',
+      '한 상에 올라온 여러 음식을 한 번에 인식해요',
+      '음식별 양·탄수화물·칼로리를 정리해 보여줘요',
+      '먹기 전에 예상 흐름을 보고 순서를 바꿔볼 수 있어요',
     ],
   },
   {
-    eyebrow: 'Gentle nudges',
-    title: '부드러운 알림',
-    variant: 'remind',
-    img: featureImages.notification,
-    alt: '식후 가벼운 산책을 부드럽게 제안하는 알림 일러스트',
+    eyebrow: 'Log in three taps',
+    title: '운동도 세 번만 누르면 끝',
+    img: screens.logExercise,
+    alt: '운동 기록 화면. 스트레칭·산책·빠른걷기·계단오르기 중 선택하고 시간 30분, 강도 중강도를 고르는 모습.',
     lead:
-      '재촉하지 않을게요.<br />' +
-      '식사 뒤 가벼운 산책처럼, 오늘 도움이 될 만한 <strong>작은 행동</strong>을 알맞은 순간에 살며시 건네요.<br />' +
-      '알림은 언제든 내 리듬에 맞게 조절할 수 있어요.',
-    tint: 'var(--peach-bg)',
+      '종류 고르고, 시간 정하고, 강도 누르면 끝이에요.<br />' +
+      '기록하는 순간 <strong>이 운동이면 어느 정도일지</strong> 바로 알려드려요.<br />' +
+      '걸음 수처럼 자동으로 들어오는 값은 따로 적지 않아도 돼요.',
     points: [
-      '식후 가벼운 산책 같은 작은 행동을 부담 없이 제안해요',
-      '강요 대신 “해볼까요?” 하고 살며시 건네요',
-      '알림 시점과 빈도는 내 생활 리듬에 맞춰 조절해요',
+      '자주 하는 운동은 칩으로 바로 고를 수 있어요',
+      '5분 단위로 시간을 맞추고 강도는 세 단계 중에 골라요',
+      '고르는 동안 예상 변화가 아래에서 함께 바뀌어요',
     ],
   },
   {
-    eyebrow: 'Habit & rewards',
-    title: '캐릭터와 함께하는 습관 · 미션 · 리워드',
-    variant: 'reward',
-    img: featureImages.candy,
-    alt: '미션을 완료하면 받는 리워드와 캐릭터 일러스트',
+    eyebrow: 'Missions & points',
+    title: '오늘 나에게 맞는 미션',
+    img: screens.mission,
+    alt: '미션 화면. 연속 달성 3일째 스탬프와 함께 식후 혈당 낮추기, 채소 먼저 먹기, 물 1.5L 미션이 포인트와 함께 나열된다.',
     lead:
-      '혼자보다 함께일 때 더 오래가요.<br />' +
-      '글루밍즈 친구들과 작은 미션을 하나씩 채워가다 보면, 꾸준함에 응원과 <strong>리워드</strong>가 따라와요.<br />' +
-      '부담 없는 재미로 습관이 자연스럽게 이어지도록 도와드릴게요.',
-    tint: 'var(--gold-bg)',
+      '모두에게 같은 숙제를 드리지 않아요.<br />' +
+      '최근 <strong>내 식후 패턴</strong>을 보고 오늘 도움이 될 만한 미션을 골라드려요.<br />' +
+      '하나씩 채우면 포인트가 쌓이고, 그 포인트로 새 친구를 만나요.',
     points: [
-      '오늘의 작은 미션으로 습관을 한 걸음씩 쌓아요',
-      '꾸준함에 리워드와 수집 요소로 재미를 더해요',
-      '글루밍즈 친구들이 옆에서 함께 응원해요',
+      '최근 기록을 바탕으로 오늘의 미션이 매일 새로 채워져요',
+      '연속 달성을 이어가면 보너스 포인트를 받아요',
+      '모은 포인트로 글루밍즈 친구와 코스튬을 데려와요',
+    ],
+  },
+  {
+    eyebrow: 'Two weeks in one view',
+    title: '2주 흐름을 한눈에',
+    img: screens.reportGlucose,
+    alt: '건강 리포트 혈당 탭. 평균 혈당 114, 변동성 24.8%, 목표 범위 시간 82%와 최근 14일 평균 곡선이 보인다.',
+    lead:
+      '하루하루는 들쭉날쭉해도, <strong>2주를 모아 보면</strong> 내 리듬이 보여요.<br />' +
+      '평균과 변동성, 목표 범위 안에 머문 시간을 정리해 드려요.<br />' +
+      '식사 탭에서는 자주 먹은 음식과 혈당을 많이 올린 끼니도 확인할 수 있어요.',
+    points: [
+      '평균 · 변동성(CV) · 목표 범위 시간(TIR)을 함께 봐요',
+      '하루를 겹쳐 그린 시간대별 평균 곡선으로 습관이 드러나요',
+      '자주 먹은 음식과 상승폭이 컸던 끼니를 Top 3로 짚어줘요',
     ],
   },
 ];
@@ -118,47 +131,84 @@ const oauthOptions = [
   { img: oauthImages.kakao, name: '카카오', alt: '카카오 로그인 아이콘' },
   { img: oauthImages.naver, name: '네이버', alt: '네이버 로그인 아이콘' },
 ];
-
-// 인사용 글루밍즈 일부
-const greetChars = characters.slice(0, 4);
 ---
 
 <Layout title={title} description={description}>
   <!-- 1. HERO -->
   <section class="section hero">
     <div class="container hero-inner">
-      <span class="eyebrow">00 — FEATURES</span>
-      <h1 class="hero-title">행동하기 전에, 내 혈당 흐름을 먼저 살펴봐요</h1>
+      <span class="eyebrow">00 — Features</span>
+      <h1 class="hero-title">실제로 이렇게 생겼어요</h1>
       <p class="hero-lead">
-        지나간 숫자를 되짚기보다, 식사나 운동처럼 무언가를 하기
-        <strong>전에</strong> 예상 흐름을 먼저 그려봐요.<br />
-        가볍게 비교해 보고, 참고만 하고, 결국 선택은 내가 하는 거예요.<br />
-        내 몸을 조금 더 이해하는 새로운 방법, 어떠세요?
+        아래 화면은 모두 <strong>실제 글루밍 앱</strong>을 그대로 담은 거예요.<br />
+        컨디션을 표정으로 보여주고, 무언가를 하기 전에 흐름을 미리 그려보고,
+        기록은 최대한 가볍게. 하나씩 살펴볼까요?
       </p>
       <div class="hero-actions">
-        <Button href="/about#preregister" variant="primary" size="lg">
-          사전예약하고 먼저 만나보기
-        </Button>
+        <StoreButtons size="lg" />
         <Button href="#health-sync" variant="ghost" size="lg">
-          건강 데이터 연동 보기 →
+          센서·건강 데이터 연동 보기 →
         </Button>
       </div>
     </div>
   </section>
 
-  <!-- 2. DEEP-DIVE 기능 행 -->
+  <!-- 2. 컨디션 표정 스트립 -->
+  <section class="section faces">
+    <div class="container">
+      <SectionHead eyebrow="Five faces" variant="split">
+        오늘의 나를, 다섯 가지 표정으로
+        <Fragment slot="sub">
+          같은 숫자여도 흐름에 따라 몸의 느낌은 다르잖아요.<br />
+          글루밍즈가 <strong>표정과 배경색</strong>으로 지금을 먼저 알려드려요.
+        </Fragment>
+      </SectionHead>
+
+      <ul class="face-strip">
+        {
+          conditionScreens.map((c) => (
+            <li class="face-item reveal">
+              <div class="face-shot">
+                <Image
+                  src={c.img}
+                  alt={`글루밍 홈 화면 — ${c.caption}`}
+                  widths={[280, 560]}
+                  sizes="(max-width: 640px) 60vw, 220px"
+                  loading="lazy"
+                />
+              </div>
+              <p class="face-caption">{c.caption}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. DEEP-DIVE 기능 행 -->
   <section class="section deepdives">
     <div class="container">
       {
         deepDives.map((f, i) => {
           const num = String(i + 1).padStart(2, '0');
           return (
-            <article class={`row ${i % 2 === 1 ? 'row-reverse' : ''}`}>
+            <article class={`row reveal ${i % 2 === 1 ? 'row-reverse' : ''}`}>
               <div class="row-media">
-                <AppScreen variant={f.variant} />
+                <PhoneFrame width={282}>
+                  <Image
+                    src={f.img}
+                    alt={f.alt}
+                    widths={[300, 600]}
+                    sizes="282px"
+                    loading="lazy"
+                  />
+                </PhoneFrame>
               </div>
               <div class="row-text">
-                <span class="eyebrow">{`${num} — ${f.eyebrow}`}</span>
+                <span class="row-num" aria-hidden="true">
+                  {num}
+                </span>
+                <span class="eyebrow">{f.eyebrow}</span>
                 <h2 class="row-title">{f.title}</h2>
                 <p class="row-lead" set:html={f.lead} />
                 <ul class="row-points">
@@ -174,55 +224,67 @@ const greetChars = characters.slice(0, 4);
     </div>
   </section>
 
-  <!-- 3. 건강 데이터 연동 -->
+  <!-- 4. 센서 · 건강 데이터 연동 -->
   <section id="health-sync" class="section sync">
-    <hr class="rule" />
     <div class="container">
-      <div class="sync-head">
-        <span class="eyebrow">06 — HEALTH SYNC</span>
-        <h2 class="section-title">기기와 직접 씨름하지 않아요</h2>
-        <p class="section-sub">
-          글루밍은 걸음 수나 활동량 같은 건강 데이터를 운영체제의 건강 플랫폼을
-          통해 살며시 읽어와요.<br />
-          iOS는 <strong>Apple 건강</strong>, Android는 <strong>Health Connect</strong>와
-          연동돼요.<br />
-          기기와 블루투스로 직접 씨름하지 않아서, 더 단순하고 마음 편하게 쓸 수 있어요.
-        </p>
+      <SectionHead eyebrow="07 — Connect" variant="split">
+        기기와 직접 씨름하지 않아요
+        <Fragment slot="sub">
+          연속혈당측정기(CGM)를 쓰신다면 안내대로 한 번만 연결해 두시면 돼요.<br />
+          걸음 수·활동량은 iOS <strong>Apple 건강</strong>, Android
+          <strong>Health Connect</strong>를 통해 살며시 읽어와요.<br />
+          블루투스로 직접 씨름하지 않아서 더 단순하고 마음 편해요.
+        </Fragment>
+      </SectionHead>
+
+      <div class="sync-grid">
+        <div class="sync-media reveal">
+          <PhoneFrame width={266}>
+            <Image
+              src={screens.sensorSetup}
+              alt="센서 연동 안내 화면. 케어센스 에어 연결 방법을 단계별로 안내하고, 애플 헬스 공유를 켜면 5분마다 자동으로 값을 받아온다고 설명한다."
+              widths={[280, 560]}
+              sizes="266px"
+              loading="lazy"
+            />
+          </PhoneFrame>
+        </div>
+
+        <div class="sync-body">
+          <div class="sync-chips">
+            {
+              healthPlatforms.map((h) => (
+                <div class="sync-chip">
+                  <Image src={h.img} alt={h.alt} width={56} height={56} densities={[1, 2]} />
+                  <div class="sync-chip-text">
+                    <strong>{h.name}</strong>
+                    <span>{h.os}</span>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+          <p class="sync-note">
+            연동은 언제든 직접 켜고 끌 수 있고, 어떤 데이터를 가져올지도 스스로
+            고를 수 있어요.<br />
+            글루밍은 생활습관 관리를 돕는 <strong>보조 도구</strong>예요. 전문적인
+            진료나 상담을 대신하지 않고, 곁에서 살포시 거들게요.
+          </p>
+        </div>
       </div>
-      <div class="sync-chips">
-        {
-          healthPlatforms.map((h) => (
-            <div class="sync-chip">
-              <Image src={h.img} alt={h.alt} width={56} height={56} densities={[1, 2]} />
-              <div class="sync-chip-text">
-                <strong>{h.name}</strong>
-                <span>{h.os}</span>
-              </div>
-            </div>
-          ))
-        }
-      </div>
-      <p class="sync-note">
-        연동은 언제든 직접 켜고 끌 수 있어요.<br />
-        어떤 데이터를 가져올지도 스스로 고를 수 있고요.<br />
-        글루밍은 건강 관리를 돕는 <strong>보조 도구</strong>예요. 전문적인 진료나
-        상담을 대신하지 않고, 곁에서 살포시 거들게요.
-      </p>
     </div>
   </section>
 
-  <!-- 4. 간편 로그인 -->
+  <!-- 5. 간편 로그인 -->
   <section class="section login">
-    <hr class="rule" />
-    <div class="container login-inner">
-      <div class="login-text">
-        <span class="eyebrow">07 — SIGN IN</span>
-        <h2 class="section-title">익숙한 계정으로 가볍게 시작해요</h2>
-        <p class="section-sub">
+    <div class="container">
+      <SectionHead eyebrow="08 — Sign In" variant="split">
+        익숙한 계정으로 가볍게 시작해요
+        <Fragment slot="sub">
           복잡한 가입 절차는 건너뛸게요.<br />
           평소 쓰던 계정으로 <strong>바로</strong> 시작할 수 있어요.
-        </p>
-      </div>
+        </Fragment>
+      </SectionHead>
       <ul class="login-icons" aria-label="간편 로그인 옵션">
         {
           oauthOptions.map((o) => (
@@ -236,31 +298,18 @@ const greetChars = characters.slice(0, 4);
     </div>
   </section>
 
-  <!-- 5. CTA 밴드 -->
+  <!-- 6. CTA 밴드 -->
   <section class="section cta">
     <div class="container">
       <div class="cta-band">
-        <div class="cta-chars" aria-hidden="true">
-          {
-            greetChars.map((c) => (
-              <Image
-                src={c.states.happy}
-                alt=""
-                width={72}
-                height={72}
-                densities={[1, 2]}
-              />
-            ))
-          }
-        </div>
-        <h2 class="cta-title">행동 전에 한 번 더 살펴보는 습관, 함께 시작해요</h2>
+        <p class="eyebrow on-dark">Start Today</p>
+        <h2 class="cta-title">행동 전에 한 번 더 살펴보는 습관,<br />함께 시작해요</h2>
         <p class="cta-sub">
-          글루밍즈 친구들과 함께, 오늘부터 내 혈당 흐름을 미리 그려봐요.<br />
-          행동 전에 한 번 더 살펴보는 습관, 지금 같이 시작해요.
+          글루밍즈 친구들과 함께, 오늘부터 내 혈당 흐름을 미리 그려봐요.
         </p>
-        <Button href="/about#preregister" variant="primary" size="lg" class="cta-btn">
-          사전예약 신청하기
-        </Button>
+        <div class="cta-actions">
+          <StoreButtons size="lg" tone="dark" />
+        </div>
       </div>
     </div>
   </section>
@@ -269,25 +318,26 @@ const greetChars = characters.slice(0, 4);
 <style>
   /* ── HERO ── */
   .hero {
-    padding-top: clamp(64px, 9vw, 120px);
+    padding-top: clamp(56px, 8vw, 104px);
     padding-bottom: clamp(40px, 6vw, 72px);
   }
   .hero-inner {
     max-width: 820px;
   }
   .hero-title {
-    font-size: clamp(34px, 5.8vw, 62px);
+    font-size: var(--fs-h1);
+    line-height: var(--lh-title);
+    text-wrap: balance;
   }
   .hero-lead {
-    margin-top: 24px;
+    margin-top: var(--sp-5);
     color: var(--text-2);
-    font-size: clamp(16px, 2.1vw, 20px);
+    font-size: var(--fs-lead);
     line-height: 1.78;
     max-width: 680px;
   }
   /* 강조는 색이 아닌 굵기로만 (색 강조 금지) */
   .hero-lead strong,
-  .section-sub strong,
   .sync-note strong,
   .cta-sub strong,
   .row-lead :global(strong) {
@@ -295,11 +345,49 @@ const greetChars = characters.slice(0, 4);
     font-weight: 700;
   }
   .hero-actions {
-    margin-top: 36px;
+    margin-top: var(--sp-7);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 14px;
+    gap: var(--sp-3);
+  }
+
+  /* ── 컨디션 표정 스트립 ── */
+  .faces {
+    padding-top: 0;
+  }
+  .face-strip {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: clamp(12px, 2vw, 24px);
+  }
+  .face-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+  /* 캐릭터 카드가 있는 위쪽만 잘라 보여준다 */
+  .face-shot {
+    position: relative;
+    border-radius: var(--r-lg);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    aspect-ratio: 1206 / 1180;
+    background: var(--card-soft);
+  }
+  .face-shot :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .face-caption {
+    color: var(--text-2);
+    font-size: var(--fs-sm);
+    line-height: 1.55;
+    text-align: center;
   }
 
   /* ── DEEP-DIVE 행 ── 헤어라인으로 구분되는 비대칭 교차 배치 */
@@ -308,7 +396,7 @@ const greetChars = characters.slice(0, 4);
   }
   .row {
     display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
+    grid-template-columns: 0.85fr 1.15fr;
     gap: clamp(32px, 6vw, 88px);
     align-items: center;
     padding: clamp(48px, 7vw, 88px) 0;
@@ -319,7 +407,7 @@ const greetChars = characters.slice(0, 4);
     padding-top: clamp(24px, 4vw, 40px);
   }
   .row-reverse {
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1.15fr 0.85fr;
   }
   .row-reverse .row-media {
     order: 2;
@@ -328,25 +416,32 @@ const greetChars = characters.slice(0, 4);
     display: flex;
     justify-content: center;
   }
-  /* 앱 화면 목업(AppScreen)이 자리를 채운다 */
-  .row-media > :global(.screen) {
-    width: 100%;
-    max-width: 440px;
+  /* 큰 세리프 인덱스 — 지면의 챕터 번호처럼 */
+  .row-num {
+    display: block;
+    margin-bottom: var(--sp-3);
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 3.4vw, 40px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--sand);
   }
   .row-title {
-    margin-top: 4px;
-    font-size: clamp(26px, 3.6vw, 38px);
+    margin-top: var(--sp-1);
+    font-size: var(--fs-h2);
     letter-spacing: -0.04em;
+    line-height: var(--lh-title);
   }
   .row-lead {
-    margin-top: 18px;
+    margin-top: var(--sp-4);
     color: var(--text-2);
-    font-size: clamp(15px, 1.9vw, 18px);
+    font-size: var(--fs-lead);
     line-height: 1.8;
     max-width: 560px;
   }
   .row-points {
-    margin: 26px 0 0;
+    margin: var(--sp-6) 0 0;
     padding: 0;
     list-style: none;
     display: flex;
@@ -356,7 +451,7 @@ const greetChars = characters.slice(0, 4);
     position: relative;
     padding: 13px 0 13px 26px;
     color: var(--text);
-    font-size: 15.5px;
+    font-size: var(--fs-body);
     line-height: 1.6;
     border-top: 1px solid var(--rule);
   }
@@ -374,23 +469,17 @@ const greetChars = characters.slice(0, 4);
     border: 1.5px solid var(--sage);
   }
 
-  /* ── 건강 데이터 연동 ── */
-  .sync {
-    position: relative;
-  }
-  .sync .rule,
-  .login .rule {
-    border-color: var(--rule);
-    margin: 0 0 clamp(56px, 8vw, 100px);
-  }
-  .sync-head {
-    max-width: 680px;
+  /* ── 센서 · 건강 데이터 연동 ── */
+  .sync-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(32px, 6vw, 72px);
+    align-items: center;
   }
   .sync-chips {
-    margin-top: clamp(32px, 5vw, 48px);
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: var(--sp-4);
   }
   /* 광택 없는 납작한 헤어라인 칩 */
   .sync-chip {
@@ -426,24 +515,14 @@ const greetChars = characters.slice(0, 4);
     font-family: var(--font-serif);
   }
   .sync-note {
-    margin-top: 28px;
+    margin-top: var(--sp-6);
     max-width: 640px;
     color: var(--text-2);
-    font-size: 15px;
+    font-size: var(--fs-body);
     line-height: 1.78;
   }
 
   /* ── 간편 로그인 ── */
-  .login-inner {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 32px;
-  }
-  .login-text {
-    max-width: 520px;
-  }
   .login-icons {
     display: flex;
     flex-wrap: wrap;
@@ -473,51 +552,50 @@ const greetChars = characters.slice(0, 4);
 
   /* ── CTA 밴드 ── pine 다크 밴드, 납작하게 */
   .cta-band {
+    position: relative;
     background: var(--pine);
     color: var(--on-dark);
-    border-radius: var(--r-2xl);
+    border-radius: var(--r-lg);
     padding: clamp(48px, 7vw, 88px) clamp(24px, 5vw, 64px);
     text-align: center;
+    overflow: hidden;
+    isolation: isolate;
   }
-  .cta-chars {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 24px;
+  /* 다크 면에도 같은 종이 질감 (배경 위 · 내용 아래) */
+  .cta-band::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: var(--grain);
+    background-size: 180px 180px;
+    opacity: 0.07;
+    pointer-events: none;
   }
-  .cta-chars :global(img) {
-    width: clamp(52px, 9vw, 72px);
-    height: auto;
+  .eyebrow.on-dark {
+    color: var(--primary-light);
   }
   .cta-title {
-    font-size: clamp(24px, 4vw, 40px);
+    font-size: var(--fs-h2);
+    letter-spacing: -0.04em;
+    line-height: var(--lh-title);
     max-width: 720px;
     margin-inline: auto;
     color: var(--on-dark);
   }
   .cta-sub {
-    margin: 18px auto 32px;
+    margin: var(--sp-5) auto var(--sp-7);
     max-width: 520px;
     color: color-mix(in srgb, var(--on-dark) 78%, transparent);
-    font-size: clamp(15px, 2vw, 18px);
-    line-height: 1.7;
+    font-size: var(--fs-lead);
+    line-height: var(--lh-body);
   }
-  /* 다크 밴드 위 밝은 버튼 (pine 배경에 대비) */
-  .cta-band :global(.cta-btn) {
-    background: var(--on-dark);
-    color: var(--pine);
-  }
-  .cta-band :global(.cta-btn:hover) {
-    background: var(--primary-light);
-    color: var(--pine);
+  .cta-actions {
+    display: flex;
+    justify-content: center;
   }
 
-  /* ── 반응형 ──
-     데스크톱(≥1024px): 위 규칙 그대로 — 넉넉한 좌우 교차 에디토리얼 행.
-     태블릿 이하(≤1023px): 단일 컬럼으로 stack. 좌우 교차와 상관없이
-       모든 행에서 이미지가 항상 텍스트 위로 오도록 order를 초기화.
-     모바일(≤640px): 진짜 모바일 — 타이포 축소, 세로 여백·터치 타깃 확대,
-       칩은 넉넉히 감싸도록. */
+  /* ── 반응형 ── */
   @media (max-width: 1023px) {
     .row,
     .row-reverse {
@@ -532,24 +610,26 @@ const greetChars = characters.slice(0, 4);
     .row-lead {
       max-width: none;
     }
-    .login-inner {
-      flex-direction: column;
-      align-items: flex-start;
+    .sync-grid {
+      grid-template-columns: 1fr;
+    }
+    .face-strip {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 
   @media (max-width: 640px) {
     .hero {
-      padding-top: clamp(48px, 16vw, 88px);
+      padding-top: clamp(40px, 12vw, 72px);
     }
     .hero-lead {
-      margin-top: 20px;
+      margin-top: var(--sp-5);
       font-size: 16px;
       line-height: 1.72;
     }
     .hero-actions {
-      margin-top: 28px;
-      gap: 12px;
+      margin-top: var(--sp-6);
+      gap: var(--sp-3);
     }
     /* 버튼은 손가락에 넉넉하게 — 전체 너비로 세로 스택 */
     .hero-actions :global(a) {
@@ -557,24 +637,42 @@ const greetChars = characters.slice(0, 4);
       justify-content: center;
     }
 
+    /* 표정 스트립은 가로 스와이프 (화면 끝까지 블리드) */
+    .face-strip {
+      display: flex;
+      grid-template-columns: none;
+      gap: 12px;
+      margin-inline: -24px;
+      padding: 2px 24px;
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+    }
+    .face-strip::-webkit-scrollbar {
+      display: none;
+    }
+    .face-item {
+      flex: 0 0 62vw;
+      max-width: 240px;
+      scroll-snap-align: start;
+    }
+
     .row,
     .row-reverse {
       gap: 22px;
       padding: 40px 0;
     }
-    .row-media > :global(.screen) {
-      max-width: 380px;
-    }
-    .row-title {
-      font-size: 25px;
+    .row-num {
+      font-size: 26px;
+      margin-bottom: var(--sp-2);
     }
     .row-lead {
-      margin-top: 16px;
+      margin-top: var(--sp-4);
       font-size: 15.5px;
       line-height: 1.74;
     }
     .row-points {
-      margin-top: 22px;
+      margin-top: var(--sp-5);
     }
     /* 터치 타깃 확대 */
     .row-points li {
@@ -592,14 +690,7 @@ const greetChars = characters.slice(0, 4);
     .sync-chip {
       flex: 1 1 100%;
     }
-    .sync-note {
-      margin-top: 22px;
-    }
 
-    .login-icons {
-      gap: 8px;
-    }
-    /* 로그인 칩은 편하게 wrap + 넉넉한 터치 영역 */
     .login-chip {
       padding: 11px 16px 11px 11px;
       font-size: 14px;
@@ -607,14 +698,6 @@ const greetChars = characters.slice(0, 4);
 
     .cta-band {
       padding: 44px 22px;
-      border-radius: var(--r-xl);
-    }
-    .cta-chars {
-      gap: 6px;
-      margin-bottom: 20px;
-    }
-    .cta-sub {
-      margin: 16px auto 28px;
     }
   }
 </style>

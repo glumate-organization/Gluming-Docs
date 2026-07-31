@@ -21,6 +21,7 @@ const external = href.startsWith('http');
 <style>
   /* 납작한 에디토리얼 버튼 — 그림자·큰 라운드 제거 */
   .btn {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -30,9 +31,9 @@ const external = href.startsWith('http');
     letter-spacing: -0.01em;
     border: 1px solid transparent;
     transition:
-      background 0.18s ease,
-      color 0.18s ease,
-      border-color 0.18s ease;
+      background var(--dur-2) var(--ease),
+      color var(--dur-2) var(--ease),
+      border-color var(--dur-2) var(--ease);
     white-space: nowrap;
   }
   .btn-md {
@@ -67,7 +68,23 @@ const external = href.startsWith('http');
     padding-left: 4px;
     padding-right: 4px;
   }
+  /* 밑줄이 왼쪽에서 자라나는 잡지식 링크 반응 */
+  .btn-ghost::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    bottom: 12px;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-2) var(--ease);
+  }
   .btn-ghost:hover {
     color: var(--pine);
+  }
+  .btn-ghost:hover::after {
+    transform: scaleX(1);
   }
 </style>

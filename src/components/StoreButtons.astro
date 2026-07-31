@@ -1,0 +1,162 @@
+---
+import { storeLinks } from '../lib/links';
+
+// App Store · Google Play 다운로드 버튼 한 쌍.
+// 공식 배지 이미지는 외부 자산이라 쓰지 않고, 사이트 디자인 언어로 직접 그린다.
+interface Props {
+  /** lg: 히어로·CTA용 / md: 네비 등 좁은 자리 */
+  size?: 'md' | 'lg';
+  /** dark: 어두운 배경 위에 올릴 때 */
+  tone?: 'light' | 'dark';
+  /** 화면 폭에 꽉 채울지 (모바일 CTA) */
+  block?: boolean;
+  class?: string;
+}
+const {
+  size = 'lg',
+  tone = 'light',
+  block = false,
+  class: cls = '',
+} = Astro.props;
+
+const stores = [
+  { href: storeLinks.appStore, name: 'App Store', sub: 'iPhone · iPad' },
+  { href: storeLinks.playStore, name: 'Google Play', sub: 'Android' },
+];
+---
+
+<div class:list={['stores', `is-${size}`, `tone-${tone}`, block && 'is-block', cls]}>
+  {
+    stores.map((s) => (
+      <a
+        class="store"
+        href={s.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${s.name}에서 글루밍 내려받기 (새 창)`}
+      >
+        {s.name === 'App Store' ? (
+          <svg class="store-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              fill="currentColor"
+              d="M16.36 12.6c.02-2.18 1.78-3.23 1.86-3.28-1.01-1.48-2.59-1.69-3.15-1.71-1.34-.14-2.62.79-3.3.79-.68 0-1.73-.77-2.85-.75-1.46.02-2.81.85-3.56 2.16-1.52 2.63-.39 6.52 1.09 8.65.73 1.04 1.6 2.21 2.74 2.17 1.1-.05 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.06 2.65-2.11.84-1.21 1.18-2.38 1.2-2.44-.03-.01-2.3-.88-2.32-3.5zM14.2 5.98c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.64-1.05 1.68-.92 2.67.97.08 1.96-.49 2.56-1.22z"
+            />
+          </svg>
+        ) : (
+          <svg class="store-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              fill="currentColor"
+              d="M3.6 2.3a1 1 0 0 0-.35.77v17.86a1 1 0 0 0 .35.77l.1.06 10-9.99v-.24l-10-9.99-.1.06zm13.44 6.6-2.7-1.56-2.24 2.24 2.24 2.24 2.72-1.57c.8-.45.8-1.44-.02-1.9v.55zm-3.6 3.62L4.9 21.06l8.55-4.93 2.16-1.25-2.17-2.36zM4.9 2.94l8.54 8.54 2.17-2.36-2.16-1.25L4.9 2.94z"
+            />
+          </svg>
+        )}
+        <span class="store-text">
+          <span class="store-sub">{s.sub}</span>
+          <span class="store-name">{s.name}</span>
+        </span>
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .stores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+  }
+  .store {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    padding: 0 22px;
+    border-radius: var(--r-sm);
+    border: 1px solid transparent;
+    background: var(--pine);
+    color: var(--on-dark);
+    transition:
+      background var(--dur-2) var(--ease),
+      color var(--dur-2) var(--ease),
+      border-color var(--dur-2) var(--ease);
+  }
+  .store:hover {
+    background: var(--sage-dark);
+  }
+  .is-lg .store {
+    min-height: 58px;
+  }
+  .is-md .store {
+    min-height: 48px;
+    padding: 0 18px;
+  }
+
+  /* 두 번째 버튼은 아웃라인으로 위계를 준다 */
+  .store + .store {
+    background: transparent;
+    color: var(--text);
+    border-color: var(--text);
+  }
+  .store + .store:hover {
+    background: var(--text);
+    color: var(--bg);
+  }
+
+  /* 어두운 배경 위 */
+  .tone-dark .store {
+    background: var(--on-dark);
+    color: var(--pine);
+  }
+  .tone-dark .store:hover {
+    background: #ffffff;
+  }
+  .tone-dark .store + .store {
+    background: transparent;
+    color: var(--on-dark);
+    border-color: color-mix(in srgb, var(--on-dark) 55%, transparent);
+  }
+  .tone-dark .store + .store:hover {
+    background: color-mix(in srgb, var(--on-dark) 14%, transparent);
+    color: var(--on-dark);
+  }
+
+  .store-ic {
+    width: 22px;
+    height: 22px;
+    flex: none;
+  }
+  .store-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+    text-align: left;
+  }
+  .store-sub {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    opacity: 0.72;
+  }
+  .store-name {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .is-md .store-name {
+    font-size: 14.5px;
+  }
+
+  .is-block .store {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+
+  @media (max-width: 640px) {
+    .stores {
+      width: 100%;
+    }
+    .store {
+      flex: 1 1 100%;
+      justify-content: center;
+    }
+  }
+</style>

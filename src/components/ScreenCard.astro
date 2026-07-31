@@ -1,0 +1,78 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+// 실제 앱 화면 한 컷 + 제목 + 설명으로 이루어진 격자 칸.
+// 부모에 .cells 를 두고 이 컴포넌트를 나열한다.
+interface Props {
+  img: ImageMetadata;
+  title: string;
+  alt: string;
+  /** 좌상단 세리프 인덱스. 예: "01" */
+  index?: string;
+}
+const { img, title, alt, index } = Astro.props;
+---
+
+<article class="cell screen-cell reveal">
+  {index && <span class="cell-index">{index}</span>}
+  <div class="shot">
+    <Image
+      src={img}
+      alt={alt}
+      widths={[360, 720]}
+      sizes="(max-width: 640px) 90vw, 360px"
+      loading="lazy"
+    />
+  </div>
+  <h3>{title}</h3>
+  <p><slot /></p>
+</article>
+
+<style>
+  .screen-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-3);
+    height: 100%;
+  }
+  /* 화면 위쪽만 잘라 보여주고, 아래로 갈수록 종이색으로 사라지게 한다.
+     원본 비율이 제각각이라 카드 높이는 여기서 하나로 고정한다. */
+  .shot {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 11;
+    margin-top: var(--sp-4);
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    border: 1px solid var(--rule);
+    border-bottom: 0;
+    overflow: hidden;
+    background: var(--card-soft);
+  }
+  .shot :global(img) {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .shot::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 38%;
+    background: linear-gradient(to bottom, transparent, var(--bg) 88%);
+    pointer-events: none;
+  }
+  .screen-cell h3 {
+    margin-top: var(--sp-2);
+    font-size: var(--fs-h4);
+    letter-spacing: -0.03em;
+  }
+  .screen-cell p {
+    color: var(--text-2);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+</style>

@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { logos } from '../lib/assets';
+import { storeLinks } from '../lib/links';
 import Button from './Button.astro';
 
 const links = [
@@ -39,7 +40,7 @@ const here = Astro.url.pathname.replace(/\/$/, '') || '/';
     </nav>
 
     <div class="nav-cta">
-      <Button href="/about#preregister" size="md">사전예약</Button>
+      <Button href={storeLinks.appStore} size="md">앱 다운로드</Button>
     </div>
   </div>
 </header>
@@ -59,6 +60,34 @@ const here = Astro.url.pathname.replace(/\/$/, '') || '/';
     align-items: center;
     justify-content: space-between;
     gap: 16px;
+  }
+
+  /* 스크롤을 내리면 헤더가 조용히 줄어들고 아래 선이 또렷해진다 (JS 0).
+     미지원 브라우저는 그냥 고정 높이로 남는다. */
+  @keyframes nav-shrink {
+    to {
+      height: var(--nav-h-min);
+    }
+  }
+  @keyframes nav-settle {
+    to {
+      background: color-mix(in srgb, var(--bg) 94%, transparent);
+      border-bottom-color: var(--border-strong);
+    }
+  }
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .nav-inner {
+        animation: nav-shrink linear both;
+        animation-timeline: scroll(root block);
+        animation-range: 0 180px;
+      }
+      .nav {
+        animation: nav-settle linear both;
+        animation-timeline: scroll(root block);
+        animation-range: 0 180px;
+      }
+    }
   }
   .brand {
     display: inline-flex;
@@ -126,9 +155,19 @@ const here = Astro.url.pathname.replace(/\/$/, '') || '/';
       display: none;
     }
   }
+  /* 좁은 화면에서도 다운로드 버튼은 살려둔다 (숨기지 않고 압축) */
   @media (max-width: 420px) {
-    .nav-cta {
-      display: none;
+    .nav-links {
+      margin-right: 6px;
+    }
+    .nav-link {
+      padding: 8px 6px;
+      font-size: 13.5px;
+    }
+    .nav-cta :global(.btn) {
+      min-height: 40px;
+      padding: 0 14px;
+      font-size: 14px;
     }
   }
 </style>

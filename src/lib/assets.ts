@@ -205,3 +205,80 @@ export const oauthImages = {
   kakao: oauthKakao,
   naver: oauthNaver,
 };
+
+// ── 실제 앱 화면 스크린샷 ───────────────────────────────
+// 실제 구동 화면을 그대로 번들한다(외부 의존 0). 개인 이름이 노출된 컷은
+// 앱 기본 표기인 "글루밍님"으로 치환한 뒤 저장했다.
+// 모두 세로 비율 약 9:19.5 (아이폰 전체 화면).
+import screenHomeGreat from '../assets/screens/home-great.png';
+import screenHomeGood from '../assets/screens/home-good.png';
+import screenHomeHeavy from '../assets/screens/home-heavy.png';
+import screenHomeAlert from '../assets/screens/home-alert.png';
+import screenHomeSleep from '../assets/screens/home-sleep.png';
+import screenSimExercise from '../assets/screens/sim-exercise.png';
+import screenLogExercise from '../assets/screens/log-exercise.png';
+import screenMealDetect from '../assets/screens/meal-detect.png';
+import screenMission from '../assets/screens/mission.png';
+import screenReportGlucose from '../assets/screens/report-glucose.png';
+import screenReportMeal from '../assets/screens/report-meal.png';
+import screenReportMealDetail from '../assets/screens/report-meal-detail.png';
+import screenGlucoseDetail from '../assets/screens/glucose-detail.png';
+import screenSensorSetup from '../assets/screens/sensor-setup.png';
+import screenOnboarding from '../assets/screens/onboarding.png';
+
+export const screens = {
+  homeGreat: screenHomeGreat, // 컨디션 아주 좋음 (노랑)
+  homeGood: screenHomeGood, // 리듬이 좋음 (초록)
+  homeHeavy: screenHomeHeavy, // 몸이 조금 무거움 (보라)
+  homeAlert: screenHomeAlert, // 살펴봐 주세요 (분홍)
+  homeSleep: screenHomeSleep, // 쉬는 중 (파랑)
+  simExercise: screenSimExercise, // 운동별 예상 변화 비교
+  logExercise: screenLogExercise, // 운동 기록 입력
+  mealDetect: screenMealDetect, // 사진 음식 인식 + 예상 변화
+  mission: screenMission, // 맞춤 미션 · 포인트
+  reportGlucose: screenReportGlucose, // 14일 혈당 리포트
+  reportMeal: screenReportMeal, // 14일 식사 리포트
+  reportMealDetail: screenReportMealDetail, // 끼니별 상승폭 상세
+  glucoseDetail: screenGlucoseDetail, // 하루 혈당 곡선 상세
+  sensorSetup: screenSensorSetup, // 센서 연동 안내
+  onboarding: screenOnboarding, // 온보딩
+};
+
+/** 홈 화면의 컨디션 표정 5종 (표시 순서) */
+export const conditionScreens: {
+  key: string;
+  label: string;
+  caption: string;
+  img: ImageMetadata;
+}[] = [
+  {
+    key: 'great',
+    label: '아주 좋아요',
+    caption: '오늘 컨디션 완전 좋아요!',
+    img: screenHomeGreat,
+  },
+  {
+    key: 'good',
+    label: '좋아요',
+    caption: '리듬이 아주 좋아요, 이대로 가요!',
+    img: screenHomeGood,
+  },
+  {
+    key: 'heavy',
+    label: '조금 무거워요',
+    caption: '으.. 몸이 조금 무거워요..',
+    img: screenHomeHeavy,
+  },
+  {
+    key: 'alert',
+    label: '살펴봐 주세요',
+    caption: '지금 좀 위험해요, 살펴봐 주세요..',
+    img: screenHomeAlert,
+  },
+  {
+    key: 'sleep',
+    label: '쉬는 중',
+    caption: '쿨쿨.. 푹 쉬고 있어요',
+    img: screenHomeSleep,
+  },
+];

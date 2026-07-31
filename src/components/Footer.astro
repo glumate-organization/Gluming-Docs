@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import { logos } from '../lib/assets';
 import { getBusinessStatus } from '../lib/business';
+import { kakaoChannel, storeLinks } from '../lib/links';
 
 const year = 2026;
 // 빌드 시점에 국세청 API로 사업자 상태 조회 (키 없으면 ok:false 폴백)
@@ -17,10 +18,11 @@ const cols = [
     ],
   },
   {
-    title: '함께하기',
+    title: '내려받기',
     links: [
-      { href: '/about#preregister', label: '사전예약' },
-      { href: 'mailto:glumate@glumate.co.kr', label: '문의하기' },
+      { href: storeLinks.appStore, label: 'App Store' },
+      { href: storeLinks.playStore, label: 'Google Play' },
+      { href: kakaoChannel, label: '카카오톡 문의' },
     ],
   },
   {
@@ -52,7 +54,16 @@ const cols = [
           <h3>{col.title}</h3>
           <ul>
             {col.links.map((l) => (
-              <li><a href={l.href}>{l.label}</a></li>
+              <li>
+                <a
+                  href={l.href}
+                  {...l.href.startsWith('http')
+                    ? { target: '_blank', rel: 'noopener noreferrer' }
+                    : {}}
+                >
+                  {l.label}
+                </a>
+              </li>
             ))}
           </ul>
         </nav>
@@ -70,7 +81,7 @@ const cols = [
       <li>사업자등록번호 : 785-03-03768</li>
       <li>개업년월일 : 2026.03.25</li>
       <li>업종 : 응용 소프트웨어 개발 및 공급업</li>
-      <li>이메일 : glumate@glumate.co.kr</li>
+      <li>이메일 : glumate@glumate.org</li>
     </ul>
     {
       biz.ok && (

@@ -1,0 +1,98 @@
+---
+// 섹션 머리 — 가로선 + 영문 라벨 + 제목 + 설명.
+// 페이지마다 제각각이던 섹션 머리를 이 하나로 통일한다(잡지 편집식 위계).
+// 제목은 기본 슬롯, 설명은 name="sub" 슬롯. 줄바꿈(<br />)이 필요하면 슬롯에 그대로 넣는다.
+interface Props {
+  /** 영문 라벨. 예: "01 — Why Gluming" */
+  eyebrow?: string;
+  /** stack: 제목 아래 설명 / split: 좌 제목 · 우 설명(비대칭 2열) */
+  variant?: 'stack' | 'split';
+  /** 제목 태그. 페이지당 h1은 하나만. */
+  as?: 'h1' | 'h2';
+  /** 제목에 쓸 글자 크기 토큰 (기본 h2) */
+  size?: 'h1' | 'h2';
+  class?: string;
+}
+const {
+  eyebrow,
+  variant = 'stack',
+  as: Tag = 'h2',
+  size = 'h2',
+  class: cls = '',
+} = Astro.props;
+const hasSub = Astro.slots.has('sub');
+---
+
+<header class:list={['sec-head', `is-${variant}`, cls, 'reveal']}>
+  <div class="sec-head-main">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <Tag class:list={['sec-head-title', `size-${size}`]}>
+      <slot />
+    </Tag>
+  </div>
+  {
+    hasSub && (
+      <p class="sec-head-sub">
+        <slot name="sub" />
+      </p>
+    )
+  }
+</header>
+
+<style>
+  .sec-head {
+    border-top: 1px solid var(--rule);
+    padding-top: var(--sp-6);
+    margin-bottom: var(--block-gap);
+  }
+
+  /* stack — 제목 아래 설명 */
+  .sec-head.is-stack .sec-head-sub {
+    margin-top: var(--sp-5);
+    max-width: var(--measure);
+  }
+
+  /* split — 좌 제목 / 우 설명. 아래 끝을 맞춰 잡지 지면처럼 정렬한다. */
+  .sec-head.is-split {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(24px, 4vw, 64px);
+    align-items: end;
+  }
+  .sec-head.is-split .sec-head-sub {
+    padding-bottom: 6px;
+  }
+
+  .sec-head-title {
+    letter-spacing: -0.04em;
+    line-height: var(--lh-title);
+    text-wrap: balance;
+  }
+  .size-h1 {
+    font-size: var(--fs-h1);
+  }
+  .size-h2 {
+    font-size: var(--fs-h2);
+  }
+
+  .sec-head-sub {
+    color: var(--text-2);
+    font-size: var(--fs-lead);
+    line-height: var(--lh-body);
+    max-width: var(--measure);
+  }
+  .sec-head-sub :global(strong) {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  @media (max-width: 900px) {
+    .sec-head.is-split {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+    .sec-head.is-split .sec-head-sub {
+      padding-bottom: 0;
+    }
+  }
+</style>
