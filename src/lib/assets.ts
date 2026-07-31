@@ -223,6 +223,7 @@ import screenReportGlucose from '../assets/screens/report-glucose.png';
 import screenReportMeal from '../assets/screens/report-meal.png';
 import screenReportMealDetail from '../assets/screens/report-meal-detail.png';
 import screenGlucoseDetail from '../assets/screens/glucose-detail.png';
+import screenDailyLog from '../assets/screens/daily-log.png';
 import screenSensorSetup from '../assets/screens/sensor-setup.png';
 import screenOnboarding from '../assets/screens/onboarding.png';
 
@@ -240,6 +241,7 @@ export const screens = {
   reportMeal: screenReportMeal, // 14일 식사 리포트
   reportMealDetail: screenReportMealDetail, // 끼니별 상승폭 상세
   glucoseDetail: screenGlucoseDetail, // 하루 혈당 곡선 상세
+  dailyLog: screenDailyLog, // 하루 기록 (혈당 곡선 · 걸음 · 물 · 기록 내역)
   sensorSetup: screenSensorSetup, // 센서 연동 안내
   onboarding: screenOnboarding, // 온보딩
 };

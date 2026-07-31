@@ -94,10 +94,25 @@ const deepDives = [
     ],
   },
   {
+    eyebrow: 'Your day, all in one place',
+    title: '하루를 한 화면에 모아서',
+    img: screens.dailyLog,
+    alt: '하루 기록 화면. 하루 혈당 곡선(평균 101, 최저 88, 최고 136)과 걸음 수 2,289걸음, 물 섭취, 그날의 기록 내역이 한 화면에 모여 있다.',
+    lead:
+      '오늘 하루가 어떻게 흘렀는지 <strong>한 화면에</strong> 모아서 보여드려요.<br />' +
+      '혈당 곡선 위에 목표 범위를 겹쳐 그려서, 어느 시간대가 어땠는지 눈으로 바로 읽혀요.<br />' +
+      '걸음 수와 물처럼 같이 챙기면 좋은 것들도 옆에 나란히 놓여 있어요.',
+    points: [
+      '날짜를 옆으로 넘기며 지난 날들을 편하게 되짚어요',
+      '평균 · 최저 · 최고를 한 줄로 정리해 보여줘요',
+      '그날의 식사·운동 기록이 시간 순으로 함께 쌓여요',
+    ],
+  },
+  {
     eyebrow: 'Two weeks in one view',
     title: '2주 흐름을 한눈에',
     img: screens.reportGlucose,
-    alt: '건강 리포트 혈당 탭. 평균 혈당 114, 변동성 24.8%, 목표 범위 시간 82%와 최근 14일 평균 곡선이 보인다.',
+    alt: '건강 리포트 혈당 탭. 목표 범위 시간(TIR) 100%, 최고 혈당 194 mg/dL과 최근 14일 시간대별 평균 곡선, 일별 평균 혈당 변화가 보인다.',
     lead:
       '하루하루는 들쭉날쭉해도, <strong>2주를 모아 보면</strong> 내 리듬이 보여요.<br />' +
       '평균과 변동성, 목표 범위 안에 머문 시간을 정리해 드려요.<br />' +
@@ -227,7 +242,7 @@ const oauthOptions = [
   <!-- 4. 센서 · 건강 데이터 연동 -->
   <section id="health-sync" class="section sync">
     <div class="container">
-      <SectionHead eyebrow="07 — Connect" variant="split">
+      <SectionHead eyebrow="08 — Connect" variant="split">
         기기와 직접 씨름하지 않아요
         <Fragment slot="sub">
           연속혈당측정기(CGM)를 쓰신다면 안내대로 한 번만 연결해 두시면 돼요.<br />
@@ -278,7 +293,7 @@ const oauthOptions = [
   <!-- 5. 간편 로그인 -->
   <section class="section login">
     <div class="container">
-      <SectionHead eyebrow="08 — Sign In" variant="split">
+      <SectionHead eyebrow="09 — Sign In" variant="split">
         익숙한 계정으로 가볍게 시작해요
         <Fragment slot="sub">
           복잡한 가입 절차는 건너뛸게요.<br />
