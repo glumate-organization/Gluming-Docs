@@ -23,7 +23,7 @@
 ```
 Gluming/
 ├── .github/workflows/deploy.yml   # Actions: docs/ 빌드 → GitHub Pages 배포
-├── app/                           # (Flutter — 이 하네스 범위 아님)
+├── gluming/                       # (Flutter — 이 하네스 범위 아님)
 ├── server/                        # (백엔드 — 이 하네스 범위 아님)
 └── docs/                          # ★ Astro 프로젝트 = 여기가 작업 루트
     ├── CLAUDE.md / .claude/ / _guide/
@@ -35,7 +35,7 @@ Gluming/
 
 - **Astro** 정적 빌드 (`output: 'static'`). `docs/`에서 `npm run build` → `docs/dist/`.
 - 배포: **GitHub Pages = Actions 방식** (branch /docs 직접 서빙 아님). `dist/`만 올라가므로 하네스 파일은 공개되지 않음.
-- `app/`·`server/`는 건드리지 않는다. 작업은 `docs/` 안에서만.
+- `gluming/`·`server/`는 건드리지 않는다. 작업은 `docs/` 안에서만.
 - `site`/`base` 설정값은 `_guide/deploy.md` 참고.
 - 향후: 혈당/당뇨 게시글은 Astro **Content Collections**(`src/content/`)로 추가. 서버 연동은 그 이후 — **지금은 정적 랜딩만**.
 

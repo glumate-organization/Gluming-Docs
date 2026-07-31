@@ -11,7 +11,7 @@
 ```
 Gluming/
 ├── .github/workflows/deploy.yml    # Actions: docs/ 빌드 → Pages 배포 (리포 루트)
-├── app/  server/                   # (이 하네스 범위 아님)
+├── gluming/  server/               # (이 하네스 범위 아님)
 └── docs/                           # ★ 작업 루트
     ├── CLAUDE.md                   # 메인 가이드: 원칙·스택·워크플로우
     ├── .claude/
