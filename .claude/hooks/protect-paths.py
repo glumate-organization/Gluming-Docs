@@ -13,7 +13,9 @@ from _util import read_event, target_path, rel_path, block, ok  # noqa: E402
 
 PROTECTED = re.compile(
     r"(^|/)(astro\.config\.(mjs|ts|js)|package(-lock)?\.json)$"
-    r"|(^|/)\.claude/"
+    # rel_path() 는 프로젝트 내부 경로만 상대경로로 바꾼다. 앵커를 ^ 로 좁혀야
+    # 프로젝트의 .claude/ 만 막고, ~/.claude/plans/ 같은 프로젝트 밖 경로는 통과한다.
+    r"|^\.claude/"
     r"|(^|/)\.github/workflows/"
     r"|(^|/)_guide/(brand|domain-glossary)\.md$"
 )

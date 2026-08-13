@@ -1,0 +1,53 @@
+---
+/**
+ * 글루밍 마스코트 — 인라인 SVG (외부 자산 0).
+ * 로고 아트를 벡터로 옮긴 것이라 색은 마스코트 팔레트 토큰을 그대로 참조한다.
+ * public/favicon.svg 와 같은 도형 — 한쪽을 고치면 다른 쪽도 맞춰야 한다.
+ */
+interface Props {
+  /** 렌더 크기(px) */
+  size?: number;
+  /** 초록 라운드 타일 위에 올릴지. 밝은 배경에서는 켜야 몸(크림)이 보인다. */
+  tile?: boolean;
+  class?: string;
+}
+const { size = 40, tile = true, class: className } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 64 64"
+  width={size}
+  height={size}
+  class={className}
+  aria-hidden="true"
+  focusable="false"
+>
+  {tile && <rect width="64" height="64" rx="15" fill="var(--primary)" />}
+  <g transform="translate(10.6 9) scale(0.0449)">
+    <g fill="var(--sprout)">
+      <rect x="451" y="150" width="56" height="130" rx="28"></rect>
+      <path d="M480 190c-80-160-230-205-305-145-70 55-45 135 60 150 85 13 195 10 245-5z"
+      ></path>
+      <path d="M471 190c80-160 230-205 305-145 70 55 45 135-60 150-85 13-195 10-245-5z"
+      ></path>
+    </g>
+    <path
+      fill="var(--cream)"
+      d="M475 268C255 268 5 455 5 700c0 200 170 314 470 314s470-114 470-314c0-245-250-432-470-432z"
+    ></path>
+    <g fill="var(--blush)">
+      <ellipse cx="177" cy="758" rx="67" ry="64"></ellipse>
+      <ellipse cx="774" cy="758" rx="67" ry="64"></ellipse>
+    </g>
+    <g fill="var(--ink-warm)">
+      <ellipse cx="284" cy="654" rx="50" ry="66"></ellipse>
+      <ellipse cx="666" cy="654" rx="50" ry="66"></ellipse>
+    </g>
+    <path
+      d="M404 733q71 56 142 0"
+      fill="none"
+      stroke="var(--ink-warm)"
+      stroke-width="28"
+      stroke-linecap="round"></path>
+  </g>
+</svg>

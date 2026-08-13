@@ -6,58 +6,55 @@ import Layout from '../layouts/Layout.astro';
 import PhoneFrame from '../components/PhoneFrame.astro';
 import ScreenCard from '../components/ScreenCard.astro';
 import SectionHead from '../components/SectionHead.astro';
+import Sprout from '../components/Sprout.astro';
 import StoreButtons from '../components/StoreButtons.astro';
-import { characters, healthImages, screens } from '../lib/assets';
+import { characters, screens } from '../lib/assets';
 
 // 실제 앱 화면으로 보여주는 핵심 기능 6가지.
 const features = [
   {
     img: screens.homeGood,
-    title: '컨디션을 표정으로',
-    alt: '글루밍 홈 화면. 캐릭터가 웃으며 "리듬이 아주 좋아요"라고 알려주고 혈당 94 mg/dL이 크게 보인다.',
-    desc: '숫자만 보면 지금이 괜찮은 건지 애매하잖아요. 글루밍즈가 표정과 한마디로 먼저 알려드려요.',
+    title: '오늘 기분, 표정으로 톡',
+    alt: '글루밍 홈 화면. 캐릭터가 웃으며 "리듬이 아주 좋아요, 이대로 가요!"라고 알려주고 혈당 109 mg/dL이 크게 보인다.',
+    desc: '109, 187… 숫자만 봐선 좋은 건지 애매하죠? 글루밍즈가 표정 하나로 먼저 귀띔해 드려요.',
   },
   {
     img: screens.simExercise,
     title: '지금 움직이면 어떻게 될까요?',
-    alt: '운동 시뮬레이터 화면. 가만히 있을 때와 스트레칭·산책의 예상 변화를 비교해 보여준다.',
-    desc: '가만히 있을 때와 움직였을 때를 나란히 비교해요. 지난 14일 내 데이터로 계산한 참고값이에요.',
+    alt: '“어떤 운동을 해볼까요?” 화면. 빠른 걷기·스쿼트·런닝의 30분 뒤 예상 변화를 점선 기준선과 함께 비교해 보여준다.',
+    desc: '가만히 있을 때와 움직였을 때를 나란히 견줘 봐요. 지난 7일 내 데이터로 계산한 참고값이에요.',
   },
   {
     img: screens.mealDetect,
-    title: '사진 한 장이면 기록 끝',
-    alt: '음식 인식 화면. 사진 속 여러 음식을 각각 찾아내고 예상 흐름을 함께 보여준다.',
-    desc: '사진을 찍으면 음식과 탄수화물을 알아서 찾아내요. 먹기 전 흐름까지 미리 그려드려요.',
+    title: '찰칵 한 번이면 기록 끝',
+    alt: '음식 인식 화면. 한 상 사진에서 음식 8개를 각각 잡아내고 총 탄수화물 136g·1,250kcal을 정리해 보여준다.',
+    desc: '한 상을 찍기만 하면 음식이랑 탄수화물을 알아서 쏙 찾아내요. 먹기 전 흐름까지 미리 그려드려요.',
   },
   {
     img: screens.logExercise,
-    title: '운동도 세 번만 누르면',
+    title: '운동 기록은 톡톡톡, 세 번이면 끝',
     alt: '운동 기록 화면. 운동 종류·시간·강도를 고르는 모습.',
     desc: '종류 고르고, 시간 정하고, 강도 누르면 끝. 고르는 동안 예상 변화가 같이 바뀌어요.',
   },
   {
     img: screens.mission,
-    title: '작은 미션으로 하루를 채워요',
-    alt: '미션 화면. 연속 달성 스탬프와 오늘의 미션이 포인트와 함께 나열된다.',
-    desc: '식사와 운동을 기록하면 그대로 포인트가 돼요. 모은 포인트로 새 친구를 만나요.',
+    title: '작은 미션으로 하루가 차곡차곡',
+    alt: '미션 화면. 연속 달성 스탬프와 함께 식사 기록·사진으로 식사 기록·운동 기록·8,000보 걷기 미션이 각각 포인트와 진행바로 나열된다.',
+    desc: '식사와 운동을 기록하면 그대로 포인트가 쌓여요. 모은 포인트로 새 친구를 만나요.',
   },
   {
     img: screens.reportGlucose,
-    title: '2주 흐름을 한눈에',
-    alt: '건강 리포트 화면. 목표 범위 시간(TIR)과 최고 혈당, 최근 14일 시간대별 평균 곡선이 보인다.',
-    desc: '하루는 들쭉날쭉해도 2주를 모아 보면 리듬이 보여요. 평균·변동성·목표 범위 시간을 정리해요.',
+    title: '일주일을 모아 보면 내 리듬이 보여요',
+    alt: '건강 리포트 화면. 평균 혈당 97·변동성(CV) 14.5%·목표 범위 시간(TIR) 97%·최고 혈당 154와 최근 7일 시간대별 평균 곡선이 보인다.',
+    desc: '하루는 들쭉날쭉해도 일주일치를 겹쳐 보면 리듬이 슬쩍 드러나요. 평균·변동성·목표 범위 시간을 가지런히 정리해요.',
   },
 ];
 
-const syncPlatforms = [
-  { img: healthImages.appleHealth, name: 'Apple 건강', alt: 'Apple 건강 앱 로고' },
-  { img: healthImages.healthConnect, name: 'Health Connect', alt: 'Android Health Connect 로고' },
-];
 ---
 
 <Layout
-  title="글루밍 · 나의 몸을 이해하는 새로운 방식을 제안합니다"
-  description="글루밍은 혈당을 자동으로 재주는 작은 센서 값을 식사·운동 같은 행동과 이어주는 생활습관 관리 보조 서비스예요. 이미 오른 혈당을 뒤늦게 확인하는 대신, 앞으로의 혈당 변화를 미리 살펴봐요."
+  title="글루밍 · 나의 몸을 이해하는 새로운 방식을 제안해요"
+  description="글루밍은 혈당을 자동으로 재주는 작은 센서 값을 식사·운동 같은 행동과 살며시 이어주는 생활습관 관리 보조 서비스예요. 이미 오른 혈당을 뒤늦게 확인하는 대신, 앞으로의 혈당 변화를 먼저 그려봐요."
 >
   <!-- ── 1. HERO ───────────────────────────────────────── -->
   <section class="hero">
@@ -67,13 +64,13 @@ const syncPlatforms = [
         <h1 class="hero-title">
           나의 몸을 이해하는<br />
           <span class="accent">새로운 방식</span>을<br />
-          제안합니다.
+          제안해요.
         </h1>
         <p class="hero-lead">
           글루밍은 몸에 붙이는 작은 혈당 센서가 잰 값을,<br />
-          식사·운동 같은 하루 행동과 이어드려요.<br />
+          식사·운동 같은 하루 행동과 살며시 이어드려요.<br />
           지나간 숫자를 들여다보는 대신, <strong>행동하기 전에</strong> 내 혈당 흐름을
-          미리 살펴봐요.
+          먼저 그려봐요.
         </p>
         <div class="hero-cta">
           <StoreButtons size="lg" />
@@ -88,7 +85,7 @@ const syncPlatforms = [
         <PhoneFrame width={292} class="hero-phone">
           <Image
             src={screens.homeGood}
-            alt="글루밍 앱 홈 화면. 글루밍즈 캐릭터가 웃는 표정으로 '리듬이 아주 좋아요, 이대로 가요!'라고 알려주고, 혈당 94 mg/dL과 오늘의 점수·평균 혈당·변동성이 함께 보인다."
+            alt="글루밍 앱 홈 화면. 글루밍즈 캐릭터가 웃는 표정으로 '리듬이 아주 좋아요, 이대로 가요!'라고 알려주고, 혈당 109 mg/dL과 오늘의 점수 68·평균 혈당 91·변동성 낮음이 함께 보인다."
             widths={[300, 600]}
             sizes="292px"
             loading="eager"
@@ -98,20 +95,9 @@ const syncPlatforms = [
     </div>
   </section>
 
-  <!-- ── 2. 신뢰 스트립 ─────────────────────────────────── -->
+  <!-- ── 2. 비의료 고지 ─────────────────────────────── -->
   <section class="trust">
     <div class="container trust-inner">
-      <p class="trust-label">건강 데이터는 자동으로 이어져요</p>
-      <ul class="trust-logos">
-        {
-          syncPlatforms.map((p) => (
-            <li>
-              <Image src={p.img} alt={p.alt} width={28} height={28} densities={[1, 2]} />
-              <span>{p.name}</span>
-            </li>
-          ))
-        }
-      </ul>
       <p class="trust-note">
         의료기기가 아니에요 · 생활습관 관리를 돕는 웰니스 서비스예요
       </p>
@@ -122,7 +108,7 @@ const syncPlatforms = [
   <section class="section problem">
     <div class="container">
       <SectionHead eyebrow="01 — Why Gluming" variant="split">
-        숫자는 쌓이는데,<br />뭘 바꿔야 할지는 막막하죠
+        숫자는 차곡차곡 쌓이는데,<br />뭘 바꿔야 할지는 막막하죠
         <Fragment slot="sub">
           이미 혈당이 오른 뒤에야 알림이 와서 그래프를 들여다봐요.<br />
           “아, 아까 그걸 먹지 말걸” 하고 아쉬워한 적, 한 번쯤 있지 않나요?
@@ -176,7 +162,7 @@ const syncPlatforms = [
       <SectionHead eyebrow="02 — Core Features" variant="split">
         행동을 바꾸기 쉽게,<br />부드럽게
         <Fragment slot="sub">
-          복잡한 수치 해석은 글루밍에게 맡겨두세요.<br />
+          복잡한 수치 해석은 글루밍에게 살짝 맡겨두세요.<br />
           아래는 모두 <strong>실제 앱 화면</strong>이에요.
         </Fragment>
       </SectionHead>
@@ -211,7 +197,7 @@ const syncPlatforms = [
         매일을 함께 걷는 친구들
         <Fragment slot="sub">
           기록도 습관도 혼자 하면 금세 지치잖아요.<br />
-          글루밍즈가 곁에서 오늘의 작은 변화를 같이 응원할게요.
+          글루밍즈가 옆에서 폴짝폴짝, 오늘의 작은 변화를 같이 응원할게요.
         </Fragment>
       </SectionHead>
 
@@ -231,11 +217,12 @@ const syncPlatforms = [
   <section class="section cta-band-wrap">
     <div class="container">
       <div class="cta-band">
+        <Sprout size={58} tile={false} class="cta-mascot" />
         <p class="eyebrow on-dark">Start Today</p>
         <h2 class="cta-title">오늘의 한 끼,<br />미리 살펴보고 시작해요</h2>
         <p class="cta-sub">
           행동하기 전에 내 혈당 흐름을 그려보는 습관.<br />
-          지금 바로 시작해 보세요.
+          오늘은 어떤 하루가 될까요? 같이 그려봐요.
         </p>
         <div class="cta-actions">
           <StoreButtons size="lg" tone="dark" />
@@ -327,7 +314,7 @@ const syncPlatforms = [
     position: relative;
   }
 
-  /* ── 신뢰 스트립 ───────────────────────────────────── */
+  /* ── 비의료 고지 스트립 ─────────────────────────────── */
   .trust {
     border-top: 1px solid var(--rule);
     border-bottom: 1px solid var(--rule);
@@ -335,43 +322,12 @@ const syncPlatforms = [
   }
   .trust-inner {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--sp-4) var(--sp-7);
+    justify-content: center;
     padding: var(--sp-4) 0;
   }
-  .trust-label {
-    font-family: var(--font-serif);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--sage-dark);
-  }
-  .trust-logos {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--sp-5);
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .trust-logos li {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--sp-2);
-    font-size: var(--fs-sm);
-    font-weight: 600;
-    color: var(--text-2);
-  }
-  .trust-logos :global(img) {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-  }
   .trust-note {
-    margin-left: auto;
+    margin: 0;
+    text-align: center;
     color: var(--text-3);
     font-size: var(--fs-xs);
     font-weight: 600;
@@ -511,6 +467,11 @@ const syncPlatforms = [
     opacity: 0.07;
     pointer-events: none;
   }
+  /* 다크 면 위에서는 마스코트 몸(크림)이 그대로 잘 보여 타일이 필요 없다. */
+  .cta-band :global(.cta-mascot) {
+    display: block;
+    margin: 0 auto var(--sp-4);
+  }
   .eyebrow.on-dark {
     color: var(--primary-light);
   }
@@ -561,10 +522,6 @@ const syncPlatforms = [
       border-left: 0;
       border-radius: var(--r-lg);
     }
-    .trust-note {
-      margin-left: 0;
-      width: 100%;
-    }
     .feature-cells,
     .friend-cells {
       grid-template-columns: repeat(2, 1fr);
@@ -608,7 +565,6 @@ const syncPlatforms = [
       display: none;
     }
     .trust-inner {
-      gap: var(--sp-3) var(--sp-5);
       padding: var(--sp-5) 0;
     }
     .feature-cells,

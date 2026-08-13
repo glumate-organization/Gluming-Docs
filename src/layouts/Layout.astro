@@ -11,8 +11,8 @@ interface Props {
 }
 
 const {
-  title = '글루밍 · 나의 몸을 이해하는 새로운 방식을 제안합니다',
-  description = '글루밍은 혈당을 자동으로 재주는 작은 센서 값을 식사·운동 같은 행동과 잇는 혈당 관리 습관 보조 서비스예요. 이미 오른 혈당을 뒤늦게 확인하는 대신, 앞으로의 혈당 변화를 미리 살펴보며 나의 몸을 이해하는 새로운 방식을 제안합니다.',
+  title = '글루밍 · 나의 몸을 이해하는 새로운 방식을 제안해요',
+  description = '글루밍은 혈당을 자동으로 재주는 작은 센서 값을 식사·운동 같은 행동과 살며시 잇는 혈당 관리 습관 보조 서비스예요. 이미 오른 혈당을 뒤늦게 확인하는 대신, 앞으로의 혈당 변화를 먼저 그려보며 나의 몸을 이해하는 새로운 방식을 제안해요.',
   ogImage = 'https://gluming.app/og.png',
 } = Astro.props;
 
@@ -42,6 +42,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://gluming.app
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
   </head>

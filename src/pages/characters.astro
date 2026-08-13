@@ -5,7 +5,6 @@ import StoreButtons from '../components/StoreButtons.astro';
 import { Image } from 'astro:assets';
 import {
   characters,
-  ribuniCostumes,
   stateMeta,
   stateOrder,
 } from '../lib/assets';
@@ -29,16 +28,16 @@ const blurbs: Record<string, string> = {
     '부담 없이 가볍게, 그래도 꾸준히 걷고 싶을 때 가장 든든해요.<br />' +
     '보미랑 같이 걸으면 왠지 한 걸음 더 걷고 싶어져요.',
   ribuni:
-    '루코는 <strong>옷 갈아입는 재미에 진심</strong>인 멋쟁이 친구예요.<br />' +
-    '그날 기분에 맞춰 코스튬을 골라 입고요.<br />' +
-    '같이 꾸준히 지내다 보면 새 옷이 하나둘 늘어나요.<br />' +
-    '모으는 재미가 쏠쏠해서, 매일이 조금 더 기대돼요.',
+    '루코는 <strong>멋 부리기에 진심</strong>인 패셔니스타 친구예요.<br />' +
+    '오늘은 어떤 모습으로 나갈지 늘 고민이 많고요.<br />' +
+    '조금 새침한 듯해도 곁은 꼭 지켜주는 편이에요.<br />' +
+    '루코랑 있으면 평범한 하루도 조금 특별해져요.',
 };
 ---
 
 <Layout
   title="글루밍즈 — 글루밍의 컨디션 친구들"
-  description="글루밍즈는 하루의 리듬을 함께 살피는 글루밍의 컨디션 친구들이에요. 네 친구의 다양한 표정과 코스튬 컬렉션을 만나보세요."
+  description="글루밍즈는 하루의 리듬을 함께 살피는 글루밍의 컨디션 친구들이에요. 네 친구의 다양한 표정을 만나보세요."
 >
   <!-- ── HERO ─────────────────────────────────────────── -->
   <section class="hero section">
@@ -147,42 +146,6 @@ const blurbs: Record<string, string> = {
     ))
   }
 
-  <!-- ── 코스튬 컬렉션 ──────────────────────────────── -->
-  <section class="costumes section" style="--accent: var(--berry)">
-    <div class="container">
-      <SectionHead eyebrow="Collect the Glumings" variant="split">
-        글루밍즈를 모으는 재미가 있어요
-        <Fragment slot="sub">
-          꾸준히 지내다 보면 함께할 친구와 옷차림이 <strong>하나둘 늘어나요.</strong><br />
-          그날의 기분에 맞춰 골라 입는 재미, 같이 모아볼까요?
-        </Fragment>
-      </SectionHead>
-
-      <ul class="cells costume-grid">
-        {
-          ribuniCostumes.map(({ label, img }) => (
-            <li class="cell costume-card">
-              <div class="costume-art">
-                <Image
-                  src={img}
-                  alt={`글루밍즈 ${label} 코스튬`}
-                  width={160}
-                  height={160}
-                  densities={[1, 2]}
-                  loading="lazy"
-                />
-              </div>
-              <span class="costume-label">
-                <span class="dot" aria-hidden="true" />
-                {label}
-              </span>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
   <!-- ── CTA ──────────────────────────────────────────── -->
   <section class="cta-band section">
     <div class="container cta-inner">
@@ -191,7 +154,7 @@ const blurbs: Record<string, string> = {
       <h2 class="cta-title">글루밍즈와 함께 시작해 볼까요?</h2>
       <p class="cta-sub">
         네 친구가 매일의 리듬을 <strong>곁에서 함께 살펴 줄게요.</strong><br />
-        지금 내려받고 오늘부터 같이 시작해요.
+        지금 내려받고 오늘부터 같이 시작해 봐요.
       </p>
       <StoreButtons size="lg" />
     </div>
@@ -403,48 +366,6 @@ const blurbs: Record<string, string> = {
     color: var(--text-3);
   }
 
-  /* ── 코스튬 컬렉션 ───────────────────────────────── */
-  .costumes {
-    padding-top: 0;
-  }
-  .costume-grid {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    grid-template-columns: repeat(6, 1fr);
-  }
-  .costume-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--sp-3);
-    padding: var(--sp-5) var(--sp-4) var(--sp-5);
-  }
-  .costume-art {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    display: grid;
-    place-items: center;
-    padding: 10px;
-  }
-  .costume-art :global(img) {
-    width: 80%;
-    height: auto;
-    object-fit: contain;
-  }
-  .costume-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 600;
-    font-size: 14.5px;
-  }
-  .costume-label .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: var(--r-pill);
-    background: var(--accent);
-  }
 
   /* ── CTA ─────────────────────────────────────────── */
   .cta-band {
@@ -501,9 +422,6 @@ const blurbs: Record<string, string> = {
       margin-inline: auto;
     }
     .faces-row {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .costume-grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
@@ -601,13 +519,6 @@ const blurbs: Record<string, string> = {
       padding: 4px 10px;
     }
 
-    /* 코스튬 — 2열 · 넓은 터치 영역 (칸은 선으로 붙어 있으므로 gap 없음) */
-    .costume-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .costume-card {
-      padding: var(--sp-4) var(--sp-3);
-    }
 
     .cta-title {
       font-size: 26px;

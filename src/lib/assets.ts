@@ -4,16 +4,20 @@
 
 import type { ImageMetadata } from 'astro';
 
-// ── 로고 (신규 세트) ────────────────────────────────────
-import logoHorizontal from '../assets/logo/full_logo.png'; // 가로 락업(아이콘+워드마크)
-import logoVertical from '../assets/logo/full_vertical_logo.png'; // 세로 락업
-import logoIcon from '../assets/logo/icon_logo.png'; // 심볼 전용
-import logoWordmark from '../assets/logo/text_logo.png'; // 워드마크 전용
+// ── 로고 (새싹 마스코트 세트) ───────────────────────────
+// 마스코트 몸(#FCF5EE)은 배경(--bg #F7F5F0)과 대비가 1.03:1 이라 그대로 두면 안 보인다.
+// 그래서 가로 락업은 마스코트를 --primary 초록 라운드 타일 위에 올려 합성했고,
+// 워드마크도 --primary 로 맞춰 락업이 한 덩어리로 읽히게 했다.
+// 벡터가 필요한 자리(파비콘·장식)는 PNG 대신 components/Sprout.astro 를 쓴다.
+import logoHorizontal from '../assets/logo/full_logo.png'; // 가로 락업(타일 아이콘+워드마크)
+import logoVertical from '../assets/logo/full_vertical_logo.png'; // 세로 락업(투명)
+import logoIcon from '../assets/logo/icon_logo.png'; // 마스코트 단독(투명)
+import logoWordmark from '../assets/logo/text_logo.png'; // 워드마크 전용(투명)
 
 export const logos = {
   horizontal: logoHorizontal, // 네비/푸터 기본 로고
-  vertical: logoVertical, // 히어로/세로 배치용
-  icon: logoIcon, // 파비콘/작은 심볼
+  vertical: logoVertical, // 세로 배치용
+  icon: logoIcon, // 마스코트 심볼 — 밝은 배경에 얹을 땐 초록 면 위에
   wordmark: logoWordmark, // 텍스트 워드마크
 };
 
@@ -111,7 +115,7 @@ export const characters: CharacterInfo[] = [
   {
     key: 'ribuni',
     name: '루코',
-    tagline: '옷을 갈아입으며 모으는 재미가 있는 친구',
+    tagline: '멋 부리기에 진심인 패셔니스타 친구',
     accent: 'var(--berry)',
     states: {
       default: ribuniDefault,
@@ -152,7 +156,9 @@ export const stateOrder: CharacterState[] = [
   'danger',
 ];
 
-// ── 리번이 코스튬 (수집 요소) ──────────────────────────
+// ── 루코 코스튬 (수집 요소) ────────────────────────────
+// ⚠️ 앱에 아직 출시되지 않아 사이트에서는 노출하지 않는다(글루밍즈 페이지의
+// 코스튬 섹션 제거). 출시되면 다시 살릴 수 있도록 export 는 남겨둔다.
 import costumeApple from '../assets/character/ribuni-costume/apple.png';
 import costumeStrawberry from '../assets/character/ribuni-costume/strawberry.png';
 import costumeTulip from '../assets/character/ribuni-costume/tulip.png';
@@ -235,7 +241,7 @@ export const screens = {
   homeSleep: screenHomeSleep, // 쉬는 중 (파랑)
   simExercise: screenSimExercise, // 운동별 예상 변화 비교
   logExercise: screenLogExercise, // 운동 기록 입력
-  mealDetect: screenMealDetect, // 사진 음식 인식 + 예상 변화
+  mealDetect: screenMealDetect, // 사진 한 장에서 음식 여러 개 인식
   mission: screenMission, // 미션 · 포인트
   reportGlucose: screenReportGlucose, // 14일 혈당 리포트
   reportMeal: screenReportMeal, // 14일 식사 리포트

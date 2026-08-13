@@ -1,20 +1,14 @@
 ---
 import { Image } from 'astro:assets';
-import Button from '../components/Button.astro';
 import Layout from '../layouts/Layout.astro';
 import PhoneFrame from '../components/PhoneFrame.astro';
 import SectionHead from '../components/SectionHead.astro';
 import StoreButtons from '../components/StoreButtons.astro';
-import {
-  conditionScreens,
-  healthImages,
-  oauthImages,
-  screens,
-} from '../lib/assets';
+import { conditionScreens, screens } from '../lib/assets';
 
 const title = '기능 — 실제 앱 화면으로 보는 글루밍';
 const description =
-  '컨디션을 표정으로 보여주고, 지금 움직이면 혈당이 어떻게 변할지 운동별로 비교하고, 사진 한 장으로 식사를 기록해요. 미션·포인트와 2주 건강 리포트까지, 실제 앱 화면으로 확인하세요.';
+  '컨디션을 표정으로 보여주고, 지금 움직이면 혈당이 어떻게 변할지 운동별로 견줘 보고, 사진 한 장으로 식사를 기록해요. 미션·포인트와 주간 건강 리포트까지, 실제 앱 화면으로 만나보세요.';
 
 // 딥다이브 기능 행 — 실제 구동 화면과 함께 좌우 교차 배치.
 const deepDives = [
@@ -22,9 +16,9 @@ const deepDives = [
     eyebrow: 'Condition at a glance',
     title: '숫자 대신, 표정으로 알아요',
     img: screens.homeGood,
-    alt: '글루밍 홈 화면. 캐릭터가 웃는 표정으로 "리듬이 아주 좋아요, 이대로 가요!"라고 알려주고 혈당 94 mg/dL과 오늘의 점수·평균 혈당·변동성이 함께 보인다.',
+    alt: '글루밍 홈 화면. 캐릭터가 웃는 표정으로 "리듬이 아주 좋아요, 이대로 가요!"라고 알려주고 혈당 109 mg/dL과 오늘의 점수 68·평균 혈당 91·변동성 낮음이 함께 보인다.',
     lead:
-      '112, 168 같은 숫자만 보면 지금이 괜찮은 건지 애매하잖아요.<br />' +
+      '109, 187 같은 숫자만 보면 지금이 괜찮은 건지 애매하잖아요.<br />' +
       '글루밍즈가 <strong>표정과 한마디</strong>로 지금 흐름을 먼저 알려드려요.<br />' +
       '아래에는 오늘의 점수·평균 혈당·변동성이 한 줄로 정리돼요.',
     points: [
@@ -37,35 +31,35 @@ const deepDives = [
     eyebrow: 'Simulate before you move',
     title: '지금 움직이면 어떻게 될까요?',
     img: screens.simExercise,
-    alt: '운동 시뮬레이터 화면. 가만히 있을 때 -4, 가벼운 스트레칭 -5, 가벼운 산책 -7 등 운동별 예상 변화가 미니 그래프와 함께 비교된다.',
+    alt: '“어떤 운동을 해볼까요?” 화면. 빠른 걷기 -2, 스쿼트 -14, 런닝 -9처럼 운동별 30분 뒤 예상 변화가, 아무것도 안 했을 때를 나타내는 점선과 겹친 미니 그래프로 비교된다.',
     lead:
       '가만히 있을 때와 몸을 움직였을 때를 <strong>나란히 놓고</strong> 비교해요.<br />' +
-      '스트레칭·산책·빠른 걷기·계단 오르기까지, 각각 30분 뒤 흐름이 어떻게 달라지는지 미리 그려봐요.<br />' +
-      '지난 14일간 쌓인 내 데이터를 바탕으로 계산한 참고값이에요.',
+      '빠른 걷기·스쿼트·런닝까지, 각각 30분 뒤 흐름이 어떻게 달라지는지 미리 그려봐요.<br />' +
+      '지난 7일간 쌓인 내 데이터를 바탕으로 계산한 참고값이에요.',
     points: [
       '"아무것도 안 했을 때"를 기준선으로 함께 보여줘요',
       '운동 종류·시간별로 예상 변화를 견줘 봐요',
-      '오늘 상태에 맞는 하나를 맞춤 추천으로 짚어줘요',
+      '마음에 드는 운동은 그 자리에서 바로 기록으로 이어져요',
     ],
   },
   {
     eyebrow: 'One photo is enough',
-    title: '사진 한 장이면 기록 끝',
+    title: '찰칵 한 번이면 기록 끝',
     img: screens.mealDetect,
-    alt: '음식 인식 화면. 사진 속 김치찌개·쌀밥·계란말이를 각각 인식해 표시하고, 예상 컨디션 변화 곡선과 함께 채소부터 먹으라는 안내가 보인다.',
+    alt: '음식 인식 화면. 한 상 사진에서 돼지고기 김치찜·두부구이·파무침·굴전·깻잎장아찌·땅콩조림·흰쌀밥·소고기 육개장 8개를 각각 네모로 잡아내고, 총 탄수화물 136g·1,250kcal과 음식별 영양이 정리돼 있다.',
     lead:
       '기록이 숙제처럼 느껴지면 오래가기 어렵잖아요.<br />' +
-      '사진을 한 장 찍으면 <strong>음식과 탄수화물을 알아서</strong> 찾아내요.<br />' +
+      '한 상을 찰칵 찍으면 <strong>음식과 탄수화물을 알아서</strong> 찾아내요.<br />' +
       '그리고 이 식사 뒤 흐름이 어떻게 이어질지도 함께 그려드려요.',
     points: [
       '한 상에 올라온 여러 음식을 한 번에 인식해요',
       '음식별 양·탄수화물·칼로리를 정리해 보여줘요',
-      '먹기 전에 예상 흐름을 보고 순서를 바꿔볼 수 있어요',
+      '먹기 전에 예상 흐름과 추천 섭취 순서를 함께 봐요',
     ],
   },
   {
     eyebrow: 'Log in three taps',
-    title: '운동도 세 번만 누르면 끝',
+    title: '운동 기록은 톡톡톡, 세 번이면 끝',
     img: screens.logExercise,
     alt: '운동 기록 화면. 스트레칭·산책·빠른걷기·계단오르기 중 선택하고 시간 30분, 강도 중강도를 고르는 모습.',
     lead:
@@ -80,9 +74,9 @@ const deepDives = [
   },
   {
     eyebrow: 'Missions & points',
-    title: '작은 미션으로 하루를 채워요',
+    title: '작은 미션으로 하루가 차곡차곡',
     img: screens.mission,
-    alt: '미션 화면. 연속 달성 1일째 스탬프와 함께 식사 기록하기, 사진으로 식사 기록, 운동 기록하기, 8,000보 걷기 미션이 포인트와 함께 나열된다.',
+    alt: '미션 화면. 연속 달성 스탬프와 함께 식사 기록하기(+50P), 사진으로 식사 기록(+50P), 운동 기록하기(+50P), 8,000보 걷기(+100P) 미션이 진행바와 함께 나열되고, 아래에 이번 주 도전이 이어진다.',
     lead:
       '오늘 할 일은 딱 네 가지, 그것도 <strong>이미 하고 있는 것들</strong>이에요.<br />' +
       '식사와 운동을 기록하고, 오늘 걸음을 채우면 그대로 포인트가 돼요.<br />' +
@@ -95,7 +89,7 @@ const deepDives = [
   },
   {
     eyebrow: 'Your day, all in one place',
-    title: '하루를 한 화면에 모아서',
+    title: '하루를 한 화면에 소복이 모아서',
     img: screens.dailyLog,
     alt: '하루 기록 화면. 하루 혈당 곡선(평균 101, 최저 88, 최고 136)과 걸음 수 2,289걸음, 물 섭취, 그날의 기록 내역이 한 화면에 모여 있다.',
     lead:
@@ -109,12 +103,12 @@ const deepDives = [
     ],
   },
   {
-    eyebrow: 'Two weeks in one view',
-    title: '2주 흐름을 한눈에',
+    eyebrow: 'A week in one view',
+    title: '일주일을 모아 보면 내 리듬이 보여요',
     img: screens.reportGlucose,
-    alt: '건강 리포트 혈당 탭. 목표 범위 시간(TIR) 100%, 최고 혈당 194 mg/dL과 최근 14일 시간대별 평균 곡선, 일별 평균 혈당 변화가 보인다.',
+    alt: '건강 리포트 혈당 탭. 평균 혈당 97 mg/dL, 변동성(CV) 14.5%, 목표 범위 시간(TIR) 97%, 최고 혈당 154 mg/dL과 최근 7일 시간대별 평균 곡선, 일별 평균 혈당 변화가 보인다.',
     lead:
-      '하루하루는 들쭉날쭉해도, <strong>2주를 모아 보면</strong> 내 리듬이 보여요.<br />' +
+      '하루하루는 들쭉날쭉해도, <strong>일주일을 모아 보면</strong> 내 리듬이 보여요.<br />' +
       '평균과 변동성, 목표 범위 안에 머문 시간을 정리해 드려요.<br />' +
       '식사 탭에서는 자주 먹은 음식과 혈당을 많이 올린 끼니도 확인할 수 있어요.',
     points: [
@@ -125,27 +119,7 @@ const deepDives = [
   },
 ];
 
-const healthPlatforms = [
-  {
-    img: healthImages.appleHealth,
-    name: 'Apple 건강',
-    os: 'iOS',
-    alt: 'Apple 건강 앱 로고',
-  },
-  {
-    img: healthImages.healthConnect,
-    name: 'Health Connect',
-    os: 'Android',
-    alt: 'Android Health Connect 로고',
-  },
-];
 
-const oauthOptions = [
-  { img: oauthImages.google, name: 'Google', alt: 'Google 로그인 아이콘' },
-  { img: oauthImages.apple, name: 'Apple', alt: 'Apple 로그인 아이콘' },
-  { img: oauthImages.kakao, name: '카카오', alt: '카카오 로그인 아이콘' },
-  { img: oauthImages.naver, name: '네이버', alt: '네이버 로그인 아이콘' },
-];
 ---
 
 <Layout title={title} description={description}>
@@ -153,7 +127,7 @@ const oauthOptions = [
   <section class="section hero">
     <div class="container hero-inner">
       <span class="eyebrow">00 — Features</span>
-      <h1 class="hero-title">실제로 이렇게 생겼어요</h1>
+      <h1 class="hero-title">글루밍, 이렇게 생겼어요</h1>
       <p class="hero-lead">
         아래 화면은 모두 <strong>실제 글루밍 앱</strong>을 그대로 담은 거예요.<br />
         컨디션을 표정으로 보여주고, 무언가를 하기 전에 흐름을 미리 그려보고,
@@ -161,9 +135,6 @@ const oauthOptions = [
       </p>
       <div class="hero-actions">
         <StoreButtons size="lg" />
-        <Button href="#health-sync" variant="ghost" size="lg">
-          센서·건강 데이터 연동 보기 →
-        </Button>
       </div>
     </div>
   </section>
@@ -175,7 +146,7 @@ const oauthOptions = [
         오늘의 나를, 다섯 가지 표정으로
         <Fragment slot="sub">
           같은 숫자여도 흐름에 따라 몸의 느낌은 다르잖아요.<br />
-          글루밍즈가 <strong>표정과 배경색</strong>으로 지금을 먼저 알려드려요.
+          글루밍즈가 <strong>표정과 배경색</strong>으로 지금을 먼저 귀띔해 드려요.
         </Fragment>
       </SectionHead>
 
@@ -239,88 +210,18 @@ const oauthOptions = [
     </div>
   </section>
 
-  <!-- 4. 센서 · 건강 데이터 연동 -->
-  <section id="health-sync" class="section sync">
-    <div class="container">
-      <SectionHead eyebrow="08 — Connect" variant="split">
-        기기와 직접 씨름하지 않아요
-        <Fragment slot="sub">
-          연속혈당측정기(CGM)를 쓰신다면 안내대로 한 번만 연결해 두시면 돼요.<br />
-          걸음 수·활동량은 iOS <strong>Apple 건강</strong>, Android
-          <strong>Health Connect</strong>를 통해 살며시 읽어와요.<br />
-          블루투스로 직접 씨름하지 않아서 더 단순하고 마음 편해요.
-        </Fragment>
-      </SectionHead>
-
-      <div class="sync-grid">
-        <div class="sync-media reveal">
-          <PhoneFrame width={266}>
-            <Image
-              src={screens.sensorSetup}
-              alt="센서 연동 안내 화면. 케어센스 에어 연결 방법을 단계별로 안내하고, 애플 헬스 공유를 켜면 5분마다 자동으로 값을 받아온다고 설명한다."
-              widths={[280, 560]}
-              sizes="266px"
-              loading="lazy"
-            />
-          </PhoneFrame>
-        </div>
-
-        <div class="sync-body">
-          <div class="sync-chips">
-            {
-              healthPlatforms.map((h) => (
-                <div class="sync-chip">
-                  <Image src={h.img} alt={h.alt} width={56} height={56} densities={[1, 2]} />
-                  <div class="sync-chip-text">
-                    <strong>{h.name}</strong>
-                    <span>{h.os}</span>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-          <p class="sync-note">
-            연동은 언제든 직접 켜고 끌 수 있고, 어떤 데이터를 가져올지도 스스로
-            고를 수 있어요.<br />
-            글루밍은 생활습관 관리를 돕는 <strong>보조 도구</strong>예요. 전문적인
-            진료나 상담을 대신하지 않고, 곁에서 살포시 거들게요.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. 간편 로그인 -->
-  <section class="section login">
-    <div class="container">
-      <SectionHead eyebrow="09 — Sign In" variant="split">
-        익숙한 계정으로 가볍게 시작해요
-        <Fragment slot="sub">
-          복잡한 가입 절차는 건너뛸게요.<br />
-          평소 쓰던 계정으로 <strong>바로</strong> 시작할 수 있어요.
-        </Fragment>
-      </SectionHead>
-      <ul class="login-icons" aria-label="간편 로그인 옵션">
-        {
-          oauthOptions.map((o) => (
-            <li class="login-chip">
-              <Image src={o.img} alt={o.alt} width={40} height={40} densities={[1, 2]} />
-              <span>{o.name}</span>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
-  <!-- 6. CTA 밴드 -->
+  <!-- 4. CTA 밴드 (+ 의료 비대체 고지) -->
   <section class="section cta">
     <div class="container">
+      <p class="page-note">
+        글루밍은 생활습관 관리를 돕는 <strong>보조 도구</strong>예요. 전문적인
+        진료나 상담을 대신하지 않고, 곁에서 살포시 거들게요.
+      </p>
       <div class="cta-band">
         <p class="eyebrow on-dark">Start Today</p>
         <h2 class="cta-title">행동 전에 한 번 더 살펴보는 습관,<br />함께 시작해요</h2>
         <p class="cta-sub">
-          글루밍즈 친구들과 함께, 오늘부터 내 혈당 흐름을 미리 그려봐요.
+          글루밍즈 친구들과 함께, 오늘부터 내 혈당 흐름을 미리 그려볼까요?
         </p>
         <div class="cta-actions">
           <StoreButtons size="lg" tone="dark" />
@@ -353,12 +254,6 @@ const oauthOptions = [
   }
   /* 강조는 색이 아닌 굵기로만 (색 강조 금지) */
   .hero-lead strong,
-  .sync-note strong,
-  .cta-sub strong,
-  .row-lead :global(strong) {
-    color: inherit;
-    font-weight: 700;
-  }
   .hero-actions {
     margin-top: var(--sp-7);
     display: flex;
@@ -484,85 +379,19 @@ const oauthOptions = [
     border: 1.5px solid var(--sage);
   }
 
-  /* ── 센서 · 건강 데이터 연동 ── */
-  .sync-grid {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: clamp(32px, 6vw, 72px);
-    align-items: center;
-  }
-  .sync-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--sp-4);
-  }
-  /* 광택 없는 납작한 헤어라인 칩 */
-  .sync-chip {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 16px 24px 16px 16px;
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    border-radius: var(--r-md);
-  }
-  .sync-chip :global(img) {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
-    border-radius: var(--r-sm);
-  }
-  .sync-chip-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.35;
-  }
-  .sync-chip-text strong {
-    font-size: 16px;
-    font-weight: 700;
-  }
-  .sync-chip-text span {
-    color: var(--text-3);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    font-family: var(--font-serif);
-  }
-  .sync-note {
-    margin-top: var(--sp-6);
-    max-width: 640px;
-    color: var(--text-2);
-    font-size: var(--fs-body);
-    line-height: 1.78;
-  }
 
-  /* ── 간편 로그인 ── */
-  .login-icons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  /* 의료 비대체 고지 — 연동·로그인 섹션이 빠지면서 독립 블록으로 옮겼다. 문구는 유지. */
+  .page-note {
+    margin: 0 auto var(--sp-8);
+    max-width: var(--measure);
+    text-align: center;
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+    color: var(--text-3);
   }
-  .login-chip {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    padding: 10px 18px 10px 10px;
-    background: transparent;
-    border: 1px solid var(--rule);
-    border-radius: var(--r-pill);
+  .page-note strong {
+    color: var(--text-2);
     font-weight: 600;
-    font-size: 14.5px;
-    color: var(--text);
-  }
-  .login-chip :global(img) {
-    width: 26px;
-    height: 26px;
-    object-fit: contain;
-    border-radius: var(--r-pill);
   }
 
   /* ── CTA 밴드 ── pine 다크 밴드, 납작하게 */
@@ -624,9 +453,6 @@ const oauthOptions = [
     }
     .row-lead {
       max-width: none;
-    }
-    .sync-grid {
-      grid-template-columns: 1fr;
     }
     .face-strip {
       grid-template-columns: repeat(3, 1fr);
@@ -698,18 +524,8 @@ const oauthOptions = [
       top: 22px;
     }
 
-    .sync-chips {
-      gap: 12px;
-    }
     /* 칩이 한 줄에 하나씩 넉넉히 — 좁은 화면에서 편하게 */
-    .sync-chip {
-      flex: 1 1 100%;
-    }
 
-    .login-chip {
-      padding: 11px 16px 11px 11px;
-      font-size: 14px;
-    }
 
     .cta-band {
       padding: 44px 22px;
