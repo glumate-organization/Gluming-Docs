@@ -39,8 +39,14 @@ const here = Astro.url.pathname.replace(/\/$/, '') || '/';
       }
     </nav>
 
+    <!-- 스토어별로 따로 — iPhone 은 채움, Android 는 아웃라인 -->
     <div class="nav-cta">
-      <Button href={storeLinks.appStore} size="md">앱 다운로드</Button>
+      <Button href={storeLinks.appStore} size="md" class="nav-store"
+        >iPhone<span class="nav-store-suffix"> 다운로드</span></Button
+      >
+      <Button href={storeLinks.playStore} size="md" variant="secondary" class="nav-store"
+        >Android<span class="nav-store-suffix"> 다운로드</span></Button
+      >
     </div>
   </div>
 </header>
@@ -104,6 +110,13 @@ const here = Astro.url.pathname.replace(/\/$/, '') || '/';
     margin-left: auto;
     margin-right: 20px;
   }
+  .nav-cta {
+    display: flex;
+    gap: 8px;
+  }
+  .nav-cta :global(.nav-store) {
+    white-space: nowrap;
+  }
   .nav-link {
     position: relative;
     padding: 8px 4px;
@@ -154,6 +167,18 @@ const here = Astro.url.pathname.replace(/\/$/, '') || '/';
     .nav-link::after {
       display: none;
     }
+    /* 좁아지면 "다운로드" 는 접고 OS 이름만 남긴다 */
+    .nav-store-suffix {
+      display: none;
+    }
+    .nav-cta {
+      gap: 6px;
+    }
+    .nav-cta :global(.btn) {
+      min-height: 40px;
+      padding: 0 12px;
+      font-size: 14px;
+    }
   }
   /* 좁은 화면에서도 다운로드 버튼은 살려둔다 (숨기지 않고 압축) */
   @media (max-width: 420px) {
@@ -165,9 +190,9 @@ const here = Astro.url.pathname.replace(/\/$/, '') || '/';
       font-size: 13.5px;
     }
     .nav-cta :global(.btn) {
-      min-height: 40px;
-      padding: 0 14px;
-      font-size: 14px;
+      min-height: 38px;
+      padding: 0 10px;
+      font-size: 13.5px;
     }
   }
 </style>

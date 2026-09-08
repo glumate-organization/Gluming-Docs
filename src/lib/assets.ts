@@ -253,6 +253,22 @@ export const screens = {
   onboarding: screenOnboarding, // 온보딩
 };
 
+// ── 라이프스타일 사진 (홈) ──────────────────────────────
+// 앱 화면 대신 "건강하게 · 함께 · 즐겁게" 분위기를 전하는 장면들. 원본 1672×941, JPEG.
+import lifeCoupleWalk from '../assets/lifestyle/couple-walk.jpg';
+import lifeFamilyCooking from '../assets/lifestyle/family-cooking.jpg';
+import lifeFamilyWalk from '../assets/lifestyle/family-walk.jpg';
+import lifeMomentsCollage from '../assets/lifestyle/moments-collage.jpg';
+import lifeThreeGenerations from '../assets/lifestyle/three-generations.jpg';
+
+export const lifestyle = {
+  familyWalk: lifeFamilyWalk, // 노을 강변, 네 식구 산책 (히어로)
+  coupleWalk: lifeCoupleWalk, // 노을 강변, 중년 부부 산책
+  threeGenerations: lifeThreeGenerations, // 삼대가 팔짱 끼고 걷는 장면
+  familyCooking: lifeFamilyCooking, // 햇살 드는 부엌, 온 가족 샐러드 준비
+  momentsCollage: lifeMomentsCollage, // 손글씨 문구가 얹힌 7컷 콜라주
+};
+
 /** 홈 화면의 컨디션 표정 5종 (표시 순서) */
 export const conditionScreens: {
   key: string;

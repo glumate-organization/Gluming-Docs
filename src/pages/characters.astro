@@ -368,17 +368,14 @@ const blurbs: Record<string, string> = {
 
 
   /* ── CTA ─────────────────────────────────────────── */
-  .cta-band {
-    text-align: center;
-  }
   .cta-rule {
-    margin: 0 auto clamp(40px, 6vw, 72px);
+    margin: 0 0 clamp(40px, 6vw, 72px);
     max-width: var(--measure);
   }
   .cta-inner {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
   .cta-title {
     font-size: var(--fs-h2);
@@ -386,7 +383,7 @@ const blurbs: Record<string, string> = {
     line-height: var(--lh-title);
   }
   .cta-sub {
-    margin: var(--sp-5) auto var(--sp-6);
+    margin: var(--sp-5) 0 var(--sp-6);
     color: var(--text-2);
     font-size: var(--fs-lead);
     line-height: var(--lh-body);
@@ -434,14 +431,10 @@ const blurbs: Record<string, string> = {
     }
     .hero-inner {
       gap: 26px;
-      text-align: center;
-    }
-    .hero-copy .section-sub {
-      margin-inline: auto;
     }
     .hero-cta {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       margin-top: 24px;
     }
 
