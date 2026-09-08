@@ -8,7 +8,8 @@ import type { ImageMetadata } from 'astro';
 // 마스코트 몸(#FCF5EE)은 배경(--bg #F7F5F0)과 대비가 1.03:1 이라 그대로 두면 안 보인다.
 // 그래서 가로 락업은 마스코트를 --primary 초록 라운드 타일 위에 올려 합성했고,
 // 워드마크도 --primary 로 맞춰 락업이 한 덩어리로 읽히게 했다.
-// 벡터가 필요한 자리(파비콘·장식)는 PNG 대신 components/Sprout.astro 를 쓴다.
+// 벡터가 필요한 장식 자리는 PNG 대신 components/Sprout.astro (근사 벡터) 를 쓴다.
+// 파비콘/앱아이콘은 app_logo.png 원본에서 scripts/gen-favicons.sh 로 뽑아 public/ 에 둔다.
 import logoHorizontal from '../assets/logo/full_logo.png'; // 가로 락업(타일 아이콘+워드마크)
 import logoVertical from '../assets/logo/full_vertical_logo.png'; // 세로 락업(투명)
 import logoIcon from '../assets/logo/icon_logo.png'; // 마스코트 단독(투명)

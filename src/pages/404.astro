@@ -1,0 +1,57 @@
+---
+// GitHub Pages 는 dist/404.html 을 자동으로 서빙한다. 검색 색인 제외(noindex).
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import Sprout from '../components/Sprout.astro';
+
+const title = '페이지를 찾을 수 없어요 — 글루밍';
+const description = '요청하신 주소에 페이지가 없어요. 홈이나 기능 소개로 돌아가 다시 살펴봐요.';
+---
+
+<Layout title={title} description={description} noindex>
+  <section class="section">
+    <div class="container notfound">
+      <Sprout size={72} />
+      <p class="eyebrow">404 — Not Found</p>
+      <h1 class="notfound-title">여기엔 아직 아무것도<br />자라지 않았어요</h1>
+      <p class="notfound-lead">
+        주소가 바뀌었거나 잘못 입력됐을 수 있어요.<br />
+        홈으로 돌아가거나 글루밍의 기능을 먼저 둘러봐요.
+      </p>
+      <div class="notfound-cta">
+        <Button href="/">홈으로</Button>
+        <Button href="/features" variant="secondary">기능 둘러보기</Button>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .notfound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .notfound-title {
+    font-size: var(--fs-h1);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .notfound-lead {
+    font-size: var(--fs-lead);
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+  .notfound-cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+  }
+</style>

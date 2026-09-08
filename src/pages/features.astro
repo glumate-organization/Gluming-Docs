@@ -5,10 +5,11 @@ import PhoneFrame from '../components/PhoneFrame.astro';
 import SectionHead from '../components/SectionHead.astro';
 import StoreButtons from '../components/StoreButtons.astro';
 import { conditionScreens, screens } from '../lib/assets';
+import { mobileAppSchema } from '../lib/seo';
 
-const title = '기능 — 실제 앱 화면으로 보는 글루밍';
+const title = '글루밍 기능 — 혈당 시뮬레이션·식사 기록·건강 리포트';
 const description =
-  '컨디션을 표정으로 보여주고, 지금 움직이면 혈당이 어떻게 변할지 운동별로 견줘 보고, 사진 한 장으로 식사를 기록해요. 미션·포인트와 주간 건강 리포트까지, 실제 앱 화면으로 만나보세요.';
+  '운동별 혈당 변화 시뮬레이션, 사진 한 장 식사 기록, 표정으로 보는 컨디션, 미션·포인트, 주간 건강 리포트까지. 글루밍의 기능을 실제 앱 화면으로 만나보세요.';
 
 // 딥다이브 기능 행 — 실제 구동 화면과 함께 좌우 교차 배치.
 const deepDives = [
@@ -122,7 +123,7 @@ const deepDives = [
 
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} jsonLd={[mobileAppSchema()]}>
   <!-- 1. HERO -->
   <section class="section hero">
     <div class="container hero-inner">

@@ -8,6 +8,7 @@ import ScreenCard from '../components/ScreenCard.astro';
 import SectionHead from '../components/SectionHead.astro';
 import Sprout from '../components/Sprout.astro';
 import StoreButtons from '../components/StoreButtons.astro';
+import { mobileAppSchema } from '../lib/seo';
 import { characters, screens } from '../lib/assets';
 
 // 실제 앱 화면으로 보여주는 핵심 기능 6가지.
@@ -53,8 +54,9 @@ const features = [
 ---
 
 <Layout
-  title="글루밍 · 나의 몸을 이해하는 새로운 방식을 제안해요"
-  description="글루밍은 혈당을 자동으로 재주는 작은 센서 값을 식사·운동 같은 행동과 살며시 이어주는 생활습관 관리 보조 서비스예요. 이미 오른 혈당을 뒤늦게 확인하는 대신, 앞으로의 혈당 변화를 먼저 그려봐요."
+  title="글루밍 Gluming — CGM 혈당 관리 습관 앱"
+  description="글루밍은 CGM(연속혈당측정) 센서 값을 식사·운동 같은 하루 행동과 잇는 혈당 관리 습관 앱이에요. 먹기 전, 움직이기 전에 혈당 흐름을 미리 그려보며 나의 몸을 이해해요."
+  jsonLd={[mobileAppSchema()]}
 >
   <!-- ── 1. HERO ───────────────────────────────────────── -->
   <section class="hero">

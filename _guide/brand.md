@@ -73,12 +73,17 @@ global.css 참조. **하드코딩 금지 — 반드시 변수로.**
 | `full_vertical_logo.png` | 세로 락업(투명) |
 | `icon_logo.png` | 마스코트 단독(투명) — 밝은 배경에선 초록 면 위에 |
 | `text_logo.png` | 워드마크 전용(투명) |
+| `app_logo.png` | 앱 아이콘 원본(1920², `--primary` 초록 면). 파비콘 생성 소스 — 사이트에 직접 렌더 안 함 |
 
 - 중앙 모듈 `src/lib/assets.ts` 의 `logos` 를 통해서만 import
+  (`app_logo.png` 은 예외 — import 하지 않으므로 `dist/` 에 나가지 않는다)
 - 최소 표시 높이 26px (그 아래로는 마스코트 디테일이 뭉갠다)
-- 벡터가 필요한 자리(파비콘·장식)는 PNG 대신 `src/components/Sprout.astro` (인라인 SVG).
-  `public/favicon.svg` 와 같은 도형이므로 한쪽을 고치면 다른 쪽도 맞춘다
-- 파비콘 세트: `public/favicon.svg` · `favicon.png` · `apple-touch-icon.png` · `og.png`
+- 벡터가 필요한 **장식** 자리는 PNG 대신 `src/components/Sprout.astro` (인라인 SVG).
+  공식 아트의 근사치라 장식용으로만 쓴다
+- 파비콘 세트는 `app_logo.png` 을 크롭 없이 축소한 것 — 앱스토어 아이콘과 동일하게 유지한다.
+  `scripts/gen-favicons.sh` 로 재생성:
+  `public/favicon.ico`(16·32·48) · `favicon-16.png` · `favicon-32.png` · `favicon.png`(180) ·
+  `apple-touch-icon.png`(180, full-bleed 정사각 — iOS 가 자체 마스킹) · `og.png`(별도 관리)
 
 ### 캐릭터 (글루밍즈) — `src/assets/character/`
 | 디렉터리 키 | 표시명 | 액센트 |

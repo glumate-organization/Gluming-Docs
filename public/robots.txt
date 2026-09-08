@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gluming.app/sitemap.xml

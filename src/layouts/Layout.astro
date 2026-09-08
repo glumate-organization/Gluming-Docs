@@ -2,22 +2,53 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import {
+  GOOGLE_SITE_VERIFICATION,
+  NAVER_SITE_VERIFICATION,
+  SITE_URL,
+  breadcrumbSchema,
+  organizationSchema,
+  pageNames,
+  serializeJsonLd,
+  webPageSchema,
+  webSiteSchema,
+} from '../lib/seo';
 
 interface Props {
   title?: string;
   description?: string;
   /** og:image 절대 URL (자기 도메인) — 선택 */
   ogImage?: string;
+  /** 검색 색인 제외 (404 등) */
+  noindex?: boolean;
+  /** 페이지 전용 JSON-LD 노드 추가 (예: mobileAppSchema()) — 공통 노드에 합쳐진다 */
+  jsonLd?: Record<string, unknown>[];
 }
 
 const {
-  title = '글루밍 · 나의 몸을 이해하는 새로운 방식을 제안해요',
-  description = '글루밍은 혈당을 자동으로 재주는 작은 센서 값을 식사·운동 같은 행동과 살며시 잇는 혈당 관리 습관 보조 서비스예요. 이미 오른 혈당을 뒤늦게 확인하는 대신, 앞으로의 혈당 변화를 먼저 그려보며 나의 몸을 이해하는 새로운 방식을 제안해요.',
-  ogImage = 'https://gluming.app/og.png',
+  title = '글루밍 Gluming — CGM 혈당 관리 습관 앱',
+  description = '글루밍은 CGM(연속혈당측정) 센서 값을 식사·운동 같은 하루 행동과 잇는 혈당 관리 습관 앱이에요. 먹기 전, 움직이기 전에 혈당 흐름을 미리 그려보며 나의 몸을 이해해요.',
+  ogImage = `${SITE_URL}/og.png`,
+  noindex = false,
+  jsonLd = [],
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://gluming.app')
-  .href;
+// 실제 서빙 URL(GitHub Pages)은 트레일링 슬래시 형태(/features/) → canonical 도 그대로 따른다.
+const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE_URL).href;
+const pathKey = Astro.url.pathname.replace(/\/$/, '') || '/';
+const pageName = pageNames[pathKey];
+
+// JSON-LD: 공통(Organization·WebSite·WebPage) + 서브페이지 브레드크럼 + 페이지 전용 노드.
+// 인라인 <script type="application/ld+json"> — 외부 스크립트 아님(자가완결 유지).
+const structuredData = noindex
+  ? null
+  : serializeJsonLd([
+      organizationSchema(),
+      webSiteSchema(),
+      webPageSchema(canonical, title, description),
+      ...(pageName ? [breadcrumbSchema(canonical, pageName)] : []),
+      ...jsonLd,
+    ]);
 ---
 
 <!doctype html>
@@ -29,22 +60,40 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://gluming.app
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#F7F5F0" />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <!-- 검색엔진 소유 확인 — 값은 src/lib/seo.ts. 비어 있으면 렌더 안 함 -->
+    {GOOGLE_SITE_VERIFICATION && (
+      <meta name="google-site-verification" content={GOOGLE_SITE_VERIFICATION} />
+    )}
+    {NAVER_SITE_VERIFICATION && (
+      <meta name="naver-site-verification" content={NAVER_SITE_VERIFICATION} />
+    )}
+    <!-- 파비콘 세트 — src/assets/logo/app_logo.png 에서 scripts/gen-favicons.sh 로 생성 -->
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="180x180" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Open Graph / 공유 메타데이터 (자기 도메인 절대 URL — 렌더링 의존 아님) -->
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
     <meta property="og:site_name" content="글루밍 Gluming" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="글루밍 Gluming — CGM 혈당 관리 습관 앱" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+
+    <!-- 구조화 데이터 (JSON-LD, 인라인) — src/lib/seo.ts -->
+    {structuredData && <script type="application/ld+json" set:html={structuredData} />}
   </head>
   <body>
     <a href="#main" class="skip-link">본문 바로가기</a>
