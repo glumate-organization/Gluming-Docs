@@ -233,6 +233,15 @@ import screenGlucoseDetail from '../assets/screens/glucose-detail.png';
 import screenDailyLog from '../assets/screens/daily-log.png';
 import screenSensorSetup from '../assets/screens/sensor-setup.png';
 import screenOnboarding from '../assets/screens/onboarding.png';
+import screenMarket from '../assets/screens/market.png';
+import screenDailyLogToday from '../assets/screens/daily-log-today.png';
+import screenGlucoseDetailDay from '../assets/screens/glucose-detail-day.png';
+import screenHomeToday from '../assets/screens/home-today.png';
+import screenLabInput from '../assets/screens/lab-input.png';
+import screenLabResult from '../assets/screens/lab-result.png';
+import screenMateList from '../assets/screens/mate-list.png';
+import screenMateDetail from '../assets/screens/mate-detail.png';
+import screenMateCheer from '../assets/screens/mate-cheer.png';
 
 export const screens = {
   homeGreat: screenHomeGreat, // 컨디션 아주 좋음 (노랑)
@@ -249,7 +258,16 @@ export const screens = {
   reportMealDetail: screenReportMealDetail, // 끼니별 상승폭 상세
   glucoseDetail: screenGlucoseDetail, // 하루 혈당 곡선 상세
   dailyLog: screenDailyLog, // 하루 기록 (혈당 곡선 · 걸음 · 물 · 기록 내역)
-  sensorSetup: screenSensorSetup, // 센서 연동 안내
+  sensorSetup: screenSensorSetup, // 센서 연동 안내 (구버전 · 바로잰 Fit 탭 포함 — 사이트에서는 안 씀)
+  market: screenMarket, // 마켓 · 미션 포인트로 캐릭터 수집
+  dailyLogToday: screenDailyLogToday, // 오늘 기록 (곡선 · 식사 마커 · 현재값)
+  glucoseDetailDay: screenGlucoseDetailDay, // 혈당 상세 (하루 곡선 · 타임라인)
+  homeToday: screenHomeToday, // 홈 · 컨디션 완전 좋음 (노랑) + 혈당실험소 진입
+  labInput: screenLabInput, // 혈당실험소 · 음식 담기 · 인원 선택
+  labResult: screenLabResult, // 혈당실험소 · 예측 결과
+  mateList: screenMateList, // 메이트 목록 · 응원하기
+  mateDetail: screenMateDetail, // 메이트의 오늘 (컨디션 · 곡선)
+  mateCheer: screenMateCheer, // 응원 메시지 고르기
   onboarding: screenOnboarding, // 온보딩
 };
 

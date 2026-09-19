@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import SectionHead from '../components/SectionHead.astro';
 import StoreButtons from '../components/StoreButtons.astro';
-import { characters } from '../lib/assets';
+import { lifestyle } from '../lib/assets';
 import { kakaoChannel } from '../lib/links';
 
 const title = '글루밍 소개 — 식사·운동과 혈당 흐름을 잇는 앱';
@@ -39,16 +39,14 @@ const roadmap = [
   {
     phase: '정식 출시',
     desc: 'App Store와 Google Play에서 내려받으실 수 있어요.',
-    current: true,
+    done: true,
   },
   {
     phase: '계속 다듬는 중',
     desc: '써주신 분들의 이야기를 들으며 조금씩 자라고 있어요.',
-    done: false,
+    current: true,
   },
 ];
-
-const guide = characters[0]; // 도디
 ---
 
 <Layout title={title} description={description}>
@@ -62,9 +60,9 @@ const guide = characters[0]; // 도디
           <span class="accent">조금 더 다정한 방법</span>
         </h1>
         <p class="hero-lead">
-          글루밍은 몸에 붙이는 작은 혈당 센서(CGM)가 잰 값을 식사·운동 같은
+          글루밍은 몸에 붙이는 작은 혈당 센서(CGM)가 잰 값을 식사·운동 같은{' '}
           <strong>일상의 행동</strong>과 이어주는 웰니스 습관 보조 서비스예요.<br />
-          지난 그래프를 되돌아보는 데서 멈추지 않고, 무언가를 선택하기
+          지난 그래프를 되돌아보는 데서 멈추지 않고, 무언가를 선택하기{' '}
           <strong>전에</strong> 내 혈당이 어떻게 변할지 가볍게 그려보도록 살며시 도와드릴게요.
         </p>
         <p class="hero-lead hero-lead-soft">
@@ -76,18 +74,19 @@ const guide = characters[0]; // 도디
         </div>
       </div>
       <div class="hero-visual">
+        <!-- 후광 효과 대신 실제 사용 장면. 캡션은 사진 설명 한 줄 -->
         <figure class="hero-figure">
-          <div class="hero-figure-glow" aria-hidden="true"></div>
-          <Image
-            class="hero-figure-img"
-            src={guide.states.happy}
-            alt={`글루밍 캐릭터 ${guide.name}`}
-            width={440}
-            height={440}
-          />
+          <div class="hero-photo">
+            <Image
+              src={lifestyle.threeGenerations}
+              alt="노을 지는 강변 산책로를 팔짱 끼고 걷는 삼대. 어머니의 팔에 작은 혈당 센서가 붙어 있고 세 사람이 서로를 보며 웃고 있다."
+              widths={[480, 800, 1200]}
+              sizes="(max-width: 960px) 90vw, 520px"
+              loading="eager"
+            />
+          </div>
           <figcaption class="hero-figure-cap">
-            <strong>{guide.name}</strong>
-            <span>{guide.tagline}</span>
+            센서는 어머니 팔에, 대화는 셋 사이에. 글루밍이 그리는 평범한 저녁 산책이에요.
           </figcaption>
         </figure>
       </div>
@@ -239,64 +238,30 @@ const guide = characters[0]; // 도디
     align-items: center;
   }
   .hero-figure {
-    position: relative;
     margin: 0;
     width: 100%;
-    max-width: 460px;
-    /* 넉넉한 여백으로 캐릭터가 잘리지 않고 숨 쉬도록 */
-    padding: clamp(36px, 5vw, 60px) clamp(28px, 4vw, 52px)
-      clamp(28px, 4vw, 44px);
+    max-width: 520px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    gap: var(--sp-4);
+  }
+  .hero-photo {
     border-radius: var(--r-lg);
-    /* 흰 카드 대신 종이 톤이 은은히 번지는 면 */
-    background: radial-gradient(
-      120% 90% at 50% 18%,
-      color-mix(in srgb, var(--surface) 70%, transparent) 0%,
-      var(--warm) 100%
-    );
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    background: var(--card-soft);
   }
-  .hero-figure-glow {
-    position: absolute;
-    top: 12%;
-    left: 50%;
-    width: 62%;
-    aspect-ratio: 1;
-    transform: translateX(-50%);
-    border-radius: var(--r-pill);
-    background: radial-gradient(
-      circle,
-      color-mix(in srgb, var(--primary) 22%, transparent) 0%,
-      transparent 68%
-    );
-    filter: blur(6px);
-    pointer-events: none;
-  }
-  .hero-figure-img {
-    position: relative;
-    z-index: 1;
-    width: clamp(200px, 26vw, 300px);
+  .hero-photo :global(img) {
+    display: block;
+    width: 100%;
     height: auto;
-    object-fit: contain;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: 50% 30%;
   }
   .hero-figure-cap {
-    position: relative;
-    z-index: 1;
-    margin-top: clamp(18px, 2.4vw, 28px);
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .hero-figure-cap strong {
-    font-weight: 700;
-    font-size: clamp(16px, 1.8vw, 18px);
-    color: var(--pine);
-  }
-  .hero-figure-cap span {
-    color: var(--text-2);
-    font-size: 14px;
+    color: var(--text-3);
+    font-size: var(--fs-sm);
     line-height: 1.6;
   }
 
@@ -535,7 +500,7 @@ const guide = characters[0]; // 도디
       order: -1;
     }
     .hero-figure {
-      max-width: 400px;
+      max-width: none;
     }
   }
 
@@ -573,13 +538,8 @@ const guide = characters[0]; // 도디
       font-size: 16px;
       line-height: 1.72;
     }
-    /* 캐릭터는 화면에 맞게 적당한 크기로, 여백은 그대로 유지 */
-    .hero-figure {
-      max-width: 340px;
-      padding: 28px 24px 22px;
-    }
-    .hero-figure-img {
-      width: clamp(168px, 52vw, 220px);
+    .hero-photo :global(img) {
+      aspect-ratio: 3 / 2;
     }
     /* 줄바꿈 강조 CTA — 터치 타깃 확대 (풀폭) */
     .hero-actions {

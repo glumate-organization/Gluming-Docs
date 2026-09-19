@@ -12,6 +12,7 @@ const description =
   '운동별 혈당 변화 시뮬레이션, 사진 한 장 식사 기록, 표정으로 보는 컨디션, 미션·포인트, 주간 건강 리포트까지. 글루밍의 기능을 실제 앱 화면으로 만나보세요.';
 
 // 딥다이브 기능 행 — 실제 구동 화면과 함께 좌우 교차 배치.
+// 리드와 겹치던 불릿 3개 대신, 짝이 되는 화면(pair)과 한 줄 캡션(caption)으로 보여준다.
 const deepDives = [
   {
     eyebrow: 'Condition at a glance',
@@ -21,12 +22,12 @@ const deepDives = [
     lead:
       '109, 187 같은 숫자만 보면 지금이 괜찮은 건지 애매하잖아요.<br />' +
       '글루밍즈가 <strong>표정과 한마디</strong>로 지금 흐름을 먼저 알려드려요.<br />' +
-      '아래에는 오늘의 점수·평균 혈당·변동성이 한 줄로 정리돼요.',
-    points: [
-      '컨디션에 따라 표정과 배경색이 달라져요',
-      '오늘의 점수 · 평균 혈당 · 변동성을 한눈에 봐요',
-      '바로 아래에서 "지금 움직이면?"으로 이어져요',
-    ],
+      '아래에는 오늘의 점수·평균 혈당·변동성이 한 줄로 정리되고, 바로 이어서 "이 음식을 먹으면 어떻게 될까요?"로 넘어가요.',
+    pair: {
+      img: screens.homeToday,
+      alt: '글루밍 홈 화면. 노란 배경 위에서 캐릭터가 두 팔을 들고 "오늘 컨디션 완전 좋아요!"라고 알려주고, 혈당 109 mg/dL과 오늘의 점수 90·평균 혈당 103·변동성 낮음, 그 아래 "이 음식을 먹으면 어떻게 될까요?" 입구가 보인다.',
+    },
+    caption: '컨디션에 따라 표정과 배경색이 함께 달라져요. 왼쪽은 초록, 오른쪽은 노란 날이에요.',
   },
   {
     eyebrow: 'Simulate before you move',
@@ -35,13 +36,13 @@ const deepDives = [
     alt: '“어떤 운동을 해볼까요?” 화면. 빠른 걷기 -2, 스쿼트 -14, 런닝 -9처럼 운동별 30분 뒤 예상 변화가, 아무것도 안 했을 때를 나타내는 점선과 겹친 미니 그래프로 비교된다.',
     lead:
       '가만히 있을 때와 몸을 움직였을 때를 <strong>나란히 놓고</strong> 비교해요.<br />' +
-      '빠른 걷기·스쿼트·런닝까지, 각각 30분 뒤 흐름이 어떻게 달라지는지 미리 그려봐요.<br />' +
-      '지난 7일간 쌓인 내 데이터를 바탕으로 계산한 참고값이에요.',
-    points: [
-      '"아무것도 안 했을 때"를 기준선으로 함께 보여줘요',
-      '운동 종류·시간별로 예상 변화를 견줘 봐요',
-      '마음에 드는 운동은 그 자리에서 바로 기록으로 이어져요',
-    ],
+      '빠른 걷기·스쿼트·런닝까지, 각각 30분 뒤 흐름이 어떻게 달라지는지 미리 그려봐요. 지난 7일간 쌓인 내 데이터로 계산한 참고값이에요.<br />' +
+      '마음에 드는 운동은 그 자리에서 바로 기록으로 이어져요. 종류 고르고, 5분 단위로 시간 정하고, 세 단계 강도 중 하나를 누르면 끝. 걸음 수처럼 자동으로 들어오는 값은 따로 적지 않아도 돼요.',
+    pair: {
+      img: screens.logExercise,
+      alt: '운동 기록 화면. 스트레칭·산책·빠른걷기·계단오르기 중 선택하고 시간 30분, 강도 중강도를 고르는 모습.',
+    },
+    caption: '왼쪽은 운동별 예상 변화(점선이 "아무것도 안 했을 때"), 오른쪽은 톡톡톡 세 번이면 끝나는 운동 기록이에요.',
   },
   {
     eyebrow: 'One photo is enough',
@@ -51,27 +52,46 @@ const deepDives = [
     lead:
       '기록이 숙제처럼 느껴지면 오래가기 어렵잖아요.<br />' +
       '한 상을 찰칵 찍으면 <strong>음식과 탄수화물을 알아서</strong> 찾아내요.<br />' +
-      '그리고 이 식사 뒤 흐름이 어떻게 이어질지도 함께 그려드려요.',
-    points: [
-      '한 상에 올라온 여러 음식을 한 번에 인식해요',
-      '음식별 양·탄수화물·칼로리를 정리해 보여줘요',
-      '먹기 전에 예상 흐름과 추천 섭취 순서를 함께 봐요',
-    ],
+      '먹기 전엔 예상 흐름과 먹는 순서를, 먹은 뒤엔 실제로 얼마나 올랐는지를 끼니별로 돌아볼 수 있어요.',
+    pair: {
+      img: screens.reportMealDetail,
+      alt: '건강 리포트의 끼니 상세. 7월 3일 점심을 먹은 뒤 혈당 상승 +44 mg/dL과 "채소 → 단백질 → 탄수화물 순서로 드시면 상승 폭을 부드럽게 만들 수 있어요"라는 안내가 보인다.',
+    },
+    caption: '왼쪽은 찍은 직후, 오른쪽은 며칠 뒤 리포트에서 그 끼니를 돌아본 화면이에요.',
   },
   {
-    eyebrow: 'Log in three taps',
-    title: '운동 기록은 톡톡톡, 세 번이면 끝',
-    img: screens.logExercise,
-    alt: '운동 기록 화면. 스트레칭·산책·빠른걷기·계단오르기 중 선택하고 시간 30분, 강도 중강도를 고르는 모습.',
+    eyebrow: 'Glucose lab',
+    title: '이 음식을 먹으면 어떻게 될까요?',
+    img: screens.labInput,
+    alt: '혈당실험소 화면. "지금 먹으면 어떻게 될까요?" 아래 마라탕 1인분(600g·탄수 36g)과 꿔바로우 1인분(250g·탄수 83g)이 담겨 있고, 몇 명이서 먹는지 고르는 버튼과 1인당 탄수화물 약 119g, "예측 보기" 버튼이 보인다.',
     lead:
-      '종류 고르고, 시간 정하고, 강도 누르면 끝이에요.<br />' +
-      '기록하는 순간 <strong>이 운동이면 어느 정도일지</strong> 바로 알려드려요.<br />' +
-      '걸음 수처럼 자동으로 들어오는 값은 따로 적지 않아도 돼요.',
-    points: [
-      '자주 하는 운동은 칩으로 바로 고를 수 있어요',
-      '5분 단위로 시간을 맞추고 강도는 세 단계 중에 골라요',
-      '고르는 동안 예상 변화가 아래에서 함께 바뀌어요',
-    ],
+      '먹기 전에 <strong>혈당실험소</strong>에 메뉴를 담아 보세요.<br />' +
+      '지금 혈당에서 출발해 식후 흐름이 어떻게 그려질지 미리 보여드려요. 몇 명이서 나눠 먹는지 고르면 1인당 탄수화물도 같이 계산돼요.<br />' +
+      '결과는 어디까지나 참고값이에요. 실제 반응은 사람마다 다르다는 것도 화면에서 함께 알려드려요.',
+    pair: {
+      img: screens.labResult,
+      alt: '혈당실험소 예측 결과. "이 식사 후 예상 혈당 변화, 탄수화물 119g 기준" 아래 116에서 199로 오르는 곡선과 예상 상승폭 +83, 약 55분 후 최고 199 mg/dL이 표시되고, "탄수화물량이 많아 예측 상승 폭이 클 수 있어요. 실제 반응은 개인차가 큽니다"라는 안내가 보인다.',
+    },
+    caption: '왼쪽은 메뉴를 담는 화면, 오른쪽은 "예측 보기"를 누른 뒤예요. 근거와 출처는 화면 아래 링크로 이어져요.',
+  },
+  {
+    eyebrow: 'Mates',
+    title: '혼자 말고, 메이트와 같이',
+    img: screens.mateList,
+    alt: '메이트 화면. "건강메이트 · 함께 행복하게 혈당관리하는 우리가족" 아래 방장 글루밍의 "오늘 컨디션 완전 좋아요!"와 응원하기 버튼, 그리고 나(글루메이트)의 "아직 기록이 없어요"가 카드로 나열돼 있다.',
+    lead:
+      '가족이나 지인을 메이트로 초대하면, 서로의 오늘 컨디션을 <strong>글루밍즈 표정</strong>으로 먼저 알 수 있어요.<br />' +
+      '메이트의 카드를 열면 그날의 흐름도 함께 보여요. 잘 챙긴 날엔 같이 기뻐하고, 힘든 날엔 살며시 마음을 보내요.<br />' +
+      '"응원하기"를 누르면 준비된 말 중 하나를 골라 보낼 수 있어요. "오늘도 화이팅이에요!"부터 "같이 걸을까요?"까지, 잔소리 대신 응원으로요.',
+    pair: {
+      img: screens.mateDetail,
+      alt: '메이트의 오늘 화면. 글루밍의 캐릭터가 "오늘 컨디션 완전 좋아요!"라고 알려주고 오늘의 점수 90, 9월 19일 혈당 곡선과 함께 아래에 "응원 보내기" 버튼이 있다.',
+    },
+    third: {
+      img: screens.mateCheer,
+      alt: '응원 메시지 고르기. "글루밍님에게 보낼 말을 골라주세요" 아래 마음 전하기(오늘도 화이팅이에요!, 잘하고 있어요, 응원하고 있어요)와 같이 해보기(같이 걸을까요?, 산책해보는 거 어때요?, 스쿼트 10개 해보는 거 어때요?, 물 한 잔 마셔보는 거 어때요?) 선택지가 보인다.',
+    },
+    caption: '왼쪽부터 메이트 목록, 메이트의 오늘, 보낼 응원 고르기예요.',
   },
   {
     eyebrow: 'Missions & points',
@@ -81,27 +101,27 @@ const deepDives = [
     lead:
       '오늘 할 일은 딱 네 가지, 그것도 <strong>이미 하고 있는 것들</strong>이에요.<br />' +
       '식사와 운동을 기록하고, 오늘 걸음을 채우면 그대로 포인트가 돼요.<br />' +
-      '하루하루 이어가면 보너스가 붙고, 모은 포인트로 새 친구를 만나요.',
-    points: [
-      '기록하는 것만으로 미션이 채워져서 부담이 적어요',
-      '연속으로 이어가면 보너스 포인트를 받아요',
-      '이번 주 도전까지 채우면 추가 보상이 기다려요',
-    ],
+      '모은 포인트는 마켓에서 <strong>새 글루밍즈 친구</strong>로 바꿔요. 캐릭터는 오직 미션으로 얻은 포인트로만 만날 수 있어요.',
+    pair: {
+      img: screens.market,
+      alt: '마켓 화면. 내 포인트가 표시되고, 캐릭터 탭 아래에 "캐릭터는 오직 미션을 통해 얻은 포인트로만 구매가 가능합니다" 안내와 함께 루코·도디·루모·보미 카드가 보유중 표시와 함께 나열돼 있다.',
+    },
+    caption: '왼쪽은 오늘의 미션, 오른쪽은 포인트로 친구를 모으는 마켓이에요.',
   },
   {
     eyebrow: 'Your day, all in one place',
     title: '하루를 한 화면에 소복이 모아서',
-    img: screens.dailyLog,
-    alt: '하루 기록 화면. 하루 혈당 곡선(평균 101, 최저 88, 최고 136)과 걸음 수 2,289걸음, 물 섭취, 그날의 기록 내역이 한 화면에 모여 있다.',
+    img: screens.dailyLogToday,
+    alt: '오늘 기록 화면. 9월 13일부터 19일까지 요일을 고를 수 있고, 오늘의 곡선에 평균 103·최저 70·최고 162 mg/dL과 현재값 109 mg/dL, 점심 식사 시각이 주황 점선으로 표시돼 있다. 아래에는 기록 내역으로 점심 탄수화물 94g·765kcal이 보인다.',
     lead:
       '오늘 하루가 어떻게 흘렀는지 <strong>한 화면에</strong> 모아서 보여드려요.<br />' +
-      '혈당 곡선 위에 목표 범위를 겹쳐 그려서, 어느 시간대가 어땠는지 눈으로 바로 읽혀요.<br />' +
-      '걸음 수와 물처럼 같이 챙기면 좋은 것들도 옆에 나란히 놓여 있어요.',
-    points: [
-      '날짜를 옆으로 넘기며 지난 날들을 편하게 되짚어요',
-      '평균 · 최저 · 최고를 한 줄로 정리해 보여줘요',
-      '그날의 식사·운동 기록이 시간 순으로 함께 쌓여요',
-    ],
+      '혈당 곡선 위에 목표 범위를 겹쳐 그리고, 식사한 시각은 점선으로 표시해서 어느 끼니 뒤에 어떻게 움직였는지 눈으로 바로 읽혀요.<br />' +
+      '"자세히 보기"를 누르면 곡선이 크게 펼쳐지고, 두 손가락으로 벌려 확대하거나 옆으로 밀어 지난 날도 되짚어요.',
+    pair: {
+      img: screens.glucoseDetailDay,
+      alt: '혈당 상세 화면. 9월 19일(토)의 혈당 곡선이 목표 범위 띠 위에 크게 그려져 있고, 점심 시각이 주황 점선으로 표시된다. 아래에 평균 103·최저 70·최고 162·TIR 100%와 이 날의 타임라인(오후 2:39 점심 진주냉면, 소고기 육전, 배추김치)이 보인다.',
+    },
+    caption: '왼쪽은 오늘 기록, 오른쪽은 "자세히 보기"로 펼친 혈당 상세예요. 주황 점선이 점심을 먹은 시각이에요.',
   },
   {
     eyebrow: 'A week in one view',
@@ -110,15 +130,16 @@ const deepDives = [
     alt: '건강 리포트 혈당 탭. 평균 혈당 97 mg/dL, 변동성(CV) 14.5%, 목표 범위 시간(TIR) 97%, 최고 혈당 154 mg/dL과 최근 7일 시간대별 평균 곡선, 일별 평균 혈당 변화가 보인다.',
     lead:
       '하루하루는 들쭉날쭉해도, <strong>일주일을 모아 보면</strong> 내 리듬이 보여요.<br />' +
-      '평균과 변동성, 목표 범위 안에 머문 시간을 정리해 드려요.<br />' +
-      '식사 탭에서는 자주 먹은 음식과 혈당을 많이 올린 끼니도 확인할 수 있어요.',
-    points: [
-      '평균 · 변동성(CV) · 목표 범위 시간(TIR)을 함께 봐요',
-      '하루를 겹쳐 그린 시간대별 평균 곡선으로 습관이 드러나요',
-      '자주 먹은 음식과 상승폭이 컸던 끼니를 Top 3로 짚어줘요',
-    ],
+      '평균과 변동성(CV), 목표 범위 안에 머문 시간(TIR)을 정리해 드려요.<br />' +
+      '식사 탭에서는 자주 먹은 음식과 혈당을 많이 올린 끼니를 Top 3로 짚어드려요.',
+    pair: {
+      img: screens.reportMeal,
+      alt: '건강 리포트 식사 탭. 자주 먹은 음식 Top 3(족발·아이스 카페라떼·보쌈), 혈당을 많이 올린 끼니 Top 3, 하루 평균 섭취 탄수화물 66g이 보인다.',
+    },
+    caption: '왼쪽이 혈당 탭, 오른쪽이 식사 탭이에요.',
   },
 ];
+
 
 
 ---
@@ -179,9 +200,15 @@ const deepDives = [
         deepDives.map((f, i) => {
           const num = String(i + 1).padStart(2, '0');
           return (
-            <article class={`row reveal ${i % 2 === 1 ? 'row-reverse' : ''}`}>
+            <article
+              class:list={[
+                'row',
+                'reveal',
+                { 'row-reverse': i % 2 === 1, 'has-pair': !!f.pair, 'has-trio': !!f.third },
+              ]}
+            >
               <div class="row-media">
-                <PhoneFrame width={282}>
+                <PhoneFrame width={282} class="row-phone">
                   <Image
                     src={f.img}
                     alt={f.alt}
@@ -190,6 +217,28 @@ const deepDives = [
                     loading="lazy"
                   />
                 </PhoneFrame>
+                {f.pair && (
+                  <PhoneFrame width={216} class="row-phone row-phone-pair">
+                    <Image
+                      src={f.pair.img}
+                      alt={f.pair.alt}
+                      widths={[240, 480]}
+                      sizes="216px"
+                      loading="lazy"
+                    />
+                  </PhoneFrame>
+                )}
+                {f.third && (
+                  <PhoneFrame width={216} class="row-phone row-phone-third">
+                    <Image
+                      src={f.third.img}
+                      alt={f.third.alt}
+                      widths={[240, 480]}
+                      sizes="216px"
+                      loading="lazy"
+                    />
+                  </PhoneFrame>
+                )}
               </div>
               <div class="row-text">
                 <span class="row-num" aria-hidden="true">
@@ -198,26 +247,19 @@ const deepDives = [
                 <span class="eyebrow">{f.eyebrow}</span>
                 <h2 class="row-title">{f.title}</h2>
                 <p class="row-lead" set:html={f.lead} />
-                <ul class="row-points">
-                  {f.points.map((p) => (
-                    <li>{p}</li>
-                  ))}
-                </ul>
+                <p class="row-caption">{f.caption}</p>
               </div>
             </article>
           );
         })
       }
+
     </div>
   </section>
 
-  <!-- 4. CTA 밴드 (+ 의료 비대체 고지) -->
+  <!-- 4. CTA 밴드 -->
   <section class="section cta">
     <div class="container">
-      <p class="page-note">
-        글루밍은 생활습관 관리를 돕는 <strong>보조 도구</strong>예요. 전문적인
-        진료나 상담을 대신하지 않고, 곁에서 살포시 거들게요.
-      </p>
       <div class="cta-band">
         <p class="eyebrow on-dark">Start Today</p>
         <h2 class="cta-title">행동 전에 한 번 더 살펴보는 습관,<br />함께 시작해요</h2>
@@ -328,6 +370,29 @@ const deepDives = [
   .row-media {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
+    gap: clamp(12px, 2vw, 24px);
+  }
+  /* 짝 화면은 한 뼘 아래로 — 같은 높이에 나란히 서지 않게 */
+  .row-media :global(.row-phone-pair) {
+    margin-top: var(--sp-8);
+  }
+  /* 폰 세 대 — 이 행만 폰 쪽 칸을 넓히고, 세 대를 조금씩 다른 높이로 */
+  .row.has-trio {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+  .row.has-trio.row-reverse {
+    grid-template-columns: 0.85fr 1.15fr;
+  }
+  .has-trio .row-media :global(.row-phone .phone-body) {
+    width: min(100%, 220px);
+  }
+  .has-trio .row-media :global(.row-phone-pair .phone-body),
+  .has-trio .row-media :global(.row-phone-third .phone-body) {
+    width: min(100%, 196px);
+  }
+  .has-trio .row-media :global(.row-phone-third) {
+    margin-top: var(--sp-5);
   }
   /* 큰 세리프 인덱스 — 지면의 챕터 번호처럼 */
   .row-num {
@@ -353,47 +418,15 @@ const deepDives = [
     line-height: 1.8;
     max-width: 560px;
   }
-  .row-points {
-    margin: var(--sp-6) 0 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-  }
-  .row-points li {
-    position: relative;
-    padding: 13px 0 13px 26px;
-    color: var(--text);
-    font-size: var(--fs-body);
-    line-height: 1.6;
+  /* 화면 설명 한 줄 — 불릿 목록 대신 사진 캡션처럼 */
+  .row-caption {
+    margin-top: var(--sp-5);
+    padding-top: var(--sp-4);
     border-top: 1px solid var(--rule);
-  }
-  .row-points li:last-child {
-    border-bottom: 1px solid var(--rule);
-  }
-  .row-points li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 21px;
-    width: 10px;
-    height: 10px;
-    border-radius: var(--r-pill);
-    border: 1.5px solid var(--sage);
-  }
-
-
-  /* 의료 비대체 고지 — 연동·로그인 섹션이 빠지면서 독립 블록으로 옮겼다. 문구는 유지. */
-  .page-note {
-    margin: 0 0 var(--sp-8);
-    max-width: var(--measure);
-    font-size: var(--fs-sm);
-    line-height: var(--lh-body);
+    max-width: 560px;
     color: var(--text-3);
-  }
-  .page-note strong {
-    color: var(--text-2);
-    font-weight: 600;
+    font-size: var(--fs-sm);
+    line-height: 1.6;
   }
 
   /* ── CTA 밴드 ── pine 다크 밴드, 납작하게 */
@@ -512,19 +545,34 @@ const deepDives = [
       font-size: 15.5px;
       line-height: 1.74;
     }
-    .row-points {
-      margin-top: var(--sp-5);
+    /* 폰 두 대는 좁은 화면에서 작게 나란히 */
+    .row-media {
+      gap: var(--sp-3);
     }
-    /* 터치 타깃 확대 */
-    .row-points li {
-      padding: 15px 0 15px 26px;
-      font-size: 15px;
+    .has-pair .row-media :global(.row-phone .phone-body) {
+      width: min(100%, 168px);
     }
-    .row-points li::before {
-      top: 22px;
+    .has-pair .row-media :global(.row-phone-pair .phone-body) {
+      width: min(100%, 136px);
     }
-
-    /* 칩이 한 줄에 하나씩 넉넉히 — 좁은 화면에서 편하게 */
+    .row-media :global(.row-phone-pair) {
+      margin-top: var(--sp-6);
+    }
+    /* 세 대는 같은 높이로 작게 나란히 */
+    .has-trio .row-media :global(.row-phone .phone-body),
+    .has-trio .row-media :global(.row-phone-pair .phone-body),
+    .has-trio .row-media :global(.row-phone-third .phone-body) {
+      width: min(100%, 104px);
+      padding: 5px;
+      border-radius: 22px;
+    }
+    .has-trio .row-media :global(.row-phone .phone-screen) {
+      border-radius: 18px;
+    }
+    .has-trio .row-media :global(.row-phone-pair),
+    .has-trio .row-media :global(.row-phone-third) {
+      margin-top: 0;
+    }
 
 
     .cta-band {

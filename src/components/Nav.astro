@@ -56,8 +56,8 @@ const here = Astro.url.pathname.replace(/\/$/, '') || '/';
     position: sticky;
     top: 0;
     z-index: 50;
-    backdrop-filter: blur(16px);
-    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    /* 반투명 블러(글라스) 대신 종이색 불투명 면 — 아래 내용이 비쳐 흐려지지 않는다 */
+    background: var(--bg);
     border-bottom: 1px solid var(--rule);
   }
   .nav-inner {
@@ -77,7 +77,6 @@ const here = Astro.url.pathname.replace(/\/$/, '') || '/';
   }
   @keyframes nav-settle {
     to {
-      background: color-mix(in srgb, var(--bg) 94%, transparent);
       border-bottom-color: var(--border-strong);
     }
   }
