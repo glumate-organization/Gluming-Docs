@@ -77,6 +77,7 @@ Gluming/
 - `self-contained-assets` — 이미지 base64 인라인 vs 번들 판단, 변환 스니펫
 - `wellness-content` — 혈당/당뇨/헬스케어 카피 작성 규칙, 금지/권장 표현
 - `landing-page` — 랜딩 페이지 섹션 구성, 전환 설계, 접근성/성능
+- `landing-antipattern-review` — "AI가 만든 듯한 흔한 랜딩 문법" 20가지 점검 → 발견 항목만 수정 → 보고
 
 ## 6. 절대 하지 않는 것
 
