@@ -87,7 +87,7 @@ const flows = [
 ---
 
 <Layout
-  title="글루밍 - 함께, 재미있게, 행복하게 혈당관리"
+  title="글루밍 - 함께 관리하는 재미있는 혈당 관리 문화"
   description="글루밍은 CGM(연속혈당측정) 센서 값을 식사·운동 같은 하루 행동과 잇는 혈당 관리 습관 앱이에요. 가족과 걷고 같이 먹는 평범한 하루 안에서, 나의 혈당을 건강하게, 함께, 즐겁게 돌봐요."
   jsonLd={[mobileAppSchema()]}
 >
@@ -139,6 +139,27 @@ const flows = [
       <p class="trust-note">
         의료기기가 아니에요 · 생활습관 관리를 돕는 웰니스 서비스예요
       </p>
+    </div>
+  </section>
+
+  <!-- ── 2.5 우리가 만들고 싶은 문화 — 장식 없이 글만 ────────── -->
+  <section class="story" aria-labelledby="story-title">
+    <div class="container">
+      <div class="story-inner reveal">
+        <h2 id="story-title" class="story-q">혼자 하던 혈당관리, 힘들지 않았나요?</h2>
+        <p>
+          글루밍은 함께 관리하는 재미있는 혈당 관리 문화를 만들어가고 있어요.<br />
+          내가 먹은 음식과 혈당 변화를 보면서 나에게 맞는 관리 방법을 찾아가요.
+        </p>
+        <p>
+          그리고 가족의 “어떻게 도와주면 좋을까?”라는 걱정을 메이트의 이해와 응원으로
+          해결할 수 있어요. 함께 먹을 음식을 고르고, 산책하고, 작은 노력에도 따뜻한
+          격려를 건네는 일상을 만들어 보는 거 어때요?
+        </p>
+        <p class="story-end">
+          가족과 함께 만들어가는 재미있는 혈당 관리 문화, 글루밍과 같이 만들어봐요.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -463,6 +484,32 @@ const flows = [
     margin: 0;
     color: var(--text-3);
     font-size: var(--fs-xs);
+    font-weight: 600;
+  }
+
+  /* ── 우리가 만들고 싶은 문화 — 좁은 본문 폭의 짧은 글 ───── */
+  .story {
+    padding: var(--sp-10) 0 0;
+  }
+  .story-inner {
+    max-width: 36em;
+    color: var(--text-2);
+    font-size: var(--fs-lead);
+    line-height: var(--lh-body);
+  }
+  .story-q {
+    margin: 0 0 var(--sp-5);
+    color: var(--text);
+    font-size: var(--fs-h3);
+    line-height: var(--lh-title);
+    letter-spacing: -0.03em;
+  }
+  .story-inner p {
+    margin: 0 0 var(--sp-4);
+  }
+  .story-inner .story-end {
+    margin: var(--sp-5) 0 0;
+    color: var(--primary-dark);
     font-weight: 600;
   }
 
@@ -848,6 +895,12 @@ const flows = [
     }
     .trust-inner {
       padding: var(--sp-5) 0;
+    }
+    .story {
+      padding-top: var(--sp-8);
+    }
+    .story-inner br {
+      display: none;
     }
     .moments,
     .friend-cells {
