@@ -4,7 +4,7 @@
 // 소유 확인 코드는 공개 HTML에 박히는 값이라 시크릿이 아니다 → 상수로 둔다.
 // 값이 빈 문자열이면 Layout이 해당 <meta>를 아예 렌더하지 않는다.
 
-import { contactEmail, kakaoChannel, storeLinks } from './links';
+import { companySite, contactEmail, kakaoChannel, storeLinks } from './links';
 
 export const SITE_URL = 'https://gluming.app';
 export const SITE_NAME = '글루밍';
@@ -30,6 +30,19 @@ type JsonLd = Record<string, unknown>;
 
 const ORG_ID = `${SITE_URL}/#organization`;
 const SITE_ID = `${SITE_URL}/#website`;
+// 회사 사이트(glumate.co.kr)의 Organization 노드와 같은 @id — 검색엔진이 두 사이트를 한 회사로 묶는다.
+const COMPANY_ID = `${companySite}#organization`;
+
+/** 운영사 글루메이트. 글루밍 브랜드의 상위 조직이자 앱 배포 주체. */
+function companyRef(): JsonLd {
+  return {
+    '@type': 'Organization',
+    '@id': COMPANY_ID,
+    name: '글루메이트',
+    alternateName: 'GLUMATE',
+    url: companySite,
+  };
+}
 
 /** 운영 주체. 모든 페이지에 포함. */
 export function organizationSchema(): JsonLd {
@@ -42,6 +55,7 @@ export function organizationSchema(): JsonLd {
     logo: `${SITE_URL}/apple-touch-icon.png`,
     email: contactEmail,
     sameAs: [storeLinks.appStore, storeLinks.playStore, kakaoChannel],
+    parentOrganization: companyRef(),
   };
 }
 
@@ -100,6 +114,7 @@ export function mobileAppSchema(): JsonLd {
     installUrl: [storeLinks.appStore, storeLinks.playStore],
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'KRW' },
     author: { '@id': ORG_ID },
+    publisher: companyRef(),
   };
 }
 

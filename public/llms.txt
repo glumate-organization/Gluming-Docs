@@ -1,0 +1,16 @@
+# 글루밍 (Gluming)
+
+> 글루밍은 연속혈당측정(CGM) 센서가 잰 혈당을 식사·걸음·운동 같은 하루의 기록과 이어, 생활습관 관리를 돕는 웰니스 앱입니다. 행동하기 전에 혈당 흐름을 미리 그려보고, 가족·메이트와 함께 관리하도록 돕습니다. 의료기기가 아닌 웰니스 서비스이며, 의료인의 판단을 대체하지 않습니다. 운영사는 글루메이트(GLUMATE)입니다.
+
+- 앱 다운로드(App Store): https://apps.apple.com/kr/app/id6782602380
+- 앱 다운로드(Google Play): https://play.google.com/store/apps/details?id=org.glumate.gluming
+- 운영사 글루메이트: https://glumate.co.kr/
+- 문의: glumate@glumate.org · 카카오톡 채널 https://pf.kakao.com/_wsdKX
+
+## 페이지
+
+- [기능](https://gluming.app/features/): 혈당 시뮬레이션, 사진 식사 기록, 컨디션 표정, 미션·포인트, 주간 리포트
+- [소개](https://gluming.app/about/): 글루밍이 만들어진 이유와 접근 방식
+- [글루밍즈](https://gluming.app/characters/): 컨디션을 함께 살피는 캐릭터
+- [의료 정보 기준·출처](https://gluming.app/medical/): 혈당 기준 범위, TIR, 운동 강도(MET), 예측 모델의 근거와 출처
+- [서비스 이용약관](https://gluming.app/terms/) · [개인정보처리방침](https://gluming.app/privacy/) · [배송·환불 규정](https://gluming.app/shipping/)

@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import { logos } from '../lib/assets';
 import { getBusinessStatus } from '../lib/business';
-import { kakaoChannel, storeLinks } from '../lib/links';
+import { companySite, kakaoChannel, storeLinks } from '../lib/links';
 
 const year = 2026;
 // 빌드 시점에 국세청 API로 사업자 상태 조회 (키 없으면 ok:false 폴백)
@@ -78,7 +78,7 @@ const cols = [
       질병의 진단·치료를 대체하지 않습니다. 건강 관련 판단은 전문가와 상의하세요.
     </p>
     <ul class="biz">
-      <li>상호 : 글루메이트</li>
+      <li>상호 : <a class="biz-company" href={companySite} target="_blank" rel="noopener">글루메이트</a></li>
       <li>사업자등록번호 : 785-03-03768</li>
       <li>통신판매업 신고번호 : 제 2026-대전대덕-0372 호</li>
       <li>개업년월일 : 2026.03.25</li>
@@ -173,6 +173,11 @@ const cols = [
   }
   .biz li {
     position: relative;
+  }
+  .biz-company {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
   .biz li:not(:last-child)::after {
     content: "·";
