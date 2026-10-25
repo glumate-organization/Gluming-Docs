@@ -1,5 +1,6 @@
 ---
 // 혈당 노트 — 글 목록. 새 글은 src/content/blog/ 에 .md 를 추가하면 자동으로 여기 올라온다.
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import { BLOG_DESCRIPTION, BLOG_TITLE, formatDate, getPublishedPosts, isoDate, postPath } from '../../lib/blog';
 
@@ -23,13 +24,18 @@ const posts = await getPublishedPosts();
           <ul class="post-list">
             {posts.map((p) => (
               <li class="post-item">
-                <a href={postPath(p)} class="post-link">
-                  <p class="post-kicker">
-                    <span class="post-cat">{p.data.category}</span>
-                    <time datetime={isoDate(p.data.publishDate)}>{formatDate(p.data.publishDate)}</time>
-                  </p>
-                  <h2 class="post-title">{p.data.title}</h2>
-                  <p class="post-desc">{p.data.description}</p>
+                <a href={postPath(p)} class:list={['post-link', { 'has-thumb': p.data.cover }]}>
+                  {p.data.cover && (
+                    <Image src={p.data.cover} alt="" class="post-thumb" widths={[200, 400]} sizes="200px" />
+                  )}
+                  <div class="post-text">
+                    <p class="post-kicker">
+                      <span class="post-cat">{p.data.category}</span>
+                      <time datetime={isoDate(p.data.publishDate)}>{formatDate(p.data.publishDate)}</time>
+                    </p>
+                    <h2 class="post-title">{p.data.title}</h2>
+                    <p class="post-desc">{p.data.description}</p>
+                  </div>
                 </a>
               </li>
             ))}
@@ -101,6 +107,28 @@ const posts = await getPublishedPosts();
     display: block;
     padding: var(--sp-6) 0;
     color: inherit;
+  }
+  .post-link.has-thumb {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: var(--sp-5);
+    align-items: center;
+  }
+  .post-link.has-thumb :global(.post-thumb) {
+    order: 2;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--r-md);
+  }
+  @media (max-width: 560px) {
+    .post-link.has-thumb {
+      grid-template-columns: 1fr;
+    }
+    .post-link.has-thumb :global(.post-thumb) {
+      order: 0;
+    }
   }
   .post-kicker {
     display: flex;

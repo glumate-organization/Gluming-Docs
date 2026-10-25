@@ -10,6 +10,13 @@
 #  - [사람] 어미는 해요체, 공포 마케팅 금지, 1형 당뇨를 대상으로 쓰지 않기
 #  - [사람] 약 복용·임신 등 주의가 필요한 경우 "의료진과 상의" 안내 넣기
 #
+# 이미지 (외부 URL 금지 — 리포 안 파일만, 경로는 이 .md 파일 기준 상대경로)
+#  - 대표 이미지 cover(가로형) + coverAlt 필수 쌍. 목록 썸네일·글 상단·공유 미리보기에 쓰인다
+#  - 쓸 수 있는 것: ../../assets/lifestyle/*.jpg (사진), ../../assets/screens/*.png (앱 화면),
+#    ../../assets/character/<이름>/*.png (글루밍즈), 또는 직접 만든 도식 ./images/<slug>/*.svg
+#  - 본문: ![화면을 설명하는 alt](경로) 다음 줄에 *캡션* 한 줄 → 가운데 정렬 캡션으로 보인다
+#  - 도식은 '이해를 돕는 개념도'로만. 실제 데이터처럼 보이는 수치를 그려 넣지 않는다
+#
 # 예약 발행: publishDate 를 미래로 두면 그 날 KST 09:10 자동 빌드에서 공개된다.
 #   (.github/workflows/deploy.yml 의 schedule — 매일 1회)
 # 임시 저장: draft: true
@@ -21,6 +28,8 @@ publishDate: 2026-11-01
 category: 혈당 기초 # 혈당 기초 | 식사 | 운동 | 생활습관
 # author: 글루밍 팀
 draft: true
+cover: ../../assets/lifestyle/family-walk.jpg
+coverAlt: 대표 이미지를 한 문장으로 설명
 sources:
   - title: "저자. 제목. 학술지/기관, 연도."
     url: https://doi.org/...

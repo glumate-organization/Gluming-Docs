@@ -141,6 +141,8 @@ export function blogPostingSchema(post: {
   section: string;
   author: string;
   sources: { title: string; url: string }[];
+  /** 대표 이미지 절대 URL — 없으면 사이트 기본 og.png */
+  image?: string;
 }): JsonLd {
   return {
     '@type': 'BlogPosting',
@@ -152,7 +154,7 @@ export function blogPostingSchema(post: {
     dateModified: post.modified,
     articleSection: post.section,
     inLanguage: 'ko-KR',
-    image: `${SITE_URL}/og.png`,
+    image: post.image ?? `${SITE_URL}/og.png`,
     author: { '@type': 'Organization', name: post.author, url: SITE_URL },
     publisher: { '@id': ORG_ID },
     isPartOf: { '@id': SITE_ID },

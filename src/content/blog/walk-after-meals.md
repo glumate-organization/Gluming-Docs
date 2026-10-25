@@ -3,6 +3,8 @@ title: 식후 10분 걷기, 혈당 흐름에 어떤 차이를 만들까
 description: 밥 먹고 잠깐 걷는 습관이 식후 혈당 흐름과 어떻게 이어지는지, 연구 결과와 함께 일상에서 해볼 수 있는 방법을 정리했어요.
 publishDate: 2026-10-25
 category: 운동
+cover: ../../assets/lifestyle/couple-walk.jpg
+coverAlt: 노을 지는 강변 산책로를 팔짱 끼고 함께 걷는 중년 부부
 sources:
   - title: "Reynolds AN, et al. Advice to walk after meals is more effective for lowering postprandial glycaemia in type 2 diabetes mellitus than advice that does not specify timing: a randomised crossover study. Diabetologia, 2016;59:2572–2578."
     url: https://doi.org/10.1007/s00125-016-4085-2
@@ -42,3 +44,7 @@ sources:
 같은 메뉴, 같은 걷기라도 사람마다 혈당 흐름은 다르게 나타나요. 연속혈당측정(CGM)을 쓰고 있다면 "걸은 날"과 "앉아 있던 날"의 식후 그래프를 나란히 비교해 보세요. 내 몸이 어떻게 반응하는지 알게 되면, 습관을 이어갈 이유도 훨씬 분명해져요.
 
 글루밍에서는 식사 후 산책을 고르기 전에, 내 혈당 흐름이 어떻게 달라질지 미리 그려볼 수 있어요.
+
+![글루밍 앱의 '어떤 운동을 해볼까요?' 화면. 빠른 걷기·스쿼트·런닝을 했을 때 30분 뒤 예상 혈당 흐름을 각각 곡선으로 보여준다](../../assets/screens/sim-exercise.png)
+
+*글루밍 운동 시뮬레이션 화면 (예시). 예상 흐름은 개인 기록에 따라 달라지는 참고값이에요.*
