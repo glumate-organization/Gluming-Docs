@@ -1,0 +1,135 @@
+---
+// 혈당 노트 — 글 목록. 새 글은 src/content/blog/ 에 .md 를 추가하면 자동으로 여기 올라온다.
+import Layout from '../../layouts/Layout.astro';
+import { BLOG_DESCRIPTION, BLOG_TITLE, formatDate, getPublishedPosts, isoDate, postPath } from '../../lib/blog';
+
+const posts = await getPublishedPosts();
+---
+
+<Layout title={`${BLOG_TITLE} — 글루밍`} description={BLOG_DESCRIPTION}>
+  <section class="blog">
+    <header class="blog-head container">
+      <p class="blog-eyebrow">Journal</p>
+      <h1 class="blog-title">{BLOG_TITLE}</h1>
+      <p class="blog-lead">{BLOG_DESCRIPTION}</p>
+      <p class="blog-rss"><a href="/rss.xml">RSS 구독</a></p>
+    </header>
+
+    <div class="container">
+      {
+        posts.length === 0 ? (
+          <p class="blog-empty">첫 글을 준비하고 있어요.</p>
+        ) : (
+          <ul class="post-list">
+            {posts.map((p) => (
+              <li class="post-item">
+                <a href={postPath(p)} class="post-link">
+                  <p class="post-kicker">
+                    <span class="post-cat">{p.data.category}</span>
+                    <time datetime={isoDate(p.data.publishDate)}>{formatDate(p.data.publishDate)}</time>
+                  </p>
+                  <h2 class="post-title">{p.data.title}</h2>
+                  <p class="post-desc">{p.data.description}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .blog {
+    padding-top: var(--sp-9);
+    padding-bottom: var(--section-y);
+  }
+  .container {
+    width: min(var(--measure), calc(100% - 48px));
+    margin-inline: auto;
+  }
+  .blog-head {
+    padding-bottom: var(--sp-7);
+    margin-bottom: var(--sp-4);
+    border-bottom: 1px solid var(--rule);
+  }
+  .blog-eyebrow {
+    font-family: var(--font-serif);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: var(--sp-4);
+  }
+  .blog-title {
+    font-size: var(--fs-h1);
+    letter-spacing: -0.04em;
+    line-height: var(--lh-title);
+  }
+  .blog-lead {
+    margin-top: var(--sp-5);
+    color: var(--text-2);
+    font-size: var(--fs-lead);
+    line-height: var(--lh-body);
+  }
+  .blog-rss {
+    margin-top: var(--sp-4);
+    font-size: var(--fs-sm);
+  }
+  .blog-rss a {
+    color: var(--sage-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--sand);
+  }
+  .blog-empty {
+    padding: var(--sp-8) 0;
+    color: var(--text-3);
+  }
+
+  .post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .post-item {
+    border-bottom: 1px solid var(--rule);
+  }
+  .post-link {
+    display: block;
+    padding: var(--sp-6) 0;
+    color: inherit;
+  }
+  .post-kicker {
+    display: flex;
+    gap: var(--sp-3);
+    align-items: center;
+    font-size: var(--fs-xs);
+    color: var(--text-3);
+  }
+  .post-cat {
+    padding: 2px var(--sp-2);
+    border-radius: var(--r-pill);
+    background: var(--primary-bg);
+    color: var(--sage-dark);
+    font-weight: 600;
+  }
+  .post-title {
+    margin-top: var(--sp-3);
+    font-size: var(--fs-h3);
+    letter-spacing: -0.03em;
+    line-height: var(--lh-title);
+    transition: color var(--dur-1) var(--ease);
+  }
+  .post-link:hover .post-title {
+    color: var(--sage-dark);
+  }
+  .post-desc {
+    margin-top: var(--sp-3);
+    color: var(--text-2);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+</style>

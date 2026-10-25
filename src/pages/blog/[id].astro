@@ -1,0 +1,114 @@
+---
+// 혈당 노트 — 글 하나. 본문 타이포는 정책 문서와 같은 LegalDoc 을 재사용한다 (좁은 읽기 폭·헤어라인).
+import { render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import LegalDoc from '../../components/LegalDoc.astro';
+import { SITE_URL, blogPostingSchema, postBreadcrumbSchema } from '../../lib/seo';
+import { formatDate, getPublishedPosts, isoDate, postPath, type Post } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({ params: { id: post.id }, props: { post, posts } }));
+}
+
+const { post, posts } = Astro.props as { post: Post; posts: Post[] };
+const { Content } = await render(post);
+const d = post.data;
+const url = `${SITE_URL}${postPath(post)}`;
+const modified = d.updatedDate ?? d.publishDate;
+const others = posts.filter((p) => p.id !== post.id).slice(0, 3);
+---
+
+<Layout
+  title={`${d.title} — 글루밍 혈당 노트`}
+  description={d.description}
+  jsonLd={[
+    blogPostingSchema({
+      url,
+      title: d.title,
+      description: d.description,
+      published: isoDate(d.publishDate),
+      modified: isoDate(modified),
+      section: d.category,
+      author: d.author,
+      sources: d.sources,
+    }),
+    postBreadcrumbSchema(url, d.title),
+  ]}
+>
+  <LegalDoc
+    eyebrow={`Journal · ${d.category}`}
+    title={d.title}
+    lead={d.description}
+  >
+    <p class="post-meta" slot="meta">
+      <span>{d.author}</span>
+      <span class="dot" aria-hidden="true">·</span>
+      <time datetime={isoDate(d.publishDate)}>{formatDate(d.publishDate)}</time>
+      {
+        d.updatedDate && (
+          <>
+            <span class="dot" aria-hidden="true">·</span>
+            <span>
+              <time datetime={isoDate(d.updatedDate)}>{formatDate(d.updatedDate)}</time> 업데이트
+            </span>
+          </>
+        )
+      }
+    </p>
+
+    <Content />
+
+    <h2>참고한 자료</h2>
+    <ol class="sources">
+      {
+        d.sources.map((s) => (
+          <li>
+            <a href={s.url} target="_blank" rel="noopener noreferrer">{s.title}</a>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="notice">
+      <p>
+        <strong>글루밍으로 내 흐름 살펴보기</strong> — 식사·운동을 고르기 전에, 내 혈당 흐름이
+        어떻게 달라질지 미리 그려볼 수 있어요.
+      </p>
+      <p class="post-cta"><a href="/features/">글루밍 기능 둘러보기 →</a></p>
+    </div>
+
+    {
+      others.length > 0 && (
+        <>
+          <h2>다른 글</h2>
+          <ul class="post-others">
+            {others.map((p) => (
+              <li>
+                <a href={postPath(p)}>{p.data.title}</a>
+              </li>
+            ))}
+          </ul>
+        </>
+      )
+    }
+    <p><a href="/blog/">← 혈당 노트 목록</a></p>
+  </LegalDoc>
+</Layout>
+
+<style>
+  .post-meta {
+    margin-top: var(--sp-5);
+    color: var(--text-3);
+    font-size: var(--fs-sm);
+    display: flex;
+    gap: var(--sp-2);
+    flex-wrap: wrap;
+  }
+  .post-meta .dot {
+    color: var(--rule);
+  }
+  .post-cta {
+    margin-bottom: 0;
+  }
+</style>

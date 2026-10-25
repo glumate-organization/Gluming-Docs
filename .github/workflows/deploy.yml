@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]          # 기본 브랜치가 main이 아니면 여기 수정
   workflow_dispatch:
+  # 매일 재빌드 — 혈당 노트의 예약 글(publishDate 가 미래)을 날짜에 맞춰 공개한다.
+  # publishDate 는 UTC 자정(=KST 09:00) 기준이라, 그 직후인 KST 09:10 에 돈다.
+  # (GitHub 은 60일간 커밋이 없는 리포의 schedule 을 자동 비활성화한다 → Actions 탭에서 다시 켠다)
+  schedule:
+    - cron: '10 0 * * *'
 
 permissions:
   contents: read

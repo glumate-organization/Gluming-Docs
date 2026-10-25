@@ -24,6 +24,7 @@ export const pageNames: Record<string, string> = {
   '/terms': '서비스 이용약관',
   '/medical': '의료 정보 기준·출처',
   '/shipping': '배송·환불 규정',
+  '/blog': '혈당 노트',
 };
 
 type JsonLd = Record<string, unknown>;
@@ -115,6 +116,47 @@ export function mobileAppSchema(): JsonLd {
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'KRW' },
     author: { '@id': ORG_ID },
     publisher: companyRef(),
+  };
+}
+
+/** 홈 > 혈당 노트 > 글. 게시글 페이지에서 `jsonLd` prop으로 전달. */
+export function postBreadcrumbSchema(url: string, title: string): JsonLd {
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '홈', item: `${SITE_URL}/` },
+      { '@type': 'ListItem', position: 2, name: pageNames['/blog'], item: `${SITE_URL}/blog/` },
+      { '@type': 'ListItem', position: 3, name: title, item: url },
+    ],
+  };
+}
+
+/** 게시글. 출처는 citation 으로 노출해 건강 정보의 근거를 기계 판독 가능하게 남긴다. */
+export function blogPostingSchema(post: {
+  url: string;
+  title: string;
+  description: string;
+  published: string;
+  modified: string;
+  section: string;
+  author: string;
+  sources: { title: string; url: string }[];
+}): JsonLd {
+  return {
+    '@type': 'BlogPosting',
+    '@id': `${post.url}#article`,
+    mainEntityOfPage: { '@id': `${post.url}#webpage` },
+    headline: post.title,
+    description: post.description,
+    datePublished: post.published,
+    dateModified: post.modified,
+    articleSection: post.section,
+    inLanguage: 'ko-KR',
+    image: `${SITE_URL}/og.png`,
+    author: { '@type': 'Organization', name: post.author, url: SITE_URL },
+    publisher: { '@id': ORG_ID },
+    isPartOf: { '@id': SITE_ID },
+    citation: post.sources.map((s) => ({ '@type': 'CreativeWork', name: s.title, url: s.url })),
   };
 }
 

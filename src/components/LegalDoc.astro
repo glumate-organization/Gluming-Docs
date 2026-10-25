@@ -1,5 +1,6 @@
 ---
-// 정책/정보 문서 공통 레이아웃 (개인정보·약관·의료 정보 기준).
+// 정책/정보 문서 공통 레이아웃 (개인정보·약관·의료 정보 기준 + 혈당 노트 글).
+// 머리말 아래 추가 정보는 slot="meta" 로 받는다 (글의 작성자·날짜 등).
 // 좁은 읽기 폭 + 헤어라인 + 세리프 eyebrow. 본문은 slot으로 받는다.
 interface Props {
   eyebrow: string; // 영문 세리프 eyebrow
@@ -25,6 +26,7 @@ const { eyebrow, title, lead, updated, version } = Astro.props;
         </p>
       )
     }
+    <slot name="meta" />
   </header>
 
   <div class="doc-body container">

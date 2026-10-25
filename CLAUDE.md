@@ -28,7 +28,10 @@ docs/                          # 리포 루트 = Astro 프로젝트 = 작업 루
 
 - `output: 'static'`, `site: 'https://gluming.app'`, `base: '/'`. 배포 상세는 `astro-github-pages` 스킬.
 - 작업은 `docs/` 안에서만 한다. `../gluming`·`../server`는 이 지침의 범위가 아니다.
-- 게시글(Content Collections)·서버 연동은 아직 없다. 지금은 정적 페이지만 다룬다.
+- 게시글 '혈당 노트'(`/blog/`)는 Content Collections 로 빌드 시 생성한다. 글 = `src/content/blog/<slug>.md`,
+  작성법은 같은 폴더의 `_TEMPLATE.md`. 스키마(`src/content.config.ts`)가 출처 1개 이상을 강제하고,
+  `src/lib/blog.ts` 가 본문 금지어를 발견하면 빌드를 실패시킨다. 미래 `publishDate`·`draft` 는 공개 제외.
+  금지어를 바꿀 땐 `_guide/domain-glossary.md`·hook·`blog.ts` 세 곳을 함께 고친다. 서버 연동은 없다.
 
 ## 자산 규칙 요약
 
