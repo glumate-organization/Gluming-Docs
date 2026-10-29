@@ -14,32 +14,32 @@ import { characters, charactersByKey, programImages } from '../lib/assets';
 // 같은 폭 카드 3장 대신 7:5 / 5:7 지그재그로 엇갈려 잡지 지면처럼 배치한다.
 const moments = [
   {
-    img: programImages.cgmArm,
-    alt: '오트밀색 티셔츠 소매 아래, 팔 뒤쪽에 붙은 작고 둥근 흰색 연속혈당측정 센서.',
+    img: programImages.sensorPhone,
+    alt: '구김 있는 리넨 위에 놓인 작고 둥근 흰색 연속혈당측정 센서와 엎어 둔 휴대폰.',
     kicker: '지금 내 몸은 어떤 리듬일까요',
     title: '내 혈당의 변화를 쉽게 확인할 수 있어요',
     desc: '점심 한 그릇 앞에서 폰을 한 번 열어 보면 끝. 숫자를 해석하느라 애쓰지 않아도, 글루밍즈의 표정과 흐름 그래프가 오늘의 컨디션을 먼저 알려줘요.',
     wide: true,
   },
   {
-    img: programImages.sneakers,
-    alt: '많이 신어 조금 낡은 회색 캔버스 운동화 한 켤레.',
+    img: programImages.doorHooks,
+    alt: '저녁 햇살이 비스듬히 드는 현관 벽, 나무 고리에 걸린 크기가 다른 모자 두 개와 에코백.',
     kicker: '지금, 더 건강한 내일을 위해',
     title: '함께 걷는 저녁 30분',
     desc: '검진 결과지를 받아 든 날, 막막함보다 먼저 신발 끈을 매요. 거창한 계획 대신 저녁마다 같이 걷기로 해요. 오늘 걸은 만큼 내 몸이 어떻게 답하는지, 글루밍이 살며시 보여드려요.',
     wide: false,
   },
   {
-    img: programImages.mealTray,
-    alt: '나무 쟁반 위의 한 끼. 잡곡밥, 나물, 두부구이, 고등어구이, 김치와 수저.',
+    img: programImages.breakfast,
+    alt: '나무 식탁 위의 아침. 달걀 하나, 통밀빵 한 조각, 블루베리 얹은 요거트와 물 한 잔.',
     kicker: '같이 먹으니까 더 맛있고, 더 건강해요',
     title: '몸이 좋아하는 식단은 참는 식단이 아니에요',
     desc: '무엇을 먼저 먹을지 같이 고르는 작은 놀이. 먹기 전에 내 혈당 흐름을 한 번 그려보면, 식탁이 훨씬 즐거워져요.',
     wide: false,
   },
   {
-    img: programImages.familyShoes,
-    alt: '현관에 나란히 놓인 세 켤레의 신발. 어른의 베이지 운동화, 회색 운동화, 아이의 작은 흰 운동화.',
+    img: programImages.familyMugs,
+    alt: '나무 식탁 위에 나란히 놓인 크기가 다른 머그 세 개. 큰 오트밀색, 중간 세이지색, 아이용 작은 흰색.',
     kicker: '엄마의 산책에 같이 나섰어요',
     title: '내 몸을 알아가는 일, 가족과 나눠요',
     desc: '엄마 팔에 붙은 작은 센서를 딸이 먼저 궁금해했어요. 오늘 걸은 뒤 흐름이 어땠는지 같이 들여다보면, 잔소리 대신 대화가 생겨요.',
@@ -195,46 +195,91 @@ const habits = [
       <SectionHead eyebrow="02 — Why Gluming" variant="split">
         숫자는 차곡차곡 쌓이는데,<br />뭘 바꿔야 할지는 막막하죠
         <Fragment slot="sub">
-          이미 혈당이 오른 뒤에야 알림이 와서 그래프를 들여다봐요.<br />
+          하루 몇 번 잰 숫자로는 그 사이의 흐름을 알기 어려워요.<br />
           “아, 아까 그걸 먹지 말걸” 하고 아쉬워한 적, 한 번쯤 있지 않나요?
         </Fragment>
       </SectionHead>
 
+      <!-- 같은 하루를 두 방식으로: 손끝 측정의 점 몇 개 vs 끊김 없는 곡선 + 지금 이후 미리보기.
+           좌표는 0–24시를 x 36–388에 펼친 가상의 하루. mg/dL 수치는 일부러 넣지 않는다. -->
       <div class="compare">
         <article class="compare-col is-before reveal">
           <span class="compare-tag">Before</span>
-          <h3>오른 뒤에야 알게 돼요</h3>
-          <svg class="mini" viewBox="0 0 260 96" role="img"
-            aria-label="혈당이 목표 범위를 넘어 오른 뒤에야 확인하게 되는 흐름 그래프">
-            <rect x="0" y="40" width="260" height="30" rx="6" class="mini-band" />
-            <path d="M4 74 C 44 70 72 44 110 32 S 196 16 256 22" class="mini-line" />
-            <circle cx="256" cy="22" r="3.6" class="mini-dot" />
-            <text x="196" y="12" class="mini-cap">이미 지나감</text>
+          <h3>하루 몇 번, 점으로만 봐요</h3>
+          <svg class="cg" viewBox="0 0 400 206" role="img"
+            aria-label="하루 다섯 번 잰 혈당 점만 보이고, 그 사이 새벽의 내림과 식후의 오름은 보이지 않는 그래프">
+            <rect x="36" y="76" width="352" height="60" class="cg-band" />
+            <line x1="36" y1="76" x2="388" y2="76" class="cg-edge" />
+            <line x1="36" y1="136" x2="388" y2="136" class="cg-edge" />
+            <text x="42" y="130" class="cg-band-cap">목표 범위</text>
+            <path d="M36.0 112 C42.1 113.3 60.5 113.7 72.7 120 C84.9 126.3 99.5 148.7 109.3 150 C119.1 151.3 124.0 134.7 131.3 128 C138.6 121.3 146.7 122.7 153.3 110 C159.9 97.3 164.5 54.0 170.9 52 C177.3 50.0 184.7 88.0 191.5 98 C198.3 108.0 205.4 117.7 212.0 112 C218.6 106.3 224.2 65.3 231.1 64 C237.9 62.7 245.3 95.7 253.1 104 C260.9 112.3 270.2 113.3 278.0 114 C285.8 114.7 292.4 117.7 300.0 108 C307.6 98.3 315.7 57.7 323.5 56 C331.3 54.3 336.1 89.0 346.9 98 C357.6 107.0 381.1 108.0 388.0 110" class="cg-ghost" />
+            <g class="cg-miss">
+              <g transform="translate(109.3 150)"><circle r="9" /><text y="4">?</text></g>
+              <g transform="translate(170.9 48)"><circle r="9" /><text y="4">?</text></g>
+              <g transform="translate(231.1 60)"><circle r="9" /><text y="4">?</text></g>
+              <g transform="translate(323.5 52)"><circle r="9" /><text y="4">?</text></g>
+            </g>
+            <g class="cg-pts">
+              <circle cx="146" cy="116" r="5" />
+              <circle cx="204.7" cy="110" r="5" />
+              <circle cx="263.3" cy="110" r="5" />
+              <circle cx="300" cy="108" r="5" />
+              <circle cx="366" cy="104" r="5" />
+            </g>
+            <text x="388" y="22" class="cg-note" text-anchor="end">이 사이엔 알 수 없어요</text>
+            <g class="cg-axis">
+              <line x1="36" y1="180" x2="388" y2="180" />
+              <text x="36" y="198">0시</text>
+              <text x="124" y="198">6시</text>
+              <text x="212" y="198">12시</text>
+              <text x="300" y="198">18시</text>
+              <text x="388" y="198">24시</text>
+            </g>
           </svg>
           <p>
-            식사가 끝나고 혈당이 오른 다음에야 알림이 울려요.<br />
-            그래프를 봐도 <strong>이미 지나간 일</strong>이라, 다음을 어떻게 바꿔야 할지
-            혼자 고민하게 돼요.
+            손끝으로 재는 혈당은 하루 몇 번의 순간만 남겨요.<br />
+            그 사이에 오르고 내린 흐름은 <strong>보이지 않아서</strong>, 무엇이 영향을 줬는지
+            짐작만 하게 돼요.
           </p>
         </article>
 
         <article class="compare-col is-after reveal">
           <span class="compare-tag accent">Gluming</span>
-          <h3>변화를 미리 살펴봐요</h3>
-          <svg class="mini" viewBox="0 0 260 96" role="img"
-            aria-label="지금 이후의 혈당 흐름을 점선으로 미리 그려 보여주는 그래프">
-            <rect x="0" y="40" width="260" height="30" rx="6" class="mini-band is-on" />
-            <line x1="112" y1="10" x2="112" y2="86" class="mini-now" />
-            <path d="M4 70 C 40 66 76 58 112 56" class="mini-line is-on" />
-            <path d="M112 56 C 148 52 176 46 206 50 S 242 58 256 52" class="mini-pred" />
-            <circle cx="112" cy="56" r="3.6" class="mini-dot is-on" />
-            <circle cx="256" cy="52" r="3.6" class="mini-dot-open" />
-            <text x="118" y="16" class="mini-cap is-on">지금부터</text>
+          <h3>흐름을 잇고, 다음을 미리 봐요</h3>
+          <svg class="cg" viewBox="0 0 400 206" role="img"
+            aria-label="하루 흐름이 이어진 곡선으로 새벽 내림과 식후 오름이 보이고, 지금 이후는 그대로일 때와 걷고 났을 때의 흐름을 미리 그려 보여주는 그래프">
+            <rect x="300" y="12" width="88" height="168" class="cg-ahead" />
+            <rect x="36" y="76" width="352" height="60" class="cg-band is-on" />
+            <line x1="36" y1="76" x2="388" y2="76" class="cg-edge" />
+            <line x1="36" y1="136" x2="388" y2="136" class="cg-edge" />
+            <text x="42" y="130" class="cg-band-cap is-on">목표 범위</text>
+            <line x1="300" y1="12" x2="300" y2="180" class="cg-now" />
+            <text x="304" y="24" class="cg-now-cap">지금</text>
+            <path d="M36.0 112 C42.1 113.3 60.5 113.7 72.7 120 C84.9 126.3 99.5 148.7 109.3 150 C119.1 151.3 124.0 134.7 131.3 128 C138.6 121.3 146.7 122.7 153.3 110 C159.9 97.3 164.5 54.0 170.9 52 C177.3 50.0 184.7 88.0 191.5 98 C198.3 108.0 205.4 117.7 212.0 112 C218.6 106.3 224.2 65.3 231.1 64 C237.9 62.7 245.3 95.7 253.1 104 C260.9 112.3 270.2 113.3 278.0 114 C285.8 114.7 296.3 109.0 300.0 108" pathLength="1" class="cg-line cg-draw" />
+            <path d="M300.0 108 C303.9 99.3 315.7 57.7 323.5 56 C331.3 54.3 336.1 89.0 346.9 98 C357.6 107.0 381.1 108.0 388.0 110" class="cg-pred" />
+            <path d="M300.0 108 C303.4 104.0 314.1 84.7 320.5 84 C326.9 83.3 326.9 99.3 338.1 104 C349.4 108.7 379.7 110.7 388.0 112" class="cg-walk" />
+            <circle cx="300" cy="108" r="5" class="cg-head" />
+            <g class="cg-chip">
+              <circle cx="109.3" cy="150" r="4.5" />
+              <text x="109.3" y="170" text-anchor="middle">새벽 내림</text>
+              <circle cx="170.9" cy="52" r="4.5" />
+              <text x="170.9" y="38" text-anchor="middle">식후 오름</text>
+            </g>
+            <text x="338" y="44" class="cg-pred-cap">그대로라면</text>
+            <text x="384" y="130" class="cg-walk-cap" text-anchor="end">10분 걸으면</text>
+            <g class="cg-axis">
+              <line x1="36" y1="180" x2="388" y2="180" />
+              <text x="36" y="198">0시</text>
+              <text x="124" y="198">6시</text>
+              <text x="212" y="198">12시</text>
+              <text x="300" y="198">18시</text>
+              <text x="388" y="198">24시</text>
+            </g>
           </svg>
           <p>
-            먹기 전에, 움직이기 전에 <strong>내 혈당이 어떻게 변할지</strong> 미리
-            알려드려요.<br />
-            무엇을 하면 좋을지까지 살며시 귀띔해 주니까, 오늘의 관리가 한결 쉬워져요.
+            이어진 흐름에서 <strong>놓치던 오르내림</strong>이 보여요.<br />
+            먹기 전·걷기 전에 다음 흐름을 미리 그려 보고, 무엇을 하면 좋을지 살며시
+            귀띔해 드려요.
           </p>
         </article>
       </div>
@@ -626,59 +671,164 @@ const habits = [
     color: var(--sage-dark);
   }
 
-  /* 미니 그래프 — 말로 하던 대비를 눈으로 */
-  .mini {
+  /* 하루 흐름 그래프 — 점 몇 개 vs 이어진 곡선 + 미리보기 */
+  .cg {
     width: 100%;
-    max-width: 340px;
+    max-width: 480px;
     height: auto;
     display: block;
+    overflow: visible;
+    font-family: var(--font-sans);
   }
-  .mini-band {
-    fill: color-mix(in srgb, var(--text-3) 12%, transparent);
+  .cg-band {
+    fill: color-mix(in srgb, var(--text-3) 10%, transparent);
   }
-  .mini-band.is-on {
-    fill: color-mix(in srgb, var(--primary) 15%, transparent);
+  .cg-band.is-on {
+    fill: var(--primary-bg);
   }
-  .mini-line {
+  .cg-edge {
+    stroke: var(--border);
+    stroke-dasharray: 2 4;
+  }
+  .cg-band-cap {
+    fill: var(--text-3);
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .cg-band-cap.is-on {
+    fill: var(--sage);
+  }
+  .cg-axis line {
+    stroke: var(--border-strong);
+  }
+  .cg-axis text {
+    fill: var(--text-3);
+    font-size: 10px;
+    text-anchor: middle;
+  }
+  .cg-ghost {
     fill: none;
     stroke: var(--text-3);
-    stroke-width: 2.4;
+    stroke-width: 1.4;
+    stroke-dasharray: 1 5;
     stroke-linecap: round;
+    opacity: 0.55;
   }
-  .mini-line.is-on {
-    stroke: var(--sage-dark);
+  .cg-pts circle {
+    fill: var(--text-2);
+    stroke: var(--bg);
+    stroke-width: 2;
   }
-  .mini-pred {
+  .cg-miss circle {
+    fill: var(--gold-bg);
+    stroke: var(--gold);
+    stroke-width: 1.2;
+  }
+  .cg-miss text {
+    fill: var(--gold-text);
+    font-size: 11px;
+    font-weight: 800;
+    text-anchor: middle;
+  }
+  .cg-note {
+    fill: var(--gold-text);
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .cg-ahead {
+    fill: color-mix(in srgb, var(--sand) 14%, transparent);
+  }
+  .cg-now {
+    stroke: var(--text-3);
+    stroke-dasharray: 3 4;
+  }
+  .cg-now-cap {
+    fill: var(--text-2);
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .cg-line {
     fill: none;
-    stroke: var(--sage);
-    stroke-width: 2.4;
+    stroke: var(--sage-dark);
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .cg-head {
+    fill: var(--sage-dark);
+    stroke: var(--bg);
+    stroke-width: 2;
+  }
+  .cg-pred,
+  .cg-walk {
+    fill: none;
+    stroke-width: 2.2;
     stroke-linecap: round;
     stroke-dasharray: 4 5;
   }
-  .mini-now {
-    stroke: var(--border-strong);
-    stroke-width: 1;
-    stroke-dasharray: 3 4;
+  .cg-pred {
+    stroke: var(--gold);
   }
-  .mini-dot {
-    fill: var(--text-3);
+  .cg-walk {
+    stroke: var(--primary);
   }
-  .mini-dot.is-on {
-    fill: var(--sage-dark);
+  .cg-pred-cap,
+  .cg-walk-cap {
+    font-size: 10.5px;
+    font-weight: 700;
   }
-  .mini-dot-open {
+  .cg-pred-cap {
+    fill: var(--gold-text);
+  }
+  .cg-walk-cap {
+    fill: var(--primary-dark);
+  }
+  .cg-chip circle {
     fill: var(--surface);
-    stroke: var(--sage);
+    stroke: var(--gold);
     stroke-width: 2;
   }
-  .mini-cap {
-    fill: var(--text-3);
-    font-size: 10px;
+  .cg-chip text {
+    fill: var(--gold-text);
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.02em;
   }
-  .mini-cap.is-on {
-    fill: var(--sage-dark);
+  /* 화면에 들어오면 곡선이 왼쪽부터 그려지고, 미리보기 선은 그 뒤에 나타난다 */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .cg-draw {
+        stroke-dasharray: 1;
+        animation: cg-draw linear both;
+        animation-timeline: view();
+        animation-range: entry 20% cover 45%;
+      }
+      .cg-pred,
+      .cg-walk,
+      .cg-pred-cap,
+      .cg-walk-cap,
+      .cg-head,
+      .cg-miss {
+        animation: cg-fade linear both;
+        animation-timeline: view();
+        animation-range: cover 35% cover 50%;
+      }
+    }
+  }
+  @keyframes cg-draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes cg-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   /* ── 작은 습관 — 물건 타일 4장, 차례로 올라온다 ─────── */

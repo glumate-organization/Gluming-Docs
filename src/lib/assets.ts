@@ -346,6 +346,14 @@ import progFamilyShoes from '../assets/program/family-shoes.jpg';
 import progBed from '../assets/program/bed.jpg';
 import progNotebook from '../assets/program/notebook.jpg';
 import progClock from '../assets/program/clock.jpg';
+import progBreakfast from '../assets/program/breakfast.jpg';
+import progNoodles from '../assets/program/noodles.jpg';
+import progFruit from '../assets/program/fruit.jpg';
+import progSensorPhone from '../assets/program/sensor-phone.jpg';
+import progDoorHooks from '../assets/program/door-hooks.jpg';
+import progFamilyMugs from '../assets/program/family-mugs.jpg';
+import progCgmKit from '../assets/program/cgm-kit.jpg';
+import progWalkKit from '../assets/program/walk-kit.jpg';
 
 export const programImages = {
   cgmArm: progCgmArm, // 팔 뒤쪽에 붙인 CGM 센서
@@ -358,4 +366,16 @@ export const programImages = {
   bed: progBed, // 아침 햇살 든 침대, 베개와 개어 둔 이불
   notebook: progNotebook, // 펼친 작은 노트와 연필
   clock: progClock, // 선반 위 크림색 벽시계
+  breakfast: progBreakfast, // 나무 식탁 위 달걀·통밀빵·요거트·물 한 잔 아침
+  noodles: progNoodles, // 애호박 칼국수와 김치 (위에서)
+  fruit: progFruit, // 도자기 그릇에 담은 사과·포도·귤
+  sensorPhone: progSensorPhone, // 리넨 위 CGM 센서와 엎어 둔 휴대폰
+  doorHooks: progDoorHooks, // 현관 고리에 걸린 모자 두 개와 에코백, 저녁빛
+  familyMugs: progFamilyMugs, // 식탁 위 크기 다른 머그 세 개
+  cgmKit: progCgmKit, // 종이 위 CGM 센서·부착기·설명서 (위에서)
+  walkKit: progWalkKit, // 벤치 위 개어 둔 바람막이·물병·열쇠
 };
+
+// 페이지 사진은 사이트 전체에서 한 번씩만 쓴다 (블로그 표지는 예외).
+// 홈: cgmArm·mealTray·sneakers(히어로) / sensorPhone·doorHooks·breakfast·familyMugs / bed·waterApple·notebook·clock
+// /program: cgmKit·noodles·walkKit·fruit·tape  /about: familyShoes  /business: desk
