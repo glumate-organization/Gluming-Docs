@@ -342,6 +342,10 @@ import progSneakers from '../assets/program/sneakers.jpg';
 import progWaterApple from '../assets/program/water-apple.jpg';
 import progTape from '../assets/program/tape.jpg';
 import progDesk from '../assets/program/desk.jpg';
+import progFamilyShoes from '../assets/program/family-shoes.jpg';
+import progBed from '../assets/program/bed.jpg';
+import progNotebook from '../assets/program/notebook.jpg';
+import progClock from '../assets/program/clock.jpg';
 
 export const programImages = {
   cgmArm: progCgmArm, // 팔 뒤쪽에 붙인 CGM 센서
@@ -350,4 +354,8 @@ export const programImages = {
   waterApple: progWaterApple, // 물 한 잔과 풋사과 (정사각)
   tape: progTape, // 감긴 줄자 (정사각)
   desk: progDesk, // 사무실 책상 위 노트북·텀블러 (B2B)
+  familyShoes: progFamilyShoes, // 현관에 나란한 삼대의 신발
+  bed: progBed, // 아침 햇살 든 침대, 베개와 개어 둔 이불
+  notebook: progNotebook, // 펼친 작은 노트와 연필
+  clock: progClock, // 선반 위 크림색 벽시계
 };

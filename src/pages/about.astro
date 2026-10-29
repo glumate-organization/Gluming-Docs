@@ -4,8 +4,7 @@ import AppTour from '../components/AppTour.astro';
 import Layout from '../layouts/Layout.astro';
 import SectionHead from '../components/SectionHead.astro';
 import StoreButtons from '../components/StoreButtons.astro';
-import { lifestyle } from '../lib/assets';
-import { kakaoChannel } from '../lib/links';
+import { programImages } from '../lib/assets';
 import { mobileAppSchema } from '../lib/seo';
 
 const title = '글루밍 소개 — 혈당 시뮬레이션·식사 기록·건강 리포트';
@@ -76,19 +75,19 @@ const roadmap = [
         </div>
       </div>
       <div class="hero-visual">
-        <!-- 후광 효과 대신 실제 사용 장면. 캡션은 사진 설명 한 줄 -->
+        <!-- 사람 사진 대신 오브젝트 컷. 캡션은 사진 설명 한 줄 -->
         <figure class="hero-figure">
           <div class="hero-photo">
             <Image
-              src={lifestyle.threeGenerations}
-              alt="노을 지는 강변 산책로를 팔짱 끼고 걷는 삼대. 어머니의 팔에 작은 혈당 센서가 붙어 있고 세 사람이 서로를 보며 웃고 있다."
+              src={programImages.familyShoes}
+              alt="현관에 나란히 놓인 세 켤레의 신발. 어른의 베이지 운동화, 회색 운동화, 아이의 작은 흰 운동화."
               widths={[480, 800, 1200]}
               sizes="(max-width: 960px) 90vw, 520px"
               loading="eager"
             />
           </div>
           <figcaption class="hero-figure-cap">
-            센서는 어머니 팔에, 대화는 셋 사이에. 글루밍이 그리는 평범한 저녁 산책이에요.
+            현관에 나란한 세 켤레. 글루밍이 그리는 건 이렇게 평범한 저녁 산책이에요.
           </figcaption>
         </figure>
       </div>
@@ -156,29 +155,7 @@ const roadmap = [
     </div>
   </section>
 
-  <!-- 5. 내려받기 · 문의 -->
-  <section id="download" class="section download">
-    <div class="container">
-      <div class="dl-card">
-        <span class="eyebrow eyebrow-on-dark">03 — Get the App</span>
-        <h2 class="dl-title">오늘부터 같이 시작해요</h2>
-        <p class="dl-lead">
-          App Store와 Google Play에서 <strong>글루밍</strong>을 내려받아 보세요.<br />
-          궁금한 점이 있으시면 카카오톡 채널로 편하게 말 걸어 주세요.
-        </p>
-        <div class="dl-actions">
-          <StoreButtons size="lg" tone="dark" />
-        </div>
-        <p class="dl-fine">
-          <a href={kakaoChannel} target="_blank" rel="noopener noreferrer">
-            카카오톡으로 문의하기 →
-          </a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. 의료 비대체 고지 -->
+  <!-- 5. 의료 비대체 고지 -->
   <section class="section notice-wrap">
     <div class="container">
       <aside class="notice" role="note" aria-label="의료 비대체 안내">
@@ -387,65 +364,6 @@ const roadmap = [
     color: var(--text-2);
     font-size: 15.5px;
     line-height: 1.72;
-  }
-
-  /* ── 내려받기 (다크 파인 섹션) ── */
-  #download {
-    scroll-margin-top: calc(var(--nav-h) + 16px);
-  }
-  .dl-card {
-    position: relative;
-    max-width: 760px;
-    padding: clamp(40px, 6vw, 72px) clamp(24px, 5vw, 64px);
-    border-radius: var(--r-lg);
-    background: var(--pine);
-    color: var(--on-dark);
-    overflow: hidden;
-    isolation: isolate;
-  }
-  .dl-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background-image: var(--grain);
-    background-size: 180px 180px;
-    opacity: 0.07;
-    pointer-events: none;
-  }
-  .eyebrow-on-dark {
-    color: var(--primary-light);
-  }
-  .dl-title {
-    font-size: var(--fs-h2);
-    letter-spacing: -0.04em;
-    line-height: var(--lh-title);
-    color: var(--on-dark);
-  }
-  .dl-lead {
-    margin: var(--sp-5) 0 0;
-    max-width: 560px;
-    color: color-mix(in srgb, var(--on-dark) 80%, transparent);
-    font-size: var(--fs-lead);
-    line-height: 1.78;
-  }
-  .dl-actions {
-    margin-top: var(--sp-7);
-    display: flex;
-  }
-  .dl-fine {
-    margin-top: var(--sp-5);
-    font-size: var(--fs-sm);
-    line-height: 1.6;
-  }
-  .dl-fine a {
-    color: var(--primary-light);
-    font-weight: 600;
-    border-bottom: 1px solid transparent;
-    transition: border-color var(--dur-2) var(--ease);
-  }
-  .dl-fine a:hover {
-    border-bottom-color: currentColor;
   }
 
   /* ── 의료 비대체 고지 ── */

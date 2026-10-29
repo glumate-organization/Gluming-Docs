@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import CharacterCard from '../components/CharacterCard.astro';
+import Credentials from '../components/Credentials.astro';
 import Faq from '../components/Faq.astro';
 import Layout from '../layouts/Layout.astro';
 import PhoneFrame from '../components/PhoneFrame.astro';
@@ -10,7 +11,6 @@ import StoreButtons from '../components/StoreButtons.astro';
 import { characters, programImages, screens } from '../lib/assets';
 import { kakaoChannel } from '../lib/links';
 import { mobileAppSchema } from '../lib/seo';
-import { credentials } from '../lib/trust';
 
 const title = '글루밍 프로그램 — 혈당 흐름으로 시작하는 다이어트·건강관리';
 const description =
@@ -292,20 +292,10 @@ const faqs = [
   <!-- 6. 신뢰 -->
   <section class="section trust">
     <div class="container">
-      <ul class="cred-list">
-        {
-          credentials.map((c) => (
-            <li class="cred reveal">
-              <span class="cred-kicker">{c.kicker}</span>
-              <span class="cred-title">{c.title}</span>
-            </li>
-          ))
-        }
-        <li class="cred reveal">
-          <span class="cred-kicker">기준과 출처를 공개해요</span>
-          <a class="cred-title cred-link" href="/medical">의료 정보 기준·출처 보기 →</a>
-        </li>
-      </ul>
+      <Credentials />
+      <p class="trust-more">
+        앱에서 쓰는 혈당 기준과 출처는 <a href="/medical">의료 정보 기준·출처</a>에 공개해 두었어요.
+      </p>
     </div>
   </section>
 
@@ -544,42 +534,19 @@ const faqs = [
     grid-template-columns: repeat(4, 1fr);
   }
 
-  /* ── TRUST ── 선으로 나뉜 한 줄 */
+  /* ── TRUST ── */
   .trust {
     padding-block: clamp(40px, 5vw, 64px);
   }
-  .cred-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-  }
-  .cred {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-2);
-    padding: var(--sp-6) var(--sp-5);
-    border-left: 1px solid var(--rule);
-  }
-  .cred:first-child {
-    border-left: 0;
-    padding-left: 0;
-  }
-  .cred-kicker {
+  .trust-more {
+    margin-top: var(--sp-4);
     color: var(--text-3);
     font-size: var(--fs-sm);
   }
-  .cred-title {
-    font-size: var(--fs-h4);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.4;
-  }
-  .cred-link {
+  .trust-more a {
     color: var(--sage-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   /* ── CTA 밴드 ── */
@@ -648,17 +615,6 @@ const faqs = [
     .step-body {
       grid-template-columns: 1fr;
       padding-left: 0;
-    }
-    .cred-list {
-      grid-template-columns: 1fr;
-    }
-    .cred {
-      border-left: 0;
-      border-top: 1px solid var(--rule);
-      padding-inline: 0;
-    }
-    .cred:first-child {
-      border-top: 0;
     }
   }
   @media (max-width: 640px) {

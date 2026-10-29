@@ -1,15 +1,30 @@
 // 신뢰 정보 단일 출처 — 등록·수상·함께한 곳·프로그램 성과.
 // /program · /business 가 같은 값을 쓴다. 사실 확인된 것만 넣는다.
 
-/** 등록·수상 이력 */
-export const credentials = [
+/** 등록·수상 이력 — Credentials.astro 가 상패처럼 그린다 */
+export const credentials: {
+  emblem: 'laurel' | 'shield';
+  /** 엠블럼 가운데 글자 */
+  mark: string;
+  org: string;
+  date?: string;
+  title: string;
+  sub: string;
+}[] = [
   {
-    kicker: '국민건강보험공단',
-    title: '당뇨병 관리기기 준요양기관 등록업소',
+    emblem: 'laurel',
+    mark: '대상',
+    org: '대전광역시',
+    date: '2026.10',
+    title: '장대 웰니스 메이커스 프로그램 대상',
+    sub: '대전광역시장상 수상',
   },
   {
-    kicker: '대전광역시 · 장대 웰니스 메이커스 프로그램 (2026.10)',
-    title: '대상 (대전광역시장상)',
+    emblem: 'shield',
+    mark: '등록',
+    org: '국민건강보험공단',
+    title: '당뇨병 관리기기 준요양기관',
+    sub: '등록업소',
   },
 ];
 

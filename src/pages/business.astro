@@ -1,45 +1,72 @@
 ---
 import { Image } from 'astro:assets';
 import Button from '../components/Button.astro';
+import Credentials from '../components/Credentials.astro';
 import Faq from '../components/Faq.astro';
 import Layout from '../layouts/Layout.astro';
 import PhoneFrame from '../components/PhoneFrame.astro';
 import SectionHead from '../components/SectionHead.astro';
 import { programImages, screens } from '../lib/assets';
 import { kakaoChannel } from '../lib/links';
-import { credentials, outcomes, showOutcomes } from '../lib/trust';
+import { outcomes, showOutcomes } from '../lib/trust';
 
 const title = '글루밍 기업 도입 — 임직원 혈당 습관 관리 프로그램';
 const description =
   '센터 방문 없이 휴대폰 하나로. 임직원이 매일의 식사와 걸음에서 혈당 흐름을 살피고 동료와 함께 습관을 만들어 가는 글루밍 기업 프로그램을 소개해요.';
 
-// 가치 — 생산성·이직률 같은 정량 주장은 하지 않는다. 실제로 앱이 하는 일만.
-const values = [
+// 왜 글루밍 — 스크롤하면 오른쪽 폰 화면이 단계에 맞춰 바뀐다(스크롤리텔링).
+// 생산성·이직률 같은 정량 주장은 하지 않는다. 실제로 앱이 하는 일만.
+const tour = [
   {
+    en: 'Anywhere',
     title: '센터 방문 없이, 휴대폰 하나로',
-    desc: '정해진 시간에 모이지 않아도 돼요. 점심 한 끼, 퇴근길 걸음처럼 원래 하던 일 위에서 관리가 이어져요.',
+    desc: '정해진 시간에 모이지 않아도 돼요. 센서를 붙이면 혈당이, 휴대폰을 들고 다니면 걸음이 저절로 쌓여요. 바쁜 주에도 관리가 끊기지 않아요.',
+    points: ['CGM 센서 값 자동 연동', '걸음 수 자동 기록', '한 상을 찰칵 — 음식·탄수화물 자동 인식'],
     img: screens.homeGood,
-    alt: '글루밍 홈 화면. 캐릭터가 웃으며 "리듬이 아주 좋아요, 이대로 가요!"라고 알려주고 현재 혈당이 크게 보인다.',
+    alt: '글루밍 홈 화면. 캐릭터가 웃으며 "리듬이 아주 좋아요, 이대로 가요!"라고 알려주고 현재 혈당 109 mg/dL이 크게 보인다.',
   },
   {
-    title: '가볍게 시작하는 분부터, 검진 뒤 살펴야 하는 분까지',
-    desc: '같은 앱 안에서 각자 자기 흐름을 봐요. 누구를 골라내지 않고, 원하는 임직원 모두가 함께할 수 있어요.',
+    en: 'Everyone',
+    title: '누구를 골라내지 않고, 각자의 흐름으로',
+    desc: '가볍게 시작하는 분부터 검진 뒤 살펴야 하는 분까지, 같은 앱에서 각자 자기 하루를 봐요. 고위험군만 따로 부르지 않아도 돼요.',
+    points: ['혈당 곡선 위에 식사 시각 표시', '먹기 전 혈당실험소로 예상 흐름 보기', '운동별 30분 뒤 흐름 비교'],
     img: screens.dailyLogToday,
-    alt: '오늘 기록 화면. 하루 혈당 곡선 위에 식사 마커와 현재값이 표시된다.',
+    alt: '오늘 기록 화면. 하루 혈당 곡선 위에 점심 식사 시각이 점선으로 표시되고 현재값이 보인다.',
   },
   {
+    en: 'Together',
     title: '혼자보다 함께라서, 이어져요',
-    desc: '동료를 메이트로 맺고 응원을 톡 보내요. 미션과 글루밍즈 캐릭터가 매일 앱을 여는 작은 이유가 돼요.',
+    desc: '동료를 메이트로 맺으면 서로의 오늘을 글루밍즈 표정으로 먼저 알아요. 잔소리 대신 응원이 오가는 팀 문화가 돼요.',
+    points: ['메이트끼리 오늘 컨디션 확인', '"같이 걸을까요?" 응원 한 번에 보내기', '매일 미션 → 포인트로 캐릭터 모으기'],
     img: screens.mateList,
-    alt: '메이트 목록 화면. 함께하는 메이트들의 오늘 컨디션과 응원하기 버튼이 보인다.',
+    alt: '메이트 목록 화면. 함께하는 메이트들의 오늘 컨디션과 응원하기 버튼이 카드로 나열돼 있다.',
+  },
+  {
+    en: 'Report',
+    title: '참여한 모두에게, 개인별 리포트',
+    desc: '프로그램이 끝나면 임직원 한 분 한 분께 각자의 리포트를 보내 드려요. 무엇이 잘 맞았고 다음엔 무엇을 바꿔 볼지, 스스로 고를 수 있게요.',
+    points: ['평균 혈당 · 변동성(CV) · 목표 범위 시간(TIR)', '혈당을 많이 올린 끼니 Top 3', '리포트는 본인에게만 — 회사에는 운영 기록만'],
+    img: screens.reportGlucose,
+    alt: '건강 리포트 혈당 탭. 평균 혈당, 변동성(CV), 목표 범위 시간(TIR), 시간대별 평균 곡선이 정리돼 있다.',
   },
 ];
 
+// 임직원의 하루 — 실제 앱 화면으로 보는 하루의 흐름 (가로 스크롤)
+const day = [
+  { time: '08:30', label: '출근길', title: '오늘 컨디션을 표정으로', img: screens.homeToday, alt: '노란 배경의 글루밍 홈 화면. 캐릭터가 "오늘 컨디션 완전 좋아요!"라고 알려준다.' },
+  { time: '12:20', label: '점심 전', title: '먹기 전에 흐름 미리 보기', img: screens.labResult, alt: '혈당실험소 예측 결과. 담은 메뉴를 먹었을 때의 예상 혈당 곡선과 상승 폭이 보인다.' },
+  { time: '12:30', label: '점심', title: '한 상을 찰칵, 기록 끝', img: screens.mealDetect, alt: '음식 인식 화면. 한 상 사진에서 음식 8개를 각각 찾아 탄수화물과 열량을 정리한다.' },
+  { time: '13:10', label: '식후', title: '걸으면 어떻게 될까?', img: screens.simExercise, alt: '운동 시뮬레이션 화면. 빠른 걷기·스쿼트·런닝 뒤 30분 예상 흐름을 비교한다.' },
+  { time: '18:40', label: '퇴근길', title: '오늘의 미션 채우기', img: screens.mission, alt: '미션 화면. 식사 기록, 운동 기록, 8,000보 걷기 미션과 포인트가 진행바와 함께 보인다.' },
+  { time: '21:00', label: '저녁', title: '동료에게 응원 한마디', img: screens.mateCheer, alt: '응원 메시지 고르기 화면. "오늘도 화이팅이에요!", "같이 걸을까요?" 같은 응원 문구를 고른다.' },
+];
+
 const process = [
-  { en: 'Recruit', title: '대상자 모집', desc: '참여 범위와 기간을 함께 정하고, 임직원 안내를 도와드려요.' },
-  { en: 'Run', title: '프로그램 운영', desc: '앱 설치부터 센서 연동, 첫 기록까지 글루밍이 함께해요.' },
-  { en: 'Report', title: '개인별 리포트 발행', desc: '참여한 임직원 모두에게 각자의 혈당 흐름·식사·걸음을 정리한 개인 리포트를 보내 드려요.' },
-  { en: 'Review', title: '운영 기록 · 결과 리뷰', desc: '참여 현황과 운영 기록을 정리해 전달하고, 담당자와 함께 다음 단계를 이야기해요.' },
+  { en: 'Recruit', title: '대상자 모집', desc: '참여 범위와 기간을 함께 정하고, 임직원 안내 자료를 준비해 드려요.' },
+  { en: 'Onboard', title: '시작 안내', desc: '앱 설치부터 센서 연동, 첫 기록까지 한 번에 따라 할 수 있게 도와드려요.' },
+  { en: 'Run', title: '프로그램 운영', desc: '매일의 미션과 메이트 응원으로 참여가 이어지도록 함께 운영해요.' },
+  { en: 'Report', title: '개인별 리포트 발행', desc: '참여한 임직원 모두에게 각자의 혈당 흐름·식사·걸음을 정리한 리포트를 보내 드려요.' },
+  { en: 'Review', title: '운영 기록 · 결과 리뷰', desc: '참여 현황과 운영 기록을 정리해 전달하고, 다음 단계를 함께 이야기해요.' },
 ];
 
 const fmt = (n: number) => (Number.isInteger(n) ? String(n) : n.toFixed(1));
@@ -103,23 +130,14 @@ const faqs = [
   </section>
 
   <!-- 2. 등록·수상 -->
-  <section class="trust">
+  <section class="creds-sec">
     <div class="container">
-      <ul class="cred-list">
-        {
-          credentials.map((c) => (
-            <li class="cred">
-              <span class="cred-kicker">{c.kicker}</span>
-              <span class="cred-title">{c.title}</span>
-            </li>
-          ))
-        }
-      </ul>
+      <Credentials />
     </div>
   </section>
 
-  <!-- 3. 가치 -->
-  <section class="section values">
+  <!-- 3. 왜 글루밍 — 스크롤리텔링 -->
+  <section class="section tour-sec">
     <div class="container">
       <SectionHead eyebrow="01 — Why Gluming" variant="split">
         일하는 하루 위에서<br />이어지는 건강관리
@@ -129,38 +147,103 @@ const faqs = [
         </Fragment>
       </SectionHead>
 
-      {
-        values.map((v, i) => (
-          <article class:list={['value', 'reveal', { 'value-reverse': i % 2 === 1 }]}>
-            <div class="value-text">
-              <span class="cell-index">{String(i + 1).padStart(2, '0')}</span>
-              <h3>{v.title}</h3>
-              <p>{v.desc}</p>
-            </div>
-            <div class="value-media">
-              <PhoneFrame width={230}>
-                <Image src={v.img} alt={v.alt} widths={[260, 520]} sizes="230px" loading="lazy" />
-              </PhoneFrame>
-            </div>
-          </article>
-        ))
-      }
+      <div class="tour" data-tour>
+        <ol class="tour-steps">
+          {
+            tour.map((t, i) => (
+              <li class:list={['tour-step', { 'is-active': i === 0 }]} data-step={i}>
+                <p class="tour-en">
+                  <span class="tour-num">{String(i + 1).padStart(2, '0')}</span>
+                  {t.en}
+                </p>
+                <h3>{t.title}</h3>
+                <p class="tour-desc">{t.desc}</p>
+                <ul class="tour-points">
+                  {t.points.map((pt) => (
+                    <li>{pt}</li>
+                  ))}
+                </ul>
+                <!-- 좁은 화면에서는 단계마다 화면을 바로 아래에 -->
+                <div class="tour-inline">
+                  <PhoneFrame width={220}>
+                    <Image src={t.img} alt={t.alt} widths={[240, 480]} sizes="220px" loading="lazy" />
+                  </PhoneFrame>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+        <div class="tour-stage" aria-hidden="true">
+          <div class="tour-phone">
+            <PhoneFrame width={300}>
+              <div class="tour-screens">
+                {
+                  tour.map((t, i) => (
+                    <Image
+                      class:list={['tour-screen', { 'is-active': i === 0 }]}
+                      data-screen={i}
+                      src={t.img}
+                      alt=""
+                      widths={[320, 640]}
+                      sizes="300px"
+                      loading={i === 0 ? 'eager' : 'lazy'}
+                    />
+                  ))
+                }
+              </div>
+            </PhoneFrame>
+            <ol class="tour-dots">
+              {tour.map((_, i) => <li class:list={{ 'is-active': i === 0 }} data-dot={i} />)}
+            </ol>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- 4. 진행 방식 -->
+  <!-- 4. 임직원의 하루 -->
+  <section class="section day-sec">
+    <div class="container">
+      <SectionHead eyebrow="02 — A Day with Gluming" variant="split">
+        임직원의 하루는<br />이렇게 흘러가요
+        <Fragment slot="sub">
+          출근길부터 저녁까지, 따로 시간을 내지 않아도<br />
+          <strong>하루 몇 번의 터치</strong>로 관리가 이어져요.
+        </Fragment>
+      </SectionHead>
+    </div>
+    <ol class="day-track" tabindex="0" aria-label="임직원의 하루 — 옆으로 넘겨 보세요">
+      {
+        day.map((d, i) => (
+          <li class="day-card" style={`--i:${i}`}>
+            <p class="day-time">
+              <span>{d.time}</span>
+              {d.label}
+            </p>
+            <div class="day-shot">
+              <Image src={d.img} alt={d.alt} widths={[260, 520]} sizes="240px" loading="lazy" />
+            </div>
+            <p class="day-title">{d.title}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <!-- 5. 진행 방식 -->
   <section class="section process">
     <div class="container">
-      <SectionHead eyebrow="02 — How it works">
+      <SectionHead eyebrow="03 — How it works">
         도입부터 결과 리뷰까지, 글루밍이 함께해요
       </SectionHead>
-      <ol class="cells process-cells">
+      <ol class="flow">
         {
           process.map((p, i) => (
-            <li class="cell reveal">
-              <span class="cell-index">{String(i + 1).padStart(2, '0')} · {p.en}</span>
+            <li class="flow-step" style={`--i:${i}`}>
+              <span class="flow-dot">{String(i + 1).padStart(2, '0')}</span>
+              <p class="flow-en">{p.en}</p>
               <h3>{p.title}</h3>
-              <p>{p.desc}</p>
+              <p class="flow-desc">{p.desc}</p>
             </li>
           ))
         }
@@ -168,12 +251,12 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 5. 프로그램 성과 — outcomes.verified 전에는 개발 서버에서만 렌더 -->
+  <!-- 6. 프로그램 성과 — outcomes.verified 전에는 개발 서버에서만 렌더 -->
   {
     showOutcomes && (
       <section class="section results">
         <div class="container">
-          <SectionHead eyebrow="03 — Results" variant="split">
+          <SectionHead eyebrow="04 — Results" variant="split">
             {outcomes.program}
             <Fragment slot="sub">참여자의 프로그램 전후 변화예요.</Fragment>
           </SectionHead>
@@ -206,7 +289,7 @@ const faqs = [
     )
   }
 
-  <!-- 6. FAQ -->
+  <!-- 7. FAQ -->
   <section class="section faq-sec">
     <div class="container">
       <SectionHead eyebrow="FAQ">자주 묻는 질문</SectionHead>
@@ -214,7 +297,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 7. CTA -->
+  <!-- 8. CTA -->
   <section class="section cta">
     <div class="container">
       <div class="cta-band">
@@ -228,6 +311,44 @@ const faqs = [
     </div>
   </section>
 </Layout>
+
+<script>
+  // 왜 글루밍 스크롤리텔링 — 화면 가운데를 지나는 단계를 활성으로 표시하고, 오른쪽 폰 화면·점·진행선을 맞춘다.
+  // 외부 의존 없이 IntersectionObserver + scroll 한 개. JS 가 없으면 첫 화면이 고정된 채 모든 글이 보인다.
+  const tour = document.querySelector<HTMLElement>('[data-tour]');
+  if (tour) {
+    const steps = [...tour.querySelectorAll<HTMLElement>('[data-step]')];
+    const screens = [...tour.querySelectorAll<HTMLElement>('[data-screen]')];
+    const dots = [...tour.querySelectorAll<HTMLElement>('[data-dot]')];
+    const list = tour.querySelector<HTMLElement>('.tour-steps')!;
+    tour.classList.add('is-live');
+
+    const activate = (i: number) => {
+      [steps, screens, dots].forEach((group) =>
+        group.forEach((el, j) => el.classList.toggle('is-active', i === j))
+      );
+    };
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) activate(Number((e.target as HTMLElement).dataset.step));
+        });
+      },
+      { rootMargin: '-45% 0px -45% 0px' }
+    );
+    steps.forEach((s) => io.observe(s));
+
+    // 진행선: 단계 목록의 위끝이 화면 가운데에 닿을 때 0, 아래끝이 닿을 때 1
+    const onScroll = () => {
+      const r = list.getBoundingClientRect();
+      const mid = innerHeight / 2;
+      const p = Math.min(1, Math.max(0, (mid - r.top) / r.height));
+      list.style.setProperty('--tour-progress', p.toFixed(3));
+    };
+    addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+</script>
 
 <style>
   /* ── HERO ── */
@@ -280,87 +401,313 @@ const faqs = [
   }
 
   /* ── 등록·수상 ── */
-  .cred-list {
+  .creds-sec {
+    padding-bottom: clamp(16px, 3vw, 32px);
+  }
+
+  /* ── 왜 글루밍: 스크롤리텔링 ── 왼쪽 단계 글, 오른쪽 고정 폰 */
+  .tour {
+    display: grid;
+    grid-template-columns: 1fr minmax(300px, 0.8fr);
+    gap: clamp(32px, 6vw, 96px);
+    align-items: start;
+  }
+  .tour-steps {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
+    position: relative;
   }
-  .cred {
+  /* 왼쪽 진행선 — 섹션을 지나는 만큼 위에서 아래로 차오른다 */
+  .tour-steps::before,
+  .tour-steps::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--rule);
+  }
+  .tour-steps::after {
+    background: var(--sage-dark);
+    transform-origin: top;
+    transform: scaleY(var(--tour-progress, 1));
+  }
+  .tour-step {
+    padding: clamp(28px, 4vw, 48px) 0 clamp(28px, 4vw, 48px) clamp(24px, 3vw, 40px);
+    min-height: 46vh;
     display: flex;
     flex-direction: column;
-    gap: var(--sp-2);
-    padding: var(--sp-6) var(--sp-5);
-    border-left: 1px solid var(--rule);
-  }
-  .cred:first-child {
-    border-left: 0;
-    padding-left: 0;
-  }
-  .cred-kicker {
-    color: var(--text-3);
-    font-size: var(--fs-sm);
-  }
-  .cred-title {
-    font-size: var(--fs-h4);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.4;
-  }
-
-  /* ── 가치 ── 글 + 실제 화면 교차 */
-  .value {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: clamp(32px, 6vw, 88px);
-    align-items: center;
-    padding: clamp(40px, 6vw, 72px) 0;
-    border-top: 1px solid var(--rule);
-  }
-  .value-reverse {
-    grid-template-columns: 0.8fr 1.2fr;
-  }
-  .value-reverse .value-media {
-    order: -1;
-  }
-  .value-media {
-    display: flex;
     justify-content: center;
+    transition: opacity 0.5s var(--ease);
   }
-  .value h3 {
+  .tour-en {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-family: var(--font-serif);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+  }
+  .tour-num {
+    font-size: 22px;
+    letter-spacing: 0.02em;
+    color: var(--sand);
+  }
+  .tour-step h3 {
     margin-top: var(--sp-3);
     font-size: var(--fs-h2);
     letter-spacing: -0.04em;
     line-height: var(--lh-title);
     text-wrap: balance;
   }
-  .value p {
+  .tour-desc {
     margin-top: var(--sp-4);
     max-width: 520px;
     color: var(--text-2);
     font-size: var(--fs-lead);
     line-height: 1.78;
   }
+  .tour-points {
+    list-style: none;
+    margin: var(--sp-5) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tour-points li {
+    padding: 7px 14px;
+    border: 1px solid var(--rule);
+    border-radius: var(--r-pill);
+    background: var(--surface);
+    color: var(--text-2);
+    font-size: var(--fs-sm);
+  }
+  .tour-inline {
+    display: none;
+  }
+  .tour-stage {
+    position: sticky;
+    top: calc(var(--nav-h-min) + 32px);
+    padding: var(--sp-6) 0;
+  }
+  .tour-phone {
+    position: relative;
+  }
+  /* 스크린샷 4장을 겹쳐 두고 활성 단계만 보인다 */
+  .tour-screens {
+    display: grid;
+  }
+  .tour-screens :global(.tour-screen) {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+    transition:
+      opacity 0.45s var(--ease),
+      transform 0.6s var(--ease);
+  }
+  .tour-screens :global(.tour-screen.is-active) {
+    opacity: 1;
+    transform: none;
+  }
+  .tour-dots {
+    list-style: none;
+    margin: var(--sp-5) 0 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+  .tour-dots li {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--r-pill);
+    background: var(--rule);
+    transition:
+      width 0.35s var(--ease),
+      background 0.35s var(--ease);
+  }
+  .tour-dots li.is-active {
+    width: 22px;
+    background: var(--sage-dark);
+  }
+  /* JS 가 붙은 뒤에만 비활성 단계를 흐리게 — JS 없이도 모든 글이 또렷하다 */
+  :global(.tour.is-live) .tour-step:not(.is-active) {
+    opacity: 0.32;
+  }
 
-  /* ── 진행 방식 ── */
-  .process-cells {
+  /* ── 임직원의 하루 ── 가로 스크롤 트랙 */
+  .day-track {
+    list-style: none;
+    margin: 0;
+    padding: 4px max(24px, calc((100vw - var(--maxw)) / 2)) 12px;
+    display: flex;
+    gap: clamp(14px, 1.8vw, 22px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: max(24px, calc((100vw - var(--maxw)) / 2));
+    scrollbar-width: thin;
+  }
+  .day-card {
+    flex: 0 0 clamp(200px, 19vw, 240px);
+    scroll-snap-align: start;
+  }
+  .day-time {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    color: var(--text-3);
+    font-size: var(--fs-sm);
+  }
+  .day-time span {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    color: var(--text);
+  }
+  /* 화면 위쪽(핵심 영역)만 잘라 카드처럼 */
+  .day-shot {
+    margin-top: var(--sp-3);
+    aspect-ratio: 4 / 5;
+    border-radius: var(--r-lg);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    background: var(--card-soft);
+    transition: transform 0.4s var(--ease);
+  }
+  .day-shot :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .day-card:hover .day-shot {
+    transform: translateY(-6px) rotate(-0.6deg);
+  }
+  .day-title {
+    margin-top: var(--sp-3);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  /* ── 진행 방식 ── 가로 타임라인, 지나가면 선이 차오른다 */
+  /* 섹션 사이 빈칸 줄이기 — 타임라인과 FAQ 는 붙여 읽힌다 */
+  .process {
+    padding-bottom: clamp(32px, 4vw, 56px);
+  }
+  .faq-sec {
+    padding-top: clamp(32px, 4vw, 56px);
+  }
+  .flow {
     list-style: none;
     margin: 0;
     padding: 0;
-    grid-template-columns: repeat(4, 1fr);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: clamp(16px, 2vw, 28px);
+    position: relative;
+    view-timeline: --flow block;
   }
-  .process-cells h3 {
+  .flow::before,
+  .flow::after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    top: 20px;
+    height: 2px;
+    background: var(--rule);
+  }
+  .flow::after {
+    background: var(--sage-dark);
+    transform-origin: left;
+  }
+  .flow-step {
+    position: relative;
+  }
+  .flow-dot {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--r-pill);
+    background: var(--bg);
+    border: 2px solid var(--sage-dark);
+    color: var(--sage-dark);
+    font-family: var(--font-serif);
+    font-size: 15px;
+  }
+  .flow-en {
     margin-top: var(--sp-5);
-    font-size: var(--fs-h3);
-    letter-spacing: -0.03em;
+    font-family: var(--font-serif);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
   }
-  .process-cells p {
-    margin-top: var(--sp-3);
+  .flow-step h3 {
+    margin-top: var(--sp-2);
+    font-size: var(--fs-h4);
+    letter-spacing: -0.02em;
+  }
+  .flow-desc {
+    margin-top: var(--sp-2);
     color: var(--text-2);
-    line-height: var(--lh-body);
+    font-size: var(--fs-sm);
+    line-height: 1.7;
+  }
+
+  /* ── 스크롤 연동 등장 (CSS 스크롤 타임라인, 미지원이면 정지 상태로 다 보인다) ── */
+  @keyframes fill-x {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+  @keyframes pop {
+    from {
+      opacity: 0;
+      translate: 0 18px;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .flow::after {
+        animation: fill-x linear both;
+        animation-timeline: --flow;
+        animation-range: entry 40% cover 55%;
+      }
+      .flow-step {
+        animation: pop linear both;
+        animation-timeline: --flow;
+        animation-range: entry calc(30% + var(--i) * 10%) entry calc(60% + var(--i) * 10%);
+      }
+      .day-card {
+        animation: pop linear both;
+        animation-timeline: view(inline);
+        animation-range: entry 0% entry 70%;
+      }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tour-screens :global(.tour-screen),
+    .tour-step,
+    .day-shot {
+      transition: none;
+    }
   }
 
   /* ── 성과 ── */
@@ -464,18 +811,69 @@ const faqs = [
 
   /* ── 반응형 ── */
   @media (max-width: 1023px) {
-    .process-cells {
-      grid-template-columns: repeat(2, 1fr);
+    .flow {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    /* 세로 타임라인 — 선은 왼쪽 세로로 */
+    .flow::before,
+    .flow::after {
+      left: 20px;
+      right: auto;
+      top: 20px;
+      bottom: 20px;
+      width: 2px;
+      height: auto;
+    }
+    .flow::after {
+      transform-origin: top;
+    }
+    .flow-step {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      column-gap: var(--sp-5);
+      padding-bottom: var(--sp-6);
+    }
+    .flow-dot {
+      grid-row: span 3;
+    }
+    .flow-en {
+      margin-top: 0;
+    }
+  }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) and (max-width: 1023px) {
+      .flow::after {
+        animation-name: fill-y;
+      }
+    }
+  }
+  @keyframes fill-y {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1);
     }
   }
   @media (max-width: 900px) {
     .hero-grid,
-    .value,
-    .value-reverse {
+    .tour {
       grid-template-columns: 1fr;
     }
-    .value-reverse .value-media {
-      order: 0;
+    /* 좁은 화면: 고정 폰 대신 단계마다 화면을 바로 아래에, 흐리게 하지 않는다 */
+    .tour-stage {
+      display: none;
+    }
+    .tour-inline {
+      display: block;
+      margin-top: var(--sp-6);
+    }
+    .tour-step {
+      min-height: 0;
+    }
+    :global(.tour.is-live) .tour-step:not(.is-active) {
+      opacity: 1;
     }
     .result-grid {
       grid-template-columns: 1fr;
@@ -485,18 +883,6 @@ const faqs = [
     .hero-actions :global(a) {
       width: 100%;
       justify-content: center;
-    }
-    .cred-list,
-    .process-cells {
-      grid-template-columns: 1fr;
-    }
-    .cred {
-      border-left: 0;
-      border-top: 1px solid var(--rule);
-      padding-inline: 0;
-    }
-    .cred:first-child {
-      border-top: 0;
     }
   }
 </style>
