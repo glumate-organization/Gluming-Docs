@@ -29,6 +29,17 @@ export const credentials: {
 ];
 
 /**
+ * 지식재산 — 상패 아래 한 줄로 작게. '출원'과 '등록'을 섞지 않는다 (출원은 아직 심사 중).
+ * 등록되면 kind 를 '등록'으로 옮긴다.
+ */
+export const ipSummary = [
+  { kind: '출원', label: '특허', count: 3 },
+  { kind: '출원', label: '상표', count: 3 },
+  { kind: '출원', label: '디자인', count: 2 },
+  { kind: '등록', label: '저작권', count: 4 },
+];
+
+/**
  * 글루밍과 함께한 곳. 관계(role)를 반드시 함께 표시한다 —
  * 모든 곳을 "도입 고객"으로 읽히게 묶지 않기 위해서다.
  * 지금은 /business 에 노출하지 않는다(초기엔 빼고 진행). 다시 노출할 땐 섹션만 되살린다.
