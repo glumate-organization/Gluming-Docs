@@ -4,7 +4,7 @@ import CharacterCard from '../components/CharacterCard.astro';
 import Credentials from '../components/Credentials.astro';
 import Faq from '../components/Faq.astro';
 import Layout from '../layouts/Layout.astro';
-import PhoneFrame from '../components/PhoneFrame.astro';
+import ScrollTour from '../components/ScrollTour.astro';
 import SectionHead from '../components/SectionHead.astro';
 import Sprout from '../components/Sprout.astro';
 import StoreButtons from '../components/StoreButtons.astro';
@@ -39,7 +39,7 @@ const sources = [
   { label: 'Buffey AJ, et al. Sports Medicine, 2022', url: 'https://doi.org/10.1007/s40279-022-01649-4' },
 ];
 
-// 프로그램 흐름 — 각 단계는 실제 앱 화면과 짝지어 아코디언으로. 첫 단계만 펼쳐 둔다.
+// 프로그램 흐름 — 스크롤하면 단계가 차례로 켜지고 오른쪽 폰 화면이 바뀐다 (ScrollTour, /business와 같은 방식).
 const steps = [
   {
     en: 'Measure',
@@ -216,28 +216,7 @@ const faqs = [
         <Fragment slot="sub">재고, 찍고, 미리 보고, 움직이고, 돌아보고. 그리고 함께.</Fragment>
       </SectionHead>
 
-      <div class="step-list">
-        {
-          steps.map((s, i) => (
-            <details class="step" name="program-step" open={i === 0}>
-              <summary>
-                <span class="step-num">{String(i + 1).padStart(2, '0')}</span>
-                <span class="step-en">{s.en}</span>
-                <span class="step-title">{s.title}</span>
-                <svg class="chev" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
-                  <path d="M4 7l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" />
-                </svg>
-              </summary>
-              <div class="step-body">
-                <p>{s.desc}</p>
-                <PhoneFrame width={220}>
-                  <Image src={s.img} alt={s.alt} widths={[240, 480]} sizes="220px" loading="lazy" />
-                </PhoneFrame>
-              </div>
-            </details>
-          ))
-        }
-      </div>
+      <ScrollTour items={steps} />
     </div>
   </section>
 
@@ -423,63 +402,6 @@ const faqs = [
     text-underline-offset: 3px;
   }
 
-  /* ── STEPS ── 아코디언 */
-  .step-list {
-    border-top: 1px solid var(--text);
-  }
-  .step {
-    border-bottom: 1px solid var(--rule);
-  }
-  .step summary {
-    display: grid;
-    grid-template-columns: 48px 120px 1fr 20px;
-    align-items: center;
-    gap: var(--sp-4);
-    padding: var(--sp-6) 0;
-    cursor: pointer;
-    list-style: none;
-  }
-  .step summary::-webkit-details-marker {
-    display: none;
-  }
-  .step-num {
-    font-family: var(--font-serif);
-    font-size: 22px;
-    color: var(--sand);
-  }
-  .step-en {
-    font-family: var(--font-serif);
-    font-size: 13px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--sage-dark);
-  }
-  .step-title {
-    font-size: var(--fs-h4);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-  }
-  .chev {
-    color: var(--text-3);
-    transition: transform var(--dur-2) var(--ease);
-  }
-  .step[open] .chev {
-    transform: rotate(180deg);
-  }
-  .step-body {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: clamp(24px, 5vw, 72px);
-    align-items: start;
-    padding: 0 0 var(--sp-8) calc(48px + 120px + var(--sp-4) * 2);
-  }
-  .step-body p {
-    max-width: 480px;
-    color: var(--text-2);
-    font-size: var(--fs-lead);
-    line-height: 1.78;
-  }
-
   /* ── CHANGES ── 큰 컷 1 + 작은 컷 2 */
   .change-grid {
     display: grid;
@@ -605,16 +527,6 @@ const faqs = [
     }
     .friend-cells {
       grid-template-columns: repeat(2, 1fr);
-    }
-    .step summary {
-      grid-template-columns: 36px 1fr 20px;
-    }
-    .step-en {
-      display: none;
-    }
-    .step-body {
-      grid-template-columns: 1fr;
-      padding-left: 0;
     }
   }
   @media (max-width: 640px) {

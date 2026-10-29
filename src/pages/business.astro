@@ -4,7 +4,7 @@ import Button from '../components/Button.astro';
 import Credentials from '../components/Credentials.astro';
 import Faq from '../components/Faq.astro';
 import Layout from '../layouts/Layout.astro';
-import PhoneFrame from '../components/PhoneFrame.astro';
+import ScrollTour from '../components/ScrollTour.astro';
 import SectionHead from '../components/SectionHead.astro';
 import { programImages, screens } from '../lib/assets';
 import { contactEmail } from '../lib/links';
@@ -150,57 +150,7 @@ const faqs = [
         </Fragment>
       </SectionHead>
 
-      <div class="tour" data-tour>
-        <ol class="tour-steps">
-          {
-            tour.map((t, i) => (
-              <li class:list={['tour-step', { 'is-active': i === 0 }]} data-step={i}>
-                <p class="tour-en">
-                  <span class="tour-num">{String(i + 1).padStart(2, '0')}</span>
-                  {t.en}
-                </p>
-                <h3>{t.title}</h3>
-                <p class="tour-desc">{t.desc}</p>
-                <ul class="tour-points">
-                  {t.points.map((pt) => (
-                    <li>{pt}</li>
-                  ))}
-                </ul>
-                <!-- 좁은 화면에서는 단계마다 화면을 바로 아래에 -->
-                <div class="tour-inline">
-                  <PhoneFrame width={220}>
-                    <Image src={t.img} alt={t.alt} widths={[240, 480]} sizes="220px" loading="lazy" />
-                  </PhoneFrame>
-                </div>
-              </li>
-            ))
-          }
-        </ol>
-        <div class="tour-stage" aria-hidden="true">
-          <div class="tour-phone">
-            <PhoneFrame width={300}>
-              <div class="tour-screens">
-                {
-                  tour.map((t, i) => (
-                    <Image
-                      class:list={['tour-screen', { 'is-active': i === 0 }]}
-                      data-screen={i}
-                      src={t.img}
-                      alt=""
-                      widths={[320, 640]}
-                      sizes="300px"
-                      loading={i === 0 ? 'eager' : 'lazy'}
-                    />
-                  ))
-                }
-              </div>
-            </PhoneFrame>
-            <ol class="tour-dots">
-              {tour.map((_, i) => <li class:list={{ 'is-active': i === 0 }} data-dot={i} />)}
-            </ol>
-          </div>
-        </div>
-      </div>
+      <ScrollTour items={tour} />
     </div>
   </section>
 
@@ -315,44 +265,6 @@ const faqs = [
   </section>
 </Layout>
 
-<script>
-  // 왜 글루밍 스크롤리텔링 — 화면 가운데를 지나는 단계를 활성으로 표시하고, 오른쪽 폰 화면·점·진행선을 맞춘다.
-  // 외부 의존 없이 IntersectionObserver + scroll 한 개. JS 가 없으면 첫 화면이 고정된 채 모든 글이 보인다.
-  const tour = document.querySelector<HTMLElement>('[data-tour]');
-  if (tour) {
-    const steps = [...tour.querySelectorAll<HTMLElement>('[data-step]')];
-    const screens = [...tour.querySelectorAll<HTMLElement>('[data-screen]')];
-    const dots = [...tour.querySelectorAll<HTMLElement>('[data-dot]')];
-    const list = tour.querySelector<HTMLElement>('.tour-steps')!;
-    tour.classList.add('is-live');
-
-    const activate = (i: number) => {
-      [steps, screens, dots].forEach((group) =>
-        group.forEach((el, j) => el.classList.toggle('is-active', i === j))
-      );
-    };
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) activate(Number((e.target as HTMLElement).dataset.step));
-        });
-      },
-      { rootMargin: '-45% 0px -45% 0px' }
-    );
-    steps.forEach((s) => io.observe(s));
-
-    // 진행선: 단계 목록의 위끝이 화면 가운데에 닿을 때 0, 아래끝이 닿을 때 1
-    const onScroll = () => {
-      const r = list.getBoundingClientRect();
-      const mid = innerHeight / 2;
-      const p = Math.min(1, Math.max(0, (mid - r.top) / r.height));
-      list.style.setProperty('--tour-progress', p.toFixed(3));
-    };
-    addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  }
-</script>
-
 <style>
   /* ── HERO ── */
   .hero {
@@ -406,144 +318,6 @@ const faqs = [
   /* ── 등록·수상 ── */
   .creds-sec {
     padding-bottom: clamp(16px, 3vw, 32px);
-  }
-
-  /* ── 왜 글루밍: 스크롤리텔링 ── 왼쪽 단계 글, 오른쪽 고정 폰 */
-  .tour {
-    display: grid;
-    grid-template-columns: 1fr minmax(300px, 0.8fr);
-    gap: clamp(32px, 6vw, 96px);
-    align-items: start;
-  }
-  .tour-steps {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: relative;
-  }
-  /* 왼쪽 진행선 — 섹션을 지나는 만큼 위에서 아래로 차오른다 */
-  .tour-steps::before,
-  .tour-steps::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: var(--rule);
-  }
-  .tour-steps::after {
-    background: var(--sage-dark);
-    transform-origin: top;
-    transform: scaleY(var(--tour-progress, 1));
-  }
-  .tour-step {
-    padding: clamp(28px, 4vw, 48px) 0 clamp(28px, 4vw, 48px) clamp(24px, 3vw, 40px);
-    min-height: 46vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    transition: opacity 0.5s var(--ease);
-  }
-  .tour-en {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    font-family: var(--font-serif);
-    font-size: 13px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--sage-dark);
-  }
-  .tour-num {
-    font-size: 22px;
-    letter-spacing: 0.02em;
-    color: var(--sand);
-  }
-  .tour-step h3 {
-    margin-top: var(--sp-3);
-    font-size: var(--fs-h2);
-    letter-spacing: -0.04em;
-    line-height: var(--lh-title);
-    text-wrap: balance;
-  }
-  .tour-desc {
-    margin-top: var(--sp-4);
-    max-width: 520px;
-    color: var(--text-2);
-    font-size: var(--fs-lead);
-    line-height: 1.78;
-  }
-  .tour-points {
-    list-style: none;
-    margin: var(--sp-5) 0 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .tour-points li {
-    padding: 7px 14px;
-    border: 1px solid var(--rule);
-    border-radius: var(--r-pill);
-    background: var(--surface);
-    color: var(--text-2);
-    font-size: var(--fs-sm);
-  }
-  .tour-inline {
-    display: none;
-  }
-  .tour-stage {
-    position: sticky;
-    top: calc(var(--nav-h-min) + 32px);
-    padding: var(--sp-6) 0;
-  }
-  .tour-phone {
-    position: relative;
-  }
-  /* 스크린샷 4장을 겹쳐 두고 활성 단계만 보인다 */
-  .tour-screens {
-    display: grid;
-  }
-  .tour-screens :global(.tour-screen) {
-    grid-area: 1 / 1;
-    width: 100%;
-    height: auto;
-    display: block;
-    opacity: 0;
-    transform: translateY(14px) scale(0.985);
-    transition:
-      opacity 0.45s var(--ease),
-      transform 0.6s var(--ease);
-  }
-  .tour-screens :global(.tour-screen.is-active) {
-    opacity: 1;
-    transform: none;
-  }
-  .tour-dots {
-    list-style: none;
-    margin: var(--sp-5) 0 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-  }
-  .tour-dots li {
-    width: 6px;
-    height: 6px;
-    border-radius: var(--r-pill);
-    background: var(--rule);
-    transition:
-      width 0.35s var(--ease),
-      background 0.35s var(--ease);
-  }
-  .tour-dots li.is-active {
-    width: 22px;
-    background: var(--sage-dark);
-  }
-  /* JS 가 붙은 뒤에만 비활성 단계를 흐리게 — JS 없이도 모든 글이 또렷하다 */
-  :global(.tour.is-live) .tour-step:not(.is-active) {
-    opacity: 0.32;
   }
 
   /* ── 임직원의 하루 ── 가로 스크롤 트랙 */
@@ -706,8 +480,6 @@ const faqs = [
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .tour-screens :global(.tour-screen),
-    .tour-step,
     .day-shot {
       transition: none;
     }
@@ -860,23 +632,8 @@ const faqs = [
     }
   }
   @media (max-width: 900px) {
-    .hero-grid,
-    .tour {
+    .hero-grid {
       grid-template-columns: 1fr;
-    }
-    /* 좁은 화면: 고정 폰 대신 단계마다 화면을 바로 아래에, 흐리게 하지 않는다 */
-    .tour-stage {
-      display: none;
-    }
-    .tour-inline {
-      display: block;
-      margin-top: var(--sp-6);
-    }
-    .tour-step {
-      min-height: 0;
-    }
-    :global(.tour.is-live) .tour-step:not(.is-active) {
-      opacity: 1;
     }
     .result-grid {
       grid-template-columns: 1fr;

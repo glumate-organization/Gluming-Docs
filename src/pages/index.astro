@@ -4,7 +4,6 @@ import Button from '../components/Button.astro';
 import CharacterCard from '../components/CharacterCard.astro';
 import Layout from '../layouts/Layout.astro';
 import SectionHead from '../components/SectionHead.astro';
-import Sprout from '../components/Sprout.astro';
 import StoreButtons from '../components/StoreButtons.astro';
 import { mobileAppSchema } from '../lib/seo';
 import { characters, charactersByKey, programImages } from '../lib/assets';
@@ -337,25 +336,6 @@ const habits = [
         <Button href="/characters" variant="secondary" size="md">
           글루밍즈 모두 만나기
         </Button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 7. 최종 CTA ───────────────────────────────────── -->
-  <section class="section cta-band-wrap">
-    <div class="container">
-      <div class="cta-band">
-        <Sprout size={58} tile={false} class="cta-mascot" />
-        <p class="eyebrow on-dark">Start Today</p>
-        <h2 class="cta-title">오늘 저녁,<br />같이 걸어볼까요?</h2>
-        <p class="cta-sub">
-          행동하기 전에 내 혈당 흐름을 한 번 그려보는 습관.<br />
-          함께라서 더 즐거운 하루를 글루밍과 시작해요.
-        </p>
-        <div class="cta-actions">
-          <StoreButtons size="lg" tone="dark" />
-        </div>
-        <p class="cta-more"><a href="/program">글루밍 프로그램 자세히 보기 →</a></p>
       </div>
     </div>
   </section>
@@ -918,69 +898,6 @@ const habits = [
     margin-top: var(--sp-7);
     display: flex;
     justify-content: flex-start;
-  }
-
-  /* ── 최종 CTA — 파인 다크 밴드 (좌측 정렬) ───────────── */
-  .cta-band {
-    position: relative;
-    padding: clamp(56px, 8vw, 104px) clamp(28px, 5vw, 72px);
-    border-radius: var(--r-lg);
-    background: var(--pine);
-    color: var(--on-dark);
-    overflow: hidden;
-    isolation: isolate;
-  }
-  /* 다크 면에도 같은 종이 질감을 얹어 인쇄물처럼 (배경 위 · 내용 아래) */
-  .cta-band::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background-image: var(--grain);
-    background-size: 180px 180px;
-    opacity: 0.07;
-    pointer-events: none;
-  }
-  /* 다크 면 위에서는 마스코트 몸(크림)이 그대로 잘 보여 타일이 필요 없다. */
-  .cta-band :global(.cta-mascot) {
-    display: block;
-    margin: 0 0 var(--sp-4);
-  }
-  .eyebrow.on-dark {
-    color: var(--primary-light);
-  }
-  .cta-title {
-    font-size: var(--fs-h2);
-    letter-spacing: -0.04em;
-    line-height: var(--lh-title);
-    color: var(--on-dark);
-  }
-  .cta-sub {
-    margin: var(--sp-5) 0 var(--sp-7);
-    max-width: 500px;
-    font-size: var(--fs-lead);
-    line-height: var(--lh-body);
-    color: color-mix(in srgb, var(--on-dark) 78%, transparent);
-  }
-  .cta-actions {
-    display: flex;
-    justify-content: flex-start;
-  }
-  .cta-more {
-    margin-top: var(--sp-5);
-    font-size: var(--fs-sm);
-  }
-  .cta-more a {
-    color: var(--primary-light);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  .cta-band :global(.btn-primary) {
-    background: var(--on-dark);
-    color: var(--pine);
-  }
-  .cta-band :global(.btn-primary:hover) {
-    background: #ffffff;
   }
 
   /* ── 반응형 ────────────────────────────────────────── */
