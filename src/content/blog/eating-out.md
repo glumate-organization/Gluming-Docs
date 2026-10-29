@@ -3,8 +3,8 @@ title: 회식·외식할 때, 혈당 흐름을 생각한 주문과 먹는 법
 description: 외식은 메뉴를 고르기 어렵지만, 순서와 양, 식후 움직임은 내가 정할 수 있어요. 외식 자리에서 해볼 수 있는 방법을 정리했어요.
 publishDate: 2026-11-11
 category: 식사
-cover: ../../assets/program/water-apple.jpg
-coverAlt: 물 한 잔과 잎이 달린 풋사과 하나
+cover: ../../assets/program/salad-table.jpg
+coverAlt: 식당 테이블 위의 초록 샐러드 한 접시, 물 한 잔, 냅킨 위의 수저
 sources:
   - title: "Shukla AP, et al. Food Order Has a Significant Impact on Postprandial Glucose and Insulin Levels. Diabetes Care, 2015;38:e98–e99."
     url: https://doi.org/10.2337/dc15-0429

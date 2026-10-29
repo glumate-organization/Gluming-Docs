@@ -3,8 +3,8 @@ title: 임신 중 혈당 관리, 매일 챙기면 좋은 생활 습관
 description: 임신 중에는 혈당을 조금 더 세심하게 살피게 돼요. 연구와 지침에서 강조하는 생활 습관을, 의료진의 안내와 함께 챙기는 방법으로 정리했어요.
 publishDate: 2026-11-04
 category: 생활습관
-cover: ../../assets/program/meal-tray.jpg
-coverAlt: 나무 쟁반 위에 잡곡밥, 나물, 두부구이, 생선구이, 김치가 담긴 한 끼
+cover: ../../assets/program/baby-booties.jpg
+coverAlt: 리넨 식탁보 위의 손뜨개 아기 신발 한 켤레, 따뜻한 차 한 잔, 호두 한 그릇
 sources:
   - title: "American Diabetes Association. 15. Management of Diabetes in Pregnancy: Standards of Care in Diabetes—2024. Diabetes Care, 2024;47(Suppl 1):S282–S294."
     url: https://doi.org/10.2337/dc24-S015

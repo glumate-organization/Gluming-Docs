@@ -3,8 +3,8 @@ title: 근력운동이 혈당 관리에 좋은 이유, 집에서 시작하기
 description: 근육은 포도당을 쓰는 큰 저장고예요. 지침에서 권하는 근력운동 빈도와 집에서 기구 없이 시작하는 방법을 정리했어요.
 publishDate: 2026-11-03
 category: 운동
-cover: ../../assets/program/sneakers.jpg
-coverAlt: 많이 신어 조금 낡은 회색 캔버스 운동화 한 켤레
+cover: ../../assets/program/dumbbells.jpg
+coverAlt: 햇살 드는 마룻바닥, 요가 매트 끝에 놓인 세이지색 아령 한 쌍
 sources:
   - title: "Colberg SR, et al. Physical Activity/Exercise and Diabetes: A Position Statement of the American Diabetes Association. Diabetes Care, 2016;39:2065–2079."
     url: https://doi.org/10.2337/dc16-1728

@@ -3,8 +3,8 @@ title: 오후 4시 간식, 혈당 흐름을 생각한 간식 고르기
 description: 간식은 참기보다 고르는 게 오래 가요. 탄수화물의 질과 함께 먹는 음식을 기준으로, 혈당 흐름을 생각한 간식 고르는 법을 정리했어요.
 publishDate: 2026-11-08
 category: 식사
-cover: ../../assets/program/water-apple.jpg
-coverAlt: 물 한 잔과 잎이 달린 풋사과 하나
+cover: ../../assets/program/nuts-yogurt.jpg
+coverAlt: 나무 식탁 위의 견과류 한 그릇과 나무 숟가락을 꽂은 플레인 요거트 한 잔
 sources:
   - title: "Atkinson FS, Foster-Powell K, Brand-Miller JC. International Tables of Glycemic Index and Glycemic Load Values: 2008. Diabetes Care, 2008;31:2281–2283."
     url: https://doi.org/10.2337/dc08-1239

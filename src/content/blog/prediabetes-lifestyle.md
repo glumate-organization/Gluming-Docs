@@ -3,8 +3,8 @@ title: 당뇨병 전단계라는 말을 들었다면, 생활에서 시작할 것
 description: 당뇨병 전단계는 생활습관을 돌아볼 좋은 신호예요. 대규모 연구에서 쓴 생활습관 목표와 일상에서 하나씩 시작하는 방법을 정리했어요.
 publishDate: 2026-11-06
 category: 생활습관
-cover: ../../assets/program/tape.jpg
-coverAlt: 둥글게 감긴 크림색 줄자
+cover: ../../assets/program/sprout-pot.jpg
+coverAlt: 창가 나무 선반 위 토분에 막 돋아난 새싹 하나
 sources:
   - title: "Diabetes Prevention Program Research Group. Reduction in the Incidence of Type 2 Diabetes with Lifestyle Intervention or Metformin. New England Journal of Medicine, 2002;346:393–403."
     url: https://doi.org/10.1056/NEJMoa012512

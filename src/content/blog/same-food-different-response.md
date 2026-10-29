@@ -3,8 +3,8 @@ title: 같은 밥 한 공기, 왜 나와 친구의 혈당은 다르게 오를까
 description: 똑같은 음식을 먹어도 식후 혈당 반응은 사람마다 달라요. 연구로 알려진 개인차와, 내 몸의 반응을 알아가는 방법을 정리했어요.
 publishDate: 2026-10-26
 category: 혈당 기초
-cover: ../../assets/program/meal-tray.jpg
-coverAlt: 나무 쟁반 위에 잡곡밥, 나물, 두부구이, 생선구이, 김치가 담긴 한 끼
+cover: ../../assets/program/rice-bowls.jpg
+coverAlt: 나무 식탁 위에 나란히 놓인 똑같은 쌀밥 두 공기와 젓가락
 sources:
   - title: "Zeevi D, et al. Personalized Nutrition by Prediction of Glycemic Responses. Cell, 2015;163:1079–1094."
     url: https://doi.org/10.1016/j.cell.2015.11.001

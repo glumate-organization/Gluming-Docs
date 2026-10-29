@@ -3,8 +3,8 @@ title: 스트레스 받은 날, 혈당도 함께 출렁여요
 description: 마감, 회의, 걱정거리가 많은 날은 몸도 긴장해요. 스트레스가 혈당 흐름과 어떻게 이어지는지, 일상에서 마음을 돌보는 작은 방법을 정리했어요.
 publishDate: 2026-11-14
 category: 생활습관
-cover: ../../assets/program/coffee.jpg
-coverAlt: 아침 햇살이 드는 자리에 놓인 흰 잔의 블랙커피 한 잔
+cover: ../../assets/program/family-mugs.jpg
+coverAlt: 나무 식탁 위에 나란히 놓인 크기가 다른 머그 세 개
 sources:
   - title: "American Diabetes Association. 5. Facilitating Positive Health Behaviors and Well-being to Improve Health Outcomes: Standards of Care in Diabetes—2024. Diabetes Care, 2024;47(Suppl 1):S77–S110."
     url: https://doi.org/10.2337/dc24-S005

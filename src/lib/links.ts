@@ -12,5 +12,5 @@ export const contactEmail = 'glumate@glumate.org';
 /** 운영사 글루메이트 회사 사이트 — 두 사이트가 같은 주체임을 잇는다 (푸터·JSON-LD) */
 export const companySite = 'https://glumate.co.kr/';
 
-/** 카카오톡 채널 — 문의는 여기로 */
+/** 카카오톡 채널 — 배송·환불 안내와 JSON-LD sameAs에만 남긴다. 문의는 contactEmail로 받는다 */
 export const kakaoChannel = 'https://pf.kakao.com/_wsdKX';

@@ -3,8 +3,8 @@ title: CGM 그래프, 오르막과 내리막을 읽는 법
 description: 식후 그래프를 볼 때 높이만 보면 놓치는 게 많아요. 얼마나 빨리 오르는지, 얼마나 오래 머무는지, 언제 돌아오는지 함께 읽는 법을 정리했어요.
 publishDate: 2026-11-24
 category: 혈당 기초
-cover: ../../assets/program/cgm-arm.jpg
-coverAlt: 팔 뒤쪽에 붙은 작고 둥근 흰색 연속혈당측정 센서
+cover: ../../assets/program/sensor-phone.jpg
+coverAlt: 구김 있는 리넨 위에 놓인 작고 둥근 연속혈당측정 센서와 휴대폰
 sources:
   - title: "Battelino T, et al. Clinical Targets for Continuous Glucose Monitoring Data Interpretation: Recommendations From the International Consensus on Time in Range. Diabetes Care, 2019;42:1593–1603."
     url: https://doi.org/10.2337/dci19-0028

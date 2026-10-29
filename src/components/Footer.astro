@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import { logos } from '../lib/assets';
 import { getBusinessStatus } from '../lib/business';
-import { companySite, kakaoChannel, storeLinks } from '../lib/links';
+import { companySite, contactEmail, storeLinks } from '../lib/links';
 
 const year = 2026;
 // 빌드 시점에 국세청 API로 사업자 상태 조회 (키 없으면 ok:false 폴백)
@@ -24,7 +24,7 @@ const cols = [
     links: [
       { href: storeLinks.appStore, label: 'App Store' },
       { href: storeLinks.playStore, label: 'Google Play' },
-      { href: kakaoChannel, label: '카카오톡 문의' },
+      { href: `mailto:${contactEmail}`, label: '메일 문의' },
     ],
   },
   {

@@ -3,8 +3,8 @@ title: 혈당 변동성(CV)이란? 평균만으로는 안 보이는 것
 description: 평균 혈당이 같아도 하루의 오르내림은 다를 수 있어요. 혈당 변동성(CV)이 무엇인지, 국제 합의 기준과 함께 읽는 법을 정리했어요.
 publishDate: 2026-11-10
 category: 혈당 기초
-cover: ../../assets/program/cgm-arm.jpg
-coverAlt: 팔 뒤쪽에 붙은 작고 둥근 흰색 연속혈당측정 센서
+cover: ../../assets/program/stones.jpg
+coverAlt: 크림색 바탕 위에 차곡차곡 균형 있게 쌓은 매끈한 돌 네 개
 sources:
   - title: "Battelino T, et al. Clinical Targets for Continuous Glucose Monitoring Data Interpretation: Recommendations From the International Consensus on Time in Range. Diabetes Care, 2019;42:1593–1603."
     url: https://doi.org/10.2337/dci19-0028

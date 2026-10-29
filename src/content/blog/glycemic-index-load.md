@@ -3,8 +3,8 @@ title: 혈당지수(GI)와 혈당부하(GL), 무엇이 다를까
 description: GI는 음식이 혈당을 올리는 속도, GL은 실제 먹는 양까지 함께 본 값이에요. 두 개념의 차이와 식사에 활용하는 법을 정리했어요.
 publishDate: 2026-10-30
 category: 식사
-cover: ../../assets/program/water-apple.jpg
-coverAlt: 물 한 잔과 잎이 달린 풋사과 하나
+cover: ../../assets/program/bread-slices.jpg
+coverAlt: 나무 도마 위에 나란히 놓인 통곡물빵 한 조각과 흰 식빵 한 조각
 sources:
   - title: "Atkinson FS, Foster-Powell K, Brand-Miller JC. International Tables of Glycemic Index and Glycemic Load Values: 2008. Diabetes Care, 2008;31:2281–2283."
     url: https://doi.org/10.2337/dc08-1239

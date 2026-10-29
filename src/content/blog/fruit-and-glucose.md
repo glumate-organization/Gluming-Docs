@@ -4,7 +4,7 @@ description: 과일도 당이 있으니 피해야 할지 고민될 때가 있어
 publishDate: 2026-11-15
 category: 식사
 cover: ../../assets/program/fruit.jpg
-coverAlt: 도자기 그릇에 담긴 사과, 포도 한 송이, 귤
+coverAlt: 도자기 그릇에 담긴 사과 하나, 포도 한 송이, 귤 하나
 sources:
   - title: "Muraki I, et al. Fruit consumption and risk of type 2 diabetes: results from three prospective longitudinal cohort studies. BMJ, 2013;347:f5001."
     url: https://doi.org/10.1136/bmj.f5001

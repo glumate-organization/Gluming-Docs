@@ -4,7 +4,7 @@ description: 바쁜 아침, 한 끼쯤 걸러도 괜찮을 것 같지만 그다�
 publishDate: 2026-11-13
 category: 식사
 cover: ../../assets/program/breakfast.jpg
-coverAlt: 나무 식탁 위의 삶은 달걀, 통곡물 빵 한 쪽, 블루베리를 올린 요거트, 물 한 잔
+coverAlt: 나무 식탁 위의 달걀, 통밀빵 한 조각, 블루베리 얹은 요거트와 물 한 잔
 sources:
   - title: "Jakubowicz D, et al. Fasting Until Noon Triggers Increased Postprandial Hyperglycemia and Impaired Insulin Response After Lunch and Dinner in Individuals With Type 2 Diabetes: A Randomized Clinical Trial. Diabetes Care, 2015;38:1820–1826."
     url: https://doi.org/10.2337/dc15-0761

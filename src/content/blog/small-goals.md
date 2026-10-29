@@ -3,8 +3,8 @@ title: 작심삼일이 되지 않는 작은 목표 세우기
 description: 큰 결심일수록 오래 가기 어려워요. 생활습관 연구와 지침을 바탕으로, 혈당 관리를 위한 작고 구체적인 목표 세우는 법을 정리했어요.
 publishDate: 2026-11-26
 category: 생활습관
-cover: ../../assets/program/notebook.jpg
-coverAlt: 펼쳐진 작은 크라프트지 노트와 그 위에 놓인 연필
+cover: ../../assets/program/pebble-jar.jpg
+coverAlt: 나무 식탁 위, 조약돌이 삼분의 일쯤 담긴 유리병과 곁에 놓인 조약돌 몇 개
 sources:
   - title: "American Diabetes Association. 5. Facilitating Positive Health Behaviors and Well-being to Improve Health Outcomes: Standards of Care in Diabetes—2024. Diabetes Care, 2024;47(Suppl 1):S77–S110."
     url: https://doi.org/10.2337/dc24-S005

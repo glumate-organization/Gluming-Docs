@@ -3,8 +3,8 @@ title: 추워서 밖에 나가기 싫은 날, 집에서 하는 10분 움직이�
 description: 겨울이 되면 걸음 수가 눈에 띄게 줄어요. 날씨와 상관없이 집 안에서 할 수 있는 짧은 움직임을 지침과 함께 정리했어요.
 publishDate: 2026-11-23
 category: 운동
-cover: ../../assets/program/bed.jpg
-coverAlt: 아침 햇살이 드는 침대 위의 흰 베개와 개어 둔 리넨 이불
+cover: ../../assets/program/yoga-mat.jpg
+coverAlt: 겨울 햇살이 드는 거실 바닥에 말아 둔 요가 매트와 세이지색 밴드, 개어 둔 담요
 sources:
   - title: "Bull FC, et al. World Health Organization 2020 guidelines on physical activity and sedentary behaviour. British Journal of Sports Medicine, 2020;54:1451–1462."
     url: https://doi.org/10.1136/bjsports-2020-102955

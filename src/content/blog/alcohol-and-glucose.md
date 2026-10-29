@@ -3,8 +3,8 @@ title: 술 한 잔, 혈당은 어떻게 반응할까
 description: 술은 혈당을 올리기도, 늦게 떨어뜨리기도 해요. 지침에서 말하는 주의점과 모임 자리에서 챙기면 좋은 습관을 정리했어요.
 publishDate: 2026-11-19
 category: 생활습관
-cover: ../../assets/program/water-apple.jpg
-coverAlt: 물 한 잔과 잎이 달린 풋사과 하나
+cover: ../../assets/program/wine-water.jpg
+coverAlt: 나무 식탁 위의 레드 와인 한 잔과 물 한 잔
 sources:
   - title: "American Diabetes Association. 5. Facilitating Positive Health Behaviors and Well-being to Improve Health Outcomes: Standards of Care in Diabetes—2024. Diabetes Care, 2024;47(Suppl 1):S77–S110."
     url: https://doi.org/10.2337/dc24-S005

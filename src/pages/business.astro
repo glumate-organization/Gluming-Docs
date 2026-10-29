@@ -7,7 +7,10 @@ import Layout from '../layouts/Layout.astro';
 import PhoneFrame from '../components/PhoneFrame.astro';
 import SectionHead from '../components/SectionHead.astro';
 import { programImages, screens } from '../lib/assets';
-import { kakaoChannel } from '../lib/links';
+import { contactEmail } from '../lib/links';
+
+// 도입 문의는 메일로 받는다 (카카오톡보다 회신이 빠르다)
+const inquiryMail = `mailto:${contactEmail}?subject=${encodeURIComponent('글루밍 기업 도입 문의')}`;
 import { outcomes, showOutcomes } from '../lib/trust';
 
 const title = '글루밍 기업 도입 — 임직원 혈당 습관 관리 프로그램';
@@ -95,7 +98,7 @@ const faqs = [
   },
   {
     q: '도입 절차와 견적이 궁금해요.',
-    a: '<p><a href="' + kakaoChannel + '" target="_blank" rel="noopener noreferrer">카카오톡 채널</a>로 회사 규모와 원하시는 기간을 남겨 주시면, 상담 후 맞춤 견적을 드려요.</p>',
+    a: '<p><a href="' + inquiryMail + '">' + contactEmail + '</a>로 회사 규모와 원하시는 기간을 적어 메일을 보내 주시면, 빠르게 답해 드리고 상담 후 맞춤 견적을 드려요.</p>',
   },
 ];
 ---
@@ -113,7 +116,7 @@ const faqs = [
           참여한 임직원 모두에게는 <strong>개인별 리포트</strong>를 발행해 드려요.
         </p>
         <div class="hero-actions">
-          <Button href={kakaoChannel} size="lg">도입 문의하기</Button>
+          <Button href={inquiryMail} size="lg">메일로 도입 문의하기</Button>
           <Button href="/program" variant="ghost" size="lg">프로그램 자세히 보기 →</Button>
         </div>
       </div>
@@ -303,9 +306,9 @@ const faqs = [
       <div class="cta-band">
         <p class="eyebrow on-dark">Talk to us</p>
         <h2 class="cta-title">우리 회사에 맞는 방법,<br />같이 찾아볼까요?</h2>
-        <p class="cta-sub">회사 규모와 원하시는 기간을 남겨 주시면, 담당자가 편하게 안내해 드릴게요.</p>
+        <p class="cta-sub">{contactEmail}로 문의 메일을 보내 주시면 빠르게 답해 드릴게요.<br />회사 규모와 원하시는 기간을 함께 적어 주시면 더 정확하게 안내해 드려요.</p>
         <div class="cta-actions">
-          <Button href={kakaoChannel} size="lg">카카오톡으로 도입 문의하기</Button>
+          <Button href={inquiryMail} size="lg">메일로 도입 문의하기</Button>
         </div>
       </div>
     </div>

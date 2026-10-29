@@ -4,7 +4,7 @@ description: CGM을 처음 붙이면 그래프 하나하나에 마음이 흔들�
 publishDate: 2026-11-07
 category: 혈당 기초
 cover: ../../assets/program/cgm-arm.jpg
-coverAlt: 팔 뒤쪽에 붙은 작고 둥근 흰색 연속혈당측정 센서
+coverAlt: 오트밀색 티셔츠 소매 아래, 팔 뒤쪽에 붙은 작고 둥근 흰색 연속혈당측정 센서
 sources:
   - title: "American Diabetes Association. 7. Diabetes Technology: Standards of Care in Diabetes—2024. Diabetes Care, 2024;47(Suppl 1):S126–S144."
     url: https://doi.org/10.2337/dc24-S007

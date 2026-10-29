@@ -3,8 +3,8 @@ title: 탄수화물, 끊기보다 바꾸기
 description: 혈당 관리라고 하면 탄수화물부터 끊어야 할 것 같지만, 지침과 연구는 양만큼 질을 함께 보라고 말해요. 오래 가는 탄수화물 바꾸기 방법을 정리했어요.
 publishDate: 2026-11-16
 category: 식사
-cover: ../../assets/program/meal-tray.jpg
-coverAlt: 나무 쟁반 위에 잡곡밥, 나물, 두부구이, 생선구이, 김치가 담긴 한 끼
+cover: ../../assets/program/sweet-potato.jpg
+coverAlt: 나무 도마 위의 군고구마 두 개와 현미밥 한 그릇
 sources:
   - title: "Reynolds A, et al. Carbohydrate quality and human health: a series of systematic reviews and meta-analyses. The Lancet, 2019;393:434–445."
     url: https://doi.org/10.1016/S0140-6736(18)31809-9

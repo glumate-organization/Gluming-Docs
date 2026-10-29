@@ -3,8 +3,8 @@ title: 연말 모임이 이어질 때, 혈당 흐름을 지키는 작은 원칙
 description: 송년회, 가족 모임, 회식이 이어지는 연말. 모든 자리를 피할 수는 없지만 몇 가지 원칙으로 흐름을 지킬 수 있어요.
 publishDate: 2026-11-25
 category: 생활습관
-cover: ../../assets/program/family-shoes.jpg
-coverAlt: 현관에 나란히 놓인 어른과 아이의 신발 세 켤레
+cover: ../../assets/program/door-hooks.jpg
+coverAlt: 저녁 햇살이 드는 현관 벽, 나무 고리에 걸린 모자 두 개와 에코백
 sources:
   - title: "Shukla AP, et al. Food Order Has a Significant Impact on Postprandial Glucose and Insulin Levels. Diabetes Care, 2015;38:e98–e99."
     url: https://doi.org/10.2337/dc15-0429

@@ -3,8 +3,8 @@ title: 하루 만 보, 꼭 채워야 할까
 description: 만 보라는 숫자는 어디서 왔을까요. 하루 걸음 수에 관한 대규모 분석 결과와, 나에게 맞는 걸음 목표를 세우는 법을 정리했어요.
 publishDate: 2026-11-21
 category: 운동
-cover: ../../assets/program/sneakers.jpg
-coverAlt: 많이 신어 조금 낡은 회색 캔버스 운동화 한 켤레
+cover: ../../assets/program/walk-kit.jpg
+coverAlt: 저녁빛 드는 나무 벤치 위에 개어 둔 바람막이, 흰 물병, 열쇠 꾸러미
 sources:
   - title: "Paluch AE, et al. Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts. The Lancet Public Health, 2022;7:e219–e228."
     url: https://doi.org/10.1016/S2468-2667(21)00302-9

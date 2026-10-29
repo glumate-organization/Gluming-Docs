@@ -3,8 +3,8 @@ title: TIR(목표 범위 내 시간)이란? 하루를 '시간'으로 보는 혈�
 description: 한 번 잰 혈당 숫자 대신, 하루 중 목표 범위 안에 머문 시간을 보는 TIR. 국제 합의에서 쓰는 기준과 읽는 법을 정리했어요.
 publishDate: 2026-11-01
 category: 혈당 기초
-cover: ../../assets/program/clock.jpg
-coverAlt: 나무 선반 위 벽에 기대 놓인 크림색 아날로그 시계
+cover: ../../assets/program/cgm-kit.jpg
+coverAlt: 크림색 종이 위의 작고 둥근 연속혈당측정 센서와 흰색 부착기, 접힌 설명서
 sources:
   - title: "Battelino T, et al. Clinical Targets for Continuous Glucose Monitoring Data Interpretation: Recommendations From the International Consensus on Time in Range. Diabetes Care, 2019;42:1593–1603."
     url: https://doi.org/10.2337/dci19-0028
