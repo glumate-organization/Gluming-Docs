@@ -9,8 +9,9 @@
 
 ## 페이지
 
-- [기능](https://gluming.app/features/): 혈당 시뮬레이션, 사진 식사 기록, 컨디션 표정, 미션·포인트, 주간 리포트
-- [소개](https://gluming.app/about/): 글루밍이 만들어진 이유와 접근 방식
-- [글루밍즈](https://gluming.app/characters/): 컨디션을 함께 살피는 캐릭터
+- [프로그램](https://gluming.app/program/): 혈당 흐름으로 시작하는 다이어트·건강관리 프로그램
+- [소개](https://gluming.app/about/): 글루밍이 만들어진 이유와 접근 방식, 혈당 시뮬레이션·사진 식사 기록·컨디션 표정·메이트·미션·주간 리포트 등 앱 기능
+- [글루밍즈](https://gluming.app/characters/): 컨디션을 함께 살피는 캐릭터 (저작권 등록 미술저작물)
+- [기업 도입](https://gluming.app/business/): 임직원 혈당 습관 관리 프로그램
 - [의료 정보 기준·출처](https://gluming.app/medical/): 혈당 기준 범위, TIR, 운동 강도(MET), 예측 모델의 근거와 출처
 - [서비스 이용약관](https://gluming.app/terms/) · [개인정보처리방침](https://gluming.app/privacy/) · [배송·환불 규정](https://gluming.app/shipping/)

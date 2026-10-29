@@ -116,7 +116,7 @@ const flows = [
         <StoreButtons size="lg" tone="dark" />
       </div>
       <p class="hero-note">
-        <a href="/features">앱은 어떻게 생겼는지 보기 →</a>
+        <a href="/about#features">앱은 어떻게 생겼는지 보기 →</a>
       </p>
     </div>
     <!-- 실제 홈 화면 — 사진 위 오른쪽 아래에 살짝 얹는다. 첫 화면에서 제품이 보이게. -->
@@ -331,7 +331,7 @@ const flows = [
       </div>
 
       <div class="cta-row">
-        <Button href="/features" variant="secondary" size="md">
+        <Button href="/about#features" variant="secondary" size="md">
           기능 자세히 보기
         </Button>
       </div>
@@ -375,6 +375,7 @@ const flows = [
         <div class="cta-actions">
           <StoreButtons size="lg" tone="dark" />
         </div>
+        <p class="cta-more"><a href="/program">글루밍 프로그램 자세히 보기 →</a></p>
       </div>
     </div>
   </section>
@@ -804,6 +805,15 @@ const flows = [
   .cta-actions {
     display: flex;
     justify-content: flex-start;
+  }
+  .cta-more {
+    margin-top: var(--sp-5);
+    font-size: var(--fs-sm);
+  }
+  .cta-more a {
+    color: var(--primary-light);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
   .cta-band :global(.btn-primary) {
     background: var(--on-dark);

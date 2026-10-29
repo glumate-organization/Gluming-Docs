@@ -1,0 +1,72 @@
+---
+// 자주 묻는 질문 — 네이티브 <details> 아코디언 (JS 0, 키보드 기본 지원).
+// 답변은 짧은 HTML 문자열을 허용한다(링크·강조용). 외부 입력이 아니라 페이지 상수만 넣는다.
+interface Props {
+  items: { q: string; a: string }[];
+}
+const { items } = Astro.props;
+---
+
+<div class="faq">
+  {
+    items.map((it) => (
+      <details class="faq-item">
+        <summary>
+          <span>{it.q}</span>
+          <svg class="chev" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M4 7l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" />
+          </svg>
+        </summary>
+        <div class="faq-a" set:html={it.a} />
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .faq {
+    border-top: 1px solid var(--text);
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--rule);
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-5);
+    padding: var(--sp-6) 0;
+    cursor: pointer;
+    list-style: none;
+    font-size: var(--fs-h4);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.45;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  .chev {
+    flex: none;
+    color: var(--text-3);
+    transition: transform var(--dur-2) var(--ease);
+  }
+  .faq-item[open] .chev {
+    transform: rotate(180deg);
+  }
+  .faq-a {
+    padding: 0 0 var(--sp-6);
+    max-width: var(--measure);
+    color: var(--text-2);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+  .faq-a :global(p + p) {
+    margin-top: var(--sp-3);
+  }
+  .faq-a :global(a) {
+    color: var(--sage-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

@@ -17,7 +17,8 @@ export const NAVER_SITE_VERIFICATION = 'f2ffe034ed60d0dba5e9feee879bd5b86592b6a4
 
 /** 브레드크럼 표시명 — 경로(트레일링 슬래시 제거) → 이름. Nav/Footer 라벨과 동일하게 유지. */
 export const pageNames: Record<string, string> = {
-  '/features': '기능',
+  '/program': '프로그램',
+  '/business': '기업 도입',
   '/characters': '글루밍즈',
   '/about': '소개',
   '/privacy': '개인정보처리방침',

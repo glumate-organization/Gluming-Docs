@@ -1,14 +1,16 @@
 ---
 import { Image } from 'astro:assets';
+import AppTour from '../components/AppTour.astro';
 import Layout from '../layouts/Layout.astro';
 import SectionHead from '../components/SectionHead.astro';
 import StoreButtons from '../components/StoreButtons.astro';
 import { lifestyle } from '../lib/assets';
 import { kakaoChannel } from '../lib/links';
+import { mobileAppSchema } from '../lib/seo';
 
-const title = '글루밍 소개 — 식사·운동과 혈당 흐름을 잇는 앱';
+const title = '글루밍 소개 — 혈당 시뮬레이션·식사 기록·건강 리포트';
 const description =
-  '글루밍은 CGM 센서가 잰 혈당을 식사·운동 같은 행동과 잇는 웰니스 습관 보조 서비스예요. 오른 뒤에 확인하는 대신, 앞으로의 혈당 변화를 먼저 그려보도록 살며시 거들어요.';
+  '글루밍은 CGM 센서가 잰 혈당을 식사·운동 같은 행동과 잇는 웰니스 습관 보조 서비스예요. 혈당 시뮬레이션, 사진 한 장 식사 기록, 메이트 응원, 건강 리포트까지 실제 앱 화면으로 만나보세요.';
 
 // 가치 블록 — 오른 뒤에 확인 vs 미리 살펴보기
 const beliefs = [
@@ -49,7 +51,7 @@ const roadmap = [
 ];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} jsonLd={[mobileAppSchema()]}>
   <!-- 1. HERO -->
   <section class="section hero">
     <div class="container hero-grid">
@@ -122,10 +124,13 @@ const roadmap = [
     </div>
   </section>
 
-  <!-- 3. 진행 단계 -->
+  <!-- 3. 앱 둘러보기 (옛 /features) -->
+  <AppTour />
+
+  <!-- 4. 진행 단계 -->
   <section id="about-roadmap" class="section roadmap">
     <div class="container">
-      <SectionHead eyebrow="02 — Where We Are" variant="split">
+      <SectionHead eyebrow="03 — Where We Are" variant="split">
         여기까지 왔어요
         <Fragment slot="sub">
           글루밍이 어떻게 걸어왔는지 가볍게 보여드릴게요.<br />
@@ -151,7 +156,7 @@ const roadmap = [
     </div>
   </section>
 
-  <!-- 4. 내려받기 · 문의 -->
+  <!-- 5. 내려받기 · 문의 -->
   <section id="download" class="section download">
     <div class="container">
       <div class="dl-card">

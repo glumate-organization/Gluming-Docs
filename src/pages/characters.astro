@@ -111,6 +111,10 @@ const blurbs: Record<string, string> = {
             <span class="char-underline" aria-hidden="true" />
             <p class="char-tagline">{c.tagline}</p>
             <p class="char-blurb" set:html={blurbs[c.key]} />
+            <p class="char-copyright">
+              저작권 등록 <span class="num">{c.copyright.no}</span> · 미술저작물 ·{' '}
+              {c.copyright.date.replaceAll('-', '.')}
+            </p>
 
             <div class="faces">
               <h3 class="faces-title">표정 모아보기</h3>
@@ -146,6 +150,43 @@ const blurbs: Record<string, string> = {
     ))
   }
 
+  <!-- ── 저작권 등록 ──────────────────────────────────── -->
+  <section class="section copyright">
+    <div class="container">
+      <SectionHead eyebrow="Copyright">
+        글루밍즈는 등록된 저작물이에요
+        <Fragment slot="sub">
+          네 친구는 글루메이트가 한국저작권위원회에 미술저작물로 등록한 저작물이에요.<br />
+          허락 없이 복제·배포·변형하거나 다른 곳에 사용할 수 없어요.
+        </Fragment>
+      </SectionHead>
+      <table class="reg-table">
+        <thead>
+          <tr>
+            <th scope="col">등록번호</th>
+            <th scope="col">제호</th>
+            <th scope="col">종류</th>
+            <th scope="col">등록일</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            [...characters]
+              .sort((a, b) => a.copyright.no.localeCompare(b.copyright.no))
+              .map((c) => (
+                <tr>
+                  <td class="num">{c.copyright.no}</td>
+                  <td>{c.copyright.title}</td>
+                  <td>미술저작물</td>
+                  <td class="num">{c.copyright.date.replaceAll('-', '.')}</td>
+                </tr>
+              ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
   <!-- ── CTA ──────────────────────────────────────────── -->
   <section class="cta-band section">
     <div class="container cta-inner">
@@ -162,6 +203,42 @@ const blurbs: Record<string, string> = {
 </Layout>
 
 <style>
+  /* ── 저작권 ─────────────────────────────────────── */
+  .char-copyright {
+    margin-top: var(--sp-4);
+    color: var(--text-3);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.01em;
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+  .reg-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 1px solid var(--text);
+    font-size: var(--fs-sm);
+  }
+  .reg-table th,
+  .reg-table td {
+    padding: var(--sp-4) var(--sp-3) var(--sp-4) 0;
+    border-bottom: 1px solid var(--rule);
+    text-align: left;
+  }
+  .reg-table th {
+    color: var(--text-3);
+    font-weight: 500;
+  }
+  .reg-table td.num {
+    white-space: nowrap;
+  }
+  /* 좁은 화면에선 '종류'(모두 미술저작물 — 위 설명에 있음) 열을 접는다 */
+  @media (max-width: 640px) {
+    .reg-table th:nth-child(3),
+    .reg-table td:nth-child(3) {
+      display: none;
+    }
+  }
   /* ── HERO ───────────────────────────────────────── */
   .hero {
     padding-top: clamp(48px, 7vw, 96px);
@@ -234,6 +311,10 @@ const blurbs: Record<string, string> = {
     grid-template-columns: 0.9fr 1.1fr;
     gap: clamp(32px, 6vw, 80px);
     align-items: center;
+  }
+  /* 그리드 칸은 기본 min-width:auto 라 가로 스와이프 표정 줄 폭만큼 늘어나 화면을 넘친다 → 0 으로 묶는다 */
+  .char-grid > * {
+    min-width: 0;
   }
   .char-section.alt .char-art {
     order: 2;

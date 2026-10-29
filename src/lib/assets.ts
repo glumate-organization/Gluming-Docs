@@ -68,6 +68,8 @@ export interface CharacterInfo {
   tagline: string; // 한 줄 소개
   accent: string; // CSS 변수명 (var(--...))
   states: Record<CharacterState, ImageMetadata>;
+  /** 한국저작권위원회 저작권 등록 (미술저작물) */
+  copyright: { no: string; title: string; date: string };
 }
 
 export const characters: CharacterInfo[] = [
@@ -76,6 +78,7 @@ export const characters: CharacterInfo[] = [
     name: '도디',
     tagline: '차곡차곡 기록을 도와주는 든든한 친구',
     accent: 'var(--primary)',
+    copyright: { no: 'C-2026-051747', title: 'Dodi(도디)', date: '2026-10-16' },
     states: {
       default: dodamiDefault,
       optimal: dodamiOptimal,
@@ -90,6 +93,7 @@ export const characters: CharacterInfo[] = [
     name: '루모',
     tagline: '오늘의 흐름을 환하게 비춰주는 친구',
     accent: 'var(--dusk)',
+    copyright: { no: 'C-2026-051746', title: 'Lumo(루모)', date: '2026-10-16' },
     states: {
       default: lumoDefault,
       optimal: lumoOptimal,
@@ -104,6 +108,7 @@ export const characters: CharacterInfo[] = [
     name: '보미',
     tagline: '작은 움직임도 함께 응원하는 친구',
     accent: 'var(--peach)',
+    copyright: { no: 'C-2026-051748', title: 'Bomi(보미)', date: '2026-10-16' },
     states: {
       default: ppomiDefault,
       optimal: ppomiOptimal,
@@ -118,6 +123,7 @@ export const characters: CharacterInfo[] = [
     name: '루코',
     tagline: '멋 부리기에 진심인 패셔니스타 친구',
     accent: 'var(--berry)',
+    copyright: { no: 'C-2026-051745', title: 'Luco(루코)', date: '2026-10-16' },
     states: {
       default: ribuniDefault,
       optimal: ribuniOptimal,
@@ -327,3 +333,21 @@ export const conditionScreens: {
     img: screenHomeSleep,
   },
 ];
+
+// ── 오브젝트 컷 (/program · /business) ─────────────────────
+// 단색 종이 배경 + 중심 오브젝트 하나. 사람·장면 대신 물건으로 생활을 말한다.
+import progCgmArm from '../assets/program/cgm-arm.jpg';
+import progMealTray from '../assets/program/meal-tray.jpg';
+import progSneakers from '../assets/program/sneakers.jpg';
+import progWaterApple from '../assets/program/water-apple.jpg';
+import progTape from '../assets/program/tape.jpg';
+import progDesk from '../assets/program/desk.jpg';
+
+export const programImages = {
+  cgmArm: progCgmArm, // 팔 뒤쪽에 붙인 CGM 센서
+  mealTray: progMealTray, // 잡곡밥·나물·두부·생선 한 상 (위에서)
+  sneakers: progSneakers, // 낡은 회색 운동화 한 켤레
+  waterApple: progWaterApple, // 물 한 잔과 풋사과 (정사각)
+  tape: progTape, // 감긴 줄자 (정사각)
+  desk: progDesk, // 사무실 책상 위 노트북·텀블러 (B2B)
+};

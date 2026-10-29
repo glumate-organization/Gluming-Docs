@@ -5,7 +5,7 @@ import { SITE_URL } from '../lib/seo';
 import { getPublishedPosts, isoDate, postPath } from '../lib/blog';
 
 // 실제 서빙 URL(GitHub Pages, build.format=directory)은 트레일링 슬래시 형태 → canonical 과 동일.
-const EXCLUDE = new Set(['404']);
+const EXCLUDE = new Set(['404', 'features']); // features → /about 으로 이동하는 안내 페이지
 
 const pages = import.meta.glob('./**/*.astro');
 

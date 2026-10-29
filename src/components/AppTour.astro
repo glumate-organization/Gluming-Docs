@@ -1,0 +1,439 @@
+---
+// 앱 둘러보기 — 컨디션 표정 스트립 + 기능 딥다이브 행.
+// 원래 /features 페이지 본문이었고, 소개(/about)와 합치면서 컴포넌트로 옮겼다.
+import { Image } from 'astro:assets';
+import PhoneFrame from './PhoneFrame.astro';
+import SectionHead from './SectionHead.astro';
+import { conditionScreens, screens } from '../lib/assets';
+
+// 딥다이브 기능 행 — 실제 구동 화면과 함께 좌우 교차 배치.
+// 리드와 겹치던 불릿 3개 대신, 짝이 되는 화면(pair)과 한 줄 캡션(caption)으로 보여준다.
+const deepDives = [
+  {
+    eyebrow: 'Condition at a glance',
+    title: '숫자 대신, 표정으로 알아요',
+    img: screens.homeGood,
+    alt: '글루밍 홈 화면. 캐릭터가 웃는 표정으로 "리듬이 아주 좋아요, 이대로 가요!"라고 알려주고 혈당 109 mg/dL과 오늘의 점수 68·평균 혈당 91·변동성 낮음이 함께 보인다.',
+    lead:
+      '109, 187 같은 숫자만 보면 지금이 괜찮은 건지 애매하잖아요.<br />' +
+      '글루밍즈가 <strong>표정과 한마디</strong>로 지금 흐름을 먼저 알려드려요.<br />' +
+      '아래에는 오늘의 점수·평균 혈당·변동성이 한 줄로 정리되고, 바로 이어서 "이 음식을 먹으면 어떻게 될까요?"로 넘어가요.',
+    pair: {
+      img: screens.homeToday,
+      alt: '글루밍 홈 화면. 노란 배경 위에서 캐릭터가 두 팔을 들고 "오늘 컨디션 완전 좋아요!"라고 알려주고, 혈당 109 mg/dL과 오늘의 점수 90·평균 혈당 103·변동성 낮음, 그 아래 "이 음식을 먹으면 어떻게 될까요?" 입구가 보인다.',
+    },
+    caption: '컨디션에 따라 표정과 배경색이 함께 달라져요. 왼쪽은 초록, 오른쪽은 노란 날이에요.',
+  },
+  {
+    eyebrow: 'Simulate before you move',
+    title: '지금 움직이면 어떻게 될까요?',
+    img: screens.simExercise,
+    alt: '“어떤 운동을 해볼까요?” 화면. 빠른 걷기 -2, 스쿼트 -14, 런닝 -9처럼 운동별 30분 뒤 예상 변화가, 아무것도 안 했을 때를 나타내는 점선과 겹친 미니 그래프로 비교된다.',
+    lead:
+      '가만히 있을 때와 몸을 움직였을 때를 <strong>나란히 놓고</strong> 비교해요.<br />' +
+      '빠른 걷기·스쿼트·런닝까지, 각각 30분 뒤 흐름이 어떻게 달라지는지 미리 그려봐요. 지난 7일간 쌓인 내 데이터로 계산한 참고값이에요.<br />' +
+      '마음에 드는 운동은 그 자리에서 바로 기록으로 이어져요. 종류 고르고, 5분 단위로 시간 정하고, 세 단계 강도 중 하나를 누르면 끝. 걸음 수처럼 자동으로 들어오는 값은 따로 적지 않아도 돼요.',
+    pair: {
+      img: screens.logExercise,
+      alt: '운동 기록 화면. 스트레칭·산책·빠른걷기·계단오르기 중 선택하고 시간 30분, 강도 중강도를 고르는 모습.',
+    },
+    caption: '왼쪽은 운동별 예상 변화(점선이 "아무것도 안 했을 때"), 오른쪽은 톡톡톡 세 번이면 끝나는 운동 기록이에요.',
+  },
+  {
+    eyebrow: 'One photo is enough',
+    title: '찰칵 한 번이면 기록 끝',
+    img: screens.mealDetect,
+    alt: '음식 인식 화면. 한 상 사진에서 돼지고기 김치찜·두부구이·파무침·굴전·깻잎장아찌·땅콩조림·흰쌀밥·소고기 육개장 8개를 각각 네모로 잡아내고, 총 탄수화물 136g·1,250kcal과 음식별 영양이 정리돼 있다.',
+    lead:
+      '기록이 숙제처럼 느껴지면 오래가기 어렵잖아요.<br />' +
+      '한 상을 찰칵 찍으면 <strong>음식과 탄수화물을 알아서</strong> 찾아내요.<br />' +
+      '먹기 전엔 예상 흐름과 먹는 순서를, 먹은 뒤엔 실제로 얼마나 올랐는지를 끼니별로 돌아볼 수 있어요.',
+    pair: {
+      img: screens.reportMealDetail,
+      alt: '건강 리포트의 끼니 상세. 7월 3일 점심을 먹은 뒤 혈당 상승 +44 mg/dL과 "채소 → 단백질 → 탄수화물 순서로 드시면 상승 폭을 부드럽게 만들 수 있어요"라는 안내가 보인다.',
+    },
+    caption: '왼쪽은 찍은 직후, 오른쪽은 며칠 뒤 리포트에서 그 끼니를 돌아본 화면이에요.',
+  },
+  {
+    eyebrow: 'Glucose lab',
+    title: '이 음식을 먹으면 어떻게 될까요?',
+    img: screens.labInput,
+    alt: '혈당실험소 화면. "지금 먹으면 어떻게 될까요?" 아래 마라탕 1인분(600g·탄수 36g)과 꿔바로우 1인분(250g·탄수 83g)이 담겨 있고, 몇 명이서 먹는지 고르는 버튼과 1인당 탄수화물 약 119g, "예측 보기" 버튼이 보인다.',
+    lead:
+      '먹기 전에 <strong>혈당실험소</strong>에 메뉴를 담아 보세요.<br />' +
+      '지금 혈당에서 출발해 식후 흐름이 어떻게 그려질지 미리 보여드려요. 몇 명이서 나눠 먹는지 고르면 1인당 탄수화물도 같이 계산돼요.<br />' +
+      '결과는 어디까지나 참고값이에요. 실제 반응은 사람마다 다르다는 것도 화면에서 함께 알려드려요.',
+    pair: {
+      img: screens.labResult,
+      alt: '혈당실험소 예측 결과. "이 식사 후 예상 혈당 변화, 탄수화물 119g 기준" 아래 116에서 199로 오르는 곡선과 예상 상승폭 +83, 약 55분 후 최고 199 mg/dL이 표시되고, "탄수화물량이 많아 예측 상승 폭이 클 수 있어요. 실제 반응은 개인차가 큽니다"라는 안내가 보인다.',
+    },
+    caption: '왼쪽은 메뉴를 담는 화면, 오른쪽은 "예측 보기"를 누른 뒤예요. 근거와 출처는 화면 아래 링크로 이어져요.',
+  },
+  {
+    eyebrow: 'Mates',
+    title: '혼자 말고, 메이트와 같이',
+    img: screens.mateList,
+    alt: '메이트 화면. "건강메이트 · 함께 행복하게 혈당관리하는 우리가족" 아래 방장 글루밍의 "오늘 컨디션 완전 좋아요!"와 응원하기 버튼, 그리고 나(글루메이트)의 "아직 기록이 없어요"가 카드로 나열돼 있다.',
+    lead:
+      '가족이나 지인을 메이트로 초대하면, 서로의 오늘 컨디션을 <strong>글루밍즈 표정</strong>으로 먼저 알 수 있어요.<br />' +
+      '메이트의 카드를 열면 그날의 흐름도 함께 보여요. 잘 챙긴 날엔 같이 기뻐하고, 힘든 날엔 살며시 마음을 보내요.<br />' +
+      '"응원하기"를 누르면 준비된 말 중 하나를 골라 보낼 수 있어요. "오늘도 화이팅이에요!"부터 "같이 걸을까요?"까지, 잔소리 대신 응원으로요.',
+    pair: {
+      img: screens.mateDetail,
+      alt: '메이트의 오늘 화면. 글루밍의 캐릭터가 "오늘 컨디션 완전 좋아요!"라고 알려주고 오늘의 점수 90, 9월 19일 혈당 곡선과 함께 아래에 "응원 보내기" 버튼이 있다.',
+    },
+    third: {
+      img: screens.mateCheer,
+      alt: '응원 메시지 고르기. "글루밍님에게 보낼 말을 골라주세요" 아래 마음 전하기(오늘도 화이팅이에요!, 잘하고 있어요, 응원하고 있어요)와 같이 해보기(같이 걸을까요?, 산책해보는 거 어때요?, 스쿼트 10개 해보는 거 어때요?, 물 한 잔 마셔보는 거 어때요?) 선택지가 보인다.',
+    },
+    caption: '왼쪽부터 메이트 목록, 메이트의 오늘, 보낼 응원 고르기예요.',
+  },
+  {
+    eyebrow: 'Missions & points',
+    title: '작은 미션으로 하루가 차곡차곡',
+    img: screens.mission,
+    alt: '미션 화면. 연속 달성 스탬프와 함께 식사 기록하기(+50P), 사진으로 식사 기록(+50P), 운동 기록하기(+50P), 8,000보 걷기(+100P) 미션이 진행바와 함께 나열되고, 아래에 이번 주 도전이 이어진다.',
+    lead:
+      '오늘 할 일은 딱 네 가지, 그것도 <strong>이미 하고 있는 것들</strong>이에요.<br />' +
+      '식사와 운동을 기록하고, 오늘 걸음을 채우면 그대로 포인트가 돼요.<br />' +
+      '모은 포인트는 마켓에서 <strong>새 글루밍즈 친구</strong>로 바꿔요. 캐릭터는 오직 미션으로 얻은 포인트로만 만날 수 있어요.',
+    pair: {
+      img: screens.market,
+      alt: '마켓 화면. 내 포인트가 표시되고, 캐릭터 탭 아래에 "캐릭터는 오직 미션을 통해 얻은 포인트로만 구매가 가능합니다" 안내와 함께 루코·도디·루모·보미 카드가 보유중 표시와 함께 나열돼 있다.',
+    },
+    caption: '왼쪽은 오늘의 미션, 오른쪽은 포인트로 친구를 모으는 마켓이에요.',
+  },
+  {
+    eyebrow: 'Your day, all in one place',
+    title: '하루를 한 화면에 소복이 모아서',
+    img: screens.dailyLogToday,
+    alt: '오늘 기록 화면. 9월 13일부터 19일까지 요일을 고를 수 있고, 오늘의 곡선에 평균 103·최저 70·최고 162 mg/dL과 현재값 109 mg/dL, 점심 식사 시각이 주황 점선으로 표시돼 있다. 아래에는 기록 내역으로 점심 탄수화물 94g·765kcal이 보인다.',
+    lead:
+      '오늘 하루가 어떻게 흘렀는지 <strong>한 화면에</strong> 모아서 보여드려요.<br />' +
+      '혈당 곡선 위에 목표 범위를 겹쳐 그리고, 식사한 시각은 점선으로 표시해서 어느 끼니 뒤에 어떻게 움직였는지 눈으로 바로 읽혀요.<br />' +
+      '"자세히 보기"를 누르면 곡선이 크게 펼쳐지고, 두 손가락으로 벌려 확대하거나 옆으로 밀어 지난 날도 되짚어요.',
+    pair: {
+      img: screens.glucoseDetailDay,
+      alt: '혈당 상세 화면. 9월 19일(토)의 혈당 곡선이 목표 범위 띠 위에 크게 그려져 있고, 점심 시각이 주황 점선으로 표시된다. 아래에 평균 103·최저 70·최고 162·TIR 100%와 이 날의 타임라인(오후 2:39 점심 진주냉면, 소고기 육전, 배추김치)이 보인다.',
+    },
+    caption: '왼쪽은 오늘 기록, 오른쪽은 "자세히 보기"로 펼친 혈당 상세예요. 주황 점선이 점심을 먹은 시각이에요.',
+  },
+  {
+    eyebrow: 'A week in one view',
+    title: '일주일을 모아 보면 내 리듬이 보여요',
+    img: screens.reportGlucose,
+    alt: '건강 리포트 혈당 탭. 평균 혈당 97 mg/dL, 변동성(CV) 14.5%, 목표 범위 시간(TIR) 97%, 최고 혈당 154 mg/dL과 최근 7일 시간대별 평균 곡선, 일별 평균 혈당 변화가 보인다.',
+    lead:
+      '하루하루는 들쭉날쭉해도, <strong>일주일을 모아 보면</strong> 내 리듬이 보여요.<br />' +
+      '평균과 변동성(CV), 목표 범위 안에 머문 시간(TIR)을 정리해 드려요.<br />' +
+      '식사 탭에서는 자주 먹은 음식과 혈당을 많이 올린 끼니를 Top 3로 짚어드려요.',
+    pair: {
+      img: screens.reportMeal,
+      alt: '건강 리포트 식사 탭. 자주 먹은 음식 Top 3(족발·아이스 카페라떼·보쌈), 혈당을 많이 올린 끼니 Top 3, 하루 평균 섭취 탄수화물 66g이 보인다.',
+    },
+    caption: '왼쪽이 혈당 탭, 오른쪽이 식사 탭이에요.',
+  },
+];
+---
+
+<!-- 컨디션 표정 스트립 — #features 는 옛 /features 링크가 도착하는 앵커 -->
+<section id="features" class="section faces">
+  <div class="container">
+    <SectionHead eyebrow="02 — In the App" variant="split">
+      글루밍, 이렇게 생겼어요
+      <Fragment slot="sub">
+        아래 화면은 모두 <strong>실제 글루밍 앱</strong>이에요.<br />
+        먼저 글루밍즈가 <strong>표정과 배경색</strong>으로 오늘의 나를 귀띔해 드려요.
+      </Fragment>
+    </SectionHead>
+
+    <ul class="face-strip">
+      {
+        conditionScreens.map((c) => (
+          <li class="face-item reveal">
+            <div class="face-shot">
+              <Image
+                src={c.img}
+                alt={`글루밍 홈 화면 — ${c.caption}`}
+                widths={[280, 560]}
+                sizes="(max-width: 640px) 60vw, 220px"
+                loading="lazy"
+              />
+            </div>
+            <p class="face-caption">{c.caption}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- 기능 딥다이브 행 -->
+<section class="section deepdives">
+  <div class="container">
+    {
+      deepDives.map((f, i) => {
+        const num = String(i + 1).padStart(2, '0');
+        return (
+          <article
+            class:list={[
+              'row',
+              'reveal',
+              { 'row-reverse': i % 2 === 1, 'has-pair': !!f.pair, 'has-trio': !!f.third },
+            ]}
+          >
+            <div class="row-media">
+              <PhoneFrame width={282} class="row-phone">
+                <Image
+                  src={f.img}
+                  alt={f.alt}
+                  widths={[300, 600]}
+                  sizes="282px"
+                  loading="lazy"
+                />
+              </PhoneFrame>
+              {f.pair && (
+                <PhoneFrame width={216} class="row-phone row-phone-pair">
+                  <Image
+                    src={f.pair.img}
+                    alt={f.pair.alt}
+                    widths={[240, 480]}
+                    sizes="216px"
+                    loading="lazy"
+                  />
+                </PhoneFrame>
+              )}
+              {f.third && (
+                <PhoneFrame width={216} class="row-phone row-phone-third">
+                  <Image
+                    src={f.third.img}
+                    alt={f.third.alt}
+                    widths={[240, 480]}
+                    sizes="216px"
+                    loading="lazy"
+                  />
+                </PhoneFrame>
+              )}
+            </div>
+            <div class="row-text">
+              <span class="row-num" aria-hidden="true">
+                {num}
+              </span>
+              <span class="eyebrow">{f.eyebrow}</span>
+              <h2 class="row-title">{f.title}</h2>
+              <p class="row-lead" set:html={f.lead} />
+              <p class="row-caption">{f.caption}</p>
+            </div>
+          </article>
+        );
+      })
+    }
+
+  </div>
+</section>
+
+<style>
+  /* ── 컨디션 표정 스트립 ── */
+  .face-strip {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: clamp(12px, 2vw, 24px);
+  }
+  .face-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+  /* 캐릭터 카드가 있는 위쪽만 잘라 보여준다 */
+  .face-shot {
+    position: relative;
+    border-radius: var(--r-lg);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    aspect-ratio: 1206 / 1180;
+    background: var(--card-soft);
+  }
+  .face-shot :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .face-caption {
+    color: var(--text-2);
+    font-size: var(--fs-sm);
+    line-height: 1.55;
+  }
+
+  /* ── DEEP-DIVE 행 ── 헤어라인으로 구분되는 비대칭 교차 배치 */
+  .deepdives {
+    padding-top: clamp(24px, 4vw, 48px);
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(32px, 6vw, 88px);
+    align-items: center;
+    padding: clamp(48px, 7vw, 88px) 0;
+    border-top: 1px solid var(--rule);
+  }
+  .row:first-child {
+    border-top: 0;
+    padding-top: clamp(24px, 4vw, 40px);
+  }
+  .row-reverse {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+  .row-reverse .row-media {
+    order: 2;
+  }
+  .row-media {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: clamp(12px, 2vw, 24px);
+  }
+  /* 짝 화면은 한 뼘 아래로 — 같은 높이에 나란히 서지 않게 */
+  .row-media :global(.row-phone-pair) {
+    margin-top: var(--sp-8);
+  }
+  /* 폰 세 대 — 이 행만 폰 쪽 칸을 넓히고, 세 대를 조금씩 다른 높이로 */
+  .row.has-trio {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+  .row.has-trio.row-reverse {
+    grid-template-columns: 0.85fr 1.15fr;
+  }
+  .has-trio .row-media :global(.row-phone .phone-body) {
+    width: min(100%, 220px);
+  }
+  .has-trio .row-media :global(.row-phone-pair .phone-body),
+  .has-trio .row-media :global(.row-phone-third .phone-body) {
+    width: min(100%, 196px);
+  }
+  .has-trio .row-media :global(.row-phone-third) {
+    margin-top: var(--sp-5);
+  }
+  /* 큰 세리프 인덱스 — 지면의 챕터 번호처럼 */
+  .row-num {
+    display: block;
+    margin-bottom: var(--sp-3);
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 3.4vw, 40px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--sand);
+  }
+  .row-title {
+    margin-top: var(--sp-1);
+    font-size: var(--fs-h2);
+    letter-spacing: -0.04em;
+    line-height: var(--lh-title);
+  }
+  .row-lead {
+    margin-top: var(--sp-4);
+    color: var(--text-2);
+    font-size: var(--fs-lead);
+    line-height: 1.8;
+    max-width: 560px;
+  }
+  /* 화면 설명 한 줄 — 불릿 목록 대신 사진 캡션처럼 */
+  .row-caption {
+    margin-top: var(--sp-5);
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--rule);
+    max-width: 560px;
+    color: var(--text-3);
+    font-size: var(--fs-sm);
+    line-height: 1.6;
+  }
+
+  /* ── 반응형 ── */
+  @media (max-width: 1023px) {
+    .row,
+    .row-reverse {
+      grid-template-columns: 1fr;
+      gap: clamp(24px, 5vw, 36px);
+      padding: clamp(40px, 9vw, 72px) 0;
+    }
+    .row-media,
+    .row-reverse .row-media {
+      order: 0;
+    }
+    .row-lead {
+      max-width: none;
+    }
+    .face-strip {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+
+    /* 표정 스트립은 가로 스와이프 (화면 끝까지 블리드) */
+    .face-strip {
+      display: flex;
+      grid-template-columns: none;
+      gap: 12px;
+      margin-inline: -24px;
+      padding: 2px 24px;
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+    }
+    .face-strip::-webkit-scrollbar {
+      display: none;
+    }
+    .face-item {
+      flex: 0 0 62vw;
+      max-width: 240px;
+      scroll-snap-align: start;
+    }
+
+    .row,
+    .row-reverse {
+      gap: 22px;
+      padding: 40px 0;
+    }
+    .row-num {
+      font-size: 26px;
+      margin-bottom: var(--sp-2);
+    }
+    .row-lead {
+      margin-top: var(--sp-4);
+      font-size: 15.5px;
+      line-height: 1.74;
+    }
+    /* 폰 두 대는 좁은 화면에서 작게 나란히 */
+    .row-media {
+      gap: var(--sp-3);
+    }
+    .has-pair .row-media :global(.row-phone .phone-body) {
+      width: min(100%, 168px);
+    }
+    .has-pair .row-media :global(.row-phone-pair .phone-body) {
+      width: min(100%, 136px);
+    }
+    .row-media :global(.row-phone-pair) {
+      margin-top: var(--sp-6);
+    }
+    /* 세 대는 같은 높이로 작게 나란히 */
+    .has-trio .row-media :global(.row-phone .phone-body),
+    .has-trio .row-media :global(.row-phone-pair .phone-body),
+    .has-trio .row-media :global(.row-phone-third .phone-body) {
+      width: min(100%, 104px);
+      padding: 5px;
+      border-radius: 22px;
+    }
+    .has-trio .row-media :global(.row-phone .phone-screen) {
+      border-radius: 18px;
+    }
+    .has-trio .row-media :global(.row-phone-pair),
+    .has-trio .row-media :global(.row-phone-third) {
+      margin-top: 0;
+    }
+  }
+</style>
