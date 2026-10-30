@@ -13,7 +13,6 @@ const posts = await getPublishedPosts();
       <p class="blog-eyebrow">Journal</p>
       <h1 class="blog-title">{BLOG_TITLE}</h1>
       <p class="blog-lead">{BLOG_DESCRIPTION}</p>
-      <p class="blog-rss"><a href="/rss.xml">RSS 구독</a></p>
     </header>
 
     <div class="container">
@@ -79,16 +78,6 @@ const posts = await getPublishedPosts();
     color: var(--text-2);
     font-size: var(--fs-lead);
     line-height: var(--lh-body);
-  }
-  .blog-rss {
-    margin-top: var(--sp-4);
-    font-size: var(--fs-sm);
-  }
-  .blog-rss a {
-    color: var(--sage-dark);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-color: var(--sand);
   }
   .blog-empty {
     padding: var(--sp-8) 0;
