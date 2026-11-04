@@ -93,6 +93,21 @@ const structuredData = noindex
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
 
+    <!-- 앱 웹뷰 모드 — ?app=1 로 들어오면 메뉴·푸터를 숨기고(global.css), 내부 링크에도 app=1 을 이어 붙여 유지한다.
+         head 에서 동기로 실행해 메뉴가 잠깐 보였다 사라지지 않게 한다. canonical 은 pathname 기준이라 영향 없음. -->
+    <script is:inline>
+      if (new URLSearchParams(location.search).get('app') === '1') {
+        document.documentElement.dataset.app = '1';
+        document.addEventListener('DOMContentLoaded', function () {
+          document.querySelectorAll('a[href^="/"]').forEach(function (a) {
+            var u = new URL(a.getAttribute('href'), location.origin);
+            u.searchParams.set('app', '1');
+            a.setAttribute('href', u.pathname + u.search + u.hash);
+          });
+        });
+      }
+    </script>
+
     <!-- 구조화 데이터 (JSON-LD, 인라인) — src/lib/seo.ts -->
     {structuredData && <script type="application/ld+json" set:html={structuredData} />}
   </head>

@@ -9,15 +9,18 @@ import { formatDate, getPublishedPosts, isoDate, postPath, type Post } from '../
 
 export async function getStaticPaths() {
   const posts = await getPublishedPosts();
-  return posts.map((post) => ({ params: { id: post.id }, props: { post, posts } }));
+  // posts 는 최신순 → 이전 글 = 한 칸 더 오래된 글, 다음 글 = 한 칸 더 최신 글
+  return posts.map((post, i) => ({
+    params: { id: post.id },
+    props: { post, prev: posts[i + 1], next: posts[i - 1] },
+  }));
 }
 
-const { post, posts } = Astro.props as { post: Post; posts: Post[] };
+const { post, prev, next } = Astro.props as { post: Post; prev?: Post; next?: Post };
 const { Content } = await render(post);
 const d = post.data;
 const url = `${SITE_URL}${postPath(post)}`;
 const modified = d.updatedDate ?? d.publishDate;
-const others = posts.filter((p) => p.id !== post.id).slice(0, 3);
 // 대표 이미지가 있으면 공유 미리보기(og:image)·JSON-LD 도 그 이미지로 (1200px jpg — SNS 가 webp/svg 를 못 읽는 경우 대비)
 const ogImage = d.cover
   ? new URL((await getImage({ src: d.cover, width: 1200, format: 'jpg' })).src, SITE_URL).href
@@ -87,27 +90,35 @@ const ogImage = d.cover
       }
     </ol>
 
-    <div class="notice">
+    <div class="notice post-promo">
       <p>
         글루밍에서는 식사나 운동을 고르기 전에, 내 혈당 흐름이 어떻게 달라질지 미리 그려볼 수 있어요.
       </p>
       <p class="post-cta"><a href="/program/">글루밍 프로그램 둘러보기 →</a></p>
     </div>
 
-    {
-      others.length > 0 && (
-        <>
-          <h2>다른 글</h2>
-          <ul class="post-others">
-            {others.map((p) => (
-              <li>
-                <a href={postPath(p)}>{p.data.title}</a>
-              </li>
-            ))}
-          </ul>
-        </>
-      )
-    }
+    <nav class="post-pager" aria-label="이전 글, 다음 글">
+      {
+        prev ? (
+          <a href={postPath(prev)} rel="prev" class="pager-link pager-prev">
+            <span class="pager-label">← 이전 글</span>
+            <span class="pager-title">{prev.data.title}</span>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        next ? (
+          <a href={postPath(next)} rel="next" class="pager-link pager-next">
+            <span class="pager-label">다음 글 →</span>
+            <span class="pager-title">{next.data.title}</span>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+    </nav>
     <p><a href="/blog/">← 혈당 노트 목록</a></p>
   </LegalDoc>
 </Layout>
@@ -126,6 +137,54 @@ const ogImage = d.cover
   }
   .post-cta {
     margin-bottom: 0;
+  }
+  /* 이전·다음 글 — 헤어라인 사이 2열. 최신 쪽(다음 글)은 오른쪽 정렬 */
+  .post-pager {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-5);
+    margin: var(--sp-7) 0 var(--sp-5);
+    padding: var(--sp-5) 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .post-pager .pager-link {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .post-pager .pager-next {
+    text-align: right;
+  }
+  .pager-label {
+    font-size: var(--fs-sm);
+    color: var(--text-3);
+  }
+  .pager-title {
+    font-weight: 600;
+    line-height: 1.5;
+    transition: color 0.18s ease;
+  }
+  .pager-link:hover .pager-title {
+    color: var(--sage-dark);
+  }
+  @media (max-width: 560px) {
+    .post-pager {
+      grid-template-columns: 1fr;
+    }
+    .post-pager .pager-next {
+      text-align: left;
+    }
+    /* 이전 글이 없는 첫 글에서 빈 칸이 남지 않게 */
+    .post-pager > span:empty {
+      display: none;
+    }
+  }
+  /* 앱 웹뷰(?app=1)에서는 웹 프로그램 안내를 숨긴다 */
+  :global(html[data-app]) .post-promo {
+    display: none;
   }
   .post-cover {
     margin: 0 0 var(--sp-7);

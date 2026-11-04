@@ -384,3 +384,10 @@ i {
     scroll-behavior: auto !important;
   }
 }
+
+/* ─── 앱 웹뷰 모드 (?app=1, Layout.astro 인라인 스크립트가 html[data-app] 설정) ─── */
+html[data-app] .nav,
+html[data-app] .footer,
+html[data-app] .skip-link {
+  display: none;
+}
