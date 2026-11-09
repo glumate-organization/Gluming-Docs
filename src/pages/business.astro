@@ -116,7 +116,6 @@ const faqs = [
           참여한 임직원 모두에게는 <strong>개인별 리포트</strong>를 발행해 드려요.
         </p>
         <div class="hero-actions">
-          <Button href={inquiryMail} size="lg">메일로 도입 문의하기</Button>
           <Button href="/program" variant="ghost" size="lg">프로그램 자세히 보기 →</Button>
         </div>
       </div>
@@ -257,9 +256,6 @@ const faqs = [
         <p class="eyebrow on-dark">Talk to us</p>
         <h2 class="cta-title">우리 회사에 맞는 방법,<br />같이 찾아볼까요?</h2>
         <p class="cta-sub">{contactEmail}로 문의 메일을 보내 주시면 빠르게 답해 드릴게요.<br />회사 규모와 원하시는 기간을 함께 적어 주시면 더 정확하게 안내해 드려요.</p>
-        <div class="cta-actions">
-          <Button href={inquiryMail} size="lg">메일로 도입 문의하기</Button>
-        </div>
       </div>
     </div>
   </section>
@@ -570,18 +566,11 @@ const faqs = [
     color: var(--on-dark);
   }
   .cta-sub {
-    margin: var(--sp-5) 0 var(--sp-7);
+    margin: var(--sp-5) 0 0;
     max-width: 520px;
     color: color-mix(in srgb, var(--on-dark) 78%, transparent);
     font-size: var(--fs-lead);
     line-height: var(--lh-body);
-  }
-  .cta-band :global(.btn-primary) {
-    background: var(--on-dark);
-    color: var(--pine);
-  }
-  .cta-band :global(.btn-primary:hover) {
-    background: var(--surface);
   }
 
   /* ── 반응형 ── */
