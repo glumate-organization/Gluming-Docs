@@ -1,4 +1,4 @@
-// 신뢰 정보 단일 출처 — 등록·수상·함께한 곳·프로그램 성과.
+// 신뢰 정보 단일 출처 — 등록·수상·언론 보도·함께한 곳·프로그램 성과.
 // /program · /business 가 같은 값을 쓴다. 사실 확인된 것만 넣는다.
 
 /** 등록·수상 이력 — Credentials.astro 가 상패처럼 그린다 */
@@ -25,6 +25,19 @@ export const credentials: {
     org: '국민건강보험공단',
     title: '당뇨병 관리기기 준요양기관',
     sub: '등록업소',
+  },
+];
+
+/**
+ * 언론 보도 — 최신순. 제목은 기사 원문 그대로 쓴다.
+ * 기사 본문·사진은 저작권 때문에 가져오지 않고 원문으로 연결한다.
+ */
+export const press: { outlet: string; date: string; title: string; url: string }[] = [
+  {
+    outlet: '스타트업타임즈',
+    date: '2026.11.10',
+    title: '글루메이트, ‘장대 웰니스 메이커스’ 대상 수상…혈당 체험 프로그램 전개',
+    url: 'https://www.startuptimes.kr/article/%EA%B8%80%EB%A3%A8%EB%A9%94%EC%9D%B4%ED%8A%B8-%EC%9E%A5%EB%8C%80-%EC%9B%B0%EB%8B%88%EC%8A%A4-%EB%A9%94%EC%9D%B4%EC%BB%A4%EC%8A%A4-%EB%8C%80%EC%83%81-%EC%88%98%EC%83%81%ED%98%88%EB%8B%B9-%EC%B2%B4%ED%97%98-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%A0%84%EA%B0%9C',
   },
 ];
 
