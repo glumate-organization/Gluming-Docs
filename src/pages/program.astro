@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import CharacterCard from '../components/CharacterCard.astro';
 import Credentials from '../components/Credentials.astro';
 import Faq from '../components/Faq.astro';
 import Layout from '../layouts/Layout.astro';
@@ -8,7 +7,7 @@ import ScrollTour from '../components/ScrollTour.astro';
 import SectionHead from '../components/SectionHead.astro';
 import Sprout from '../components/Sprout.astro';
 import StoreButtons from '../components/StoreButtons.astro';
-import { characters, programImages, screens } from '../lib/assets';
+import { programImages, screens } from '../lib/assets';
 import { contactEmail } from '../lib/links';
 import { mobileAppSchema } from '../lib/seo';
 
@@ -253,22 +252,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 5. 글루밍즈 -->
-  <section class="section friends">
-    <div class="container">
-      <SectionHead eyebrow="04 — With the Glumings">
-        숫자 대신 표정으로, 곁에서 함께해요
-        <Fragment slot="sub">
-          혈당 흐름에 따라 글루밍즈의 표정이 달라져요. 혼자 버티는 다이어트가 아니라, 같이 걷는 하루예요.
-        </Fragment>
-      </SectionHead>
-      <div class="cells friend-cells">
-        {characters.map((c) => <CharacterCard character={c} state="happy" />)}
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. 신뢰 -->
+  <!-- 5. 신뢰 -->
   <section class="section trust">
     <div class="container">
       <Credentials />
@@ -278,7 +262,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 7. FAQ -->
+  <!-- 6. FAQ -->
   <section class="section faq-sec">
     <div class="container">
       <SectionHead eyebrow="FAQ">자주 묻는 질문</SectionHead>
@@ -286,7 +270,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 8. CTA -->
+  <!-- 7. CTA -->
   <section class="section cta">
     <div class="container">
       <div class="cta-band">
@@ -451,11 +435,6 @@ const faqs = [
     margin-top: 0;
   }
 
-  /* ── FRIENDS ── */
-  .friend-cells {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
   /* ── TRUST ── */
   .trust {
     padding-block: clamp(40px, 5vw, 64px);
@@ -524,9 +503,6 @@ const faqs = [
     }
     .change.is-lead {
       grid-row: auto;
-    }
-    .friend-cells {
-      grid-template-columns: repeat(2, 1fr);
     }
   }
   @media (max-width: 640px) {
