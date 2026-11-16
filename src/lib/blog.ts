@@ -24,9 +24,12 @@ function assertWellness(post: Post) {
   }
 }
 
-/** 공개된 글만, 최신순. draft 이거나 publishDate 가 빌드 시점보다 미래면 제외. */
+/**
+ * 공개된 글만, 최신순. draft 이거나 publishDate 가 빌드 시점의 KST 날짜보다 미래면 제외.
+ * publishDate 는 UTC 자정으로 읽히므로 9시간을 더해 비교한다 → KST 자정이 지나면 그날 글이 공개된다.
+ */
 export async function getPublishedPosts(): Promise<Post[]> {
-  const now = Date.now();
+  const now = Date.now() + 9 * 60 * 60 * 1000;
   const posts = await getCollection('blog', (p) => !p.data.draft && p.data.publishDate.valueOf() <= now);
   posts.forEach(assertWellness);
   return posts.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
