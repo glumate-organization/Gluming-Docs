@@ -3,6 +3,7 @@ title: 밤새 굶었는데 아침 혈당이 더 높은 이유, 새벽에 먼저 
 description: 야식도 참았는데 아침 혈당이 잠들기 전보다 높다면, 새벽에 먼저 일어나 아침을 준비하는 간을 떠올려 보세요. 새벽 현상을 부엌 이야기로 풀어 봤어요.
 publishDate: 2026-11-28
 category: 혈당 기초
+keywords: [새벽 현상, 아침 공복 혈당 높은 이유, 공복 혈당, 새벽 혈당 상승, 아침 혈당]
 cover: ../../assets/program/morning-curtain.jpg
 coverAlt: 이른 아침 햇살이 비치는 리넨 커튼
 sources:

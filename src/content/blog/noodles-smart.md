@@ -3,6 +3,7 @@ title: 라면 국물에 밥을 말면 혈당은 어떻게 될까
 description: 라면, 칼국수, 냉면처럼 끊기 어려운 면 요리. 면을 좋아하는 사람들이 실제로 궁금해하는 질문에 하나씩 답하며, 먹는 순서와 양을 바꾸는 요령을 담았어요.
 publishDate: 2026-11-20
 category: 식사
+keywords: [라면 혈당, 면 요리 혈당, 칼국수 혈당, 냉면 혈당, 메밀면 혈당]
 cover: ../../assets/program/noodles.jpg
 coverAlt: 애호박과 달걀지단, 김을 올린 칼국수 한 그릇과 김치, 젓가락
 sources:

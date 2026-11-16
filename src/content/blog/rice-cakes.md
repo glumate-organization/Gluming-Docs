@@ -3,6 +3,7 @@ title: 아침 인절미, 생일 백설기, 저녁 가래떡, 떡이 많은 하�
 description: 떡은 하루에도 여러 번 우리 앞에 놓여요. 아침부터 밤까지 떡을 만나는 장면을 따라가며, 떡 종류에 따라 혈당 흐름이 어떻게 다를 수 있는지 살펴봤어요.
 publishDate: 2026-12-19
 category: 식사
+keywords: [떡 혈당, 인절미 혈당, 가래떡 혈당, 떡볶이 혈당, 백설기 혈당]
 cover: ../../assets/program/rice-cake.jpg
 coverAlt: 나무 접시 위 하얀 가래떡
 sources:

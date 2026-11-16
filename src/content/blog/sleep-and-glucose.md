@@ -3,6 +3,7 @@ title: 잠을 설친 다음 날, 혈당도 피곤해요
 description: 수면이 부족하면 몸이 포도당을 다루는 방식에도 영향을 줄 수 있어요. 수면과 혈당에 관한 연구와 잠을 챙기는 생활 습관을 정리했어요.
 publishDate: 2026-10-29
 category: 생활습관
+keywords: [수면 혈당, 수면 부족 혈당, 잠 못 잔 날 혈당, 수면 인슐린, 수면 습관]
 cover: ../../assets/program/bed.jpg
 coverAlt: 아침 햇살이 드는 침대 위의 흰 베개와 개어 둔 리넨 이불
 sources:

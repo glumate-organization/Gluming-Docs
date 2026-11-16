@@ -3,6 +3,7 @@ title: 채소부터 먹기, 먹는 순서가 식후 혈당에 주는 차이
 description: 같은 메뉴라도 무엇을 먼저 먹느냐에 따라 식후 혈당 흐름이 달라질 수 있어요. 연구 내용과 식탁에서 바로 해볼 수 있는 순서를 정리했어요.
 publishDate: 2026-10-27
 category: 식사
+keywords: [식사 순서 혈당, 채소 먼저 먹기, 거꾸로 식사법, 먹는 순서, 식후 혈당]
 cover: ../../assets/program/meal-tray.jpg
 coverAlt: 나무 쟁반 위에 잡곡밥, 나물, 두부구이, 생선구이, 김치가 담긴 한 끼
 sources:

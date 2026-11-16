@@ -3,6 +3,7 @@ title: 같이 하자는 한마디, 혼자일 때보다 오래 가는 이유
 description: 아침 걸음 수 알림부터 밤의 응원 메시지까지, 친구와 함께하는 크리스마스 하루를 따라가며 함께하기가 꾸준함과 어떻게 이어지는지 연구와 함께 살펴봐요.
 publishDate: 2026-12-25
 category: 생활습관
+keywords: [같이 운동하기, 걸음수 챌린지, 혈당 관리 꾸준히, 운동 친구, 습관 유지]
 cover: ../../assets/program/board-game.jpg
 coverAlt: 테이블 위 나무 보드게임 말과 주사위
 sources:

@@ -3,6 +3,7 @@ title: 한 정거장 먼저 내린 주, 걸음수와 혈당 그래프는 달라�
 description: 운동할 시간을 따로 내기 어렵다면 출퇴근길로 2주짜리 작은 실험을 해 보세요. 비교 방법, 결과를 읽는 법, 출퇴근 방식에 관한 연구를 함께 정리했어요.
 publishDate: 2026-12-05
 category: 생활습관
+keywords: [출퇴근 걷기, 걸음수 혈당, 한 정거장 걷기, 생활 속 운동, 주 150분 운동]
 cover: ../../assets/program/umbrella.jpg
 coverAlt: 현관 벽에 기대 세워진 접힌 장우산
 sources:

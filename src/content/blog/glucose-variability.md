@@ -3,6 +3,7 @@ title: 평균 속도가 같은 두 버스, 혈당 변동성(CV)으로 읽는 하
 description: 평균 혈당이 같아도 하루의 오르내림은 전혀 다를 수 있어요. 같은 노선을 달린 두 버스에 빗대어 혈당 변동성(CV)이 무엇이고 그래프에서 어떻게 읽는지 풀어 봤어요.
 publishDate: 2026-11-10
 category: 혈당 기초
+keywords: [혈당 변동성, 혈당 CV, 변동계수, 혈당 변동폭, 평균 혈당]
 cover: ../../assets/program/stones.jpg
 coverAlt: 크림색 바탕 위에 차곡차곡 균형 있게 쌓은 매끈한 돌 네 개
 sources:

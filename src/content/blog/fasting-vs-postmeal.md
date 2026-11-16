@@ -3,6 +3,7 @@ title: 공복 혈당은 괜찮은데 식후엔 높다면, 두 숫자는 무엇�
 description: 검진표의 공복 혈당과 밥 먹고 오르는 식후 혈당은 서로 다른 장면을 보여 줘요. 결과지를 받은 날, 늦은 야식 다음 날처럼 상황별로 어느 숫자를 볼지 정리했어요.
 publishDate: 2026-12-21
 category: 혈당 기초
+keywords: [공복 혈당 식후 혈당 차이, 식후 혈당 높은 이유, 공복 혈당 정상인데 식후 혈당, 건강검진 공복 혈당, 식후 2시간 혈당]
 cover: ../../assets/program/empty-plate.jpg
 coverAlt: 깨끗하게 비운 흰 접시와 포크
 sources:

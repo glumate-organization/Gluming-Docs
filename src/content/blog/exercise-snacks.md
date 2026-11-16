@@ -3,6 +3,7 @@ title: 식사 전 1분만 움직이면 식후 그래프가 달라질까
 description: 운동 30분을 낼 수 없는 날, 끼니 전 1분씩 움직이는 운동 간식은 어떨까요. 비슷한 메뉴의 이틀을 비교하는 작은 실험으로 내 몸의 반응을 직접 확인해 보세요.
 publishDate: 2026-12-23
 category: 운동
+keywords: [운동 간식, 식전 운동 혈당, 1분 운동, 짧은 운동, 식후 혈당]
 cover: ../../assets/program/chair.jpg
 coverAlt: 햇살 드는 방의 나무 의자 하나
 sources:

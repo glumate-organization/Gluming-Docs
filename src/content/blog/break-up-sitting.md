@@ -3,6 +3,7 @@ title: 30분마다 일어나기, 앉아 있는 시간과 혈당
 description: 오래 앉아 있는 시간을 짧은 걷기로 끊어 주면 식후 혈당 흐름이 완만해지는 경향이 있어요. 연구 내용과 사무실에서 해볼 수 있는 방법을 정리했어요.
 publishDate: 2026-10-31
 category: 운동
+keywords: [오래 앉아 있기 혈당, 좌식 생활, 30분마다 일어나기, 사무실 걷기, 식후 혈당]
 cover: ../../assets/program/desk.jpg
 coverAlt: 햇살 드는 사무실 책상 위의 닫힌 노트북과 세이지색 텀블러
 sources:

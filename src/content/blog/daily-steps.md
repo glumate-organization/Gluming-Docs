@@ -3,6 +3,7 @@ title: 만 보를 못 채운 날, 그 6천 보는 헛걸음일까
 description: 만 보라는 숫자는 생각보다 근거가 얇아요. 걸음 수에 관한 대규모 분석을 살펴보고, 출근길과 회사, 집, 궂은 날처럼 상황마다 걸음을 더하는 방법을 골라 봤어요.
 publishDate: 2026-11-21
 category: 운동
+keywords: [하루 만 보, 하루 걸음 수, 걸음수 건강, 6천 보 걷기, 걷기 목표]
 cover: ../../assets/program/walk-kit.jpg
 coverAlt: 저녁빛 드는 나무 벤치 위에 개어 둔 바람막이, 흰 물병, 열쇠 꾸러미
 sources:

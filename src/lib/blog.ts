@@ -14,7 +14,8 @@ const BANNED =
   /치료|완치|진단|처방|효능|특효|의약품|약을\s*끊|정상\s*수치를?\s*보장|혈당을?\s*낮춰\s*드립|당뇨에서\s*벗어/;
 
 function assertWellness(post: Post) {
-  const lines = `${post.data.title}\n${post.data.description}\n${post.body ?? ''}`.split('\n');
+  const lines =
+    `${post.data.title}\n${post.data.description}\n${post.data.keywords.join(', ')}\n${post.body ?? ''}`.split('\n');
   const hits = lines.filter((l) => BANNED.test(l));
   if (hits.length) {
     throw new Error(

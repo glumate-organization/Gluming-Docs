@@ -3,6 +3,7 @@ title: 추운 날엔 안 걷는 게 낫다? 겨울 산책에 대한 다섯 가�
 description: 겨울엔 쉬는 게 몸에 좋다, 걸으려면 한 시간은 걸어야 한다. 흔히 듣는 겨울 산책 이야기 다섯 가지를 하나씩 짚고, 춥지만 안전하게 걷는 방법을 정리했어요.
 publishDate: 2026-12-18
 category: 운동
+keywords: [겨울 산책, 추운 날 걷기, 겨울 걷기 운동, 겨울철 운동 주의, 식후 걷기]
 cover: ../../assets/program/scarf-gloves.jpg
 coverAlt: 의자 위에 놓인 울 목도리와 장갑
 sources:

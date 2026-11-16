@@ -3,6 +3,7 @@ title: 계산기 대신 접시 하나, 절반을 채소로 채우면 뭐가 달�
 description: 칼로리를 세지 않아도 접시를 채소 절반, 단백질과 탄수화물 4분의 1씩으로 나누면 한 끼 균형이 잡혀요. 한식과 편의점에서 자주 묻는 질문으로 정리했어요.
 publishDate: 2026-12-26
 category: 식사
+keywords: [접시 식사법, 식판 나누기, 채소 절반 식단, 균형 잡힌 한 끼, 혈당 식단]
 cover: ../../assets/program/divided-plate.jpg
 coverAlt: 칸이 나뉜 빈 도자기 접시
 sources:

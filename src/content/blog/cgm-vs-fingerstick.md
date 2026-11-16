@@ -3,6 +3,7 @@ title: 같은 순간 손끝과 CGM, 숫자가 다른 건 고장일까
 description: 손끝으로 잰 혈당과 CGM 숫자가 달라 당황했다면, 하루 세 번 나란히 재 보는 작은 실험으로 차이가 언제 커지고 언제 줄어드는지 직접 확인해 보세요.
 publishDate: 2026-12-17
 category: 혈당 기초
+keywords: [CGM 손끝 혈당 차이, 연속혈당측정기 정확도, 자가혈당측정 차이, 간질액 혈당, CGM 오차]
 cover: ../../assets/program/measuring-cups.jpg
 coverAlt: 크기가 다른 도자기 계량컵 세 개
 sources:

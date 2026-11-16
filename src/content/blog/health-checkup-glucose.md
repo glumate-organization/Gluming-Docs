@@ -3,6 +3,7 @@ title: 건강검진 결과지의 공복혈당·당화혈색소, 이렇게 읽어
 description: 검진 결과지에 적힌 공복혈당과 당화혈색소가 무엇을 뜻하는지, 숫자를 받은 뒤 일상에서 무엇부터 해볼 수 있는지 정리했어요.
 publishDate: 2026-10-28
 category: 혈당 기초
+keywords: [건강검진 공복혈당, 당화혈색소 수치, 건강검진 혈당 결과, 공복혈당 수치, 검진 결과지 보는 법]
 cover: ../../assets/program/envelope.jpg
 coverAlt: 크림색 종이 위의 크라프트 봉투와 펼친 빈 종이, 연필 한 자루
 sources:

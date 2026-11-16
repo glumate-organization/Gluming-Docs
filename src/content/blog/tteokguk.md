@@ -3,6 +3,7 @@ title: 떡국 한 그릇은 밥 한 공기와 같을까, 새해 아침의 오해
 description: 떡도 쌀이니 밥과 같다, 잡곡 떡이면 괜찮다, 국물 음식이라 양이 적다. 새해 떡국 앞에서 자주 듣는 말을 하나씩 풀고 한 그릇 담는 요령을 정리했어요.
 publishDate: 2026-12-30
 category: 식사
+keywords: [떡국 혈당, 떡국 탄수화물, 설날 떡국, 떡 혈당지수, 명절 음식 혈당]
 cover: ../../assets/program/tteokguk-bowl.jpg
 coverAlt: 놋그릇에 담긴 떡국
 sources:

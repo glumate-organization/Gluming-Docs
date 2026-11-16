@@ -3,6 +3,7 @@ title: 새해 결심은 왜 사흘을 못 갈까, 작게 세운 목표가 오래
 description: 매일 한 시간 운동, 간식 끊기 같은 결심이 사흘 만에 무너지는 데는 이유가 있어요. 혈당 관리를 위한 작고 구체적인 목표를 질문과 답으로 정리했어요.
 publishDate: 2026-11-26
 category: 생활습관
+keywords: [작은 목표 세우기, 새해 결심, 작심삼일, 혈당 관리 목표, 습관 목표]
 cover: ../../assets/program/pebble-jar.jpg
 coverAlt: 나무 식탁 위, 조약돌이 삼분의 일쯤 담긴 유리병과 곁에 놓인 조약돌 몇 개
 sources:

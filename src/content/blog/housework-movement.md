@@ -3,6 +3,7 @@ title: 설거지도 운동으로 쳐 줄까요, 집안일과 혈당에 관한 �
 description: 헬스장은 못 갔지만 쓸고 닦고 빨래를 널었다면? 운동이라 부르지 않던 집안일이 혈당 흐름과 어떻게 이어지는지, 자주 나오는 질문에 연구와 함께 답했어요.
 publishDate: 2026-12-14
 category: 운동
+keywords: [집안일 운동, 설거지 칼로리, 생활 속 움직임, 니트 운동, 식후 움직임]
 cover: ../../assets/program/broom.jpg
 coverAlt: 벽에 기대 세워진 짚 빗자루
 sources:

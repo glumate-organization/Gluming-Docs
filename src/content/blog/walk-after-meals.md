@@ -3,6 +3,7 @@ title: 식후 10분 걷기, 혈당 흐름에 어떤 차이를 만들까
 description: 밥 먹고 잠깐 걷는 습관이 식후 혈당 흐름과 어떻게 이어지는지, 연구 결과와 함께 일상에서 해볼 수 있는 방법을 정리했어요.
 publishDate: 2026-10-25
 category: 운동
+keywords: [식후 걷기, 식후 10분 걷기, 식후 산책 혈당, 식후 혈당 관리, 걷기 혈당]
 cover: ../../assets/program/sneakers.jpg
 coverAlt: 많이 신어 조금 낡은 회색 캔버스 운동화 한 켤레
 sources:

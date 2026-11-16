@@ -3,6 +3,7 @@ title: 당뇨병 전단계라는 말을 들었다면, 먼저 내려놓을 오해
 description: 검진에서 당뇨병 전단계라는 말을 들으면 겁부터 나요. 흔히 하는 오해 다섯 가지를 하나씩 풀고, 대규모 연구가 실제로 쓴 생활습관 목표를 담았어요.
 publishDate: 2026-11-06
 category: 생활습관
+keywords: [당뇨 전단계, 당뇨 전단계 생활습관, 공복혈당장애, 전당뇨 관리, 혈당 생활습관]
 cover: ../../assets/program/sprout-pot.jpg
 coverAlt: 창가 나무 선반 위 토분에 막 돋아난 새싹 하나
 sources:

@@ -3,6 +3,7 @@ title: 구내식당부터 회식까지, 식사 기록이 사흘 만에 멈추지
 description: 식사 기록은 늘 바쁜 순간에 끊겨요. 구내식당, 편의점, 집밥, 회식, 기록을 놓친 다음 날까지 상황별로 가볍게 남기는 요령과 주말 5분 돌아보기를 담았어요.
 publishDate: 2026-11-09
 category: 생활습관
+keywords: [식사 기록, 식단 기록 방법, 식사 일기, 식단 사진 기록, 혈당 기록]
 cover: ../../assets/program/notebook.jpg
 coverAlt: 펼쳐진 작은 크라프트지 노트와 그 위에 놓인 연필
 sources:

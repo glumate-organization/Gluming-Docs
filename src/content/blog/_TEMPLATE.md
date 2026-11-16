@@ -19,8 +19,11 @@
 #  - 본문: ![화면을 설명하는 alt](경로) 다음 줄에 *캡션* 한 줄 → 가운데 정렬 캡션으로 보인다
 #  - 도식은 '이해를 돕는 개념도'로만. 실제 데이터처럼 보이는 수치를 그려 넣지 않는다
 #
-# 예약 발행: publishDate 를 미래로 두면 그 날 KST 09:10 자동 빌드에서 공개된다.
-#   (.github/workflows/deploy.yml 의 schedule — 매일 1회)
+# 키워드 (keywords, 3–6개 필수): 사람들이 실제로 검색할 말로 쓴다 (예: "식후 걷기", "라면 혈당").
+#   글 하단·meta keywords·JSON-LD 에 들어간다. 금지어 검사 대상이고, 효과를 단정하는 말은 넣지 않는다
+#
+# 예약 발행: publishDate 를 미래로 두면 그 날(KST) 자정 직후 자동 빌드에서 공개된다.
+#   (.github/workflows/deploy.yml 의 schedule — 매일 1회. GitHub 사정으로 몇 시간 늦을 수 있다)
 # 임시 저장: draft: true
 # ─────────────────────────────────────────────────────────────────────
 title: 제목 (60자 이내, 검색어를 앞쪽에)
@@ -28,6 +31,7 @@ description: 검색결과·목록에 보이는 요약. 80–120자 권장.
 publishDate: 2026-11-01
 # updatedDate: 2026-11-15
 category: 혈당 기초 # 혈당 기초 | 식사 | 운동 | 생활습관
+keywords: [검색어 하나, 검색어 둘, 검색어 셋]
 # author: 글루밍 팀
 draft: true
 cover: ../../assets/program/sneakers.jpg

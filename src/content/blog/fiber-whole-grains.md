@@ -3,6 +3,7 @@ title: 흰쌀밥과 잡곡밥, 내 혈당 그래프는 어떻게 다를까
 description: 같은 양을 먹어도 흰쌀밥과 잡곡밥의 식후 흐름은 다를 수 있어요. 집에서 직접 비교해 보는 작은 실험과, 실험 뒤 밥상에 남길 식이섬유 요령을 담았어요.
 publishDate: 2026-11-05
 category: 식사
+keywords: [흰쌀밥 잡곡밥 혈당, 잡곡밥 혈당, 현미밥 혈당, 식이섬유 혈당, 통곡물]
 cover: ../../assets/program/grain-jars.jpg
 coverAlt: 나무 선반 위에 귀리, 보리, 검은콩을 담은 유리병 세 개
 sources:

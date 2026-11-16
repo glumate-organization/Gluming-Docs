@@ -3,6 +3,7 @@ title: 밥 먹은 뒤 포도당은 어디로 갈까, 허벅지가 받아 가는 
 description: 식사 뒤 늘어난 포도당을 가장 많이 받아 가는 곳은 근육이고, 큰 근육은 하체에 모여 있어요. 포도당을 택배에, 근육을 창고에 빗대어 풀어 봤어요.
 publishDate: 2026-12-28
 category: 운동
+keywords: [허벅지 근육 혈당, 하체 운동 혈당, 근육 포도당, 가자미근, 하체 근력운동]
 cover: ../../assets/program/resistance-band.jpg
 coverAlt: 바닥에 둥글게 놓인 운동용 밴드
 sources:

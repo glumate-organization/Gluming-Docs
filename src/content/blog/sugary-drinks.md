@@ -3,6 +3,7 @@ title: 달달한 음료 한 잔, 혈당 관리에서 먼저 바꿔 볼 것
 description: 단 음료는 씹지 않고 빠르게 마시는 당이라 식후 혈당 흐름에 영향을 주기 쉬워요. 연구 내용과 부담 없이 바꾸는 방법을 정리했어요.
 publishDate: 2026-11-02
 category: 식사
+keywords: [단 음료 혈당, 가당 음료, 음료수 혈당, 액상과당, 제로 음료]
 cover: ../../assets/program/water-apple.jpg
 coverAlt: 물 한 잔과 잎이 달린 풋사과 하나
 sources:

@@ -3,6 +3,7 @@ title: 딸기 올린 케이크는 괜찮다? 크리스마스 케이크에 대한
 description: 생크림은 지방이라 괜찮다, 과일 케이크는 덜하다, 다음 날 굶으면 된다. 크리스마스마다 듣는 케이크 이야기를 하나씩 풀고, 덜 출렁이게 먹는 요령을 정리했어요.
 publishDate: 2026-12-24
 category: 식사
+keywords: [케이크 혈당, 크리스마스 케이크, 생크림 케이크 혈당, 디저트 혈당, 단 음식 혈당]
 cover: ../../assets/program/cake-slice.jpg
 coverAlt: 접시 위 생크림 케이크 한 조각
 sources:

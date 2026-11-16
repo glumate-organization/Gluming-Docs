@@ -3,6 +3,7 @@ title: 부모님 혈당이 걱정될 때, 어떻게 말을 꺼내면 좋을까
 description: 걱정돼서 한 말이 잔소리가 되어 서로 서운했던 적 있나요? 부모님 혈당을 두고 자녀들이 자주 묻는 질문에, 연구와 함께 말 바꾸기 예시로 답해 봤어요.
 publishDate: 2026-12-20
 category: 생활습관
+keywords: [부모님 혈당 관리, 부모님 당뇨, 어르신 혈당, 부모님 건강 대화, 가족 건강]
 cover: ../../assets/program/reading-glasses.jpg
 coverAlt: 펼친 책 위에 놓인 돋보기 안경
 sources:

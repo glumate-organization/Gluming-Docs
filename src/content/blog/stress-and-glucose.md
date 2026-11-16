@@ -3,6 +3,7 @@ title: 먹은 건 같은데 그래프가 높은 날, 혹시 마음이 바빴나�
 description: 식사도 걷기도 평소와 같은데 유난히 그래프가 높은 날이 있어요. 스트레스와 혈당 흐름에 대해 자주 묻는 질문에 답하고, 긴장한 날 해볼 수 있는 작은 방법을 담았어요.
 publishDate: 2026-11-14
 category: 생활습관
+keywords: [스트레스 혈당, 스트레스 받으면 혈당, 코르티솔 혈당, 긴장 혈당 상승, 스트레스 단 음식]
 cover: ../../assets/program/family-mugs.jpg
 coverAlt: 나무 식탁 위에 나란히 놓인 크기가 다른 머그 세 개
 sources:

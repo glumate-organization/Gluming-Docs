@@ -3,6 +3,7 @@ title: 새벽 운동파와 저녁 운동파, 혈당에는 어느 쪽이 맞을�
 description: 출근 전 아침, 점심 후 15분, 저녁 식사 뒤. 내 하루에서 운동을 넣을 수 있는 시간대별로 연구가 말하는 것과 장단점을 비교하고, 꾸준히 지킬 시간을 고르는 법을 정리했어요.
 publishDate: 2026-12-09
 category: 운동
+keywords: [운동 시간대 혈당, 아침 운동 저녁 운동, 식후 운동, 공복 운동 혈당, 고강도 운동 혈당]
 cover: ../../assets/program/towel-bottle.jpg
 coverAlt: 접힌 수건과 스테인리스 물병
 sources:

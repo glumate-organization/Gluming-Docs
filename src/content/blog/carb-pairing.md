@@ -3,6 +3,7 @@ title: 식빵 한 장, 김밥 한 줄, 떡 한 조각. 혼자 먹은 탄수화�
 description: 하루를 돌아보면 탄수화물만 단독으로 먹은 순간이 생각보다 많아요. 아침부터 저녁까지 끼니마다 단백질·지방·채소 짝꿍을 붙여 보며 식후 혈당 흐름의 차이를 정리했어요.
 publishDate: 2026-12-13
 category: 식사
+keywords: [탄수화물 단독 섭취, 탄수화물 단백질 같이 먹기, 김밥 혈당, 식빵 혈당, 식후 혈당 스파이크]
 cover: ../../assets/program/olive-oil.jpg
 coverAlt: 작은 유리병에 담긴 올리브유와 빵 한 조각
 sources:

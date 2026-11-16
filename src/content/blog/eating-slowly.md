@@ -3,6 +3,7 @@ title: 점심을 10분 만에 먹는다면, 배부르다는 신호는 언제 도
 description: 빨리 먹으면 왜 더 먹게 될까, 천천히 먹으면 정말 다를까. 식사 속도에 대해 자주 검색하는 질문들을 포만감 호르몬과 체중 연구, 식후 혈당 흐름과 함께 풀었어요.
 publishDate: 2026-12-08
 category: 식사
+keywords: [천천히 먹기, 식사 속도 혈당, 빨리 먹는 습관, 포만감 호르몬, 씹는 횟수]
 cover: ../../assets/program/chopsticks.jpg
 coverAlt: 수저받침 위에 가지런히 놓인 나무 젓가락
 sources:

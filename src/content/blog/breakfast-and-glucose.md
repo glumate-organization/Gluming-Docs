@@ -3,6 +3,7 @@ title: 아침을 커피 한 잔으로 넘긴 날, 점심 혈당에는 무슨 일
 description: 바쁜 아침 한 끼쯤 걸러도 괜찮을 것 같지만, 그 영향이 점심과 저녁까지 이어질 수 있다는 연구가 있어요. 아침을 거른 평일 하루를 시간순으로 따라가 봤어요.
 publishDate: 2026-11-13
 category: 식사
+keywords: [아침 거르기 혈당, 아침 식사 혈당, 아침 굶으면 점심 혈당, 공복 커피, 두 번째 식사 효과]
 cover: ../../assets/program/breakfast.jpg
 coverAlt: 나무 식탁 위의 달걀, 통밀빵 한 조각, 블루베리 얹은 요거트와 물 한 잔
 sources:

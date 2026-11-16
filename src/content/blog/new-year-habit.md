@@ -3,6 +3,7 @@ title: 습관이 되는 데 정말 21일일까, 새해엔 하나만 골라 실�
 description: 새해 다짐 다섯 개 대신 습관 하나와 "언제, 어디서" 문장 하나. 4주 동안 달력과 CGM 그래프로 습관이 자리 잡는지 직접 확인해 보는 작은 실험을 소개해요.
 publishDate: 2026-12-29
 category: 생활습관
+keywords: [습관 형성 기간, 습관 21일, 새해 습관, 실행 의도, 습관 만들기]
 cover: ../../assets/program/fresh-calendar.jpg
 coverAlt: 새 달력과 만년필
 sources:

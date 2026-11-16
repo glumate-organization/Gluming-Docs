@@ -3,6 +3,7 @@ title: CGM을 붙이고 맞는 첫 평일, 아침부터 밤까지 그래프 읽�
 description: 센서를 붙인 첫 주에는 그래프의 작은 움직임에도 마음이 흔들려요. 평일 하루를 시간순으로 따라가며 장면마다 무엇을 보면 되는지 정리했어요.
 publishDate: 2026-11-07
 category: 혈당 기초
+keywords: [CGM 처음, 연속혈당측정기 첫 주, CGM 그래프 보는 법, 연속혈당측정기 사용법, 혈당 그래프]
 cover: ../../assets/program/cgm-arm.jpg
 coverAlt: 오트밀색 티셔츠 소매 아래, 팔 뒤쪽에 붙은 작고 둥근 흰색 연속혈당측정 센서
 sources:

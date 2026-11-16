@@ -3,6 +3,7 @@ title: 회식이 있던 밤부터 다음 날 아침까지, 술 한 잔이 남기
 description: 술은 혈당을 올리기도 하고, 몇 시간 뒤 늦게 떨어뜨리기도 해요. 회식 공지가 뜬 오후부터 다음 날 아침까지, 시간을 따라가며 챙길 것을 정리했어요.
 publishDate: 2026-11-19
 category: 생활습관
+keywords: [술 혈당, 음주 후 혈당, 회식 혈당 관리, 술 마신 다음날 혈당, 안주 혈당]
 cover: ../../assets/program/wine-water.jpg
 coverAlt: 나무 식탁 위의 레드 와인 한 잔과 물 한 잔
 sources:

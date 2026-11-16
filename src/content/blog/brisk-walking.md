@@ -3,6 +3,7 @@ title: 약속에 늦어 바삐 걷던 그 걸음, 혈당에는 다를까
 description: 같은 30분이라도 휴대폰을 보며 걷는 산책과 약속 시간에 맞춰 걷는 걸음은 몸이 느끼는 강도가 달라요. 두 번의 산책 이야기로 걷는 속도와 혈당의 관계를 풀어 봤어요.
 publishDate: 2026-12-04
 category: 운동
+keywords: [빠르게 걷기 혈당, 걷는 속도, 걷기 운동 강도, 중강도 운동, 겨울 걷기]
 cover: ../../assets/program/stopwatch.jpg
 coverAlt: 리넨 천 위에 놓인 은색 스톱워치
 sources:

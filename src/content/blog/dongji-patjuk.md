@@ -3,6 +3,7 @@ title: 팥은 괜찮다는데 팥죽은? 동지 팥죽 한 냄비를 따라가 �
 description: 팥은 혈당지수가 낮은 편이라는데 팥죽은 왜 조심하라고 할까요. 팥을 삶고 새알심을 빚어 그릇에 담기까지, 동지 팥죽 한 냄비를 따라가며 풀어 봤어요.
 publishDate: 2026-12-22
 category: 식사
+keywords: [팥죽 혈당, 동지 팥죽, 팥 혈당지수, 새알심 혈당, 죽 혈당]
 cover: ../../assets/program/red-bean-porridge.jpg
 coverAlt: 투박한 그릇에 담긴 팥죽
 sources:

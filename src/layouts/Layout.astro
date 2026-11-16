@@ -19,6 +19,8 @@ interface Props {
   description?: string;
   /** og:image 절대 URL (자기 도메인) — 선택 */
   ogImage?: string;
+  /** meta keywords — 혈당 노트 글에서만 넘긴다 */
+  keywords?: string[];
   /** 검색 색인 제외 (404 등) */
   noindex?: boolean;
   /** 페이지 전용 JSON-LD 노드 추가 (예: mobileAppSchema()) — 공통 노드에 합쳐진다 */
@@ -29,6 +31,7 @@ const {
   title = '글루밍 - 함께 관리하는 재미있는 혈당 관리 문화',
   description = '글루밍은 CGM(연속혈당측정) 센서 값을 식사·운동 같은 하루 행동과 잇는 혈당 관리 습관 앱이에요. 먹기 전, 움직이기 전에 혈당 흐름을 미리 그려보며 나의 몸을 이해해요.',
   ogImage = `${SITE_URL}/og.png`,
+  keywords,
   noindex = false,
   jsonLd = [],
 } = Astro.props;
@@ -59,6 +62,7 @@ const structuredData = noindex
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {keywords?.length && <meta name="keywords" content={keywords.join(', ')} />}
     <meta name="theme-color" content="#F7F5F0" />
     <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
     <!-- noindex 페이지(404)는 canonical·og:url 을 내지 않는다 — /404/ 처럼 실제로 없는 주소를 검색엔진이 따라가지 않게 -->

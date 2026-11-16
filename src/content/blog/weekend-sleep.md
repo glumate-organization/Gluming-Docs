@@ -3,6 +3,7 @@ title: 토요일 늦잠은 월요일 혈당까지 이어질까, 2주 기상 시�
 description: 평일엔 부족하게, 주말엔 몰아서 자는 습관. 내 '사회적 시차'를 직접 계산해 보고, 2주 동안 기상 시간을 바꿔 혈당 흐름을 비교하는 작은 실험을 연구와 함께 정리했어요.
 publishDate: 2026-12-11
 category: 생활습관
+keywords: [주말 늦잠 혈당, 사회적 시차, 주말 몰아 자기, 기상 시간 혈당, 수면 리듬]
 cover: ../../assets/program/pillow-blanket.jpg
 coverAlt: 햇살 드는 침대 위 개어 놓은 니트 담요와 베개
 sources:

@@ -3,6 +3,7 @@ title: 체중은 그대로인데 바지가 헐렁해졌다면, 허리둘레가 �
 description: 같은 무게의 짐이라도 어디에 놓이느냐에 따라 집안일이 달라지듯, 같은 체중이라도 지방이 어디에 있느냐가 중요해요. 이삿짐 비유로 허리둘레를 풀어 봤어요.
 publishDate: 2026-11-22
 category: 생활습관
+keywords: [허리둘레 혈당, 내장지방 혈당, 복부비만 인슐린 저항성, 허리둘레 재는 법, 체지방]
 cover: ../../assets/program/tape.jpg
 coverAlt: 둥글게 감긴 크림색 줄자
 sources:

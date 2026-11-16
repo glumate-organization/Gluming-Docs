@@ -3,6 +3,7 @@ title: 검진에선 5.9%, CGM에선 6.2%, 어느 쪽이 내 숫자일까
 description: 건강검진의 당화혈색소와 CGM 리포트의 GMI가 다르게 나와 헷갈렸다면, 두 숫자를 무엇으로 어떻게 재는지부터 알아 두세요. 자주 묻는 질문으로 차근차근 정리했어요.
 publishDate: 2026-12-02
 category: 혈당 기초
+keywords: [당화혈색소 GMI 차이, GMI, 당화혈색소, 혈당관리지표, CGM 리포트]
 cover: ../../assets/program/desk-calendar.jpg
 coverAlt: 책상 위에 놓인 종이 탁상 달력
 sources:

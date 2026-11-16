@@ -3,6 +3,7 @@ title: 역 출구에서 집까지, 붕어빵 트럭과 호빵 찜기를 지나�
 description: 퇴근길에 줄지어 기다리는 붕어빵, 호빵, 군고구마, 군밤. 집까지 걸어가는 길을 따라 겨울 간식이 혈당 흐름에 어떻게 닿는지, 즐겁게 먹는 요령을 풀어 봤어요.
 publishDate: 2026-12-10
 category: 식사
+keywords: [붕어빵 혈당, 호빵 혈당, 군고구마 혈당, 군밤 혈당, 겨울 간식]
 cover: ../../assets/program/chestnuts.jpg
 coverAlt: 종이봉투에 담긴 군밤
 sources:

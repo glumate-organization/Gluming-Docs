@@ -3,6 +3,7 @@ title: 식후 혈당 꼭대기는 2시간 뒤? 그래프로 보면 조금 달라
 description: 식후 혈당은 2시간 뒤에 가장 높다, 기름진 음식은 덜 오르니 괜찮다. CGM 그래프를 보며 자주 하는 오해 다섯 가지를 연구 내용과 함께 하나씩 풀어 봤어요.
 publishDate: 2026-12-12
 category: 혈당 기초
+keywords: [식후 혈당 최고점, 식후 혈당 언제 가장 높나, 식후 2시간 혈당, 식후 혈당 그래프, 혈당 피크]
 cover: ../../assets/program/hourglass.jpg
 coverAlt: 나무 테이블 위 모래시계
 sources:

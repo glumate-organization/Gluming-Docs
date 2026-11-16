@@ -3,6 +3,7 @@ title: 오후 4시 과자 서랍 앞에서, 간식에 대해 자주 묻는 일�
 description: 오후만 되면 단 게 당기는 건 의지 문제일까요? 간식을 참아야 할지, 편의점에서 무엇을 고를지, 제로 간식은 괜찮은지 자주 묻는 질문에 차례로 답했어요.
 publishDate: 2026-11-08
 category: 식사
+keywords: [혈당 간식, 편의점 간식 혈당, 제로 간식, 견과류 혈당, 오후 간식]
 cover: ../../assets/program/nuts-yogurt.jpg
 coverAlt: 나무 식탁 위의 견과류 한 그릇과 나무 숟가락을 꽂은 플레인 요거트 한 잔
 sources:

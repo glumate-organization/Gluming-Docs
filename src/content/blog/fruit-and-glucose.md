@@ -3,6 +3,7 @@ title: 식후 과일 한 접시와 오후의 사과 반 개, 혈당엔 같을까
 description: 같은 과일이라도 언제, 어디서, 어떤 모양으로 먹느냐에 따라 흐름이 달라질 수 있어요. 아침 식탁부터 밤 소파까지, 장면별로 과일 먹는 법을 골라 봤어요.
 publishDate: 2026-11-15
 category: 식사
+keywords: [과일 혈당, 식후 과일, 과일 주스 혈당, 말린 과일 혈당, 사과 혈당]
 cover: ../../assets/program/fruit.jpg
 coverAlt: 도자기 그릇에 담긴 사과 하나, 포도 한 송이, 귤 하나
 sources:

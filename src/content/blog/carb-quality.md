@@ -3,6 +3,7 @@ title: 신문지 불과 장작불, 탄수화물도 타는 속도가 달라요
 description: 흰쌀밥과 잡곡밥은 둘 다 탄수화물인데 왜 다르게 이야기할까요. 아궁이에 불을 지피는 장면 하나로, 끊기보다 바꾸는 탄수화물 이야기를 풀어 봤어요.
 publishDate: 2026-11-16
 category: 식사
+keywords: [탄수화물 혈당, 좋은 탄수화물, 잡곡밥 혈당, 통곡물, 정제 탄수화물, 식이섬유]
 cover: ../../assets/program/sweet-potato.jpg
 coverAlt: 나무 도마 위의 군고구마 두 개와 현미밥 한 그릇
 sources:

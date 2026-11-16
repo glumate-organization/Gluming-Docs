@@ -3,6 +3,7 @@ title: 송년회가 있는 날, 아침부터 귀갓길까지 혈당은 어디서
 description: 저녁 약속 하나가 하루 전체의 먹는 방식을 바꿔 놓아요. 송년회 날의 아침, 점심, 첫 접시, 볶음밥, 귀갓길을 시간순으로 따라가며 흐름을 지키는 선택을 골라 봤어요.
 publishDate: 2026-11-25
 category: 생활습관
+keywords: [송년회 혈당 관리, 연말 모임 혈당, 회식 혈당, 약속 있는 날 식사, 볶음밥 혈당]
 cover: ../../assets/program/door-hooks.jpg
 coverAlt: 저녁 햇살이 드는 현관 벽, 나무 고리에 걸린 모자 두 개와 에코백
 sources:

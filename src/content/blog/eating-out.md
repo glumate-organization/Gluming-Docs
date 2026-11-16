@@ -3,6 +3,7 @@ title: 늘 가는 고깃집에서 해 보는 외식 혈당 실험, 바꿀 건 �
 description: 회식 메뉴는 못 골라도 먹는 순서와 식후 10분은 내가 정할 수 있어요. 자주 가는 식당에서 한 가지씩만 바꿔 식후 흐름을 비교해 보는 실험을 소개해요.
 publishDate: 2026-11-11
 category: 식사
+keywords: [외식 혈당 관리, 고깃집 혈당, 회식 식사 순서, 냉면 혈당, 식후 걷기]
 cover: ../../assets/program/salad-table.jpg
 coverAlt: 식당 테이블 위의 초록 샐러드 한 접시, 물 한 잔, 냅킨 위의 수저
 sources:

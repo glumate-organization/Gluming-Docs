@@ -22,6 +22,8 @@ const blog = defineCollection({
         publishDate: z.coerce.date(),
         updatedDate: z.coerce.date().optional(),
         category: z.enum(['혈당 기초', '식사', '운동', '생활습관']),
+        /** 검색 키워드 3–6개 — 글 하단 표시·meta keywords·JSON-LD 에 쓰인다. 실제 검색어 형태로 */
+        keywords: z.array(z.string().max(30)).min(3).max(6),
         author: z.string().default('글루밍 팀'),
         /** 건강 정보는 근거가 있어야 한다 — 출처 1개 이상 필수 */
         sources: z.array(z.object({ title: z.string(), url: z.url() })).min(1),

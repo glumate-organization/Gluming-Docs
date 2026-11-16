@@ -3,6 +3,7 @@ title: 12월 31일 하루, 1년치 혈당 기록을 천천히 넘겨 보면
 description: 아침 커피를 내리며 기록을 열고, 오후엔 계절을 넘기고, 밤엔 새해로 가져갈 한 줄을 적어요. 한 해 마지막 날을 따라가며 1년의 기록을 정리해 봐요.
 publishDate: 2026-12-31
 category: 생활습관
+keywords: [혈당 기록 연말 정리, 1년 혈당 기록, 혈당 기록 돌아보기, CGM 리포트, 새해 건강 계획]
 cover: ../../assets/program/candle.jpg
 coverAlt: 나무 받침 위 켜진 작은 초 하나
 sources:

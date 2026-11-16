@@ -3,6 +3,7 @@ title: 커피, 라테, 주스 사이에 물은 몇 잔이었을까
 description: 아침 커피부터 오후 음료, 밤의 따뜻한 차까지. 하루 동안 마신 것을 시간순으로 따라가며, 물 한 잔이 혈당 흐름과 어떻게 이어지는지 연구와 함께 정리했어요.
 publishDate: 2026-12-01
 category: 생활습관
+keywords: [물 마시기 혈당, 수분 섭취 혈당, 하루 물 섭취량, 물 대신 음료, 탈수 혈당]
 cover: ../../assets/program/water-carafe.jpg
 coverAlt: 창가에 놓인 물이 담긴 유리 물병과 컵
 sources:

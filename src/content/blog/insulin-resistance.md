@@ -3,6 +3,7 @@ title: 열쇠는 있는데 문이 뻑뻑하다면, 인슐린 저항성의 하루
 description: 검진 상담에서 들은 인슐린 저항성이라는 말. 아침부터 밤까지 하루를 따라가며 열쇠와 문의 비유로 몸 안의 일을 풀고, 잠·움직임·식사로 할 수 있는 일을 정리했어요.
 publishDate: 2026-12-07
 category: 혈당 기초
+keywords: [인슐린 저항성, 인슐린 저항성 원인, 인슐린 저항성 생활습관, 인슐린 감수성, 공복 인슐린]
 cover: ../../assets/program/brass-key.jpg
 coverAlt: 리넨 위에 놓인 오래된 놋쇠 열쇠 하나
 sources:

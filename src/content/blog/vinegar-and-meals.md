@@ -3,6 +3,7 @@ title: 아침마다 사과식초 한 잔? 식초와 식후 혈당에 대해 들�
 description: 식초를 마시면 혈당이 내려간다, 많이 먹을수록 좋다, 식초 음료면 괜찮다. 흔히 듣는 말 다섯 가지를 연구에 비춰 하나씩 짚고, 한식 밥상에서 곁들이는 법을 정리했어요.
 publishDate: 2026-11-30
 category: 식사
+keywords: [식초 혈당, 사과식초 혈당, 애사비 혈당, 식초 식후 혈당, 식초 음료]
 cover: ../../assets/program/vinegar-cruet.jpg
 coverAlt: 나무 쟁반 위 유리 식초병과 작은 종지
 sources:

@@ -3,6 +3,7 @@ title: 같은 밥 한 공기, 왜 나와 친구의 혈당은 다르게 오를까
 description: 똑같은 음식을 먹어도 식후 혈당 반응은 사람마다 달라요. 연구로 알려진 개인차와, 내 몸의 반응을 알아가는 방법을 정리했어요.
 publishDate: 2026-10-26
 category: 혈당 기초
+keywords: [혈당 개인차, 같은 음식 다른 혈당, 개인 맞춤 영양, 식후 혈당 반응, 장내 미생물 혈당]
 cover: ../../assets/program/rice-bowls.jpg
 coverAlt: 나무 식탁 위에 나란히 놓인 똑같은 쌀밥 두 공기와 젓가락
 sources:

@@ -31,6 +31,7 @@ const ogImage = d.cover
   title={`${d.title} — 글루밍 혈당 노트`}
   description={d.description}
   ogImage={ogImage}
+  keywords={d.keywords}
   jsonLd={[
     blogPostingSchema({
       url,
@@ -41,6 +42,7 @@ const ogImage = d.cover
       section: d.category,
       author: d.author,
       sources: d.sources,
+      keywords: d.keywords,
       image: ogImage,
     }),
     postBreadcrumbSchema(url, d.title),
@@ -90,6 +92,11 @@ const ogImage = d.cover
       }
     </ol>
 
+    <p class="post-keywords">
+      <span class="kw-label">이 글의 키워드</span>
+      {d.keywords.join(' · ')}
+    </p>
+
     <div class="notice post-promo">
       <p>
         글루밍에서는 식사나 운동을 고르기 전에, 내 혈당 흐름이 어떻게 달라질지 미리 그려볼 수 있어요.
@@ -137,6 +144,17 @@ const ogImage = d.cover
   }
   .post-cta {
     margin-bottom: 0;
+  }
+  /* 글 키워드 — 출처 목록 아래 작은 한 줄 */
+  .post-keywords {
+    font-size: 13.5px;
+    color: var(--text-3);
+    line-height: 1.7;
+  }
+  .post-keywords .kw-label {
+    margin-right: var(--sp-2);
+    color: var(--text-2);
+    font-weight: 600;
   }
   /* 이전·다음 글 — 헤어라인 사이 2열. 최신 쪽(다음 글)은 오른쪽 정렬 */
   .post-pager {

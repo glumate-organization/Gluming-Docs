@@ -3,6 +3,7 @@ title: 일요일 저녁 5분, 지난 일주일 그래프에서 무엇을 볼까
 description: 평범한 주, 모임이 몰린 주, 주말만 출렁인 주, 기록이 빈 주. 어떤 한 주를 보냈느냐에 따라 주간 리포트에서 먼저 펼쳐 볼 곳과 다음 주 실험이 달라져요.
 publishDate: 2026-12-27
 category: 혈당 기초
+keywords: [주간 혈당 리포트, CGM 주간 리포트, 혈당 기록 돌아보기, 혈당 패턴, TIR]
 cover: ../../assets/program/sticky-notes.jpg
 coverAlt: 책상 위 크림색 메모지 묶음과 연필
 sources:

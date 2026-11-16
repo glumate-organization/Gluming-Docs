@@ -3,6 +3,7 @@ title: 커피를 끊어야 할까, 문제는 잔 속에 더한 것일지도
 description: 혈당 관리 중엔 커피부터 끊어야 한다는 말, 들어 보셨죠. 블랙커피와 시럽 라떼 사이의 차이까지, 커피에 관해 자주 듣는 말 다섯 가지를 연구와 함께 풀어 봤어요.
 publishDate: 2026-11-18
 category: 식사
+keywords: [커피 혈당, 아메리카노 혈당, 라떼 혈당, 디카페인 혈당, 카페인 혈당]
 cover: ../../assets/program/coffee.jpg
 coverAlt: 아침 햇살이 드는 자리에 놓인 흰 잔의 블랙커피 한 잔
 sources:

@@ -3,6 +3,7 @@ title: 어제 지은 밥과 방금 지은 밥, 혈당은 같을까
 description: 밥솥에서 막 푼 밥, 냉동밥, 전날 지어 둔 도시락 밥, 편의점 주먹밥. 밥이 식으면 생기는 저항성 전분 이야기와 함께, 상황별로 어떤 밥을 어떻게 먹으면 좋을지 비교했어요.
 publishDate: 2026-12-03
 category: 식사
+keywords: [식은 밥 혈당, 저항성 전분, 냉동밥 혈당, 찬밥 혈당, 밥 혈당]
 cover: ../../assets/program/lunchbox.jpg
 coverAlt: 뚜껑을 연 나무 도시락에 담긴 밥
 sources:

@@ -3,6 +3,7 @@ title: 김밥 한 줄 옆에 무엇을 놓을까, 끼니마다 단백질 한 가
 description: 집 아침, 편의점 점심, 백반집, 국숫집, 저녁 식탁까지. 탄수화물 위주의 한 끼에 단백질 한 가지를 더하는 방법을 장소별로 비교하고, 식후 흐름과의 관계를 정리했어요.
 publishDate: 2026-11-27
 category: 식사
+keywords: [단백질 혈당, 끼니 단백질, 편의점 단백질, 탄수화물 단백질 조합, 식후 혈당]
 cover: ../../assets/program/egg-bowl.jpg
 coverAlt: 크림색 도자기 그릇에 담긴 삶은 달걀 세 개
 sources:

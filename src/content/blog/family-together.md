@@ -3,6 +3,7 @@ title: 혈당 관리는 혼자 버티는 일이라는 착각, 가족과 나누�
 description: 혈당 관리는 내 의지 문제라고, 내 메뉴만 따로 차리면 된다고 생각하기 쉬워요. 가족과 함께할 때 흔히 하는 오해 다섯 가지를 풀고 작은 습관을 담았어요.
 publishDate: 2026-11-12
 category: 생활습관
+keywords: [가족 혈당 관리, 가족 식단, 당뇨 가족 지지, 함께 걷기, 혈당 관리 습관]
 cover: ../../assets/program/family-shoes.jpg
 coverAlt: 현관에 나란히 놓인 어른과 아이의 신발 세 켤레
 sources:

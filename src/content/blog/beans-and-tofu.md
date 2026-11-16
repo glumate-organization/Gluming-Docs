@@ -3,6 +3,7 @@ title: 콩자반은 건강 반찬일까, 콩과 두부에 대한 오해 다섯 �
 description: 콩은 단백질 식품이라 탄수화물이 없다? 콩밥이면 많이 먹어도 괜찮다? 콩과 두부를 둘러싼 흔한 말들을 연구 내용과 한식 예시로 하나씩 풀어 봤어요.
 publishDate: 2026-12-06
 category: 식사
+keywords: [콩 혈당, 두부 혈당, 콩밥 혈당, 콩 탄수화물, 식물성 단백질]
 cover: ../../assets/program/tofu-beans.jpg
 coverAlt: 작은 그릇에 담긴 두부와 마른 콩
 sources:

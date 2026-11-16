@@ -3,6 +3,7 @@ title: 화분에 물을 한꺼번에 붓지 않듯, 임신 중 끼니 나누기
 description: 임신 중 혈당 이야기를 들으면 무엇보다 언제, 얼마나 먹을지가 막막해요. 화분에 물 주기에 빗대어 세 끼와 간식으로 나눠 먹는 까닭을 풀어 봤어요.
 publishDate: 2026-12-16
 category: 식사
+keywords: [임신성 당뇨 식단, 임당 식단, 임신 중 간식, 임산부 끼니 나누기, 임신 혈당]
 cover: ../../assets/program/small-dishes.jpg
 coverAlt: 작은 그릇 여러 개에 나눠 담은 반찬
 sources:

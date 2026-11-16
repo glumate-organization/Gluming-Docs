@@ -3,6 +3,7 @@ title: 점심 뒤 계단 3분, 내 식후 그래프로 직접 비교해 볼까�
 description: 엘리베이터를 탄 날과 계단을 오른 날, 같은 점심 뒤 그래프는 어떻게 다를까요. 연구 속 3분 계단 운동을 참고해 CGM으로 해 보는 작은 실험을 정리했어요.
 publishDate: 2026-11-29
 category: 운동
+keywords: [계단 오르기 혈당, 식후 계단 오르기, 계단 운동, 점심 후 운동, 식후 혈당]
 cover: ../../assets/program/stairs.jpg
 coverAlt: 햇살이 드리운 나무 계단
 sources:

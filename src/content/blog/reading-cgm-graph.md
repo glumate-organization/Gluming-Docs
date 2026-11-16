@@ -3,6 +3,7 @@ title: 꼭대기가 높으면 실패한 식사일까, CGM 그래프에 관한 �
 description: 식후 그래프를 열면 꼭대기 숫자부터 보게 되죠. 하지만 높이만으로는 놓치는 게 많아요. CGM 그래프를 볼 때 자주 생기는 오해 다섯 가지를 차례로 풀어 봤어요.
 publishDate: 2026-11-24
 category: 혈당 기초
+keywords: [CGM 그래프 해석, 혈당 그래프 보는 법, 식후 혈당 140, 연속혈당측정기 그래프, 혈당 스파이크]
 cover: ../../assets/program/sensor-phone.jpg
 coverAlt: 구김 있는 리넨 위에 놓인 작고 둥근 연속혈당측정 센서와 휴대폰
 sources:

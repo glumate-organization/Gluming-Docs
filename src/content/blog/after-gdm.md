@@ -3,6 +3,7 @@ title: 임신성 당뇨는 출산과 함께 끝날까, 산후 생활 속 혈당 
 description: 출산하면 임신성 당뇨도 끝난 것 같지만 챙겨 둘 검사와 습관이 있어요. 산후 검진 날, 밤중 수유, 유모차 산책, 복직 후까지 상황별로 정리했어요.
 publishDate: 2026-12-15
 category: 생활습관
+keywords: [임신성 당뇨 출산 후, 산후 혈당 검사, 임당 산후 관리, 모유수유 혈당, 출산 후 혈당]
 cover: ../../assets/program/swaddle.jpg
 coverAlt: 곱게 개어 둔 크림색 아기 속싸개
 sources:

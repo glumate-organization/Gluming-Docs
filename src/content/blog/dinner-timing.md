@@ -3,6 +3,7 @@ title: 점심을 대충 넘긴 날, 저녁 혈당 곡선은 어떻게 달라질�
 description: 하루에 먹는 양이 같아도 언제 먹느냐에 따라 몸의 반응이 다를 수 있다는 연구가 있어요. 같은 저녁 메뉴로 두 날을 비교해 보는 작은 실험을 소개해요.
 publishDate: 2026-11-17
 category: 식사
+keywords: [저녁 식사 시간 혈당, 늦은 저녁 혈당, 식사 시간대, 저녁 혈당, 끼니 거르기 혈당]
 cover: ../../assets/program/clock.jpg
 coverAlt: 나무 선반 위 벽에 기대 놓인 크림색 아날로그 시계
 sources:
