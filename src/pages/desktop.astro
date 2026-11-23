@@ -1,10 +1,14 @@
 ---
-import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import Button from '../components/Button.astro';
 import Layout from '../layouts/Layout.astro';
 import SectionHead from '../components/SectionHead.astro';
-import { charactersByKey } from '../lib/assets';
+import heroVideo from '../assets/desktop/hero.mp4';
+import heroPoster from '../assets/desktop/hero-poster.png';
 import { desktopLinks, storeLinks } from '../lib/links';
+
+// 영상이 뜨기 전(또는 '동작 줄이기' 설정)에는 첫 프레임을 보여준다.
+const poster = await getImage({ src: heroPoster, width: 1280, format: 'webp' });
 
 const title = '글루밍 데스크톱 — 컴퓨터 화면 위의 글루밍즈';
 const description =
@@ -78,14 +82,19 @@ const notes = [
         </p>
       </div>
       <div class="hero-art">
-        <Image
-          src={charactersByKey.ribuni.states.happy}
-          alt="활짝 웃고 있는 글루밍즈 루코"
-          width={320}
-          height={320}
-          densities={[1, 2]}
-          loading="eager"
-        />
+        <video
+          class="hero-video"
+          src={heroVideo}
+          poster={poster.src}
+          width="1280"
+          height="720"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-label="바탕화면 위를 걸어 다니며 혈당 값을 보여주는 글루밍즈 보미"></video>
+        <p class="hero-caption">이해를 돕기 위해 연출한 화면이에요.</p>
       </div>
     </div>
   </section>
@@ -133,6 +142,16 @@ const notes = [
   </section>
 </Layout>
 
+<script>
+  // '동작 줄이기'를 켠 분께는 자동 재생 대신 첫 프레임(poster)만 보여준다.
+  const video = document.querySelector<HTMLVideoElement>('.hero-video');
+  if (video && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    video.removeAttribute('autoplay');
+    video.pause();
+    video.load();
+  }
+</script>
+
 <style>
   .hero {
     padding-top: clamp(48px, 7vw, 96px);
@@ -140,17 +159,22 @@ const notes = [
   }
   .hero-inner {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: clamp(28px, 5vw, 72px);
-    align-items: center;
+    gap: clamp(32px, 5vw, 56px);
   }
-  .hero-art {
-    display: grid;
-    place-items: center;
-  }
-  .hero-art :global(img) {
-    width: min(100%, 320px);
+  .hero-video {
+    display: block;
+    width: 100%;
     height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border: 1px solid var(--rule);
+    border-radius: var(--r-sm);
+    background: var(--bg);
+  }
+  .hero-caption {
+    margin-top: var(--sp-2);
+    color: var(--text-3);
+    font-size: var(--fs-sm);
   }
 
   .downloads {
@@ -269,15 +293,8 @@ const notes = [
   }
 
   @media (max-width: 900px) {
-    .hero-inner,
     .steps {
       grid-template-columns: 1fr;
-    }
-    .hero-art {
-      order: -1;
-    }
-    .hero-art :global(img) {
-      width: 180px;
     }
   }
   @media (max-width: 640px) {
