@@ -1,0 +1,289 @@
+---
+import { Image } from 'astro:assets';
+import Button from '../components/Button.astro';
+import Layout from '../layouts/Layout.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { charactersByKey } from '../lib/assets';
+import { desktopLinks, storeLinks } from '../lib/links';
+
+const title = '글루밍 데스크톱 — 컴퓨터 화면 위의 글루밍즈';
+const description =
+  '일하는 동안에도 글루밍즈가 화면 한쪽에서 함께해요. Mac과 Windows용 글루밍 데스크톱 앱을 내려받고, 글루밍 앱으로 QR을 찍어 연결해 보세요.';
+
+const downloads = [
+  { href: desktopLinks.mac, name: 'Mac용 내려받기', sub: 'macOS · Apple Silicon / Intel' },
+  { href: desktopLinks.windows, name: 'Windows용 내려받기', sub: 'Windows 10 이상 · 64비트' },
+];
+
+const steps = [
+  {
+    title: '설치 파일을 열어요',
+    body: 'Mac은 내려받은 파일을 열어 글루밍을 응용 프로그램 폴더로 옮기고, Windows는 설치 파일을 실행해 안내를 따라가면 돼요.',
+  },
+  {
+    title: '글루밍 앱으로 QR을 찍어요',
+    body: '데스크톱 앱을 처음 열면 QR이 보여요. 휴대폰 글루밍 앱의 ‘PC 연결’ 메뉴에서 QR을 찍고 연결을 승인해 주세요.',
+  },
+  {
+    title: '화면 한쪽에서 함께해요',
+    body: '연결이 끝나면 글루밍즈가 화면에 나타나 최근 혈당 값을 보여줘요. 다음부터는 QR 없이 바로 만날 수 있어요.',
+  },
+];
+
+const notes = [
+  {
+    q: '휴대폰에 글루밍 앱이 꼭 있어야 하나요?',
+    a: '네, 데스크톱 앱은 글루밍 앱에 연결해서 쓰는 짝꿍이에요. ‘PC 연결’ 메뉴가 보이지 않으면 글루밍 앱을 최신 버전으로 업데이트해 주세요.',
+  },
+  {
+    q: 'Windows에서 ‘PC 보호’ 창이 떠요.',
+    a: '아직 널리 알려지지 않은 새 프로그램이라 나타나는 안내예요. ‘추가 정보’를 누른 다음 ‘실행’을 누르면 설치를 이어갈 수 있어요.',
+  },
+  {
+    q: '업데이트는 어떻게 하나요?',
+    a: '새 버전이 나오면 앱이 알아서 받아 설치해요. 따로 다시 내려받지 않으셔도 돼요.',
+  },
+  {
+    q: '연결을 끊고 싶어요.',
+    a: '데스크톱 앱 설정의 ‘연결 해제’를 누르면 그 컴퓨터에서는 더 이상 내 정보가 보이지 않아요.',
+  },
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- ── HERO ── -->
+  <section class="hero section">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow">Gluming for Desktop</span>
+        <h1 class="section-title">컴퓨터 화면 위에서도<br />글루밍즈와 함께해요</h1>
+        <p class="section-sub">
+          일하는 동안에도 글루밍즈가 화면 한쪽에서 곁을 지켜요.<br />
+          휴대폰을 꺼내지 않아도 최근 혈당 값을 가볍게 살펴볼 수 있어요.
+        </p>
+        <div class="downloads">
+          {
+            downloads.map((d) => (
+              <a class="download" href={d.href}>
+                <span class="download-sub">{d.sub}</span>
+                <span class="download-name">{d.name}</span>
+              </a>
+            ))
+          }
+        </div>
+        <p class="hero-note">
+          글루밍 앱이 아직 없으신가요?
+          <a href={storeLinks.appStore} target="_blank" rel="noopener noreferrer">App Store</a> ·
+          <a href={storeLinks.playStore} target="_blank" rel="noopener noreferrer">Google Play</a>
+        </p>
+      </div>
+      <div class="hero-art">
+        <Image
+          src={charactersByKey.ribuni.states.happy}
+          alt="활짝 웃고 있는 글루밍즈 루코"
+          width={320}
+          height={320}
+          densities={[1, 2]}
+          loading="eager"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 연결 방법 ── -->
+  <section class="section steps-section">
+    <div class="container">
+      <SectionHead eyebrow="01 — How to Start">세 단계면 준비가 끝나요</SectionHead>
+      <ol class="steps">
+        {
+          steps.map((s, i) => (
+            <li class="step reveal">
+              <span class="step-no">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="step-title">{s.title}</h3>
+              <p class="step-body">{s.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- ── 안내 ── -->
+  <section class="section notes-section">
+    <div class="container">
+      <SectionHead eyebrow="02 — Good to Know">미리 알아두면 좋아요</SectionHead>
+      <dl class="notes">
+        {
+          notes.map((n) => (
+            <div class="note reveal">
+              <dt>{n.q}</dt>
+              <dd>{n.a}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <p class="disclaimer">
+        글루밍은 웰니스 습관 보조 서비스이며 의료기기가 아니에요. 화면에 보이는 값은 실제보다 늦게
+        반영될 수 있으니, 의료적 판단에는 사용하지 말아 주세요.
+      </p>
+      <p class="more">
+        <Button href="/about" variant="ghost">글루밍 더 알아보기 →</Button>
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding-top: clamp(48px, 7vw, 96px);
+    padding-bottom: clamp(48px, 7vw, 88px);
+  }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(28px, 5vw, 72px);
+    align-items: center;
+  }
+  .hero-art {
+    display: grid;
+    place-items: center;
+  }
+  .hero-art :global(img) {
+    width: min(100%, 320px);
+    height: auto;
+  }
+
+  .downloads {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+    margin-top: 30px;
+  }
+  .download {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 58px;
+    padding: 0 22px;
+    border-radius: var(--r-sm);
+    border: 1px solid transparent;
+    background: var(--pine);
+    color: var(--on-dark);
+    line-height: 1.15;
+    transition:
+      background var(--dur-2) var(--ease),
+      color var(--dur-2) var(--ease);
+  }
+  .download:hover {
+    background: var(--sage-dark);
+  }
+  .download + .download {
+    background: transparent;
+    color: var(--text);
+    border-color: var(--text);
+  }
+  .download + .download:hover {
+    background: var(--text);
+    color: var(--bg);
+  }
+  .download-sub {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    opacity: 0.72;
+  }
+  .download-name {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .hero-note {
+    margin-top: var(--sp-4);
+    color: var(--text-2);
+    font-size: var(--fs-sm);
+  }
+  .hero-note a {
+    color: var(--sage-dark);
+    font-weight: 600;
+  }
+
+  .steps-section,
+  .notes-section {
+    border-top: 1px solid var(--rule);
+  }
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 4vw, 56px);
+  }
+  .step {
+    border-top: 1px solid var(--text);
+    padding-top: var(--sp-4);
+  }
+  .step-no {
+    font-family: var(--font-serif);
+    color: var(--sage-dark);
+    font-size: 14px;
+    letter-spacing: 0.14em;
+  }
+  .step-title {
+    margin-top: var(--sp-3);
+    font-size: var(--fs-h4);
+    letter-spacing: -0.02em;
+  }
+  .step-body {
+    margin-top: var(--sp-3);
+    color: var(--text-2);
+    line-height: var(--lh-body);
+  }
+
+  .notes {
+    margin: 0;
+    max-width: var(--measure);
+  }
+  .note {
+    padding: var(--sp-4) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .note dt {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .note dd {
+    margin: var(--sp-2) 0 0;
+    color: var(--text-2);
+    line-height: var(--lh-body);
+  }
+  .disclaimer {
+    margin-top: var(--sp-6);
+    max-width: var(--measure);
+    color: var(--text-3);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+  }
+  .more {
+    margin-top: var(--sp-5);
+  }
+
+  @media (max-width: 900px) {
+    .hero-inner,
+    .steps {
+      grid-template-columns: 1fr;
+    }
+    .hero-art {
+      order: -1;
+    }
+    .hero-art :global(img) {
+      width: 180px;
+    }
+  }
+  @media (max-width: 640px) {
+    .download {
+      flex: 1 1 100%;
+      align-items: center;
+    }
+  }
+</style>

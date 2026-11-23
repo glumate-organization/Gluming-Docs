@@ -7,6 +7,13 @@ export const storeLinks = {
     'https://play.google.com/store/apps/details?id=org.glumate.gluming&hl=ko',
 };
 
+// 데스크톱 앱 설치 파일 — 이 리포(Gluming-Docs)의 GitHub Releases 최신본. 파일명은 버전과 무관하게 고정이다.
+const desktopRelease = 'https://github.com/glumate-organization/Gluming-Docs/releases/latest/download';
+export const desktopLinks = {
+  mac: `${desktopRelease}/Gluming-mac.dmg`,
+  windows: `${desktopRelease}/Gluming-windows-setup.exe`,
+};
+
 export const contactEmail = 'glumate@glumate.org';
 
 /** 운영사 글루메이트 회사 사이트 — 두 사이트가 같은 주체임을 잇는다 (푸터·JSON-LD) */

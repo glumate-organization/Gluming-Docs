@@ -40,13 +40,16 @@ const here = Astro.url.pathname.replace(/\/$/, '') || '/';
       }
     </nav>
 
-    <!-- 스토어별로 따로 — iPhone 은 채움, Android 는 아웃라인 -->
+    <!-- 스토어별로 따로 — iPhone 은 채움, Android·Desktop 은 아웃라인. Desktop 은 설치 파일 안내 페이지로 간다 -->
     <div class="nav-cta">
       <Button href={storeLinks.appStore} size="md" class="nav-store"
         >iPhone<span class="nav-store-suffix"> 다운로드</span></Button
       >
       <Button href={storeLinks.playStore} size="md" variant="secondary" class="nav-store"
         >Android<span class="nav-store-suffix"> 다운로드</span></Button
+      >
+      <Button href="/desktop" size="md" variant="secondary" class="nav-store nav-desktop"
+        >Desktop<span class="nav-store-suffix"> 다운로드</span></Button
       >
     </div>
   </div>
@@ -197,6 +200,10 @@ const here = Astro.url.pathname.replace(/\/$/, '') || '/';
     }
     /* 좁아지면 "다운로드" 는 접고 OS 이름만 남긴다 */
     .nav-store-suffix {
+      display: none;
+    }
+    /* PC용 설치 파일이라 휴대폰 폭에서는 버튼을 접는다 */
+    .nav-cta :global(.nav-desktop) {
       display: none;
     }
     .nav-cta {

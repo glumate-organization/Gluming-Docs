@@ -21,6 +21,7 @@ export const pageNames: Record<string, string> = {
   '/business': '기업 도입',
   '/characters': '글루밍즈',
   '/about': '소개',
+  '/desktop': '데스크톱 앱',
   '/privacy': '개인정보처리방침',
   '/terms': '서비스 이용약관',
   '/medical': '의료 정보 기준·출처',
